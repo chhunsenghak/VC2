@@ -34,7 +34,6 @@ class UserController extends Controller
     public function index()
     {
         $user = User::latest()->get();
-
         return view('setting.user.index', ['users' => $user]);
     }
 

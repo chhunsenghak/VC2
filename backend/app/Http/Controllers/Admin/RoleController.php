@@ -84,7 +84,7 @@ class RoleController extends Controller
     {
         $permission = Permission::get();
         $role->permissions;
-       return view('setting.role.edit',['role'=>$role,'permissions' => $permission]);
+        return view('setting.role.edit',['role'=>$role,'permissions' => $permission]);
     }
 
     /**

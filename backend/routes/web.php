@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\{
     ProfileController,
     MailSettingController,
 };
+use App\Http\Controllers\FrontuserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/register', function () {
+    return view('auth.register');
+});
 
 Route::get('/test-mail', function () {
 
@@ -49,9 +53,6 @@ Route::get('/admin/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-
-
-
 Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
     ->group(function () {
         Route::resource('roles', 'RoleController');
@@ -64,3 +65,5 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::get('/mail', [MailSettingController::class, 'index'])->name('mail.index');
         Route::put('/mail-update/{mailsetting}', [MailSettingController::class, 'update'])->name('mail.update');
     });
+
+
