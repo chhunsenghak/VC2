@@ -26,8 +26,9 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::prefix('/user')->middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::put('/update', [FrontuserController::class, 'updateInformationUser']);
-    Route::put('/update/profile', [FrontuserController::class, 'updateProfileUser']);
-    
+    Route::post('/update/profile', [FrontuserController::class, 'updateProfileUser']);
+    Route::post("/forgot/password", [AuthController::class, 'forgotPassword']);
+    Route::post("/reset/password", [AuthController::class, 'resetPassword']);
 });
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
