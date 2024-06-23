@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Frontuser;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -24,17 +25,18 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'User not found'
-            ], 401);
-        }
+        // if (!Auth::attempt($credentials)) {
+        //     return response()->json([
+        //         'message' => 'User not found'
+        //     ], 401);
+        // }
 
-        $user   = User::where('email', $request->email)->firstOrFail();
+        $user   = Frontuser::where('email', $request->email)->firstOrFail();
         $token  = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'message'       => 'Login success',
+            'user' => $user,
             'access_token'  => $token,
             'token_type'    => 'Bearer'
         ]);
@@ -43,7 +45,6 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
-            //Validated
             $validateUser = Validator::make(
                 $request->all(),
                 [
@@ -61,7 +62,7 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            $user = User::create([
+            $user = Frontuser::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
@@ -79,6 +80,19 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+    public function logout(Request $request)
+    {
+        try {
+            $request->user()->currentAccessToken()->delete();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Logout failed. Please try again.'], 500);
+        }
+        return response()->json([
+            'message' => 'Logged out successfully'
+        ]);
+    }
+
     public function index(Request $request)
     {
         $user = $request->user();
