@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Frontuser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Storage;
 
 class FrontuserController extends Controller
 {
@@ -44,8 +44,7 @@ class FrontuserController extends Controller
         $img = $request->profile;
         $ext = $img->getClientOriginalExtension();
         $imageName = time() . '.' . $ext;
-        $img->move(public_path() . '/uploads/', $imageName);
-
+        $img->move(public_path() . '/images/', $imageName);
         $user = $request->user();
         try {
             $user->profile = $imageName;
@@ -62,4 +61,6 @@ class FrontuserController extends Controller
             ], 404);
         }
     }
+
+    
 }
