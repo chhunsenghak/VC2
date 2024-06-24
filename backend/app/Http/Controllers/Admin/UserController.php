@@ -79,7 +79,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $userCount = User::count();
+        return view('setting.user.show', [
+            'user' => $user,
+            'userCount' => $userCount
+        ]);
     }
 
     /**
