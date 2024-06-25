@@ -4,6 +4,7 @@ use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\Auth\FrontuserController;
 use App\Http\Controllers\Front\CategoryController;
+use App\Http\Controllers\Front\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,4 +44,14 @@ Route::prefix('category')->group(function () {
     Route::get('/show/{id}', [CategoryController::class, 'show']);
     Route::put('/update/{id}', [CategoryController::class, 'update']);
     Route::delete('/delete/{id}', [CategoryController::class, 'destroy']);
+});
+
+
+// PRODUCTS ROUTES
+Route::prefix('products')->group(function () {
+    Route::get('/list', [ProductController::class, 'index']);
+    Route::post('/create', [ProductController::class, 'store']);
+    Route::get('/show/{id}', [ProductController::class, 'show']);
+    Route::post('/update/{id}', [ProductController::class, 'update']);
+    Route::delete('/delete/{id}', [ProductController::class, 'destroy']);
 });
