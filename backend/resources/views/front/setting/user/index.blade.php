@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Storage;
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Gender</th>
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Phone number</th>
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">City</th>
-                <!-- <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light text-right">Actions</th> -->
+                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -33,9 +33,7 @@ use Illuminate\Support\Facades\Storage;
                 <td class="py-4 px-6 border-b border-grey-light">{{ $user->gender }}</td>
                 <td class="py-4 px-6 border-b border-grey-light">{{ $user->phone }}</td>
                 <td class="py-4 px-6 border-b border-grey-light">{{ $user->city }}</td>
-
-                <!-- <td class="py-4 px-6 border-b border-grey-light text-right">
-
+                <td class="py-4 px-6 border-b border-grey-light text-right">
                   @can('User delete')
                   <form action="{{ route('front.frontuser.destroy', $user->id) }}" method="POST" class="inline">
                     @csrf
@@ -43,7 +41,8 @@ use Illuminate\Support\Facades\Storage;
                     <button class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue hover:bg-blue-dark text-red-400">Delete</button>
                   </form>
                   @endcan
-                </td> -->
+                </td>
+                </td>
               </tr>
               @endforeach
               @endcan
