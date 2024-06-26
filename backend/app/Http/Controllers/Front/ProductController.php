@@ -30,11 +30,12 @@ class ProductController extends Controller
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'discount' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'discount' => 'string',
             'stock' => 'required|string',
             'categorys_id' => 'required|integer',
         ]);
+        return $request;
 
         $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('products_images'), $imageName);
