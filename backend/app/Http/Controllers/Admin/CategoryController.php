@@ -79,17 +79,23 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorys $category)
+    public function update(Request $request, $categoryId)
     {
-        $category = Categorys::find($category);
+        $category = Categorys::findOrFail($categoryId);
 
         $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required|string',
+            'description' => 'required|string',
         ]);
 
         $category->update($validated);
 
-        return redirect()->back()->withSuccess('category updated !!!');
+        return redirect()->route('admin.categorys.index')->withSuccess('Category updated!');
+    }
+
+    public function destroy($id)
+    {
+        $category = Categorys::destroy($id);
+        return redirect()->back()->withSuccess('Category deleted !!!');
     }
 }
