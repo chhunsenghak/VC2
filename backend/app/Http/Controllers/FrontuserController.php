@@ -18,4 +18,9 @@ class FrontuserController extends Controller
         Frontuser::destroy($id);
         return redirect()->back()->withSuccess('Role deleted !!!');
     }
+    public function show(Request $id)
+    {
+        $user = Frontuser::find($id);
+        return view('bashboard', ['users' => $user]);
+    }
 }

@@ -46,7 +46,6 @@ Route::prefix('category')->group(function () {
     Route::delete('/delete/{id}', [CategoryController::class, 'destroy']);
 });
 
-
 // PRODUCTS ROUTES
 Route::prefix('products')->group(function () {
     Route::get('/list', [ProductController::class, 'index']);

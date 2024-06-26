@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ListCategoryResource;
 use App\Models\Categorys;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $categories = Categorys::find($id);
+        $categories = new ListCategoryResource($categories);
         return response(['sucess' => true, 'data' =>$categories], 200);
     }
 

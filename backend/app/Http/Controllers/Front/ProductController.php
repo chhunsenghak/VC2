@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ListProductResource;
 use App\Models\Products;
 // use Dotenv\Validator;
 use Illuminate\Support\Facades\File;
@@ -32,7 +33,7 @@ class ProductController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'discount' => 'required|string',
             'stock' => 'required|string',
-            'category_id' => 'required|integer',
+            'categorys_id' => 'required|integer',
         ]);
 
         $imageName = time() . '.' . $request->image->extension();
@@ -45,7 +46,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'discount' => $request->discount,
             'stock' => $request->stock,
-            'category_id' => $request->category_id,
+            'categorys_id' => $request->categorys_id,
         ]);
 
         return response()->json([
@@ -59,6 +60,7 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $products = Products::find($id);
+        $products = new ListProductResource($products);
         return response(['sucess' => true, 'data' => $products], 200);
     }
 
@@ -76,7 +78,7 @@ class ProductController extends Controller
             'price' => 'integer',
             'discount' => 'string',
             'stock' => 'string',
-            'category_id' => 'integer',
+            'categorys_id' => 'integer',
         ]);
         if ($validateUser->fails()) {
             return response()->json([
@@ -96,7 +98,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'discount' => $request->discount,
             'stock' => $request->stock,
-            'category_id' => $request->category_id,
+            'categorys_id' => $request->categorys_id,
             'image' => 'products_images/' . $imageName,
         ]);
 
