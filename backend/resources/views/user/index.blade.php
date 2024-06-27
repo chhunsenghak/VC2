@@ -12,10 +12,11 @@
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Email</th>
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Gender</th>
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Phone number</th>
-                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">City</th>
+                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Address</th>
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light text-right">Actions</th>
               </tr>
             </thead>
+            
             <tbody>
               @can('User access')
               @foreach($users as $user)
@@ -27,9 +28,9 @@
                 <td class="py-4 px-6 border-b border-grey-light">{{ $user->email }}</td>
                 <td class="py-4 px-6 border-b border-grey-light">{{ $user->gender }}</td>
                 <td class="py-4 px-6 border-b border-grey-light">{{ $user->phone }}</td>
-                <td class="py-4 px-6 border-b border-grey-light">{{ $user->city }}</td>
+                <td class="py-4 px-6 border-b border-grey-light">{{ $user->address }}</td>
                 <td class="py-4 px-6 border-b border-grey-light text-right">
-                  <button type="button" @click="openModalBtn({{$user}})" class="btn-open-modal text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-blue-400">Detail</button>
+                  <button type="button" @click="openModalBtn({{$user}})" class="btn-open-modal bg-blue-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Detail</button>
                   <div id="modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
                     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                       <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>

@@ -12,7 +12,7 @@
                 </div>
                 <div class="bg-white shadow-md rounded my-6">
                     <table class="text-left w-full border-collapse">
-                        <thead>
+                        <thead class="text-xs bg-gray-50 dark:bg-gray-700 dark:text-gray-500">
                             <tr>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">ID </th>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">product Name</th>
@@ -44,7 +44,7 @@
                                     <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('delete')
-                                        <button class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue hover:bg-blue-dark text-red-400">Delete</button>
+                                        <button class=" font-bold py-1 px-3 rounded text-xs bg-red-500 hover:bg-blue-dark text-white">Delete</button>
                                     </form>
                                     @endcan
                                 </td>

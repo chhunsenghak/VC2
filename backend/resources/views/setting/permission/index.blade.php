@@ -25,14 +25,14 @@
                         <td class="py-4 px-6 border-b border-grey-light">{{ $permission->name }}</td>
                         <td class="py-4 px-6 border-b border-grey-light text-right">
                           @can('Permission edit')
-                          <a href="{{route('admin.permissions.edit',$permission->id)}}" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-blue-400">Edit</a>
+                          <a href="{{route('admin.permissions.edit',$permission->id)}}" class="bg-blue-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Edit</a>
                           @endcan
 
                           @can('Permission delete')
                           <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST" class="inline">
                               @csrf
                               @method('delete')
-                              <button class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue hover:bg-blue-dark text-red-400">Delete</button>
+                              <button class="bg-red-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Delete</button>
                           </form>
                           @endcan
                         </td>
