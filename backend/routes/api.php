@@ -39,7 +39,10 @@ Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:san
 
 
 // PROVINCE ROUTES
-Route::get('/list', [ProvinceController::class, 'index']);
+Route::prefix('provinces')->group(function () {
+   Route::get('/list', [ProvinceController::class, 'index']); 
+});
+
 
 
 // CATEGORY ROUTES

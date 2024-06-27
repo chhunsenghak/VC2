@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Province;
 use Illuminate\Http\Request;
 
 class ProvinceController extends Controller
@@ -12,7 +13,8 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        //
+        $province = Province::all();
+        return response(['sucess' => true, 'data' =>$province], 200);
     }
 
     /**
