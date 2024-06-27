@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CommuneController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\API\PostController;
@@ -57,7 +58,14 @@ Route::prefix('districts')->group(function (){
     Route::delete('/delete/{id}', [DistrictController::class, 'destroy']);
 });
 
-
+// COMMUNE ROUTES
+Route::prefix('commune')->group(function (){
+    Route::get('/list', [CommuneController::class, 'index']);
+    Route::post('/create', [CommuneController::class,'store']);
+    Route::get('/show/{id}', [CommuneController::class,'show']);
+    Route::put('/update/{id}', [CommuneController::class, 'update']);
+    Route::delete('/delete/{id}', [CommuneController::class, 'destroy']);
+});
 
 // CATEGORY ROUTES
 Route::prefix('category')->group(function () {

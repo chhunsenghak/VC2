@@ -4,23 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
-class District extends Model
+class Commune extends Model
 {
     use HasFactory;
+    protected $fillable = ['id', 'name', 'district_id'];
 
-    protected $fillable = ['id', 'name', 'province_id'];
-
-    public function province(): BelongsTo
+    public function district()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(District::class);
     }
 
-    public function communes()
+    public function villages()
     {
-        return $this->hasMany(Commune::class);
+        return $this->hasMany(Village::class);
     }
 
     public static function list()
@@ -30,7 +27,7 @@ class District extends Model
 
     public static function create($request, $id = null)
     {
-        $data = $request->only('id', 'name', 'province_id');
+        $data = $request->only('name', 'district_id');
         $data = self::updateOrCreate(['id' => $id], $data);
         return $data;
     }

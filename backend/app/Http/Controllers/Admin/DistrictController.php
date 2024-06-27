@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProvinceResource;
 use App\Models\District;
 use Illuminate\Http\Request;
 use App\Http\Resources\DistrictResource;
