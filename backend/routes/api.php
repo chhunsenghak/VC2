@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
@@ -45,6 +46,15 @@ Route::prefix('provinces')->group(function () {
    Route::get('/show/{id}', [ProvinceController::class,'show']);
    Route::put('/update/{id}', [ProvinceController::class, 'update']);
    Route::delete('/delete/{id}', [ProvinceController::class, 'destroy']);
+});
+
+// DISTRICT ROUTES
+Route::prefix('districts')->group(function (){
+    Route::get('/list', [DistrictController::class, 'index']);
+    Route::post('/create', [DistrictController::class,'store']);
+    Route::get('/show/{id}', [DistrictController::class,'show']);
+    Route::put('/update/{id}', [DistrictController::class, 'update']);
+    Route::delete('/delete/{id}', [DistrictController::class, 'destroy']);
 });
 
 
