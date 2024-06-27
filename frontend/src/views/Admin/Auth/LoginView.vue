@@ -18,7 +18,7 @@
         </el-form-item>
 
         <div>
-          <el-button size="large" class="mt-3 w-full" :disabled="isSubmitting" type="primary"
+          <el-button size="large" class="mt-3 w-full hover:text-blue-600 hover:text-bold" :disabled="isSubmitting" type="success"
             native-type="submit">Submit</el-button>
         </div>
         <p class="text-center text-sm text-gray-600 mt-3">
