@@ -31,7 +31,8 @@ class ProvinceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $province = Province::find($id);
+        return response(['sucess' => true, 'data' => $province], 200);
     }
 
     /**

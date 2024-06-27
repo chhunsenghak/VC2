@@ -42,6 +42,7 @@ Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:san
 Route::prefix('provinces')->group(function () {
    Route::get('/list', [ProvinceController::class, 'index']); 
    Route::post('/create', [ProvinceController::class,'store']);
+   Route::get('/show/{id}', [ProvinceController::class,'show']);
 });
 
 
