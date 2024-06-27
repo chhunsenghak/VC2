@@ -40,7 +40,9 @@ class ProvinceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $province = Province::find($id);
+        $province->update($request->all());
+        return response(['sucess' => true, 'data' => $province], 200);
     }
 
     /**
