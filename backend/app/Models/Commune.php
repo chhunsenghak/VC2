@@ -25,7 +25,7 @@ class Commune extends Model
         return self::all();
     }
 
-    public static function create($request, $id = null)
+    public static function store($request, $id = null)
     {
         $data = $request->only('name', 'district_id');
         $data = self::updateOrCreate(['id' => $id], $data);

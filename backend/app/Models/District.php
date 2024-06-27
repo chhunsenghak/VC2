@@ -28,7 +28,7 @@ class District extends Model
         return self::all();
     }
 
-    public static function create($request, $id = null)
+    public static function store($request, $id = null)
     {
         $data = $request->only('id', 'name', 'province_id');
         $data = self::updateOrCreate(['id' => $id], $data);
