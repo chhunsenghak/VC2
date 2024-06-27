@@ -22,7 +22,8 @@ class ProvinceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $province = Province::create($request);
+        return response(['sucess' => true, 'data' => $province], 200);
     }
 
     /**
