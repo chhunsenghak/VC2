@@ -19,32 +19,29 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/Web/Auth/LoginView.vue')
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: () => import('@/views/Web/Auth/RegisterView.vue')
+      component: () => import('../views/Admin/Auth/LoginView.vue')
     },
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/Web/HomeView.vue')
+      component: () => import('../views/Web/HomeView.vue')
     },
     {
       path: '/post',
       name: 'post',
-      component: () => import('@/views/Web/Post/ListView.vue')
+      component: () => import('../views/Web/Post/ListView.vue')
     }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/register', '/login']
+  const publicPages = ['/login']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
+
   try {
     const { data } = await axiosInstance.get('/me')
+
     store.isAuthenticated = true
     store.user = data.data
 
@@ -57,16 +54,17 @@ router.beforeEach(async (to, from, next) => {
           setRule(permission, () => true)
         })
       })
+
     simpleAcl.rules = rules()
   } catch (error) {
     /* empty */
-    console.error(error)
   }
+
   if (authRequired && !store.isAuthenticated) {
     next('/login')
   } else {
     next()
   }
-});
+})
 
 export default { router, simpleAcl }
