@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Village extends Model
 {
     use HasFactory;
-    protected $filled = ['id', 'name', 'commune_id'];
+    protected $fillable = ['id', 'name', 'commune_id'];
 
-    public function commune(){
+    public function commune()
+    {
         return $this->belongsTo(Commune::class);
     }
 
@@ -21,7 +22,7 @@ class Village extends Model
 
     public static function create($request, $id = null)
     {
-        $data = $request->only('id', 'name', 'commune_id');
+        $data = $request->only('name', 'commune_id');
         $data = self::updateOrCreate(['id' => $id], $data);
         return $data;
     }

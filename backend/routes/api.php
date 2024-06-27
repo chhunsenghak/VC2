@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CommuneController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\ProvinceController;
+use App\Http\Controllers\Admin\VillageController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\Auth\FrontuserController;
@@ -65,6 +66,15 @@ Route::prefix('commune')->group(function (){
     Route::get('/show/{id}', [CommuneController::class,'show']);
     Route::put('/update/{id}', [CommuneController::class, 'update']);
     Route::delete('/delete/{id}', [CommuneController::class, 'destroy']);
+});
+
+// VILLAGE ROUTES
+Route::prefix('village')->group(function (){
+    Route::get('/list', [VillageController::class, 'index']);
+    Route::post('/create', [VillageController::class,'store']);
+    Route::get('/show/{id}', [VillageController::class,'show']);
+    Route::put('/update/{id}', [VillageController::class, 'update']);
+    Route::delete('/delete/{id}', [VillageController::class, 'destroy']);
 });
 
 // CATEGORY ROUTES
