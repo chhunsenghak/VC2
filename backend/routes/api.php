@@ -44,6 +44,7 @@ Route::prefix('provinces')->group(function () {
    Route::post('/create', [ProvinceController::class,'store']);
    Route::get('/show/{id}', [ProvinceController::class,'show']);
    Route::put('/update/{id}', [ProvinceController::class, 'update']);
+   Route::delete('/delete/{id}', [ProvinceController::class, 'destroy']);
 });
 
 

@@ -50,6 +50,8 @@ class ProvinceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $province = Province::find($id);
+        $province->delete();
+        return response(['sucess' => true, 'message' => 'Province was deleted'], 200);
     }
 }
