@@ -9,7 +9,7 @@ import WebLayout from '@/Components/Layouts/WebLayout.vue'
         <div class="row justify-content-between">
           <div class="col-lg-5">
             <div class="intro-excerpt">
-              <h1>Let buy together <span clsas="d-block">Everyone</span></h1>
+              <h1>Let buy together <span clsas="d-block">everyone</span></h1>
               <p class="mb-4">
                 Let enjoy to visit Phsarkasekor. Let buy something we have everything here (Fruit,
                 Meat, Vegetable...)
@@ -56,8 +56,8 @@ import WebLayout from '@/Components/Layouts/WebLayout.vue'
           <div class="col-12 col-md-4 col-lg-3 mb-5">
             <a class="product-item" href="#">
               <img src="../../../assets/images/product-2.png" class="img-fluid product-thumbnail" />
-              <h3 class="product-title">Nordic Chair</h3>
-              <strong class="product-price">$50.00</strong>
+              <h3 class="product-title">Durian</h3>
+              <strong class="product-price">$10.00</strong>
 
               <span class="icon-cross">
                 <img src="../../../assets/images/cross.svg" class="img-fluid" />
@@ -84,8 +84,8 @@ import WebLayout from '@/Components/Layouts/WebLayout.vue'
           <div class="col-12 col-md-4 col-lg-3 mb-5">
             <a class="product-item" href="#">
               <img src="../../../assets/images/product-3.png" class="img-fluid product-thumbnail" />
-              <h3 class="product-title">Ergonomic Chair</h3>
-              <strong class="product-price">$43.00</strong>
+              <h3 class="product-title">Pork</h3>
+              <strong class="product-price">$08.00</strong>
 
               <span class="icon-cross">
                 <img src="../../../assets/images/cross.svg" class="img-fluid" />
@@ -98,8 +98,8 @@ import WebLayout from '@/Components/Layouts/WebLayout.vue'
           <div class="col-12 col-md-4 col-lg-3 mb-5">
             <a class="product-item" href="#">
               <img src="../../../assets/images/product-3.png" class="img-fluid product-thumbnail" />
-              <h3 class="product-title">Nordic Chair</h3>
-              <strong class="product-price">$50.00</strong>
+              <h3 class="product-title">Pork</h3>
+              <strong class="product-price">$08.00</strong>
 
               <span class="icon-cross">
                 <img src="../../../assets/images/cross.svg" class="img-fluid" />
@@ -112,8 +112,8 @@ import WebLayout from '@/Components/Layouts/WebLayout.vue'
           <div class="col-12 col-md-4 col-lg-3 mb-5">
             <a class="product-item" href="#">
               <img src="../../../assets/images/product-2.png" class="img-fluid product-thumbnail" />
-              <h3 class="product-title">Nordic Chair</h3>
-              <strong class="product-price">$50.00</strong>
+              <h3 class="product-title">Durian</h3>
+              <strong class="product-price">$10.00</strong>
 
               <span class="icon-cross">
                 <img src="../../../assets/images/cross.svg" class="img-fluid" />
@@ -140,8 +140,8 @@ import WebLayout from '@/Components/Layouts/WebLayout.vue'
           <div class="col-12 col-md-4 col-lg-3 mb-5">
             <a class="product-item" href="#">
               <img src="../../../assets/images/product-3.png" class="img-fluid product-thumbnail" />
-              <h3 class="product-title">Ergonomic Chair</h3>
-              <strong class="product-price">$43.00</strong>
+              <h3 class="product-title">Pork</h3>
+              <strong class="product-price">$08.00</strong>
 
               <span class="icon-cross">
                 <img src="../../../assets/images/cross.svg" class="img-fluid" />
