@@ -3,46 +3,51 @@
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
             <div class="container mx-auto px-6 py-2">
                 <div class="flex justify-between">
-                    <h1>Total Category: {{count($categorys)}}</h1>
+                    <h1>Total product: {{count($products)}}</h1>
                     <div class="text-right">
-                        @can('Category create')
-                        <a href="{{route('admin.categorys.create')}}" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">New Category</a>
+                        @can('Product create')
+                        <a href="{{route('admin.products.create')}}" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">New product</a>
                         @endcan
                     </div>
                 </div>
                 <div class="bg-white shadow-md rounded my-6">
                     <table class="text-left w-full border-collapse">
-                        <thead>
+                        <thead class="text-xs bg-gray-50 dark:bg-gray-700 dark:text-gray-500">
                             <tr>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">ID </th>
-                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Category Name</th>
+                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">product Name</th>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Description</th>
+                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Price</th>
+                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Stock</th>
+                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Category ID</th>
+                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Discount</th>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @can('Category access')
-                            @foreach($categorys as $category)
+                            @can('Product access')
+                            @foreach($products as $product)
+
                             <tr class="hover:bg-grey-lighter">
                                 <td class="py-4 px-6 border-b border-grey-light">
-                                    {{ $category->id}}
+                                    {{ $product->id}}
                                 </td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $category->name }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $category->description }}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->name }}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->description }}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->price }}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->stock }}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->categorys_id }}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->dicsount }}</td>
 
                                 <td class="py-4 px-6 border-b border-grey-light text-right">
-                                    @can('Category edit')
-                                    <a href="{{route('admin.categorys.edit',$category->id)}}" class="bg-blue-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Edit</a>
-                                    @endcan
-                                    @can('Category delete')
-                                    <form action="{{ route('admin.categorys.destroy', $category->id) }}" method="POST" class="inline">
+                                    @can('Product delete')
+                                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('delete')
-                                        <button class="bg-red-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Delete</button>
+                                        <button class=" font-bold py-1 px-3 rounded text-xs bg-red-500 hover:bg-blue-dark text-white">Delete</button>
                                     </form>
                                     @endcan
                                 </td>
-
                             </tr>
                             @endforeach
                             @endcan

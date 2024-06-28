@@ -6,14 +6,14 @@
                 <path d="M201.694 387.105C231.686 417.098 280.312 417.098 310.305 387.105C325.301 372.109 332.8 352.456 332.8 332.8C332.8 313.144 325.301 293.491 310.305 278.495C295.309 263.498 288 256 275.2 230.4C256 243.2 243.201 320 243.201 345.6C201.694 345.6 179.2 332.8 179.2 332.8C179.2 352.456 186.698 372.109 201.694 387.105Z" fill="white"></path>
             </svg>
 
-            <a href="{{ route('admin.dashboard') }}">
+            <a href="{{ route('admin.dashboard.index') }}">
                 <span class="text-white text-2xl mx-2 font-semibold">Dashboard</span>
             </a>
         </div>
     </div>
 
     <nav class="mt-10">
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.dashboard') ? 'active' : '' }} " href="{{ route('admin.dashboard')}}">
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.dashboard.index') ? 'active' : '' }} " href="{{ route('admin.dashboard.index')}}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
@@ -38,6 +38,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z">
                 </path>
             </svg>
+
 
             <span class="mx-3">Permission</span>
         </a>
@@ -85,11 +86,11 @@
         </a>
         @endcanany
 
-        @canany('Post access','Post add','Post edit','Post delete')
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.posts.index') ? 'active' : '' }}" href="{{ route('admin.posts.index')}}">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                </path>
+        @canany('Product access','Product add','Product edit','Product delete')
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.products.index') ? 'active' : '' }}" href="{{ route('admin.products.index')}}">
+
+            <svg xmlns="http://www.w3.org/2000/svg" ​ class="w-5 h-5" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                <path fill-rule="evenodd" stroke-width="0" stroke-linejoin="round" stocke-linecap="round" clip-rule="evenodd" d="M10 4V2H2V10H4V6C4 4.89543 4.89543 4 6 4H10zM12 4H14C15.1046 4 16 4.89543 16 6V14C16 15.1046 15.1046 16 14 16H6C4.89543 16 4 15.1046 4 14V12H2C0.89543 12 0 11.1046 0 10V2C0 0.89543 0.89543 0 2 0H10C11.1046 0 12 0.89543 12 2V4zM6 6V14H14V6H6z" fill="#758CA3" />
             </svg>
             <span class="mx-3">Product</span>
         </a>

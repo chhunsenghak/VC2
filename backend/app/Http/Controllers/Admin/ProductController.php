@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Products;
 use Illuminate\Http\Request;
-use App\Models\Categorys;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +15,10 @@ class CategoryController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Category access|Category create|Category edit|Category delete', ['only' => ['index', 'show']]);
-        $this->middleware('role_or_permission:Category create', ['only' => ['create', 'store']]);
-        $this->middleware('role_or_permission:Category edit', ['only' => ['edit', 'update']]);
-        $this->middleware('role_or_permission:Category delete', ['only' => ['destroy']]);
+        $this->middleware('role_or_permission:Product access|Product create|Product edit|Product delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Product create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Product edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Product delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -28,8 +27,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Categorys::latest()->get();
-        return view('category.index', ['categorys' => $category]);
+        $products = Products::latest()->get();
+        return view('product.index', ['products' => $products]);
     }
     public function create()
     {
@@ -48,7 +47,7 @@ class CategoryController extends Controller
             'name' => 'required',
             'description' => 'string',
         ]);
-        $category = Categorys::create([
+        $category = Products::create([
             'name' => $request->name,
             'description' => $request->description,
         ]);
@@ -66,9 +65,9 @@ class CategoryController extends Controller
         //
     }
 
-    public function edit(Categorys $category)
+    public function edit(Products $category)
     {
-        $category = Categorys::find($category);
+        $category = Products::find($category);
         return view('category.edit', ['category' => $category]);
     }
 
@@ -81,7 +80,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $categoryId)
     {
-        $category = Categorys::findOrFail($categoryId);
+        $category = Products::findOrFail($categoryId);
 
         $validated = $request->validate([
             'name' => 'required|string',
@@ -90,12 +89,21 @@ class CategoryController extends Controller
 
         $category->update($validated);
 
-        return redirect()->route('admin.categorys.index')->withSuccess('Category updated!');
+        return redirect()->route('admin.Products.index')->withSuccess('Category updated!');
     }
 
     public function destroy($id)
     {
-        $category = Categorys::destroy($id);
+        $category = Products::destroy($id);
         return redirect()->back()->withSuccess('Category deleted !!!');
+    }
+
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $results = Products::where('name', 'like', "%$search%")->get();
+
+        return view('products.index', ['results' => $results]);
     }
 }
