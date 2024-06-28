@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->foreignId('shop_id');
             $table->string('image');
             $table->integer('price');
-            $table->string('discount');
+            $table->string('discount', 5, 2);
             $table->string('stock');
             $table->foreignId('categorys_id')->references('id')
                 ->on('categorys')
-                ->onDelete('cascade');;
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
