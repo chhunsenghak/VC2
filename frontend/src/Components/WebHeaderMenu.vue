@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+// import { Icon } from '@iconify/vue'
 </script>
 <template>
   <header class="flex justify-between px-50 py-3 bg-white items-center m-0">
