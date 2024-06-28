@@ -97,4 +97,13 @@ class ProductController extends Controller
         $category = Products::destroy($id);
         return redirect()->back()->withSuccess('Category deleted !!!');
     }
+
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $results = Products::where('name', 'like', "%$search%")->get();
+
+        return view('products.index', ['results' => $results]);
+    }
 }
