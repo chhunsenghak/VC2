@@ -153,6 +153,9 @@ class ProductController extends Controller
         return response()->json(['success' => true, 'data' => $products], 200);
     }
 
+    /**
+     * Get a list of product names.
+     */
     public function listNameProducts()
     {
         // Get only the 'name' column from the products table
