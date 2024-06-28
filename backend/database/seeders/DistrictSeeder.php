@@ -18,7 +18,7 @@ class DistrictSeeder extends Seeder
             ['id' => 2, 'province_id' => 1, 'name' => 'Doun Penh'],
             ['id' => 3, 'province_id' => 1, 'name' => 'Prampir Meakkakra'],
             ['id' => 4, 'province_id' => 1, 'name' => 'Toul Kok'],
-            ['id' => 5, 'province_id' => 1, 'name' => 'Dang Kor'],
+            ['id' => 5, 'province_id' => 1, 'name' => 'Dang Kao'],
             ['id' => 6, 'province_id' => 1, 'name' => 'Mean Chey'],
             ['id' => 7, 'province_id' => 1, 'name' => 'Russey Keo'],
             ['id' => 8, 'province_id' => 1, 'name' => 'Sen Sok'],
