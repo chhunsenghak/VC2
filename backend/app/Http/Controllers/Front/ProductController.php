@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ListAllNameProductsResource;
 use App\Http\Resources\ListProductResource;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -150,5 +151,16 @@ class ProductController extends Controller
 
         $products = $products->orderBy('name')->get();
         return response()->json(['success' => true, 'data' => $products], 200);
+    }
+
+    public function listNameProducts()
+    {
+        // Get only the 'name' column from the products table
+        $products = Products::select('name')->get();
+
+        // Transform the products collection using the resource class
+        $products = ListAllNameProductsResource::collection($products);
+
+        return response(['success' => true, 'products' => $products], 200);
     }
 }

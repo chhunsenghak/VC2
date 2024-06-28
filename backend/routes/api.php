@@ -49,6 +49,7 @@ Route::prefix('category')->group(function () {
 // PRODUCTS ROUTES
 Route::prefix('products')->group(function () {
     Route::get('/sorted-products', [ProductController::class, 'sortedProducts']);
+    Route::get('/list-name-products', [ProductController::class, 'listNameProducts']);
     Route::get('/list', [ProductController::class, 'index']);
     Route::post('/create', [ProductController::class, 'store']);
     Route::get('/show/{id}', [ProductController::class, 'show']);
