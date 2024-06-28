@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('stock_types', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->integer("limit_quality");
             $table->timestamps();
         });
     }

@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->integer('shop_owner_id');
-            $table->string('address')->nullable();
+            $table->integer('address_id')->references('id')
+                ->on('address')
+                ->onDelete('cascade')
+                ->nullable();
             $table->string('phone_number');
             $table->timestamps();
         });

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string("stock_type_id");
+            $table->integer("quantity");
+            $table->integer("stock_type_id");
             $table->timestamps();
         });
     }

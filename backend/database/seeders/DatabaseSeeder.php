@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\StockType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,5 +26,7 @@ class DatabaseSeeder extends Seeder
                 $this->call(VillageSeeder::class);
                 $this->call(CommuneSeeder::class);
                 $this->call(ShopSeeder::class);
+                $this->call(StockTypeSeeder::class);
+                $this->call(StockSeeder::class);
         }
 }

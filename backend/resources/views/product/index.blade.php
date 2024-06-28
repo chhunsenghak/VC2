@@ -17,10 +17,6 @@
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">ID </th>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">product Name</th>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Description</th>
-                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Price</th>
-                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Stock</th>
-                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Category ID</th>
-                                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Discount</th>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light text-right">Actions</th>
                             </tr>
                         </thead>
@@ -34,12 +30,11 @@
                                 </td>
                                 <td class="py-4 px-6 border-b border-grey-light">{{ $product->name }}</td>
                                 <td class="py-4 px-6 border-b border-grey-light">{{ $product->description }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->price }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->stock }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->categorys_id }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $product->dicsount }}</td>
 
                                 <td class="py-4 px-6 border-b border-grey-light text-right">
+                                    @can('Product access')
+                                    <a href="{{route('admin.products.show',$product->id)}}" class="bg-blue-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Detail</a>
+                                    @endcan
                                     @can('Product delete')
                                     <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="inline">
                                         @csrf

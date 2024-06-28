@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categorys;
 use App\Models\Products;
 use Illuminate\Http\Request;
-
+use App\Models\Stock;
 class ProductController extends Controller
 {
     /**
@@ -62,7 +63,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $product = Products::find($id);
+        $category = Categorys::find($product->categorys_id);
+        $stock = Stock::find($product->stock_id);
+        // dd($stock->quantity);
+        return view('product.show', ['product' => $product, 'category' => $category, 'stock' => $stock]);
     }
 
     public function edit(Products $category)
