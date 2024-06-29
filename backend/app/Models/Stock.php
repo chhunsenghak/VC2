@@ -19,4 +19,8 @@ class Stock extends Model
     {
         return $this->hasOne(Products::class);
     }
+
+    public function stock_type(){
+        return $this->belongsTo(StockType::class);
+    }
 }
