@@ -9,6 +9,12 @@ use App\Models\Products;
 class Stock extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'quantity',
+        'stock_type_id'
+    ];
+
     public function product()
     {
         return $this->hasOne(Products::class);

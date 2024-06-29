@@ -33,7 +33,7 @@
 
                                 <td class="py-4 px-6 border-b border-grey-light text-right">
                                     @can('Product access')
-                                    <a href="{{route('admin.products.show',$product->id)}}" class="bg-blue-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Detail</a>
+                                    <a href="{{route('admin.products.edit',$product->id)}}" class="bg-blue-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Detail</a>
                                     @endcan
                                     @can('Product delete')
                                     <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="inline">

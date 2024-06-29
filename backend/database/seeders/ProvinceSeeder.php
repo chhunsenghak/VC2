@@ -25,20 +25,19 @@ class ProvinceSeeder extends Seeder
             ['id' => 9, 'name' => 'Kandal'],
             ['id' => 10, 'name' => 'Koh Kong'],
             ['id' => 11, 'name' => 'Kep'],
-            ['id' => 12, 'name' => 'Kratie'],
-            ['id' => 13, 'name' => 'Mondulkiri'],
-            ['id' => 14, 'name' => 'Oddar Meanchey'],
-            ['id' => 15, 'name' => 'Pailin'],
-            ['id' => 16, 'name' => 'Preah Sihanoukville'],
-            ['id' => 17, 'name' => 'Preah Vihear'],
-            ['id' => 18, 'name' => 'Pursat'],
-            ['id' => 19, 'name' => 'Prey Veng'],
-            ['id' => 20, 'name' => 'Ratanakiri'],
-            ['id' => 21, 'name' => 'Siem Reap'],
-            ['id' => 22, 'name' => 'Stung Treng'],
-            ['id' => 23, 'name' => 'Svay Rieng'],
-            ['id' => 24, 'name' => 'Takeo'],
-            ['id' => 25, 'name' => 'Tbong Khmum']
+            ['id' => 12, 'name' => 'Mondulkiri'],
+            ['id' => 13, 'name' => 'Oddar Meanchey'],
+            ['id' => 14, 'name' => 'Pailin'],
+            ['id' => 15, 'name' => 'Preah Sihanoukville'],
+            ['id' => 16, 'name' => 'Preah Vihear'],
+            ['id' => 17, 'name' => 'Pursat'],
+            ['id' => 18, 'name' => 'Prey Veng'],
+            ['id' => 19, 'name' => 'Ratanakiri'],
+            ['id' => 20, 'name' => 'Siem Reap'],
+            ['id' => 21, 'name' => 'Stung Treng'],
+            ['id' => 22, 'name' => 'Svay Rieng'],
+            ['id' => 23, 'name' => 'Takeo'],
+            ['id' => 24, 'name' => 'Tbong Khmum']
         ];
         foreach ($provinces as $province) {
             Province::create($province);
