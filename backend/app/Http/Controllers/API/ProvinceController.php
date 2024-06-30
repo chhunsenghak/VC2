@@ -13,26 +13,17 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        $province = Province::paginate(5);
-        return view("address.province.index", ["province" => $province]);
+        $province = Province::all();
+        return response(['sucess' => true, 'data' =>$province], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-
-    public function create()
-    {
-        return view("address.province.new");
-    }
-
     public function store(Request $request)
     {
-
-        $province = new Province();
-        $province->name = $request->name;
-        $province->save();
-        return redirect()->back()->withSuccess('Province added');
+        $province = Province::create($request);
+        return response(['sucess' => true, 'data' => $province], 200);
     }
 
     /**
@@ -47,16 +38,11 @@ class ProvinceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function edit(string $id)
-    {
-        $province = Province::find($id);
-        return view("address.province.edit", ["province" => $province]);
-    }
     public function update(Request $request, string $id)
     {
         $province = Province::find($id);
         $province->update($request->all());
-        return redirect()->back()->withSuccess('Updated province');
+        return response(['sucess' => true, 'data' => $province], 200);
     }
 
     /**
@@ -64,7 +50,8 @@ class ProvinceController extends Controller
      */
     public function destroy(string $id)
     {
-        Province::destroy($id);
-        return redirect()->back()->withSuccess('Province Delete !!!');
+        $province = Province::find($id);
+        $province->delete();
+        return response(['sucess' => true, 'message' => 'Province was deleted'], 200);
     }
 }

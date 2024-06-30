@@ -29,6 +29,15 @@ class CategorySeeder extends Seeder
                 'name' => 'ត្រី',
                 'description' => 'ត្រីធម្មជាតិរបស់ប្រជាជននៅតាមជនបទ',
             ],
+            [
+                'id' => 4,
+                'name' => 'គ្រាប់ធុញ្ញជាតិ',
+                'description' => 'ផលិតផលសុទ្ធពីកសិករខ្មែរ',
+            ],[
+                'id' => 5,
+                'name' => 'អង្ករ',
+                'description' => 'អង្កររបស់ប្រជាជនខ្មែរ',
+            ]
         ];
         foreach ($categories as $category) {
             Categorys::create($category);

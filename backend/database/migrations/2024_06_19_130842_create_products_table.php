@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->foreignId('shop_id');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('price');
             $table->string('discount', 5, 2);
             $table->integer('stock_id')->references('id')

@@ -7,7 +7,6 @@ use App\Http\Resources\ProvinceResource;
 use App\Models\District;
 use Illuminate\Http\Request;
 use App\Http\Resources\DistrictResource;
-use App\Models\Province;
 
 class DistrictController extends Controller
 {
@@ -16,30 +15,18 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        $district = District::paginate(5);
+        $district = District::all();
         $district = DistrictResource::collection($district);
-        return view("address.district.index", ["district" => $district]);
+        return response(['sucess' => true, 'data' => $district], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function create()
-    {
-        $provinces = Province::all();
-        return view("address.district.new", ['provinces' => $provinces]);
-    }
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'province_id' => 'required|integer',
-        ]);
-        District::create($validated);
-        return redirect()->back()->withSuccess('District added');
+        $district = District::create($request);
+        return response(['sucess' => true, 'data' => $district], 200);
     }
 
     /**
@@ -54,20 +41,11 @@ class DistrictController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function edit(Request $request, string $id)
-    {
-        $district = District::find($id);
-        $provinces = Province::all();
-        return view('address.district.edit', ["district" => $district, "provinces" => $provinces]);
-    }
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $district = District::find($id);
         $district->update($request->all());
-        return redirect()->back()->withSuccess('District updated');
+        return response(['sucess' => true, 'data' => $district], 200);
     }
 
     /**
@@ -77,6 +55,6 @@ class DistrictController extends Controller
     {
         $district = District::find($id);
         $district->delete();
-        return redirect()->back()->withMessage('Delete successfully');
+        return response(['sucess' => true, 'message' => "District was deleted"], 200);
     }
 }

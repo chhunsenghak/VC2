@@ -11,7 +11,7 @@
                     </b> </p> -->
             </div>
             <div class="pl-5 flex gap-5">
-                <div class="w-60 block max-w-sm p-6 bg-green-400 rounded-lg shadow ">
+                <div class="w-60 block max-w-sm p-6 bg-green-500 rounded-lg shadow hover:bg-green-400 dark:bg-gray-100 dark:border-gray-100 dark:hover:bg-gray-100">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total User</h5>
                     <p class="font-normal text-lg text-gray-700 dark:text-gray-400">{{count($frontend)}} People</p>
 
@@ -35,15 +35,16 @@
                 <div class="w-60 block max-w-sm p-6 bg-yellow-400  rounded-lg shadow hover:bg-yellow-300 dark:bg-gray-100 dark:border-gray-100 dark:hover:bg-gray-100">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total Product</h5>
                     <p class="font-normal text-lg text-gray-700 dark:text-gray-400">{{count($products)}} Products</p>
-
                     <a class="mt-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 {{ Route::currentRouteNamed('admin.products.index') ? 'active' : '' }}" href="{{ route('admin.products.index')}}">
-
                         <span class="mx-3">Product</span>
                     </a>
                 </div>
                 <div class="w-60 block max-w-sm p-6 bg-blue-400 rounded-lg shadow hover:bg-blue-300 dark:bg-gray-100 dark:border-gray-100 dark:hover:bg-gray-100">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total Seller</h5>
-                    <p class="font-normal text-lg text-gray-700 dark:text-gray-400">200 people</p>
+                    <p class="font-normal text-lg text-gray-700 dark:text-gray-400">{{count($seller)}} Seller</p>
+                    <a class="mt-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 {{ Route::currentRouteNamed('admin.shop.index') ? 'active' : '' }}" href="{{ route('admin.shop.index')}}">
+                        <span class="mx-3">Seller</span>
+                    </a>
                 </div>
             </div>
         </main>

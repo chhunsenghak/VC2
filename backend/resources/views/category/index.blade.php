@@ -42,12 +42,16 @@
                                     </form>
                                     @endcan
                                 </td>
-
                             </tr>
                             @endforeach
                             @endcan
                         </tbody>
                     </table>
+                    @can('Post access')
+                    <div class="text-right p-4 py-10">
+                        {{ $categorys->links() }}
+                    </div>
+                    @endcan
                 </div>
             </div>
         </main>

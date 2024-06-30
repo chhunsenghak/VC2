@@ -19,9 +19,26 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <link rel="stylesheet" href="../../../node_modules/apexcharts/dist/apexcharts.css">
+
+    <link href="../../../node_modules/@fullcalendar/core/main.css" rel="stylesheet">
+    <link href="../../../node_modules/@fullcalendar/daygrid/main.css" rel="stylesheet">
+    <!-- Optional FullCalendar theme -->
+    <link href="../../../node_modules/@fullcalendar/bootstrap/main.css" rel="stylesheet">
 </head>
 
 <body class="font-sans antialiased">
+    @yield('content')
+
+    <!-- jQuery -->
+    <script src="/path/to/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- Moment.js -->
+    <script src="/path/to/node_modules/moment/min/moment.min.js"></script>
+    <!-- FullCalendar -->
+    <script src="/path/to/node_modules/@fullcalendar/core/main.js"></script>
+    <script src="/path/to/node_modules/@fullcalendar/daygrid/main.js"></script>
+    <script src="/path/to/node_modules/@fullcalendar/bootstrap/main.js"></script>
+
+    @yield('scripts')
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
         <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
 

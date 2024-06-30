@@ -54,6 +54,16 @@ class ProductSeeder extends Seeder
                 'shop_id' => 1,
                 'stock_id' => 2,
                 'discount' => '10%',
+            ],
+            [
+                'name' => 'category 5',
+                'price' => 100,
+                'description' => 'description 5',
+                'image' => 'default.jpg',
+                'categorys_id' => 5,
+                'shop_id' => 1,
+                'stock_id' => 1,
+                'discount' => '10%',
             ]
         ];
         foreach ($products as $product) {

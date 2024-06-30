@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\VillageResource;
+use App\Models\Commune;
 use App\Models\Village;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class VillageController extends Controller
 {
@@ -14,18 +17,30 @@ class VillageController extends Controller
      */
     public function index()
     {
-        $village = Village::all();
-        $village = VillageResource::collection($village);
-        return response(['sucess' => true, 'village' =>$village], 200);
+        $villages = Village::paginate(5); // Change variable name for clarity
+        return view('address.village.index', ['villages' => $villages]);
     }
 
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function create(Request $request)
+    {
+        $communes = Commune::all();
+        return view("address.village.new", ["communes" => $communes]);
+    }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $village = Village::create($request);
-        return response(['sucess' => true, 'data' => $village], 200);
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'commune_id' => 'required|integer',
+        ]);
+        Village::create($validated);
+        return redirect()->back()->withSuccess('Village added');
     }
 
     /**
@@ -40,11 +55,21 @@ class VillageController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    public function edit(Request $request, string $id)
+    {
+        $village = Village::find($id);
+        $communes = Commune::all();
+        return view("address.village.edit", ["village" => $village, "communes" => $communes]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
         $village = Village::find($id);
         $village->update($request->all());
-        return response(['sucess' => true, 'data' => $village], 200);
+    return redirect()->back()->withSuccess('Updated village');
     }
 
     /**
@@ -52,8 +77,7 @@ class VillageController extends Controller
      */
     public function destroy(string $id)
     {
-        $village = Village::find($id);
-        $village->delete();
-        return response(['sucess' => true, 'message' => "Village was deleted"], 200);
+        Village::destroy($id);
+        return redirect()->back()->withSuccess('Village deleted');
     }
 }

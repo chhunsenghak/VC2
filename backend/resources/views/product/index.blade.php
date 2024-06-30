@@ -74,6 +74,11 @@
                             @endcan
                         </tbody>
                     </table>
+                    @can('Post access')
+                    <div class="text-right p-4 py-10">
+                        {{ $products->links() }}
+                    </div>
+                    @endcan
                 </div>
             </div>
         </main>

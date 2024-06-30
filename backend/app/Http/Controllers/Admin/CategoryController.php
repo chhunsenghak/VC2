@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Categorys::latest()->get();
+        $category = Categorys::paginate(5);
         return view('category.index', ['categorys' => $category]);
     }
     public function create()
@@ -108,8 +108,8 @@ class CategoryController extends Controller
                 'description' => $request->description,
             ]);
         }
-
-        return redirect()->route('admin.categorys.index')->withSuccess('Category updated!');
+        return redirect()->back()->withSuccess('Category updated successfully!');
+        // return redirect()->route('admin.categorys.index')->withSuccess('Category updated!');
     }
 
     public function destroy($id)
