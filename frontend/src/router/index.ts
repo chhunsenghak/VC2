@@ -32,15 +32,9 @@ const router = createRouter({
       component: () => import('@/views/Web/HomeView.vue')
     },
     {
-<<<<<<< HEAD
-      path: '/about-us',
-      name: 'About',
-      component: () => import('../views/Web/Post/AboutusView.vue')
-=======
       path: '/post',
       name: 'post',
       component: () => import('@/views/Web/Post/ListView.vue')
->>>>>>> 777eebab1435b160fd151fbb89c3b667f98ce970
     }
   ]
 })
