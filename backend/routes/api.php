@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CommuneController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\VillageController;
+use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\Auth\FrontuserController;
@@ -93,4 +94,14 @@ Route::prefix('products')->group(function () {
     Route::get('/show/{id}', [ProductController::class, 'show']);
     Route::post('/update/{id}', [ProductController::class, 'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'destroy']);
+});
+
+
+//ADDRESS ROUTES
+Route::prefix('addresses')->group(function (){
+    Route::get('/list', [AddressController::class, 'index']);
+    Route::post('/create', [AddressController::class,'store']);
+    Route::get('/show/{id}', [AddressController::class,'show']);
+    Route::put('/update/{id}', [AddressController::class, 'update']);
+    Route::delete('/delete/{id}', [AddressController::class, 'destroy']);
 });
