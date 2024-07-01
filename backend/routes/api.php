@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\VillageController;
 use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\ShopController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\Auth\FrontuserController;
 use App\Http\Controllers\Front\CategoryController;
@@ -104,4 +105,13 @@ Route::prefix('addresses')->group(function (){
     Route::get('/show/{id}', [AddressController::class,'show']);
     Route::put('/update/{id}', [AddressController::class, 'update']);
     Route::delete('/delete/{id}', [AddressController::class, 'destroy']);
+});
+
+// SHOP ROUTES
+Route::prefix('shops')->group(function (){
+    Route::get('/list', [ShopController::class, 'index']);
+    Route::post('/create', [ShopController::class,'store']);
+    Route::get('/show/{id}', [ShopController::class,'show']);
+    Route::put('/update/{id}', [ShopController::class, 'update']);
+    Route::delete('/delete/{id}', [ShopController::class, 'destroy']);
 });
