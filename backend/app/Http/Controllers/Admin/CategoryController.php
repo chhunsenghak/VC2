@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Categorys::latest()->get();
+        $category = Categorys::paginate(5);
         return view('category.index', ['categorys' => $category]);
     }
     public function create()
@@ -43,15 +43,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required',
             'description' => 'string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('categories_images'), $imageName);
+
         $category = Categorys::create([
             'name' => $request->name,
             'description' => $request->description,
+            'image' => $imageName,
         ]);
+
         return redirect()->back()->withSuccess('category created !!!');
     }
 
@@ -79,17 +85,36 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorys $category)
+    public function update(Request $request, $categoryId)
     {
-        $category = Categorys::find($category);
-
-        $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+        $category = Categorys::findOrFail($categoryId);
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('categories_images'), $imageName);
+            $category->image = 'images/' . $imageName;
+            $category->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'image' => $imageName
+            ]);
+        } else {
+            $category->update([
+                'name' => $request->name,
+                'description' => $request->description,
+            ]);
+        }
+        return redirect()->back()->withSuccess('Category updated successfully!');
+        // return redirect()->route('admin.categorys.index')->withSuccess('Category updated!');
+    }
 
-        $category->update($validated);
-
-        return redirect()->back()->withSuccess('category updated !!!');
+    public function destroy($id)
+    {
+        $category = Categorys::destroy($id);
+        return redirect()->back()->withSuccess('Category deleted !!!');
     }
 }

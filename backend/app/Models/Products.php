@@ -15,7 +15,8 @@ class Products extends Model
         'image',
         'price',
         'discount',
-        'stock',
+        'shop_id',
+        'stock_id',
         'categorys_id',
     ];
 
@@ -24,6 +25,11 @@ class Products extends Model
         return $this->belongsTo(Categorys::class);
     }
 
+    public function stock()
+    {
+        return $this->belongsTo(Stock::class, 'stock_id');
+    }
+    
     public static function store($request, $id = null)
     {
         $data = (array)$request; // Convert object to array

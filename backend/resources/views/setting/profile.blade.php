@@ -46,7 +46,6 @@
                                     <button type="button" class="" @click="clearPreview()">change</button>
                                   </div>
                                 </div>
-
                               </div>
                             </div>
                         </div>
@@ -64,6 +63,7 @@
 <script>
     function imageData() {
         var files = document.getElementById("thumbnailprev").files;
+        console.log(files);
         if(files.length == 0){
             var url = '/images/'+{!! json_encode($user->profile) !!};
         }else{
