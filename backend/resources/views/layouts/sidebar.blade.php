@@ -112,6 +112,13 @@
             <span class="mx-3">Seller</span>
         </a>
         @endcanany
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.shop.index') ? 'active' : '' }}" href="{{ route('admin.shop.index')}}">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2H5zm1 14a1 1 0 01-1-1V7a1 1 0 011-1h8a1 1 0 011 1v8a1 1 0 01-1 1H6z" clip-rule="evenodd" />
+                <path d="M8 10a1 1 0 011-1h4a1 1 0 110 2H9a1 1 0 01-1-1z" />
+            </svg>
+            <span class="mx-3">Stock Type</span>
+        </a>
 
         @canany('Mail access','Mail edit')
         <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.mail.index') ? 'active' : '' }}" href="{{ route('admin.mail.index')}}">

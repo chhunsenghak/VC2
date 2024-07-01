@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->integer('price');
             $table->string('discount', 5, 2);
+            $table->string('check')->nullable();
             $table->integer('stock_id')->references('id')
                 ->on('stocks')
                 ->onDelete('cascade');
