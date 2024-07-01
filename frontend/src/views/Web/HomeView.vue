@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
-const storedUser = JSON.parse(localStorage.getItem('phsar_user') || '{}')
 </script>
 <template>
   {{ storedUser }}
