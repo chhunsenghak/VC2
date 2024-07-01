@@ -5,7 +5,7 @@
   <header class="flex justify-between px-50 py-3 bg-white items-center m-0">
     <!-- Logo -->
     <div class="flex items-center space-x-2 w-25">
-      <img src="../../src/assets/images/logo (1).png" alt="" style="width: 100px" />
+      <img src="../../src/assets/images/logo1.png" alt="" style="width: 100px" />
     </div>
 
     <!-- Menu Items -->

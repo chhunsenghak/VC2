@@ -1,6 +1,7 @@
 <template>
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <WebLayout>
+        <div class="container">
         <section>
             <div class="image-contact">
                 <img src="../../assets/images/contact.png" alt="">
@@ -15,7 +16,7 @@
                         <div class="input-container mt-5 mb-4">
 
                             <i class="material-icons text-blue-500 icon-xs">phone</i>
-                            <input type="tel" class="form-control" placeholder="+855 88 43 67 484">
+                            <input class="form-control" placeholder="+855 88 43 67 484">
                         </div>
                         <div class="input-container mb-4">
                             <!-- <span class="fa fa-envelope"></span> -->
@@ -61,11 +62,10 @@
                     </form>
                 </div>
             </div>
-            <!-- </div> -->
-
-            <!-- </div> -->
+        
 
         </section>
+    </div>
 
     </WebLayout>
 
