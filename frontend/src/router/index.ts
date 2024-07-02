@@ -44,13 +44,13 @@ const router = createRouter({
     {
       path: '/shop',
       name: 'shopPage',
-      component: () => import('@/views/Web/shop/ListProductView.vue')
+      component: () => import('@/views/Web/shop/CategoryView.vue')
     }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/','/register', '/login']
+  const publicPages = ['/','/register', '/login', '/shop', '/contact_us']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
   try {

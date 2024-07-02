@@ -8,7 +8,21 @@ const axiosInstance = axios.create({
   }
 })
 
-axiosInstance.get('http://127.0.0.1:8000/sanctum/csrf-cookie')
+// Get CSRF token
+const getCsrfToken = async () => {
+  try {
+    await axiosInstance.get('/sanctum/csrf-cookie')
+  } catch (error) {
+    console.error('Error fetching CSRF token:', error)
+  }
+}
+
+// Get categories
+const CategoryLists = {
+  getCategories() {
+    return axiosInstance.get('/category/list')
+  }
+}
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
@@ -39,4 +53,8 @@ axiosInstance.interceptors.response.use(
   }
 )
 
+// Call the getCsrfToken function to fetch the CSRF token
+getCsrfToken()
+
 export default axiosInstance
+export { CategoryLists }
