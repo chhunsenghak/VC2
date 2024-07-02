@@ -4,7 +4,7 @@
             <div class="container mx-auto px-6 py-2">
                 <div class="flex justify-end">
                     <div class="text-right">
-                        @can('Shop create')
+                        @can('StockLimit create')
                         <a href="{{route('admin.stockType.create')}}" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">New Stock Type</a>
                         @endcan
                     </div>
@@ -20,7 +20,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @can('Shop access')
+                            @can('StockLimit access')
                             @foreach($stocks as $stock)
 
                             <tr class="hover:bg-grey-lighter">
@@ -36,10 +36,10 @@
 
                                 </td>
                                 <td class="py-4 px-6 border-b border-grey-light text-right">
-                                    @can('Shop access')
+                                    @can('StockLimit access')
                                     <a href="{{route('admin.stockType.edit',$stock->id)}}" class="bg-yellow-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Update</a>
                                     @endcan
-                                    @can('Shop delete')
+                                    @can('StockLimit delete')
                                     <form action="{{ route('admin.stockType.destroy', $stock->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('delete')
@@ -52,7 +52,7 @@
                             @endcan
                         </tbody>
                     </table>
-                    @can('Post access')
+                    @can('StockType access')
                     <div class="text-right p-4 py-10">
                         {{ $stocks->links() }}
                     </div>
