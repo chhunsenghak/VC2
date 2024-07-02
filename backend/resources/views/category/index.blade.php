@@ -32,22 +32,26 @@
 
                                 <td class="py-4 px-6 border-b border-grey-light text-right">
                                     @can('Category edit')
-                                    <a href="{{route('admin.categorys.edit',$category->id)}}" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-blue-400">Edit</a>
+                                    <a href="{{route('admin.categorys.edit',$category->id)}}" class="bg-yellow-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Update</a>
                                     @endcan
                                     @can('Category delete')
                                     <form action="{{ route('admin.categorys.destroy', $category->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('delete')
-                                        <button class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue hover:bg-blue-dark text-red-400">Delete</button>
+                                        <button class="bg-red-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Delete</button>
                                     </form>
                                     @endcan
                                 </td>
-
                             </tr>
                             @endforeach
                             @endcan
                         </tbody>
                     </table>
+                    @can('Post access')
+                    <div class="text-right p-4 py-10">
+                        {{ $categorys->links() }}
+                    </div>
+                    @endcan
                 </div>
             </div>
         </main>

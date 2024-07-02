@@ -6,14 +6,14 @@
                 <path d="M201.694 387.105C231.686 417.098 280.312 417.098 310.305 387.105C325.301 372.109 332.8 352.456 332.8 332.8C332.8 313.144 325.301 293.491 310.305 278.495C295.309 263.498 288 256 275.2 230.4C256 243.2 243.201 320 243.201 345.6C201.694 345.6 179.2 332.8 179.2 332.8C179.2 352.456 186.698 372.109 201.694 387.105Z" fill="white"></path>
             </svg>
 
-            <a href="{{ route('admin.dashboard') }}">
+            <a href="{{ route('admin.dashboard.index') }}">
                 <span class="text-white text-2xl mx-2 font-semibold">Dashboard</span>
             </a>
         </div>
     </div>
 
     <nav class="mt-10">
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.dashboard') ? 'active' : '' }} " href="{{ route('admin.dashboard')}}">
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.dashboard.index') ? 'active' : '' }} " href="{{ route('admin.dashboard.index')}}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
@@ -38,6 +38,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z">
                 </path>
             </svg>
+
 
             <span class="mx-3">Permission</span>
         </a>
@@ -78,8 +79,8 @@
         @canany('Category access','Category add','Category edit','Category delete')
         <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.categorys.index') ? 'active' : '' }}" href="{{ route('admin.categorys.index')}}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                </path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 5a2 2 0 00-2-2H10a2 2 0 00-2 2v2.586a1 1 0 00.293.707l4.293 4.293a1 1 0 001.414 0l4.293-4.293A1 1 0 0018 7.586V5z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10l2 9h12l2-9"></path>
             </svg>
             <span class="mx-3">Category</span>
         </a>
@@ -88,12 +89,36 @@
         @canany('Product access','Product add','Product edit','Product delete')
         <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.products.index') ? 'active' : '' }}" href="{{ route('admin.products.index')}}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                </path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v10m0-10a2 2 0 11-4 0 2 2 0 014 0zm0 0v10m0-10a2 2 0 11-4 0 2 2 0 014 0zm-7 4h14a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2z" />
             </svg>
             <span class="mx-3">Product</span>
         </a>
         @endcanany
+
+        @canany('Product access','Product add','Product edit','Product delete')
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.locations.index') ? 'active' : '' }}" href="{{ route('admin.locations.index')}}">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2c-3.87 0-7 3.13-7 7s7 13 7 13 7-9.13 7-13-3.13-7-7-7zm0 5a2 2 0 100 4 2 2 0 000-4z" />
+            </svg>
+            <span class="mx-3">Address</span>
+        </a>
+        @endcanany
+        @canany('Shop access','Shop add','Shop edit','Shop delete')
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.shop.index') ? 'active' : '' }}" href="{{ route('admin.shop.index')}}">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2H5zm1 14a1 1 0 01-1-1V7a1 1 0 011-1h8a1 1 0 011 1v8a1 1 0 01-1 1H6z" clip-rule="evenodd" />
+                <path d="M8 10a1 1 0 011-1h4a1 1 0 110 2H9a1 1 0 01-1-1z" />
+            </svg>
+            <span class="mx-3">Seller</span>
+        </a>
+        @endcanany
+        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.shop.index') ? 'active' : '' }}" href="{{ route('admin.shop.index')}}">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2H5zm1 14a1 1 0 01-1-1V7a1 1 0 011-1h8a1 1 0 011 1v8a1 1 0 01-1 1H6z" clip-rule="evenodd" />
+                <path d="M8 10a1 1 0 011-1h4a1 1 0 110 2H9a1 1 0 01-1-1z" />
+            </svg>
+            <span class="mx-3">Stock Type</span>
+        </a>
 
         @canany('Mail access','Mail edit')
         <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.mail.index') ? 'active' : '' }}" href="{{ route('admin.mail.index')}}">

@@ -23,16 +23,16 @@ class FrontuserController extends Controller
     public function index()
     {
         $users = Frontuser::latest()->get();
-        return view('front.setting.user.index', ['users' => $users]);
+        return view('user.index', ['users' => $users]);
     }
     public function create()
     {
         $roles = Role::get();
-        return view('setting.user.new', ['roles' => $roles]);
+        return view('user.new', ['roles' => $roles]);
     }
     public function show(Request $id)
     {
         $user = Frontuser::findOrFail($id);
-        return view('front.setting.user.detail', compact('user'));
+        return view('user.detail', compact('user'));
     }
 }
