@@ -3,10 +3,10 @@
         <link href="css/font-awesome.min.css" rel="stylesheet" />
         <div class="container">
             <section>
-                <div class="image-contact">
+                <div class="image-contact" >
                     <img src="../../assets/images/contact.png" alt="">
                 </div>
-                <div class="from-contact m-5 " style="height: 100vh;">
+                <div class="from-contact m-5 " style="height: auto;">
                     <div class="info-right">
                         <h2>Contact Us</h2> <br>
                         <h5 style="color: #828282;">Any question? We would be <br>
