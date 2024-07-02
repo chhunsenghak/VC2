@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import WebLayout from '@/Components/Layouts/WebLayout.vue';
-import HeroComponent from '../../../src/Components/HomePageComponents/HeroComponent.vue';
-import WhyChooseUsComponent from '../../../src/Components/HomePageComponents/WhyChooseUsComponent.vue';
-import ProductComponent from '../../../src/Components/HomePageComponents/ProductComponent.vue';
-import WeHelpComponent from '../../../src/Components/HomePageComponents/WeHelpComponent.vue';
-import PopularProductComponent from '../../../src/Components/HomePageComponents/PopularProductComponent.vue';
-import TestimonialSliderComponent from '../../../src/Components/HomePageComponents/TestimonialSliderComponent.vue';
-import BlogComponent from '../.././../src/Components/HomePageComponents/BlogComponent.vue';
+import WebLayout from '@/Components/Layouts/WebLayout.vue'
+import HeroComponent from '../../../src/Components/HomePageComponents/HeroComponent.vue'
+import WhyChooseUsComponent from '../../../src/Components/HomePageComponents/WhyChooseUsComponent.vue'
+import ProductComponent from '../../../src/Components/HomePageComponents/ProductComponent.vue'
+import WeHelpComponent from '../../../src/Components/HomePageComponents/WeHelpComponent.vue'
+import PopularProductComponent from '../../../src/Components/HomePageComponents/PopularProductComponent.vue'
+import TestimonialSliderComponent from '../../../src/Components/HomePageComponents/TestimonialSliderComponent.vue'
+import BlogComponent from '../.././../src/Components/HomePageComponents/BlogComponent.vue'
 </script>
 <template>
- 
   <WebLayout>
     <!-- Start Hero Section -->
     <HeroComponent />
@@ -27,10 +26,10 @@ import BlogComponent from '../.././../src/Components/HomePageComponents/BlogComp
     <PopularProductComponent />
     <!-- End Popular Product -->
     <!-- Start Testimonial Slider -->
-      <TestimonialSliderComponent/>
+    <TestimonialSliderComponent />
     <!-- End Testimonial Slider -->
     <!-- Start Blog Section -->
-     <BlogComponent/>
+    <BlogComponent />
     <!-- End Blog Section -->
   </WebLayout>
 </template>

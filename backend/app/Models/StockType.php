@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class StockType extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'limit_quantity'];
 }
