@@ -86,6 +86,9 @@ Route::prefix('category')->group(function () {
     Route::get('/show/{id}', [CategoryController::class, 'show']);
     Route::put('/update/{id}', [CategoryController::class, 'update']);
     Route::delete('/delete/{id}', [CategoryController::class, 'destroy']);
+    //search for category
+    Route::get('/search/{name}', [CategoryController::class,'search']);
+   
 });
 
 // PRODUCTS ROUTES
