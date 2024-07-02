@@ -22,7 +22,7 @@
                                 style="width: 33px;height: 33px;border: 1px solid black;" alt=""></p>
                     </div>
 
-                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Contact Seller</a>
+                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Chat Now</a>
                 </div>
             </div>
             <div class="card-container">
@@ -41,7 +41,7 @@
                                 style="width: 33px;height: 33px;border: 1px solid black;" alt=""></p>
                     </div>
 
-                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Contact Seller</a>
+                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Chat Now</a>
                 </div>
             </div>
             <div class="card-container">
@@ -60,7 +60,7 @@
                                 style="width: 33px;height: 33px;border: 1px solid black;" alt=""></p>
                     </div>
 
-                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Contact Seller</a>
+                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Chat Now</a>
                 </div>
             </div>
             <div class="card-container">
@@ -79,7 +79,7 @@
                                 style="width: 33px;height: 33px;border: 1px solid black;" alt=""></p>
                     </div>
 
-                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Contact Seller</a>
+                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Chat Now</a>
                 </div>
             </div>
             <div class="card-container">
@@ -98,7 +98,7 @@
                                 style="width: 33px;height: 33px;border: 1px solid black;" alt=""></p>
                     </div>
 
-                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Contact Seller</a>
+                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Chat Now</a>
                 </div>
             </div>
             <div class="card-container">
@@ -117,7 +117,7 @@
                                 style="width: 33px;height: 33px;border: 1px solid black;" alt=""></p>
                     </div>
 
-                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Contact Seller</a>
+                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Chat Now</a>
                 </div>
             </div>
             <div class="card-container">
@@ -136,7 +136,7 @@
                                 style="width: 33px;height: 33px;border: 1px solid black;" alt=""></p>
                     </div>
 
-                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Contact Seller</a>
+                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Chat Now</a>
                 </div>
             </div>
             <div class="card-container">
@@ -155,7 +155,7 @@
                                 style="width: 33px;height: 33px;border: 1px solid black;" alt=""></p>
                     </div>
 
-                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Contact Seller</a>
+                    <a href="/contact_us" class="btn btn-primary" style="width: 100%;">Chat Now</a>
                 </div>
             </div>
             
