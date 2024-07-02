@@ -21,7 +21,8 @@ class ProductSeeder extends Seeder
                 'price' => 100,
                 'image' => 'orange.jpg',
                 'categorys_id' => 1,
-                'stock' => '100 kg',
+                'shop_id' => 1,
+                'stock_id' => 1,
                 'discount' => '10%',
             ],
             [
@@ -30,7 +31,8 @@ class ProductSeeder extends Seeder
                 'price' => 100,
                 'image' => 'apple.jpg',
                 'categorys_id' => 1,
-                'stock' => '100 kg',
+                'shop_id' => 1,
+                'stock_id' => 1,
                 'discount' => '10%',
             ],
             [
@@ -39,7 +41,8 @@ class ProductSeeder extends Seeder
                 'price' => 100,
                 'image' => 'cherry.jpg',
                 'categorys_id' => 1,
-                'stock' => '100 kg',
+                'shop_id' => 1,
+                'stock_id' => 1,
                 'discount' => '10%',
             ],
             [
@@ -48,7 +51,18 @@ class ProductSeeder extends Seeder
                 'price' => 100,
                 'image' => 'strawberry.jpg',
                 'categorys_id' => 1,
-                'stock' => '100 កេស',
+                'shop_id' => 1,
+                'stock_id' => 2,
+                'discount' => '10%',
+            ],
+            [
+                'name' => 'category 5',
+                'price' => 100,
+                'description' => 'description 5',
+                'image' => 'default.jpg',
+                'categorys_id' => 5,
+                'shop_id' => 1,
+                'stock_id' => 1,
                 'discount' => '10%',
             ]
         ];

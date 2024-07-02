@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\District;
 class Province extends Model
 {
     use HasFactory;
@@ -14,7 +14,9 @@ class Province extends Model
     {
         return self::all();
     }
-
+    public function District(){
+        return $this->hasMany(District::class);
+    }
     public static function store($request, $id = null)
     {
         $data = $request->only('id', 'name');

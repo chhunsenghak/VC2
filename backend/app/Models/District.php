@@ -11,11 +11,11 @@ class District extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'name', 'province_id'];
+    protected $fillable = ['name', 'province_id'];
 
     public function province(): BelongsTo
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Province::class, 'province_id');
     }
 
     public function communes()

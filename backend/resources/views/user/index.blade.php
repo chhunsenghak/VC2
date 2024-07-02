@@ -16,7 +16,7 @@
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light text-right">Actions</th>
               </tr>
             </thead>
-            
+
             <tbody>
               @can('User access')
               @foreach($users as $user)

@@ -7,7 +7,7 @@ use App\Models\Categorys;
 use App\Models\Frontuser;
 use App\Models\Products;
 use Illuminate\Http\Request;
-
+use App\Models\Shops;
 class DashboardController extends Controller
 {
     //
@@ -21,6 +21,7 @@ class DashboardController extends Controller
         $frontend = Frontuser::all();
         $categoies = Categorys::all();
         $products = Products::all();
-        return view('dashboard', ['frontend' => $frontend, 'categoies' => $categoies, 'products'=> $products]);
+        $seller = Shops::all();
+        return view('dashboard', ['frontend' => $frontend, 'categoies' => $categoies, 'products'=> $products, 'seller' => $seller]);
     }
 }

@@ -48,5 +48,12 @@ class FrontUserSeeder extends Seeder
             'gender' => 'female',
             'phone' => '012 46 78 901',
         ]);
+        Frontuser::Create([
+            'name' => 'Senghak',
+            'email' => 'Leak@example.com',
+            'password' => bcrypt('123'),
+            'gender' => 'Male',
+            'phone' => '012 46 78 901',
+        ]);
     }
 }
