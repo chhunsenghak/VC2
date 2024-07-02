@@ -17,22 +17,22 @@ class StockTypeSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'Kg',
-                'limit_quality' => 100,
+                'limit_quantity' => 100,
             ],
             [
                 'id' => 2,
                 'name' => 'Tons',
-                'limit_quality' => 100,
+                'limit_quantity' => 100,
             ],
             [
                 'id' => 3,
                 'name' => 'Liters',
-                'limit_quality' => 100,
+                'limntity' => 100,
             ],
             [
                 'id' => 4,
                 'name' => 'Plon',
-                'limit_quality' => 10,
+                'limntity' => 10,
             ]
         ];
         foreach ($stockType as $key => $data) {
