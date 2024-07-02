@@ -60,7 +60,7 @@ class ProductController extends Controller
             'shop_id' => 'integer',
         ]);
         $stock_type = StockType::find($request->stock_type_id);
-        if ($stock_type->limit_quality > $request->quantity) {
+        if ($stock_type->limit_quantity > $request->quantity) {
             $stock = Stock::create([
                 'quantity' => $request->quantity,
                 'stock_type_id' => $request->stock_type_id,
@@ -138,7 +138,7 @@ class ProductController extends Controller
             'shop_id' => 'integer',
         ]);
         $stock_type = StockType::find($request->stock_type_id);
-        if ($stock_type->limit_quality > $request->quantity) {
+        if ($stock_type->limit_quantity > $request->quantity) {
             $stock = Stock::create([
                 'quantity' => $request->quantity,
                 'stock_type_id' => $request->stock_type_id,
