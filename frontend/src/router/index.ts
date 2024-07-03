@@ -39,7 +39,16 @@ const router = createRouter({
     {
       path: '/shop',
       name: 'shopPage',
+<<<<<<< HEAD
+      component: () => import('@/views/Web/shop/ListProductView.vue')
+    },
+    {
+      path: '/shop/product_vegetable',
+      name: 'pageProductvegetable',
+      component: () => import('@/views/Web/Product/ProductVegetableView.vue')
+=======
       component: () => import('@/views/Web/shop/CategoryView.vue')
+>>>>>>> 777b2be33914615818a38de40d534f931d3308cd
     }
   ]
 })
