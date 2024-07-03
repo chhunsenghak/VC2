@@ -1,4 +1,4 @@
-<!-- src/components/HeaderMenu.vue -->
+src/components/HeaderMenu.vue
 <template>
   <header class="text-white px-50 py-3 bg-white flex justify-between items-center">
     <div class="flex items-center text-black font-bold">

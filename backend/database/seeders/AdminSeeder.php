@@ -80,6 +80,11 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Shop create']);
         $permission = Permission::create(['name' => 'Shop delete']);
 
+        $permission = Permission::create(['name' => 'StockLimit access']);
+        $permission = Permission::create(['name' => 'StockLimit edit']);
+        $permission = Permission::create(['name' => 'StockLimit create']);
+        $permission = Permission::create(['name' => 'StockLimit delete']);
+
         $permission = Permission::create(['name' => 'Mail access']);
         $permission = Permission::create(['name' => 'Mail edit']);
 
