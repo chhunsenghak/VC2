@@ -40,7 +40,7 @@ const router = useRouter()
 let value = localStorage.getItem('access_token')
 
 // Check if there is a valid access token in local storage and redirect to the home page if true
-if (value) {
+if (value != undefined) {
   router.push('/')
 }
 // This will log 'value'

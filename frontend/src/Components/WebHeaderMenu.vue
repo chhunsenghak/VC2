@@ -1,6 +1,16 @@
 <script setup lang="ts">
+import router from '@/router'
+
 // import { Icon } from '@iconify/vue'
 let value = localStorage.getItem('access_token')
+console.log(value);
+
+const logout = () => {
+  localStorage.removeItem('access_token')
+  if (value != undefined) {
+    router.push('/') // Redirect to Home page after logout
+  }
+}
 </script>
 <template>
   <nav
@@ -71,9 +81,11 @@ let value = localStorage.getItem('access_token')
           <li><a class="dropdown-item" href="#">Profile</a></li>
           <li><a class="dropdown-item" href="#">Settings</a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item" href="#">Logout</a></li>
+          <li><button class="dropdown-item" @click="logout">Logout</button></li>
         </ul>
       </div>
     </div>
   </nav>
+
+  function next(arg0: string) { throw new Error("Function not implemented."); }
 </template>
