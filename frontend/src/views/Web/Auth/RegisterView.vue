@@ -28,7 +28,7 @@
   </div>
 </template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
 import axiosInstance from '@/plugins/axios'
 import { useAuthStore } from '@/stores/auth-store'
 import { useField, useForm } from 'vee-validate'
@@ -36,6 +36,14 @@ import * as yup from 'yup'
 import { useRouter } from 'vue-router'
 const store = useAuthStore()
 const router = useRouter()
+
+let value = localStorage.getItem('access_token')
+
+// Check if there is a valid access token in local storage and redirect to the home page if true
+if (value) {
+  router.push('/')
+}
+// This will log 'value'
 
 const formSchema = yup.object({
   name: yup.string().required().label('name'),
@@ -55,7 +63,7 @@ const { handleSubmit, isSubmitting } = useForm({
 const register = handleSubmit(async (values) => {
   try {
     const { data } = await axiosInstance.post('/register', values)
-    localStorage.setItem('phsar_user', JSON.stringify(data))
+    localStorage.setItem('access_token', JSON.stringify(data.token))
     router.push('/')
   } catch (error) {}
 })
@@ -63,10 +71,9 @@ const register = handleSubmit(async (values) => {
 const { value: name, errorMessage: nameError } = useField('name')
 const { value: password, errorMessage: passwordError } = useField('password')
 const { value: email, errorMessage: emailError } = useField('email')
-
 </script>
   
-  <style scoped>
+<style scoped>
 .min-h-screen {
   min-height: 100vh;
 }

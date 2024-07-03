@@ -1,6 +1,6 @@
 <template>
   <!-- Start Hero Section -->
-  <div class="hero">
+  <div class="hero mt-15">
     <div class="container">
       <div class="row justify-content-between">
         <div class="col-lg-5">
