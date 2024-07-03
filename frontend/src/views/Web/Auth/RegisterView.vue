@@ -16,11 +16,7 @@
           <el-input placeholder="Password" v-model="password" size="large" type="password" />
         </el-form-item>
         <div>
-          <el-button
-            size="large"
-            class="mt-3 w-full"
-            type="primary"
-            native-type="submit"
+          <el-button size="large" class="mt-3 w-full" type="primary" native-type="submit"
             >Submit</el-button
           >
         </div>
@@ -67,6 +63,7 @@ const register = handleSubmit(async (values) => {
 const { value: name, errorMessage: nameError } = useField('name')
 const { value: password, errorMessage: passwordError } = useField('password')
 const { value: email, errorMessage: emailError } = useField('email')
+
 </script>
   
   <style scoped>
