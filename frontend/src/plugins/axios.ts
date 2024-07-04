@@ -27,7 +27,7 @@ const CategoryLists = {
 const ProductLists = {
   getProducts() {
     return axiosInstance.get('/products/list')
-  }
+  },
 }
 
 
