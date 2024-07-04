@@ -18,6 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Products::all();
+        $products = ListProductResource::collection($products);
         return response(['success' => true, 'data' => $products], 200);
     }
 
@@ -32,8 +33,9 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'discount' => 'string',
-            'stock' => 'required|string',
+            'stock_type_id' => 'integer',
             'categorys_id' => 'required|integer',
+            'shop_id' => 'integer',
         ]);
 
         if ($validator->fails()) {
@@ -89,7 +91,7 @@ class ProductController extends Controller
             'price' => 'numeric',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'discount' => 'string',
-            'stock' => 'string',
+            'stock' => 'integer',
             'categorys_id' => 'integer',
         ]);
 
