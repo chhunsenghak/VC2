@@ -31,13 +31,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post("/forgot/password", [AuthController::class, 'forgotPassword']);
+Route::post("/reset/password", [AuthController::class, 'resetPassword']);
 
 Route::prefix('/user')->middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::put('/update', [FrontuserController::class, 'updateInformationUser']);
     Route::post('/update/profile', [FrontuserController::class, 'updateProfileUser']);
-    Route::post("/forgot/password", [AuthController::class, 'forgotPassword']);
-    Route::post("/reset/password", [AuthController::class, 'resetPassword']);
 });
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
