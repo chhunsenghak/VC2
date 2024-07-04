@@ -1,66 +1,89 @@
 <script setup lang="ts">
-import router from '@/router'
-
 // import { Icon } from '@iconify/vue'
-let value = localStorage.getItem('access_token')
-console.log(value);
-
-const logout = () => {
-  localStorage.removeItem('access_token')
-  if (value != undefined) {
-    router.push('/') // Redirect to Home page after logout
-  }
+import { useAuthStore } from '@/stores/auth-store'
+import axiosInstance from '@/plugins/axios'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const store = useAuthStore()
+const logout = async () => {
+  try {
+    const { data } = await axiosInstance.post('/user/logout')
+    localStorage.removeItem('access_token')
+    location.reload()
+    router.push('/login')
+  } catch (error) {}
 }
 </script>
 <template>
   <nav
     class="navbar navbar-expand-md navbar-dark fixed-top flex justify-between px-10 py-1 bg-white items-center m-0 shadow-background shadow-sm p-3 mb-5 bg-white rounded"
   >
+    <!-- {{ store }} -->
     <!-- Logo -->
     <div class="flex items-center space-x-20 px-10 py-2 w-25">
       <img src="../../src/assets/logo.jpg" alt="logo" style="width: 150px" />
     </div>
-
     <!-- Menu Items -->
     <div class="flex justify-center">
       <a
-        class="nav-link font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
+        class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="/"
         >Home</a
       >
       <a
-        class="nav-link font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
+        class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="/shop"
         >Shop</a
       >
       <a
-        class="nav-link font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
+        class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="about.html"
         >About us</a
       >
       <a
-        class="nav-link font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
+        class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="services.html"
-        >Services</a
+        >Service</a
       >
       <a
-        class="nav-link font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
+        class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="/post"
         >Blog</a
       >
       <a
-        class="nav-link font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
+        class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="/contact_us"
         >Contact us</a
       >
     </div>
-
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      fill="currentColor"
+      class="bi bi-bell-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"
+      />
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      fill="currentColor"
+      class="bi bi-brightness-high"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"
+      />
+    </svg>
     <!-- Sign In -->
-    <div v-if="value == ''">
-      <div class="px-4 py-2 rounded font-semibold btn btn-success">Sign In</div>
-    </div>
+
     <!-- User Profile -->
-    <div v-else class="px-10 py-2">
+    <div v-if="store.isAuthenticated" class="px-10 py-2">
       <div class="dropdown">
         <button
           class="dropdown-toggle border-none bg-white"
@@ -78,14 +101,18 @@ const logout = () => {
           />
         </button>
         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="profileDropdown">
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Account</a></li>
+          <li><a class="dropdown-item" href="#">Sitting</a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li><button class="dropdown-item" @click="logout">Logout</button></li>
+          <li><button class="dropdown-item" @click="logout">Log out</button></li>
         </ul>
       </div>
     </div>
+    <div v-else px-10 py-2>
+      <a href="/login" class="btn btn-outline-success">Sign in</a>
+    </div>
   </nav>
 
-  function next(arg0: string) { throw new Error("Function not implemented."); }
+  function async() { throw new Error('Function not implemented.') } function async() { throw new
+  Error('Function not implemented.') }
 </template>

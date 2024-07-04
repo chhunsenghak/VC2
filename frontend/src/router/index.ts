@@ -60,7 +60,12 @@ router.beforeEach(async (to, from, next) => {
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore();
   let value = localStorage.getItem('access_token');
-  let token = value.split('"').join('');
+  let token;
+  if (value === null) {
+    token = "";
+  }else{
+    token = value.split('"').join('');
+  }
   try {
     const { data } = await axiosInstance.get('/me', {
       headers: {
