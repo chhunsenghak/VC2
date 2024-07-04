@@ -1,8 +1,8 @@
 <template>
-  <div class="popular-product">
+  <div class="popular-product" style="background-color: aqua;">
     <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+      <div class="row" >
+        <div class="col-12 col-md-6 col-lg-4 ">
           <div class="product-item-sm d-flex">
             <div class="thumbnail">
               <img src="../../assets/images/product-1.png" alt="Image" class="img-fluid" />

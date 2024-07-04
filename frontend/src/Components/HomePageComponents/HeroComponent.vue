@@ -20,7 +20,7 @@
           <div class="hero-img-wrap">
             <img
               src="../../assets/images/field.jpg"
-              class="img-fluid hover-effect"
+             
               alt="Field Image"
               width="600px"
             />

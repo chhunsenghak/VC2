@@ -113,6 +113,5 @@ const logout = async () => {
     </div>
   </nav>
 
-  function async() { throw new Error('Function not implemented.') } function async() { throw new
-  Error('Function not implemented.') }
+ 
 </template>
