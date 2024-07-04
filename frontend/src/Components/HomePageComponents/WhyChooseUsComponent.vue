@@ -1,10 +1,10 @@
 <template>
   <!-- Start Why Choose Us Section -->
-  <div class="why-choose-section">
+  <div class="why-choose-section" style="margin-bottom: -8rem;" >
     <div class="container">
       <div class="row justify-content-between">
-        <div class="col-lg-6">
-          <h2 class="section-title">Why Choose Us</h2>
+        <div class="col-lg-6 ml-9">
+          <h2 class="section-title">Why Choose Us ✔</h2>
           <p>
             Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate
             velit imperdiet dolor tempor tristique.
@@ -64,13 +64,25 @@
           </div>
         </div>
 
-        <div class="col-lg-5">
+        <div class="col-lg-5" style="margin-top: -3rem;">
           <div class="img-wrap">
             <img
               src="../../assets/images/why-choose-us-img.jpg"
               alt="Image"
               class="img-fluid"
-              width="400px"
+              width="300px" 
+            />
+            <img
+              src="../../assets/images/why-choose-us-img.jpg"
+              alt="Image"
+              class="img-fluid"
+              width="250px" style="margin-top: -15rem;margin-left: 40%;"
+            />
+            <img
+              src="../../assets/images/why-choose-us-img.jpg"
+              alt="Image"
+              class="img-fluid"
+              width="230px" style="margin-top: -7rem;margin-left: 5%;"
             />
           </div>
         </div>

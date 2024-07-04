@@ -2,7 +2,7 @@
   <div class="we-help-section">
     <div class="container">
       <div class="row justify-content-between">
-        <div class="col-lg-7 mb-5 mb-lg-0">
+        <div class="col-lg-7">
           <div class="imgs-grid">
             <div class="grid grid-1">
               <img src="../../assets/images/img-grid-1.jpg" alt="Untree.co" />

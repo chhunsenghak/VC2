@@ -22,14 +22,13 @@ import BlogComponent from '../.././../src/Components/HomePageComponents/BlogComp
     <!-- Start We Help Section -->
     <WeHelpComponent />
     <!-- End We Help Section -->
-    <!-- Start Popular Product -->
-    <PopularProductComponent />
-    <!-- End Popular Product -->
-    <!-- Start Testimonial Slider -->
-    <!-- <TestimonialSliderComponent /> -->
-    <!-- End Testimonial Slider -->
+
     <!-- Start Blog Section -->
     <BlogComponent />
     <!-- End Blog Section -->
+
+    <!-- Start Popular Product -->
+    <PopularProductComponent />
+    <!-- End Popular Product -->
   </WebLayout>
 </template>

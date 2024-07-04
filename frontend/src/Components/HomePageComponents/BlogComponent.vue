@@ -1,9 +1,9 @@
 <template>
-  <div class="blog-section">
+  <div class="blog-section" style="margin-top: -13rem;">
     <div class="container">
       <div class="row mb-5">
-        <div class="col-md-6">
-          <h2 class="section-title">Find local products</h2>
+        <div class="col-md-6 m-3">
+          <h2 class="section-title">ស្វែងរកផលិតផលក្នុងតំបន់</h2>
         </div>
       </div>
 
