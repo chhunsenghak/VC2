@@ -37,6 +37,11 @@ const router = createRouter({
       component: () => import('@/views/Web/ContactView.vue')
     },
     {
+      path: '/about_us',
+      name: 'about',
+      component: () => import('@/views/Web/Post/AboutusView.vue')
+    },
+    {
       path: '/shop',
       name: 'shopPage',
       component: () => import('@/views/Web/shop/CategoryView.vue')
@@ -45,15 +50,12 @@ const router = createRouter({
       path: '/shop/product_vegetable',
       name: 'pageProductvegetable',
       component: () => import('@/views/Web/Product/ProductVegetableView.vue')
-=======
-      component: () => import('@/views/Web/shop/CategoryView.vue')
->>>>>>> 777b2be33914615818a38de40d534f931d3308cd
     }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/','/register', '/login', '/shop', '/contact_us']
+  const publicPages = ['/','/register', '/login', '/shop', '/contact_us', '/about_us']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore();
   let value = localStorage.getItem('access_token');
