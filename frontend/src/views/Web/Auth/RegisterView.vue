@@ -1,5 +1,9 @@
 <!-- src/components/Login.vue -->
 <template>
+  <div v-show="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Error!</strong> Can not create account please create again.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <el-card class="w-full max-w-md shadow-lg">
       <h2 class="text-2xl font-bold mb-6 text-center">បង្កើតគណនី</h2>
@@ -36,7 +40,7 @@ import * as yup from 'yup'
 import { useRouter } from 'vue-router'
 const store = useAuthStore()
 const router = useRouter()
-
+let alert = false
 if (store.isAuthenticated) {
   router.push('/')
 }
@@ -63,7 +67,9 @@ const register = handleSubmit(async (values) => {
     const { data } = await axiosInstance.post('/register', values)
     localStorage.setItem('access_token', JSON.stringify(data.token))
     router.push('/')
-  } catch (error) {}
+  } catch (error) {
+    alert = true
+  }
 })
 
 const { value: name, errorMessage: nameError } = useField('name')

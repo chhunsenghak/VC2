@@ -37,7 +37,7 @@ const logout = async () => {
       >
       <a
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
-        href="about.html"
+        href="/about_us"
         >About us</a
       >
       <a
@@ -112,6 +112,4 @@ const logout = async () => {
       <a href="/login" class="btn btn-outline-success">Sign in</a>
     </div>
   </nav>
-
- 
 </template>
