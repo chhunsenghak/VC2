@@ -13,7 +13,7 @@ use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\StockTypeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -112,6 +112,14 @@ Route::prefix('addresses')->group(function (){
 // SHOP ROUTES
 Route::prefix('shops')->group(function (){
     Route::get('/list', [ShopController::class, 'index']);
+    Route::post('/create', [ShopController::class,'store']);
+    Route::get('/show/{id}', [ShopController::class,'show']);
+    Route::put('/update/{id}', [ShopController::class, 'update']);
+    Route::delete('/delete/{id}', [ShopController::class, 'destroy']);
+});
+// STocks ROUTES
+Route::prefix('stocks')->group(function (){
+    Route::get('/list', [StockTypeController::class, 'index']);
     Route::post('/create', [ShopController::class,'store']);
     Route::get('/show/{id}', [ShopController::class,'show']);
     Route::put('/update/{id}', [ShopController::class, 'update']);
