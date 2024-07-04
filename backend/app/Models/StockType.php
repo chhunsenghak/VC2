@@ -10,4 +10,8 @@ class StockType extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'limit_quantity'];
+
+    public function stock(){
+        return $this->hasMany(Stock::class);
+    }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Shops;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\ShopListResource;
 class ShopController extends Controller
 {
     /**
@@ -14,6 +14,7 @@ class ShopController extends Controller
     public function index()
     {
         $shop = Shops::all();
+        $shop = ShopListResource::collection($shop);
         return response(['success' => true, 'data' => $shop], 200);
     }
 

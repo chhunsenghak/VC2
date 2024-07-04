@@ -13,7 +13,7 @@ use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\StockTypeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -90,6 +90,8 @@ Route::prefix('category')->group(function () {
 
 // PRODUCTS ROUTES
 Route::prefix('products')->group(function () {
+    Route::get('/sorted-products', [ProductController::class, 'sortedProducts']);
+    Route::get('/list-name-products', [ProductController::class, 'listNameProducts']);
     Route::get('/list', [ProductController::class, 'index']);
     Route::post('/create', [ProductController::class, 'store']);
     Route::get('/show/{id}', [ProductController::class, 'show']);
@@ -110,6 +112,14 @@ Route::prefix('addresses')->group(function (){
 // SHOP ROUTES
 Route::prefix('shops')->group(function (){
     Route::get('/list', [ShopController::class, 'index']);
+    Route::post('/create', [ShopController::class,'store']);
+    Route::get('/show/{id}', [ShopController::class,'show']);
+    Route::put('/update/{id}', [ShopController::class, 'update']);
+    Route::delete('/delete/{id}', [ShopController::class, 'destroy']);
+});
+// STocks ROUTES
+Route::prefix('stocks')->group(function (){
+    Route::get('/list', [StockTypeController::class, 'index']);
     Route::post('/create', [ShopController::class,'store']);
     Route::get('/show/{id}', [ShopController::class,'show']);
     Route::put('/update/{id}', [ShopController::class, 'update']);

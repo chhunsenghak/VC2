@@ -15,4 +15,13 @@ class Shops extends Model
     public function location(){
         return $this->belongsTo(Locations::class);
     }
+
+    public function frontuser(){
+        return $this->belongsTo(Frontuser::class, "shop_owner_id");
+    }
+
+
+    public function products(){
+        return $this->hasMany(Products::class, 'shop_id');
+    }
 }

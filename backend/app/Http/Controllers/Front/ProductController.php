@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ListAllNameProductsResource;
 use App\Http\Resources\ListProductResource;
 use App\Models\Products;
-// use Dotenv\Validator;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -18,7 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Products::all();
-        return response(['sucess' => true, 'data' => $products], 200);
+        $products = ListProductResource::collection($products);
+        return response(['success' => true, 'data' => $products], 200);
     }
 
     /**
@@ -26,43 +27,52 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'discount' => 'string',
-            'stock' => 'required|string',
+            'stock_type_id' => 'integer',
             'categorys_id' => 'required|integer',
+            'shop_id' => 'integer',
         ]);
-        return $request;
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('products_images'), $imageName);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
+        }
+
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('products_images'), $imageName);
+        }
 
         $product = Products::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image' => 'products_images/' . $imageName, // Store the image path in the database
+            'image' => $imageName ? 'products_images/' . $imageName : null,
             'price' => $request->price,
             'discount' => $request->discount,
             'stock' => $request->stock,
             'categorys_id' => $request->categorys_id,
         ]);
 
-        return response()->json([
-            'success' => true,
-            'data' => $product->toArray(),
-        ], 201);
+        return response()->json(['success' => true, 'data' => $product], 201);
     }
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $products = Products::find($id);
-        $products = new ListProductResource($products);
-        return response(['sucess' => true, 'data' => $products], 200);
+        $product = Products::find($id);
+        if (!$product) {
+            return response()->json(['success' => false, 'message' => 'Product not found'], 404);
+        }
+
+        $productResource = new ListProductResource($product);
+        return response(['success' => true, 'data' => $productResource], 200);
     }
 
     /**
@@ -70,59 +80,92 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Find the product by ID
         $product = Products::find($id);
-        $validateUser = Validator::make($request->all(), [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        if (!$product) {
+            return response()->json(['success' => false, 'message' => 'Product not found'], 404);
+        }
+
+        $validator = Validator::make($request->all(), [
             'name' => 'string',
             'description' => 'string',
-            'price' => 'integer',
+            'price' => 'numeric',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'discount' => 'string',
-            'stock' => 'string',
+            'stock' => 'integer',
             'categorys_id' => 'integer',
         ]);
-        if ($validateUser->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'validation error',
-                'errors' => $validateUser->errors()
-            ], 422);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
         }
-        $img = $request->image;
-        $ext = $img->getClientOriginalExtension();
-        $imageName = time() . '.' . $ext;
-        $img->move(public_path() . '/products_images/', $imageName);
 
-        $product->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'discount' => $request->discount,
-            'stock' => $request->stock,
-            'categorys_id' => $request->categorys_id,
-            'image' => 'products_images/' . $imageName,
-        ]);
+        $imageName = $product->image;
+        if ($request->hasFile('image')) {
+            // Delete the old image if exists
+            if ($imageName) {
+                File::delete(public_path($imageName));
+            }
 
-        // Delete the old image
-        File::delete(public_path() . '/products_images/' . $product->image);
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('products_images'), $imageName);
+            $imageName = 'products_images/' . $imageName;
+        }
 
-        // Return a success response
-        return response()->json([
-            'success' => true,
-            'data' => $product->toArray(),
-        ], 200);
+        $product->update($request->all());
+        if ($request->hasFile('image')) {
+            $product->update(['image' => $imageName]);
+        }
+
+        return response()->json(['success' => true, 'data' => $product], 200);
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        $products = Products::find($id);
-        $products->delete();
-        return response()->json([
-            'message' => 'Product deleted successfully'
-        ]);
+        $product = Products::find($id);
+        if (!$product) {
+            return response()->json(['success' => false, 'message' => 'Product not found'], 404);
+        }
+
+        // Delete the image if exists
+        if ($product->image) {
+            File::delete(public_path($product->image));
+        }
+
+        $product->delete();
+        return response()->json(['message' => 'Product deleted successfully'], 200);
+    }
+
+    /**
+     * Sort and filter products by name.
+     */
+    public function sortedProducts(Request $request)
+    {
+        $nameFilter = $request->input('name');
+
+        $products = Products::query();
+
+        if ($nameFilter) {
+            $products->where('name', 'like', '%' . $nameFilter . '%');
+        }
+
+        $products = $products->orderBy('name')->get();
+        return response()->json(['success' => true, 'data' => $products], 200);
+    }
+
+    /**
+     * Get a list of product names.
+     */
+    public function listNameProducts()
+    {
+        // Get only the 'name' column from the products table
+        $products = Products::select('name')->get();
+
+        // Transform the products collection using the resource class
+        $products = ListAllNameProductsResource::collection($products);
+
+        return response(['success' => true, 'products' => $products], 200);
     }
 }

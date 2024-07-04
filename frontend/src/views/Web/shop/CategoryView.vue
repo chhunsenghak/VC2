@@ -39,7 +39,7 @@
               <img
                 :src="`http://127.0.0.1:8000/categories_images/${category.image}`"
                 class="rounded-circle p-2 category-image"
-                style="width: 90px; height: 90px"
+                style="width: 100px; height: 100px"
               />
               <h6 class="category-name">{{ category.name }}</h6>
             </a>
@@ -81,20 +81,19 @@ onMounted(async () => {
 
 .category-container::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Opera */
-}
-
+} 
 .category-item {
   flex: 0 0 auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: rgb(252, 252, 252);
-  height: 9.5rem;
+  height: 10  rem;
   margin-right: 1rem; /* Add some spacing between the category items */
 }
 
 .category-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  background: #f4ede0;
+  background: #fce5e2;
 }
 
 .category-link {
@@ -103,7 +102,7 @@ onMounted(async () => {
 }
 
 .category-link:hover .category-name {
-  color: #018a18;
+  color: #000;
 }
 
 .category-image {

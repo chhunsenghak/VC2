@@ -21,6 +21,6 @@ class Stock extends Model
     }
 
     public function stock_type(){
-        return $this->belongsTo(StockType::class);
+        return $this->belongsTo(StockType::class, 'stock_type_id');
     }
 }

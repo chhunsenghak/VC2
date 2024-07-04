@@ -157,4 +157,11 @@ class AuthController extends Controller
         $passwordReset->delete(); // Remove the password reset record
         return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token'=> $token]);
     }
+
+
+    public function updateProfile(Request $request){
+        
+    }
 }
+
+

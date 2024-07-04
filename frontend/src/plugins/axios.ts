@@ -1,4 +1,3 @@
-// src/plugins/axios.js
 import axios from 'axios'
 
 const axiosInstance = axios.create({
@@ -17,12 +16,20 @@ const getCsrfToken = async () => {
   }
 }
 
-// Get categories
+// Get Categories
 const CategoryLists = {
   getCategories() {
     return axiosInstance.get('/category/list')
   }
 }
+
+// Get Products
+const ProductLists = {
+  getProducts() {
+    return axiosInstance.get('/products/list')
+  },
+}
+
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
@@ -58,4 +65,4 @@ axiosInstance.interceptors.response.use(
 getCsrfToken()
 
 export default axiosInstance
-export { CategoryLists }
+export { CategoryLists, ProductLists }

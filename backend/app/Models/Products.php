@@ -22,7 +22,7 @@ class Products extends Model
 
     public function category()
     {
-        return $this->belongsTo(Categorys::class);
+        return $this->belongsTo(Categorys::class, 'categorys_id');	
     }
 
     public function stock()
@@ -34,5 +34,10 @@ class Products extends Model
     {
         $data = (array)$request; // Convert object to array
         return self::updateOrCreate(['id' => $id], $data);
+    }
+
+
+    public function shop(){
+        return $this->belongsTo(Shops::class);
     }
 }
