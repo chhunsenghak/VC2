@@ -50,16 +50,28 @@ const router = createRouter({
       path: '/shop/product_vegetable',
       name: 'pageProductvegetable',
       component: () => import('@/views/Web/Product/ProductVegetableView.vue')
+      // component: () => import('@/views/Web/shop/CategoryView.vue')
     }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/','/register', '/login', '/shop', '/contact_us']
+  const publicPages = ['/']
   const authRequired = !publicPages.includes(to.path)
-  const store = useAuthStore()
+  const store = useAuthStore();
+  let value = localStorage.getItem('access_token');
+  let token;
+  if (value === null) {
+    token = "";
+  }else{
+    token = value.split('"').join('');
+  }
   try {
-    const { data } = await axiosInstance.get('/me')
+    const { data } = await axiosInstance.get('/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
     store.isAuthenticated = true
     store.user = data.data
 
@@ -75,7 +87,8 @@ router.beforeEach(async (to, from, next) => {
     simpleAcl.rules = rules()
   } catch (error) {
     /* empty */
-    console.error(error)
+    next();
+
   }
   if (authRequired && !store.isAuthenticated) {
     next('/login')
