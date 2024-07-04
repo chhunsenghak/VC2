@@ -19,7 +19,22 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/Admin/Auth/LoginView.vue')
+      component: () => import('../views/Web/Auth/LoginView.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../views/Web/Auth/RegisterView.vue')
+    },
+    {
+      path: '/forgot_password',
+      name: 'forgot_password',
+      component: () => import('../views/Web/Auth/ForgotPasswordView.vue')
+    },
+    {
+      path: '/reset_password',
+      name: 'reset_password',
+      component: () => import('../views/Web/Auth/ResetPasswordView.vue')
     },
     {
       path: '/',
@@ -55,14 +70,14 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/','/register', '/login', '/shop', '/contact_us', '/about_us']
+  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/reset_password']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore();
   let value = localStorage.getItem('access_token');
   let token;
   if (value === null) {
     token = "";
-  }else{
+  } else {
     token = value.split('"').join('');
   }
   try {

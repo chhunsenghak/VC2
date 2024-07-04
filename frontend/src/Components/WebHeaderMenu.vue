@@ -112,6 +112,4 @@ const logout = async () => {
       <a href="/login" class="btn btn-outline-success">Sign in</a>
     </div>
   </nav>
-
- 
 </template>
