@@ -71,7 +71,6 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import axiosInstance, { ProductLists } from '@/plugins/axios'
