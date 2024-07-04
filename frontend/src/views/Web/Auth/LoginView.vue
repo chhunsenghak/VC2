@@ -23,9 +23,9 @@
           >
         </div>
       </el-form>
-      <!-- <p class="text-center text-gray-500 mt-4">
+      <p class="text-center text-gray-500 mt-4">
         Don't have account yet? <a href="/register">Register</a>
-      </p> -->
+      </p>
     </el-card>
   </div>
 </template>
@@ -35,9 +35,12 @@ import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
-
+import { useAuthStore } from '@/stores/auth-store'
 const router = useRouter()
-
+const store = useAuthStore()
+if (store.isAuthenticated) {
+  router.push('/')
+}
 const formSchema = yup.object({
   password: yup.string().required().label('Password'),
   email: yup.string().required().email().label('Email address')

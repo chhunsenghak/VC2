@@ -2,28 +2,28 @@
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <el-card class="w-full max-w-md shadow-lg">
-      <h2 class="text-2xl font-bold mb-6 text-center">Regiter</h2>
+      <h2 class="text-2xl font-bold mb-6 text-center">បង្កើតគណនី</h2>
       <el-form @submit="register">
         <el-form-item :error="nameError" class="mt-8">
-          <el-input placeholder="name" v-model="name" size="large" type="text" />
+          <el-input placeholder="ឈ្មោះ" v-model="name" size="large" type="text" />
         </el-form-item>
 
         <el-form-item :error="emailError" class="mt-8">
-          <el-input placeholder="Email Address" v-model="email" size="large" />
+          <el-input placeholder="អ៊ីមែល" v-model="email" size="large" />
         </el-form-item>
 
         <el-form-item :error="passwordError" class="mt-8">
-          <el-input placeholder="Password" v-model="password" size="large" type="password" />
+          <el-input placeholder="ពាក្យសម្ងាត់" v-model="password" size="large" type="password" />
         </el-form-item>
         <div>
           <el-button size="large" class="mt-3 w-full" type="primary" native-type="submit"
-            >Submit</el-button
+            >បញ្ជូន</el-button
           >
         </div>
       </el-form>
-      <!-- <p class="text-center text-gray-500 mt-4">
+      <p class="text-center text-gray-500 mt-4">
         Already have an account? <router-link to="/login">Login</router-link>
-      </p> -->
+      </p>
     </el-card>
   </div>
 </template>
@@ -37,13 +37,11 @@ import { useRouter } from 'vue-router'
 const store = useAuthStore()
 const router = useRouter()
 
-let value = localStorage.getItem('access_token')
-
-// Check if there is a valid access token in local storage and redirect to the home page if true
-if (value != undefined) {
+if (store.isAuthenticated) {
   router.push('/')
 }
-// This will log 'value'
+
+// let value = localStorage.getItem('access_token')
 
 const formSchema = yup.object({
   name: yup.string().required().label('name'),

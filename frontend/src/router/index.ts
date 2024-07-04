@@ -55,7 +55,14 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const publicPages = ['/','/register', '/login', '/shop', '/contact_us']
   const authRequired = !publicPages.includes(to.path)
-  const store = useAuthStore()
+  const store = useAuthStore();
+  let value = localStorage.getItem('access_token');
+  let token;
+  if (value === null) {
+    token = "";
+  }else{
+    token = value.split('"').join('');
+  }
   try {
     const { data } = await axiosInstance.get('/me')
     store.isAuthenticated = true
