@@ -1,6 +1,6 @@
 <template>
   <WebLayout>
-    <div class="container">
+    <div class="container" style="margin-top: 4.8rem;">
       <div class="row">
         <div
           class="col-md-12 p-5"
@@ -13,7 +13,7 @@
         >
           <div class="info-text mt-5 ml-10">
             <h1>GROCERY STORE</h1>
-            <p>Fresh Fruits & Vegetables</p>
+            <p>Fresh Fruits, Meats & Vegetables</p>
             <br />
             <button class="btn btn-danger">Shop Now</button>
           </div>

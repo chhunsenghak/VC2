@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Shops;
 use Illuminate\Http\Request;
 use App\Http\Resources\ShopListResource;
+
 class ShopController extends Controller
 {
     /**
@@ -33,6 +34,7 @@ class ShopController extends Controller
     public function show(string $id)
     {
         $shop = Shops::find($id);
+        $shop = new ShopListResource($shop);
         return response(['success' => true, 'data' => $shop], 200);
     }
 
@@ -53,6 +55,6 @@ class ShopController extends Controller
     {
         $shop = Shops::find($id);
         $shop->delete();
-        return response(['success' => true,'message' => "Shop was deleted"], 200);
+        return response(['success' => true, 'message' => "Shop was deleted"], 200);
     }
 }
