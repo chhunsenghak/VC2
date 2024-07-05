@@ -28,32 +28,32 @@ const logout = async () => {
       <a
         class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="/"
-        >Home</a
+        >ទំព័រដើម</a
       >
       <a
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="/shop"
-        >Shop</a
+        >ទំនិញ</a
       >
       <a
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="/about_us"
-        >About us</a
+        >អំពីយើង</a
       >
       <a
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="services.html"
-        >Service</a
+        >សេវាកម្ម</a
       >
       <a
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="/post"
-        >Blog</a
+        >ប្លុកថ្មីៗ</a
       >
       <a
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         href="/contact_us"
-        >Contact us</a
+        >ទំនាក់ទំនង</a
       >
     </div>
     <svg
