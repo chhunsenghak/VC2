@@ -2,8 +2,8 @@
   <!-- Start Hero Section -->
   <div class="hero mt-15">
     <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-lg-5">
+      <div class="row justify-content-evenly">
+        <div class="col-lg-3" >
           <div class="intro-excerpt">
             <h1>Welcome to <span clsas="d-block">Phsarkasekor</span></h1>
             <p class="mb-4">
@@ -16,13 +16,13 @@
             </p>
           </div>
         </div>
-        <div class="col-lg-7" style="margin-top: 23px">
+        <div class="col-lg-5" style="margin-top: 4%;">
           <div class="hero-img-wrap">
             <img
               src="../../assets/images/field.jpg"
              
               alt="Field Image"
-              width="600px"
+              width="550px" style="border-radius: 3%;"
             />
           </div>
         </div>
