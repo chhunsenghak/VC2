@@ -70,7 +70,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/reset_password']
+  const publicPages = ['/', '/register', '/login', '/shop','/shop/product_vegetable', '/contact_us', '/about_us', '/forgot_password', '/reset_password']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore();
   let value = localStorage.getItem('access_token');
