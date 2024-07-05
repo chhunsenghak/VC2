@@ -2,15 +2,12 @@
   <WebLayout>
     <div class="container">
       <div class="row">
-        <div
-          class="col-md-12 p-5"
-          style="
+        <div class="col-md-12 p-5" style="
             background-color: #a9eaa8;
             height: 60vh;
             justify-content: space-between;
             display: flex;
-          "
-        >
+          ">
           <div class="info-text mt-5 ml-10">
             <h1>GROCERY STORE</h1>
             <p>Fresh Fruits & Vegetables</p>
@@ -27,20 +24,10 @@
       </div>
       <div class="row" style="height: 30vh; margin-top: -40px">
         <div class="category-container">
-          <div
-            class="category-item p-4 rounded-3 m-3 shadow-sm"
-            v-for="category in categories"
-            :key="category.id"
-          >
-            <a
-              :href="`/category/${category.id}`"
-              class="category-link d-flex flex-column align-items-center"
-            >
-              <img
-                :src="`http://127.0.0.1:8000/categories_images/${category.image}`"
-                class="rounded-circle p-2 category-image"
-                style="width: 100px; height: 100px"
-              />
+          <div class="category-item p-4 rounded-3 m-3 shadow-sm" v-for="category in categories" :key="category.id">
+            <a :href="`/category/${category.id}`" class="category-link d-flex flex-column align-items-center">
+              <img :src="`http://127.0.0.1:8000/categories_images/${category.image}`"
+                class="rounded-circle p-2 category-image" style="width: 100px; height: 100px" />
               <h6 class="category-name">{{ category.name }}</h6>
             </a>
           </div>
@@ -75,19 +62,24 @@ onMounted(async () => {
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* For Firefox */
+  -ms-overflow-style: none;
+  /* For Internet Explorer and Edge */
 }
 
 .category-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
-} 
+  display: none;
+  /* For Chrome, Safari, and Opera */
+}
+
 .category-item {
   flex: 0 0 auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: rgb(252, 252, 252);
-  height: 10  rem;
-  margin-right: 1rem; /* Add some spacing between the category items */
+  height: 10 rem;
+  margin-right: 1rem;
+  /* Add some spacing between the category items */
 }
 
 .category-item:hover {
