@@ -2,15 +2,28 @@
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <el-card class="w-full max-w-md shadow-lg">
-      <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+      <h2 class="text-2xl font-bold mb-6 text-center">Reset Password</h2>
       <el-form @submit="onSubmit">
-        <el-form-item :error="emailError" class="mt-8">
-          <el-input placeholder="Email Address" v-model="email" size="large" />
+        <el-form-item :error="emailError" class="d-none">
+          <label for="email">Your email</label>
+          <el-input v-model="email" size="large" />
+        </el-form-item>
+
+        <el-form-item :error="tokenError" class="mt-8 d-none">
+          <label for="token">Token</label>
+          <el-input v-model="token" size="large" type="password" />
         </el-form-item>
 
         <el-form-item :error="passwordError" class="mt-8">
-          <el-input placeholder="Password" v-model="password" size="large" type="password" />
+          <label for="email">New Password</label>
+          <el-input
+            placeholder="Enter new password"
+            v-model="password"
+            size="large"
+            type="password"
+          />
         </el-form-item>
+
         <div>
           <el-button
             size="large"
@@ -18,16 +31,11 @@
             :disabled="isSubmitting"
             type="primary"
             native-type="submit"
-            >Submit</el-button
           >
+            <router-link to="/reset-password">Reset Password</router-link>
+          </el-button>
         </div>
       </el-form>
-      <p class="text-center text-gray-500 mt-4">
-        Don't have account yet? <a href="/register">Register</a>
-      </p>
-      <div class="mt-8 text-center text-red-500">
-        Forgot password? <a href="/forgot_password">Reset Password</a>
-      </div>
     </el-card>
   </div>
 </template>
@@ -37,42 +45,43 @@ import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores/auth-store'
+
 const router = useRouter()
-const store = useAuthStore()
-if (store.isAuthenticated) {
-  router.push('/')
-}
 
 const formSchema = yup.object({
   password: yup.string().required().label('Password'),
+  token: yup.string().required().label('Token'),
   email: yup.string().required().email().label('Email address')
 })
 
+let value = localStorage.getItem('token')
+let store_value = JSON.parse(value)
 const { handleSubmit, isSubmitting } = useForm({
   initialValues: {
     password: '',
-    email: ''
+    token: store_value.token,
+    email: store_value.email
   },
   validationSchema: formSchema
 })
+
 const onSubmit = handleSubmit(async (values) => {
   try {
-    const { data } = await axiosInstance.post('/login', values)
+    const { data } = await axiosInstance.post('/reset/password', values)
+    localStorage.removeItem('token')
     localStorage.setItem('access_token', data.access_token)
     router.push('/')
   } catch (error) {
-    alert = true
+    console.warn('Error')
   }
 })
 
 const { value: password, errorMessage: passwordError } = useField('password')
+const { value: token, errorMessage: tokenError } = useField('token')
 const { value: email, errorMessage: emailError } = useField('email')
 </script>
-  
-  <style scoped>
+<style scoped>
 .min-h-screen {
   min-height: 100vh;
 }
 </style>
-  
