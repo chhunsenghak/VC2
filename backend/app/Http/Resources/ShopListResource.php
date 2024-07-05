@@ -19,6 +19,7 @@ class ShopListResource extends JsonResource
             "frontuser" => $this->frontuser,
             "phone_number" => $this->phone_number,
             "address" => $this->address,
+            "products" => ListProductResource::collection($this->products)
         ];
     }
 }
