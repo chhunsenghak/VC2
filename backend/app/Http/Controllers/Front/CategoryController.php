@@ -15,7 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Categorys::all();
-        return response(['sucess' => true, 'data' =>$categories], 200);
+        $categories = ListCategoryResource::collection($categories);
+        return response(['sucess' => true, 'data' => $categories], 200);
     }
 
     /**
@@ -25,7 +26,7 @@ class CategoryController extends Controller
     {
         Categorys::store($request);
         return response()->json([
-           'message' => 'Category created successfully'
+            'message' => 'Category created successfully'
         ]);
     }
 
@@ -36,7 +37,7 @@ class CategoryController extends Controller
     {
         $categories = Categorys::find($id);
         $categories = new ListCategoryResource($categories);
-        return response(['sucess' => true, 'data' =>$categories], 200);
+        return response(['sucess' => true, 'data' => $categories], 200);
     }
 
     /**
@@ -47,7 +48,7 @@ class CategoryController extends Controller
         $categories = Categorys::find($id);
         $categories->update($request->all());
         return response()->json([
-           'message' => 'Category updated successfully'
+            'message' => 'Category updated successfully'
         ]);
     }
 
@@ -59,7 +60,7 @@ class CategoryController extends Controller
         $categories = Categorys::find($id);
         $categories->delete();
         return response()->json([
-           'message' => 'Category deleted successfully'
+            'message' => 'Category deleted successfully'
         ]);
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FrontUserResource;
 use App\Models\Frontuser;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Password;
@@ -13,7 +15,7 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    public function login(Request $request): JsonResponse
+    public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email'     => 'required|string|max:255',
@@ -37,7 +39,6 @@ class AuthController extends Controller
 
         return response()->json([
             'message'       => 'Login success',
-            'user' => $user,
             'access_token'  => $token,
             'token_type'    => 'Bearer'
         ]);
@@ -72,7 +73,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
-                'user'=> $user,
+                'user' => $user,
                 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
         } catch (\Throwable $th) {
@@ -98,7 +99,6 @@ class AuthController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        // $permissions = $user->getAllPermissions();
         // $roles = $user->getRoleNames();
         return response()->json([
             'message' => 'Login success',
@@ -120,12 +120,12 @@ class AuthController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
         $token = Str::random(60);
-        Password::create([
+        $store_token = Password::create([
             'email' => $user->email,
             'token' => $token,
             'expires_at' => now()->addHours(1), // Example: Token expires in 1 hour
         ]);
-        return response()->json(['message' => 'Password reset link sent to your email', 'token' => $token]);
+        return response()->json(['message' => 'Password reset link sent to your email', "store_token" => $store_token]);
     }
     // Reset the user's password
     public function resetPassword(Request $request): JsonResponse
@@ -151,8 +151,17 @@ class AuthController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
         $user->password = Hash::make($request->password);
+        $user   = Frontuser::where('email', $request->email)->firstOrFail();
+        $token  = $user->createToken('auth_token')->plainTextToken;
         $user->save();
         $passwordReset->delete(); // Remove the password reset record
-        return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password]);
+        return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token'=> $token]);
+    }
+
+
+    public function updateProfile(Request $request){
+        
     }
 }
+
+

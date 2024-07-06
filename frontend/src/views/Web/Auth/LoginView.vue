@@ -11,7 +11,6 @@
         <el-form-item :error="passwordError" class="mt-8">
           <el-input placeholder="Password" v-model="password" size="large" type="password" />
         </el-form-item>
-
         <div>
           <el-button
             size="large"
@@ -23,9 +22,12 @@
           >
         </div>
       </el-form>
-      <!-- <p class="text-center text-gray-500 mt-4">
+      <p class="text-center text-gray-500 mt-4">
         Don't have account yet? <a href="/register">Register</a>
-      </p> -->
+      </p>
+      <div class="mt-8 text-center text-red-500">
+        Forgot password? <a href="/forgot_password">Reset Password</a>
+      </div>
     </el-card>
   </div>
 </template>
@@ -35,8 +37,12 @@ import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
-
+import { useAuthStore } from '@/stores/auth-store'
 const router = useRouter()
+const store = useAuthStore()
+if (store.isAuthenticated) {
+  router.push('/')
+}
 
 const formSchema = yup.object({
   password: yup.string().required().label('Password'),
@@ -50,14 +56,13 @@ const { handleSubmit, isSubmitting } = useForm({
   },
   validationSchema: formSchema
 })
-
 const onSubmit = handleSubmit(async (values) => {
   try {
     const { data } = await axiosInstance.post('/login', values)
     localStorage.setItem('access_token', data.access_token)
     router.push('/')
   } catch (error) {
-    console.warn('Error')
+    alert = true
   }
 })
 

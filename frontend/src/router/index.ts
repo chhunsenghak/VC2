@@ -19,17 +19,27 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/Web/Auth/LoginView.vue')
+      component: () => import('../views/Web/Auth/LoginView.vue')
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('@/views/Web/Auth/RegisterView.vue')
+      component: () => import('../views/Web/Auth/RegisterView.vue')
+    },
+    {
+      path: '/forgot_password',
+      name: 'forgot_password',
+      component: () => import('../views/Web/Auth/ForgotPasswordView.vue')
+    },
+    {
+      path: '/reset_password',
+      name: 'reset_password',
+      component: () => import('../views/Web/Auth/ResetPasswordView.vue')
     },
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/Web/HomeView.vue')
+      component: () => import('../views/Web/HomeView.vue')
     },
     {
       path: '/post',
@@ -40,14 +50,34 @@ const router = createRouter({
       path: '/contact_us',
       name: 'contact',
       component: () => import('@/views/Web/ContactView.vue')
+    },
+    {
+      path: '/about_us',
+      name: 'about',
+      component: () => import('@/views/Web/Post/AboutusView.vue')
+    },
+    {
+      path: '/shop',
+      name: 'shopPage',
+      component: () => import('@/views/Web/shop/CategoryView.vue')
+    },
+    {
+      path: '/myProducts',
+      name: 'myProducts',
+      component: () => import('@/views/Web/Product/MyProducts.vue')
+    },
+    {
+      path: '/shop/product_vegetable',
+      name: 'pageProductvegetable',
+      component: () => import('@/views/Web/Product/ProductVegetableView.vue')
     }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/register', '/login']
+  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/reset_password']
   const authRequired = !publicPages.includes(to.path)
-  const store = useAuthStore()
+  const store = useAuthStore();
   try {
     const { data } = await axiosInstance.get('/me')
     store.isAuthenticated = true
@@ -62,16 +92,18 @@ router.beforeEach(async (to, from, next) => {
           setRule(permission, () => true)
         })
       })
+
     simpleAcl.rules = rules()
   } catch (error) {
     /* empty */
-    console.error(error)
+    next()
   }
+
   if (authRequired && !store.isAuthenticated) {
     next('/login')
   } else {
     next()
   }
-});
+})
 
 export default { router, simpleAcl }

@@ -41,4 +41,9 @@ class Frontuser extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Products()
+    {
+        return $this->hasMany(Products::class);
+    }
 }
