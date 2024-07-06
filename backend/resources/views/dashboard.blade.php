@@ -41,10 +41,8 @@
                 </div>
                 <div class="w-60 block max-w-sm p-6 bg-blue-400 rounded-lg shadow hover:bg-blue-300 dark:bg-gray-100 dark:border-gray-100 dark:hover:bg-gray-100">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total Seller</h5>
-                    <p class="font-normal text-lg text-gray-700 dark:text-gray-400">{{count($seller)}} Seller</p>
-                    <a class="mt-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 {{ Route::currentRouteNamed('admin.shop.index') ? 'active' : '' }}" href="{{ route('admin.shop.index')}}">
-                        <span class="mx-3">Seller</span>
-                    </a>
+                    <p class="font-normal text-lg text-gray-700 dark:text-gray-400">509 Seller</p>
+                    
                 </div>
             </div>
         </main>

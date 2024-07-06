@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FrontUserResource;
 use App\Models\Frontuser;
 use Illuminate\Http\Request;
 
