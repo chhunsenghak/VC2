@@ -3,7 +3,8 @@
     <div class="row mt-5">
       <div class="col-md-12">
         <div class="d-flex justify-content-between align-items-center">
-          <h5 style="margin-top:15rem;">List Products</h5>
+          <h5 style="margin-top: 15rem">List Products</h5>
+          <!-- Search Products -->
           <div class="search-wrapper">
             <input
               type="search"
@@ -87,8 +88,6 @@
     </div>
   </div>
 </template>
-
-
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
