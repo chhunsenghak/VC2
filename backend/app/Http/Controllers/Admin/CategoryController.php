@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $imageName = time() . '.' . $request->image->extension();
@@ -58,7 +58,7 @@ class CategoryController extends Controller
             'image' => $imageName,
         ]);
 
-        return redirect()->back()->withSuccess('category created !!!');
+        return redirect()->route('admin.categorys.index')->with('success', 'Category created successfully!');
     }
 
     /**
@@ -91,7 +91,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
@@ -108,8 +108,7 @@ class CategoryController extends Controller
                 'description' => $request->description,
             ]);
         }
-        return redirect()->back()->withSuccess('Category updated successfully!');
-        // return redirect()->route('admin.categorys.index')->withSuccess('Category updated!');
+        return redirect()->route('admin.categorys.index')->withSuccess('Category updated!');
     }
 
     public function destroy($id)

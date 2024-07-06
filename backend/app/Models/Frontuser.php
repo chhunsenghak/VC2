@@ -42,7 +42,8 @@ class Frontuser extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function shop(){
-        return $this->belongsTo(Shops::class);
+    public function Products()
+    {
+        return $this->hasMany(Products::class);
     }
 }

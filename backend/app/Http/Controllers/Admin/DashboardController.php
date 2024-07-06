@@ -21,7 +21,6 @@ class DashboardController extends Controller
         $frontend = Frontuser::all();
         $categoies = Categorys::all();
         $products = Products::all();
-        $seller = Shops::all();
-        return view('dashboard', ['frontend' => $frontend, 'categoies' => $categoies, 'products'=> $products, 'seller' => $seller]);
+        return view('dashboard', ['frontend' => $frontend, 'categoies' => $categoies, 'products'=> $products]);
     }
 }

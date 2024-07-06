@@ -22,6 +22,8 @@ class CreateFrontusersTable extends Migration
             $table->string('address')->nullable();
             $table->string('profile')->nullable();
             $table->string('gender')->nullable();
+            $table->integer("shop")->nullable();
+            $table->integer('check')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

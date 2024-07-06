@@ -18,6 +18,8 @@ class FrontUserSeeder extends Seeder
             'email' => 'channich@example.com',
             'password' => bcrypt('123'),
             'gender' => 'female',
+            'check' => 0,
+            'shop' => 1,
             'phone' => '012 46 78 901',
         ]);
         Frontuser::Create([
@@ -25,6 +27,8 @@ class FrontUserSeeder extends Seeder
             'email' => 'eii@example.com',
             'password' => bcrypt('123'),
             'gender' => 'male',
+            'check' => 0,
+            'shop' => 1,
             'phone' => '012 46 78 901',
         ]);
         Frontuser::Create([
@@ -32,13 +36,16 @@ class FrontUserSeeder extends Seeder
             'email' => 'rady@example.com',
             'password' => bcrypt('123'),
             'gender' => 'female',
+            'check' => 0,
+            'shop' => 1,
             'phone' => '012 46 78 901',
         ]);
         Frontuser::Create([
             'name' => 'neardy',
             'email' => 'neardy@example.com',
             'password' => bcrypt('123'),
-            'gender' => 'female',
+            'check' => 0,
+            'shop' => 1,
             'phone' => '012 46 78 901',
         ]);
         Frontuser::Create([
@@ -46,6 +53,8 @@ class FrontUserSeeder extends Seeder
             'email' => 'kunthea@example.com',
             'password' => bcrypt('123'),
             'gender' => 'female',
+            'check' => 0,
+            'shop' => 1,
             'phone' => '012 46 78 901',
         ]);
         Frontuser::Create([
@@ -53,6 +62,8 @@ class FrontUserSeeder extends Seeder
             'email' => 'Leak@example.com',
             'password' => bcrypt('123'),
             'gender' => 'Male',
+            'check' => 0,
+            'shop' => 1,
             'phone' => '012 46 78 901',
         ]);
     }

@@ -48,7 +48,6 @@ axiosInstance.interceptors.request.use(
     // For example, add an authentication token
     let token = localStorage.getItem('access_token')
     if (token) {
-      token = token.split('"').join('');
       config.headers.Authorization = `Bearer ${token}`
     }
     return config
