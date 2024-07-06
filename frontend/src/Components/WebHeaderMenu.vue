@@ -84,7 +84,7 @@ const logout = async () => {
       />
     </svg>
     <a
-      v-show="store.user.shop"
+      v-if="store.isAuthenticated && store.user.shop"
       href="/myProducts"
       class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
     >

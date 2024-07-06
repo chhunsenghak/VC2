@@ -99,6 +99,7 @@ Route::prefix('products')->group(function () {
     Route::get('/show/{id}', [ProductController::class, 'show']);
     Route::post('/update/{id}', [ProductController::class, 'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'destroy']);
+    Route::get("/user/list/{id}", [ProductController::class, 'listProduct']);
 });
 
 

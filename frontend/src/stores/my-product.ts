@@ -1,21 +1,31 @@
 import { defineStore } from 'pinia';
 import axiosInstance from '@/plugins/axios';
-
-export const usePostStore = defineStore('product', {
+export const userStore = defineStore('products', {
   state: () => ({
-    posts: [] as Array<{ id: number, title: string, description: string }>
+    products: [] as Array<{
+      id: number,
+      name: string,
+      description: string,
+      frontuser_id: number,
+      price: string,
+      image: string,
+      discount: string,
+      quantity: string,
+      stock_id: number,
+      categorys_id: number
+    }>
   }),
   actions: {
-    async fetchPosts() {
+    async fetchUser(id) {
       try {
-        const response = await axiosInstance.get('/post/list', {
+        const response = await axiosInstance.get(`/products/user/list/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
-          }
+          },
         });
-        this.posts = response.data;
+        this.products = response.data;
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error('Error fetching products:', error);
       }
     }
   }

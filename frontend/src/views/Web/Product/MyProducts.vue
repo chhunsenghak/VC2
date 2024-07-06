@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import WebLayout from '@/Components/Layouts/WebLayout.vue'
-</script>
+
 <template>
   <WebLayout>
     <div class="container mt-20 flex">
@@ -13,9 +11,37 @@ import WebLayout from '@/Components/Layouts/WebLayout.vue'
           </p>
         </div>
       </div>
-      <div class="col-lg-9 bg-success">
-        hello
-      </div>
+      <div class="col-lg-9 bg-success">hello</div>
     </div>
+    {{ store.products }}
+    {{ userStore.user }}
   </WebLayout>
 </template>
+
+<script>
+import { userStore } from '@/stores/my-product' // Adjust the path as needed
+import { useAuthStore } from '@/stores/auth-store'
+import WebLayout from '@/Components/Layouts/WebLayout.vue' // Adjust the path as needed
+
+export default {
+  components: {
+    WebLayout
+  },
+  data() {
+    return {
+      store: userStore(),
+      userStore: useAuthStore()
+    }
+  },
+  mounted() {
+    this.fetchData() // Fetch data on component mount
+  },
+
+  methods: {
+    fetchData() {
+      // Fetch data from the store here, for example:
+      this.store.fetchUser(this.userStore.user.id) // Adjust the method name as needed
+    }
+  }
+}
+</script>
