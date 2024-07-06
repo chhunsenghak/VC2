@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->integer('user_id')->reference('id')
+            $table->integer('frontuser_id')->reference('id')
                 ->on('frontuser')
                 ->onDelete('cascade');
             $table->string('image')->nullable();

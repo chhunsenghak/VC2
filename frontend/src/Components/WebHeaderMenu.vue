@@ -5,19 +5,6 @@ import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const store = useAuthStore()
-const getMe = async () => {
-  try {
-    const { data } = await axiosInstance.get('/me')
-    if (data.data.shop) {
-      return true
-    } else {
-      return false
-    }
-  } catch (error) {
-    console.error(error)
-  }
-}
-const myShop = getMe()
 
 const logout = async () => {
   try {
@@ -97,7 +84,7 @@ const logout = async () => {
       />
     </svg>
     <a
-      v-if="myShop"
+      v-show="store.user.shop"
       href="/myProducts"
       class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
     >

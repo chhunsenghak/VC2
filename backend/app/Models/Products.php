@@ -10,7 +10,7 @@ class Products extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
+        'frontuser_id',
         'name',
         'description',
         'image',
@@ -39,6 +39,6 @@ class Products extends Model
 
     public function frontuser()
     {
-        return $this->belongsTo(FrontUser::class, 'user_id');
+        return $this->belongsTo(FrontUser::class, 'frontuser_id');
     }
 }

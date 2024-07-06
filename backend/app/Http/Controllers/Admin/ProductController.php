@@ -51,14 +51,14 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required|integer',
+            'frontuser_id' => 'required|integer',
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|string',
             'categorys_id' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        
         $stock_type = StockType::find($request->stock_type_id);
         if ($stock_type->limit_quantity > $request->quantity) {
             $stock = Stock::create([
@@ -78,7 +78,7 @@ class ProductController extends Controller
                 'break_product_at' => $request->break_product_at,
                 'image' => $imageName,
                 'quantity' => $request->quantity,
-                'user_id' => $request->user_id,
+                'frontuser_id' => $request->frontuser_id,
             ]);
             return redirect()->route('admin.products.index')->withSuccess('Product create!');
         } else {
@@ -117,7 +117,7 @@ class ProductController extends Controller
     {
         $product = Products::findOrFail($id);
         $validated = $request->validate([
-            'user_id' => 'required|integer',
+            'frontuser_id' => 'required|integer',
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|string',
@@ -143,7 +143,7 @@ class ProductController extends Controller
                 'break_product_at' => $request->break_product_at,
                 'image' => $imageName,
                 'quantity' => $request->quantity,
-                'user_id' => $request->user_id,
+                'frontuser_id' => $request->frontuser_id,
             ]);
             return redirect()->route('admin.products.index')->withSuccess('Product updated!');
         } else {
