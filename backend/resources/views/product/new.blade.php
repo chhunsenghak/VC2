@@ -8,7 +8,7 @@
                         @method('post')
                         <div class="flex flex-col gap-4">
                             <label for="name" class="text-gray-700 select-none font-medium">Product Name</label>
-                            <select name="user_id" id="category_id" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                            <select name="frontuser_id" id="category_id" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200">
                                 @foreach($users as $user)
                                 <option value="{{ $user->id }}"> {{ $user->name }} </option>
                                 @endforeach

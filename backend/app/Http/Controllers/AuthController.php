@@ -106,6 +106,16 @@ class AuthController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+        // $user = Frontuser::find($id);
+        // // $roles = $user->getRoleNames();
+        // return response()->json([
+        //     'message' => 'Login success',
+        //     'data' => $user,
+        // ]);
+    }
+
     public function forgotPassword(Request $request): JsonResponse
     {
         // Validate the incoming request
