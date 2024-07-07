@@ -21,6 +21,7 @@ class FrontUserSeeder extends Seeder
             'check' => 0,
             'shop' => 1,
             'phone' => '012 46 78 901',
+            'profile' => 'nich.jpg',
         ]);
         Frontuser::Create([
             'name' => 'eii',
@@ -30,6 +31,8 @@ class FrontUserSeeder extends Seeder
             'check' => 0,
             'shop' => 1,
             'phone' => '012 46 78 901',
+            'profile' => 'eii.jpg',
+            'bio' => 'I am a web developer with a passion for creating beautiful and functional websites. I have been working in the industry for the past 5 years and have gained a lot of experience in various technologies.',
         ]);
         Frontuser::Create([
             'name' => 'rady',
@@ -39,6 +42,8 @@ class FrontUserSeeder extends Seeder
             'check' => 0,
             'shop' => 1,
             'phone' => '012 46 78 901',
+            'profile' => 'rady.jpg',
+            'bio' => 'I am a web developer with a passion for creating beautiful and functional websites. I have been working in the industry for the past 5 years and have gained a lot of experience in various technologies.',
         ]);
         Frontuser::Create([
             'name' => 'neardy',
@@ -47,6 +52,8 @@ class FrontUserSeeder extends Seeder
             'check' => 0,
             'shop' => 1,
             'phone' => '012 46 78 901',
+            'profile' => 'neardy.jpg',
+            'bio' => 'I am a web developer with a passion for creating beautiful and functional websites. I have been working in the industry for the past 5 years and have gained a lot of experience in various technologies.',
         ]);
         Frontuser::Create([
             'name' => 'kunthea',
@@ -56,6 +63,7 @@ class FrontUserSeeder extends Seeder
             'check' => 0,
             'shop' => 1,
             'phone' => '012 46 78 901',
+            'profile' => 'sokunthea.jpg',
         ]);
         Frontuser::Create([
             'name' => 'Senghak',

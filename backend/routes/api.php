@@ -102,7 +102,6 @@ Route::prefix('products')->group(function () {
     Route::get("/user/list/{id}", [ProductController::class, 'listProduct']);
 });
 
-
 //ADDRESS ROUTES
 Route::prefix('addresses')->group(function () {
     Route::get('/list', [AddressController::class, 'index']);
@@ -111,7 +110,6 @@ Route::prefix('addresses')->group(function () {
     Route::put('/update/{id}', [AddressController::class, 'update']);
     Route::delete('/delete/{id}', [AddressController::class, 'destroy']);
 });
-
 
 // STocks ROUTES
 Route::prefix('stocks')->group(function () {

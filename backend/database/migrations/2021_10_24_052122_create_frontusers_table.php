@@ -17,6 +17,10 @@ class CreateFrontusersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('bio')->nullable();
+            $table->string('linkenin')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('telegram')->nullable();
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();

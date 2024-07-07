@@ -100,6 +100,7 @@ class AuthController extends Controller
     {
         $user = $request->user();
         // $roles = $user->getRoleNames();
+        $user->image_url = asset('storage/app/public' . $user->profile);
         return response()->json([
             'message' => 'Login success',
             'data' => $user,
