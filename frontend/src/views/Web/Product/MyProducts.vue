@@ -1,4 +1,3 @@
-
 <template>
   <WebLayout>
     <div class="container mt-20 flex">
