@@ -1,81 +1,31 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\Admin\{
-    CalendarController,
-    ProfileController,
-    MailSettingController,
-};
-use App\Http\Controllers\Admin\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
-Route::get('/register', function () {
-    return view('auth.register');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/test-mail', function () {
-
-    $message = "Testing mail";
-
-    Mail::raw('Hi, welcome!', function ($message) {
-        $message->to('ajayydavex@gmail.com')
-            ->subject('Testing mail');
-    });
-
-    dd('sent');
-});
-
-
-// Route::get('/dashboard', function () {
-//     return view('front.dashboard');
-// })->middleware(['front'])->name('dashboard');
-
-
-require __DIR__ . '/front_auth.php';
-
-// Admin routes
-// Route::get('/admin/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('admin.dashboard');
-
-require __DIR__ . '/auth.php';
-
-Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
-    ->group(function () {
-        Route::resource('roles', 'RoleController');
-        Route::resource('permissions', 'PermissionController');
-        Route::resource('users', 'UserController');
-        Route::resource('posts', 'PostController');
-        Route::resource('categorys', 'CategoryController');
-        Route::resource('products', 'ProductController');
-        Route::resource("dashboard", 'DashboardController');
-        Route::resource("shop", 'ShopController');
-        Route::resource("locations", 'LocationController');
-        Route::resource("province", 'ProvinceController');
-        Route::resource("district", 'DistrictController');
-        Route::resource("commune", 'CommuneController');
-        Route::resource("village", 'VillageController');
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-        Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/mail', [MailSettingController::class, 'index'])->name('mail.index');
-        Route::put('/mail-update/{mailsetting}', [MailSettingController::class, 'update'])->name('mail.update');
-    });
-
-Route::namespace('App\Http\Controllers\Front')->name('front.')->prefix('front')
-    ->group(function () {
-        Route::resource('frontuser', 'FrontuserController');
-    });
+require __DIR__.'/auth.php';

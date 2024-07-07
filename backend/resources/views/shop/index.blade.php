@@ -12,7 +12,7 @@
                 </div>
                 <div class="bg-white shadow-md rounded my-6">
                     <table class="text-left w-full border-collapse">
-                        <thead class="text-xs bg-gray-50 dark:bg-gray-700 dark:text-gray-500">
+                        <thead class="text-xs bg-gray-50">
                             <tr>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">ID </th>
                                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Shop Owner Name</th>
