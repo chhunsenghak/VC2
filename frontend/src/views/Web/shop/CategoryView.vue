@@ -1,6 +1,6 @@
 <template>
   <WebLayout>
-    <div class="container">
+    <div class="container" style="margin-top: 4.8rem;">
       <div class="row">
         <div class="background-url p-5 " style="
             /* background-color: #a9eaa8; */
@@ -11,18 +11,15 @@
           ">
           <div class="info-text  ml-10">
             <h1>GROCERY STORE</h1>
-            <p>Fresh Fruits & Vegetables</p>
+            <p>Fresh Fruits, Meats & Vegetables</p>
             <br />
             <button class="btn btn-danger">Shop Now</button>
           </div>
           <!-- <img src="/src/assets/images/image 74.png" alt="" class="mr-9" style="height: 50vh" /> -->
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12 p-5">
-          <h5 class="mt-5">All Categories</h5>
-        </div>
-      </div>
+
+      <!-- Categories -->
       <div class="row" style="height: 30vh; margin-top: -40px">
         <div class="category-container d-flex flex-">
           <div class="category-item p-4 rounded-3 m-3 shadow-sm" v-for="category in categories" :key="category.id">
@@ -34,26 +31,31 @@
           </div>
         </div>
       </div>
-      <list-card-product></list-card-product>
+      <list-card-product class="mt-5"></list-card-product>
     </div>
   </WebLayout>
 </template>
 
 <script setup lang="ts">
-import axiosInstance, { CategoryLists } from '@/plugins/axios'
+import axiosInstance, { CategoryLists, ProductLists } from '@/plugins/axios'
 import WebLayout from '../../../Components/Layouts/WebLayout.vue'
 import ListCardProduct from '../../../Components/shop/ListCardProduct.vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 
 const categories = ref([])
+const products = ref([])
 
 onMounted(async () => {
   try {
-    const response = await CategoryLists.getCategories()
-    console.log('Response data:', response.data.data)
-    categories.value = response.data.data
+    const categoryResponse = await CategoryLists.getCategories()
+    console.log('Category data:', categoryResponse.data.data)
+    categories.value = categoryResponse.data.data
+
+    const productResponse = await ProductLists.getProducts() // Adjust this based on your API or data source
+    console.log('Product data:', productResponse.data.data)
+    products.value = productResponse.data.data
   } catch (error) {
-    console.error('Error fetching categories:', error)
+    console.error('Error fetching data:', error)
   }
 })
 </script>
@@ -79,23 +81,20 @@ onMounted(async () => {
 }
 
 .category-container::-webkit-scrollbar {
-  display: none;
-  /* For Chrome, Safari, and Opera */
+  display: none; /* For Chrome, Safari, and Opera */
 }
-
 .category-item {
   flex: 0 0 auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: rgb(252, 252, 252);
   height: 10 rem;
-  margin-right: 1rem;
-  /* Add some spacing between the category items */
+  margin-right: 1rem; /* Add some spacing between the category items */
 }
 
 .category-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  background: #fce5e2;
+  background: #adebb5;
 }
 
 .category-link {
