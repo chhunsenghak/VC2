@@ -70,11 +70,6 @@ const router = createRouter({
       path: '/myProducts',
       name: 'myProducts',
       component: () => import('@/views/Web/Product/MyProducts.vue')
-    },
-    {
-      path: '/shop/product_vegetable',
-      name: 'pageProductvegetable',
-      component: () => import('@/views/Web/Product/ProductVegetableView.vue')
     }
   ]
 })
