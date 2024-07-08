@@ -1,9 +1,9 @@
 <template>
   <WebLayout>
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    /> -->
     <div class="background-container">
       <div class="content">
         <h1>សេវាកម្មរបស់យើង</h1>
@@ -147,19 +147,12 @@ export default {
 }
 
 .card:hover {
-  transform: translateY(-20px);
-  position: relative;
-  width: 190px;
-  height: 45vh;
-  transition: 0.5s;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  transition-property: transform, box-shadow;
   cursor: pointer;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  margin: 10px;
-  background-color: rgba(255, 255, 255, 0.9);
   color: black;
-  transition: 0.5s;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 </style>
