@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import axiosInstance, { CategoryLists, ProductLists } from '@/plugins/axios'
 import WebLayout from '../../../Components/Layouts/WebLayout.vue'
-import ListCardProduct from '../../../Components/shop/ListCardProduct.vue'
+import ListCardProduct from '@/Components/shop/ListCardProduct.vue'
 import { onMounted, ref, computed } from 'vue'
 
 const categories = ref([])

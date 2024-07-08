@@ -5,7 +5,7 @@ import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const store = useAuthStore()
-console.log(store.user);
+console.log(store.user)
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')
@@ -132,13 +132,20 @@ const logout = async () => {
           aria-expanded="false"
           data-bs-display="static"
         >
-          <img v-if="store.user.image_url == null"
+          <img
+            v-if="store.user.profile == null"
             src="../../src/assets/user.png"
             alt="Profile Picture"
             style="width: 40px"
             class="profile-picture rounded-circle"
           />
-          <img v-else :src="`http://127.0.0.1:8000/storage/profiles/${store.user.profile}`" class="rounded-circle" width="40px" alt="profile">
+          <img
+            v-else
+            :src="`http://127.0.0.1:8000/storage/profiles/${store.user.profile}`"
+            class="rounded-circle"
+            width="40px"
+            alt="profile"
+          />
         </button>
         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="profileDropdown">
           <li><a class="dropdown-item" href="/profile">Account</a></li>
