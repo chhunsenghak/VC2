@@ -14,12 +14,21 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->text('description');
+            $table->integer('frontuser_id')->reference('id')
+                ->on('frontuser')
+                ->onDelete('cascade');
             $table->string('image')->nullable();
             $table->integer('price');
-            $table->integer('discount')->nullable();
-            $table->string('stock')->nullable();
-            $table->string('category_id');
+            $table->string('discount', 5, 2)->nullable();
+            $table->string('quantity')->nullable();
+            $table->integer('stock_id')->references('id')
+                ->on('stocks')
+                ->onDelete('cascade');
+            $table->foreignId('categorys_id')->references('id')
+                ->on('categorys')
+                ->onDelete('cascade');
+            $table->date("break_product_at")->nullable();
             $table->timestamps();
         });
     }

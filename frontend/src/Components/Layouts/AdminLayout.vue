@@ -3,7 +3,7 @@
   <HeaderMenu />
   <div class="md:px-50 pt-10 h-full">
     <div class="rounded-lg h-full">
-      <slot />
+      <slot/>
     </div>
   </div>
 </template>
