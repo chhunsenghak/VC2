@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FrontUserResource;
 use App\Models\Frontuser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -98,12 +99,22 @@ class AuthController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        // $permissions = $user->getAllPermissions();
         // $roles = $user->getRoleNames();
+        $user->image_url = asset('storage/app/public' . $user->profile);
         return response()->json([
             'message' => 'Login success',
             'data' => $user,
         ]);
+    }
+
+    public function show($id)
+    {
+        // $user = Frontuser::find($id);
+        // // $roles = $user->getRoleNames();
+        // return response()->json([
+        //     'message' => 'Login success',
+        //     'data' => $user,
+        // ]);
     }
 
     public function forgotPassword(Request $request): JsonResponse

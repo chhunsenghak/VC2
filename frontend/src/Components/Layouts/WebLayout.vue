@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import WebHeaderMenu from '@/Components/WebHeaderMenu.vue'
+import FooterComponent from '@/Components/Footer.vue'
 </script>
 <template>
   <WebHeaderMenu />
@@ -8,6 +9,7 @@ import WebHeaderMenu from '@/Components/WebHeaderMenu.vue'
       <slot />
     </div>
   </div>
+  <FooterComponent />
 </template>
 
 <script setup lang="ts"></script>

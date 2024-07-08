@@ -15,17 +15,20 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->foreignId('shop_id');
+            $table->integer('frontuser_id')->reference('id')
+                ->on('frontuser')
+                ->onDelete('cascade');
             $table->string('image')->nullable();
             $table->integer('price');
-            $table->string('discount', 5, 2);
-            $table->string('check')->nullable();
+            $table->string('discount', 5, 2)->nullable();
+            $table->string('quantity')->nullable();
             $table->integer('stock_id')->references('id')
                 ->on('stocks')
                 ->onDelete('cascade');
             $table->foreignId('categorys_id')->references('id')
                 ->on('categorys')
                 ->onDelete('cascade');
+            $table->date("break_product_at")->nullable();
             $table->timestamps();
         });
     }
