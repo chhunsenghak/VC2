@@ -68,7 +68,7 @@
             <img
               src="https://travelinspiredliving.com/wp-content/uploads/2020/07/Farmers-Market.jpg"
               alt=""
-              width="80%" 
+              width="80%"  class="rounded"
             />
           </div>
         </div>
@@ -77,7 +77,7 @@
             <img
               src="https://extension.oregonstate.edu/sites/default/files/styles/full/public/images/2022-09/screen-shot-2022-09-28-30247-pm.png?itok=a8tvsVmJ"
               alt=""
-              width="100%" 
+              width="100%" class="rounded"
             />
           </div>
           <div class="text">
@@ -97,7 +97,7 @@
             <img
               src="https://producersmarket.com/blog/wp-content/uploads/2021/03/pexels-erik-scheel-95425-1024x683.jpg"
               alt=""
-              width="90%" 
+              width="90%" class="rounded"
             />
           </div>
         </div>
@@ -145,21 +145,21 @@ export default {
   text-align: center;
   padding: 20px;
 }
-.card:hover{
-  transition: transform 0.3s ease-in-out;
-  transform: scale(1.05);
+
+.card:hover {
+  transform: translateY(-20px);
+  position: relative;
+  width: 190px;
+  height: 45vh;
+  transition: 0.5s;
   cursor: pointer;
-  box-sizing: border-box;
-  width: 18rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
   margin: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  border: 1px solid #ddd;
-  transition: border-color 0.3s;
-  border-color: #f1f1f1;
-  background-color: #f9f9f9;
-  color: #333;
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
-  
+  background-color: rgba(255, 255, 255, 0.9);
+  color: black;
+  transition: 0.5s;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
+
 </style>
