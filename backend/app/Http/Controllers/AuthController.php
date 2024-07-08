@@ -99,8 +99,7 @@ class AuthController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        // $roles = $user->getRoleNames();
-        $user->image_url = asset('storage/app/public' . $user->profile);
+        // $roles = $user->getR oleNames();
         return response()->json([
             'message' => 'Login success',
             'data' => $user,
@@ -166,13 +165,11 @@ class AuthController extends Controller
         $token  = $user->createToken('auth_token')->plainTextToken;
         $user->save();
         $passwordReset->delete(); // Remove the password reset record
-        return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token'=> $token]);
+        return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
     }
 
 
-    public function updateProfile(Request $request){
-        
+    public function updateProfile(Request $request)
+    {
     }
 }
-
-
