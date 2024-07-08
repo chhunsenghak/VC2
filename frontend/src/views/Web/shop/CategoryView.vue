@@ -2,19 +2,20 @@
   <WebLayout>
     <div class="container">
       <div class="row">
-        <div class="col-md-12 p-5" style="
-            background-color: #a9eaa8;
-            height: 60vh;
+        <div class="background-url p-5 " style="
+            /* background-color: #a9eaa8; */
+            height: 70vh;
             justify-content: space-between;
             display: flex;
+
           ">
-          <div class="info-text mt-5 ml-10">
+          <div class="info-text  ml-10">
             <h1>GROCERY STORE</h1>
             <p>Fresh Fruits & Vegetables</p>
             <br />
             <button class="btn btn-danger">Shop Now</button>
           </div>
-          <img src="/src/assets/images/image 74.png" alt="" class="mr-9" style="height: 50vh" />
+          <!-- <img src="/src/assets/images/image 74.png" alt="" class="mr-9" style="height: 50vh" /> -->
         </div>
       </div>
       <div class="row">
@@ -23,7 +24,7 @@
         </div>
       </div>
       <div class="row" style="height: 30vh; margin-top: -40px">
-        <div class="category-container">
+        <div class="category-container d-flex flex-">
           <div class="category-item p-4 rounded-3 m-3 shadow-sm" v-for="category in categories" :key="category.id">
             <a :href="`/category/${category.id}`" class="category-link d-flex flex-column align-items-center">
               <img :src="`http://127.0.0.1:8000/categories_images/${category.image}`"
@@ -58,6 +59,15 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+
+.background-url{
+  background-image:url("https://img.freepik.com/premium-photo/fresh-green-vegetables-wicker-mat-isolated-white_392895-252155.jpg?size=626&ext=jpg&uid=R91417083&ga=GA1.1.1784537274.1720200240&semt=ais_user") ;
+  background-position: center;
+  background-size: cover;
+  margin-top: 5%;
+
+
+}
 .category-container {
   display: flex;
   overflow-x: auto;
