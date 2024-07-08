@@ -1,37 +1,41 @@
 <template>
   <WebLayout>
-    <div class="container" style="margin-top: 4.8rem;">
+    <div class="container">
       <div class="row">
-        <div class="background-url p-5 " style="
-            /* background-color: #a9eaa8; */
-            height: 70vh;
-            justify-content: space-between;
-            display: flex;
-
-          ">
-          <div class="info-text  ml-10">
-            <h1>GROCERY STORE</h1>
-            <p>Fresh Fruits, Meats & Vegetables</p>
-            <br />
-            <button class="btn btn-danger">Shop Now</button>
+        <div class="background-container p-5" style="height: 70vh">
+          <div class="content-text">
+            <h4>
+              យើងនឹងផ្តល់ជូននូវបន្លែ និងផ្លែឈើសរីរាង្គស្រស់ៗពីចម្ការរបស់យើងដល់មាត់ទ្វាររបស់អ្នក។
+            </h4>
+            <p>រួសរាន់ឡើង | ទិញឥឡូវនេះ!</p>
           </div>
-          <!-- <img src="/src/assets/images/image 74.png" alt="" class="mr-9" style="height: 50vh" /> -->
         </div>
       </div>
 
       <!-- Categories -->
-      <div class="row" style="height: 30vh; margin-top: -40px">
-        <div class="category-container d-flex flex-">
-          <div class="category-item p-4 rounded-3 m-3 shadow-sm" v-for="category in categories" :key="category.id">
-            <a :href="`/category/${category.id}`" class="category-link d-flex flex-column align-items-center">
-              <img :src="`http://127.0.0.1:8000/categories_images/${category.image}`"
-                class="rounded-circle p-2 category-image" style="width: 100px; height: 100px" />
+      <div class="row">
+        <h5 style="margin-top: 5rem">All Categories</h5>
+        <div class="category-container">
+          <div
+            class="category-item p-4 rounded-3 m-3 shadow-sm"
+            v-for="category in categories"
+            :key="category.id"
+          >
+            <a
+              :href="`/category/${category.id}`"
+              class="category-link d-flex flex-column align-items-center"
+            >
+              <img
+                :src="`http://127.0.0.1:8000/categories_images/${category.image}`"
+                class="rounded-circle p-2 category-image"
+                style="width: 100px; height: 100px"
+              />
               <h6 class="category-name">{{ category.name }}</h6>
             </a>
           </div>
         </div>
       </div>
-      <list-card-product class="mt-5"></list-card-product>
+      <list-card-product></list-card-product>
     </div>
   </WebLayout>
 </template>
@@ -61,15 +65,28 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-
-.background-url{
-  background-image:url("https://img.freepik.com/premium-photo/fresh-green-vegetables-wicker-mat-isolated-white_392895-252155.jpg?size=626&ext=jpg&uid=R91417083&ga=GA1.1.1784537274.1720200240&semt=ais_user") ;
+.background-container {
+  background-image: url('https://www.eatthis.com/wp-content/uploads/sites/4/2023/07/fruits-and-vegetables.jpg?quality=82&strip=1');
   background-position: center;
   background-size: cover;
   margin-top: 5%;
-
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(10, 3, 3); /* Text color */
 }
+.content-text {
+  text-align: center;
+  background: rgba(
+    237,
+    244,
+    239,
+    0.5
+  ); /* Optional: Add a semi-transparent background to the content */
+  padding: 20px;
+  border-radius: 10px;
+}
+
 .category-container {
   display: flex;
   overflow-x: auto;
@@ -81,7 +98,8 @@ onMounted(async () => {
 }
 
 .category-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
+  display: none;
+  margin-top: 2rem;
 }
 .category-item {
   flex: 0 0 auto;

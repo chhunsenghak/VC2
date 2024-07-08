@@ -25,7 +25,6 @@ src/components/HeaderMenu.vue
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
-
 const isMenuOpen = ref(false)
 const menu = [
   {
