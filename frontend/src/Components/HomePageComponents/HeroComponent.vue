@@ -5,14 +5,13 @@
       <div class="row justify-content-evenly">
         <div class="col-lg-3" >
           <div class="intro-excerpt">
-            <h1>Welcome to <span clsas="d-block">Phsarkasekor</span></h1>
+            <h1>ស្វាគមន៍ការមកកាន់<span clsas="d-block">ទីផ្សារកសិកររបស់យើង</span></h1>
             <p class="mb-4">
-              Let enjoy to visit Phsarkasekor. Let buy something we have everything here (Fruit,
-              Meat, Vegetable...)
+              តោះរីករាយទស្សនាផ្សារកសិករ តោះទិញរបស់ដែលយើងមានទាំងអស់នៅទីនេះ (ផ្លែឈើ សាច់ បន្លែ...)
             </p>
             <p>
-              <a href="" class="btn btn-secondary me-2">Shop Now</a
-              ><a href="#" class="btn btn-white-outline">Explore</a>
+              <a href="" class="btn btn-secondary me-2">ទិញឥឡូវនេះ</a>
+              <a href="#" class="btn btn-white-outline">អំពីរយើង</a>
             </p>
           </div>
         </div>
