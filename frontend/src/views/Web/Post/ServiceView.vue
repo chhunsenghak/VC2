@@ -1,9 +1,9 @@
 <template>
   <WebLayout>
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    /> -->
     <div class="background-container">
       <div class="content">
         <h1>សេវាកម្មរបស់យើង</h1>
@@ -68,7 +68,7 @@
             <img
               src="https://travelinspiredliving.com/wp-content/uploads/2020/07/Farmers-Market.jpg"
               alt=""
-              width="80%" 
+              width="80%"  class="rounded"
             />
           </div>
         </div>
@@ -77,7 +77,7 @@
             <img
               src="https://extension.oregonstate.edu/sites/default/files/styles/full/public/images/2022-09/screen-shot-2022-09-28-30247-pm.png?itok=a8tvsVmJ"
               alt=""
-              width="100%" 
+              width="100%" class="rounded"
             />
           </div>
           <div class="text">
@@ -97,7 +97,7 @@
             <img
               src="https://producersmarket.com/blog/wp-content/uploads/2021/03/pexels-erik-scheel-95425-1024x683.jpg"
               alt=""
-              width="90%" 
+              width="90%" class="rounded"
             />
           </div>
         </div>
@@ -145,21 +145,14 @@ export default {
   text-align: center;
   padding: 20px;
 }
-.card:hover{
-  transition: transform 0.3s ease-in-out;
-  transform: scale(1.05);
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  transition-property: transform, box-shadow;
   cursor: pointer;
-  box-sizing: border-box;
-  width: 18rem;
-  margin: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  border: 1px solid #ddd;
-  transition: border-color 0.3s;
-  border-color: #f1f1f1;
-  background-color: #f9f9f9;
-  color: #333;
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
-  
+  color: black;
 }
+
 </style>
