@@ -3,14 +3,14 @@
     <div class="row">
       <div class="col-md-12">
         <div class="d-flex justify-content-between align-items-center">
-          <h5 style="margin-top: 17rem">List Products</h5>
+          <h5 style="margin-top: 17rem">បញ្ជីផលិតផល</h5>
           <!-- Search Products -->
           <div class="search-wrapper">
             <input
               type="search"
               v-model="searchText"
               class="form-control search-input"
-              placeholder="Search for products..."
+              placeholder="ស្វែងរកផលិតផល..."
               aria-label="Search"
               aria-describedby="search-addon"
             />
@@ -41,10 +41,7 @@
             </div>
             <div class="d-flex flex-column justify-content-between seller-part h-100">
               <p class="mb-2 fw-bold pro-price">{{ product.price }} Riels</p>
-              <p class="mb-2 pro-discount">Discount: {{ product.discount }}</p>
-              <div class="d-flex justify-content-start mb-3">
-                <i v-for="n in 4" :key="n" class="material-icons me-1 star-icon">star</i>
-              </div>
+              <p class="mb-2 pro-discount">បញ្ចុះតម្លៃ: {{ product.discount }}</p>
               <button type="button" class="btn btn-success">Chat Now</button>
             </div>
           </div>
@@ -210,6 +207,10 @@ export default {
   transition: transform 0.3s ease-in-out;
 }
 
+.pro-discount{
+  margin-top: -0.7rem;
+}
+
 .product-image:hover {
   transform: scale(1.1);
 }
@@ -263,10 +264,6 @@ export default {
   border-color: #218838;
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.star-icon {
-  color: #ffa534;
 }
 
 .modal {

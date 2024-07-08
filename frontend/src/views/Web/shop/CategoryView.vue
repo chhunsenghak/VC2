@@ -14,7 +14,7 @@
 
       <!-- Categories -->
       <div class="row">
-        <h5 style="margin-top: 5rem">All Categories</h5>
+        <h5 style="margin-top: 5rem">ប្រភេទ​ទាំងអស់</h5>
         <div class="category-container">
           <div
             class="category-item p-4 rounded-3 m-3 shadow-sm"
