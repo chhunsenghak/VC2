@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div class="row mt-5">
+    <div class="row">
       <div class="col-md-12">
         <div class="d-flex justify-content-between align-items-center">
-          <h5 style="margin-top: 15rem">List Products</h5>
+          <h5 style="margin-top: 5rem">List Products</h5>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
           <div class="card-content">
             <div class="d-flex justify-content-between mb-3">
               <h5 class="pro-name fw-bold">{{ product.name }}</h5>
-              <i class="material-icons view-detail">visibility</i>
+              <i class="material-icons view-detail" @click="openModal(product)">visibility</i>
             </div>
             <div class="d-flex flex-column justify-content-between seller-part h-100">
               <p class="mb-2 fw-bold pro-price">{{ product.price }} Riels</p>
@@ -35,9 +35,45 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal for Product Details -->
+    <div
+      v-if="showModal"
+      class="modal d-flex justify-content-center align-items-center"
+      @click.self="closeModal"
+    >
+      <div class="modal-content d-flex flex-column">
+        <div class="modal-header d-flex justify-content-between align-items-center">
+          <h3>Product Detail</h3>
+          <span class="close" @click="closeModal">&times;</span>
+        </div>
+        <div class="modal-body d-flex flex-column flex-md-row">
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img
+              v-if="selectedProduct.image"
+              :src="`http://127.0.0.1:8000/products_images/${selectedProduct.image}`"
+              :alt="selectedProduct.name"
+              class="product-image-large img-fluid"
+            />
+          </div>
+          <div class="col-md-6 mt-4 mt-md-0">
+            <p class="card-title fs-5">Name: {{ selectedProduct.name }}</p>
+            <p class="card-price mt-3 fs-5 text-dark">
+              Price: {{ formatPrice(selectedProduct.price) }}
+            </p>
+            <p class="card-cate fs-5">Category: {{ selectedProduct.category.name }}</p>
+            <p class="card-quan fs-5">
+              Quantity:
+              {{ selectedProduct.stock.quantity + ' ' + selectedProduct.stock.stock_type.name }}
+            </p>
+            <p class="card-desc fs-5">Description: {{ selectedProduct.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- {{ store.products.data }} -->
 </template>
+
 
 <script>
 import { ref, computed, onMounted } from 'vue'
@@ -47,7 +83,9 @@ export default {
   name: 'ListCardProduct',
   data() {
     return {
-      store: useProductsStore()
+      store: useProductsStore(),
+      showModal: false,
+      selectedProduct: null
     }
   },
   mounted() {
@@ -56,10 +94,22 @@ export default {
   methods: {
     fetchProducts() {
       this.store.fetchProducts()
+    },
+    openModal(product) {
+      this.selectedProduct = product
+      this.showModal = true
+    },
+    closeModal() {
+      this.showModal = false
+      this.selectedProduct = null
+    },
+    formatPrice(price) {
+      return new Intl.NumberFormat().format(price) + ' Riels'
     }
   }
 }
 </script>
+
 
 <style scoped>
 .container {
@@ -204,8 +254,8 @@ export default {
 }
 
 .product-image-large {
-  max-width: 50%;
-  height: 50%;
+  max-width: 100%;
+  height: auto;
   margin-bottom: 20px;
 }
 
