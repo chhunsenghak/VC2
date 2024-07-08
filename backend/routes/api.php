@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\StockTypeController;
 use App\Http\Controllers\API\FrontUserController as UserController;
+use App\Http\Controllers\API\ChatController as ChatController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -114,4 +115,10 @@ Route::prefix('addresses')->group(function () {
 // STocks ROUTES
 Route::prefix('stocks')->group(function () {
     Route::get('/list', [StockTypeController::class, 'index']);
+});
+
+
+Route::prefix("chat")->group(function () {
+    Route::post("/message", [ChatController::class, 'sendMessage']);
+    Route::get("/message", [ChatController::class, 'index']);    
 });
