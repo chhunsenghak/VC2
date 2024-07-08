@@ -1,30 +1,24 @@
 <template>
   <WebLayout>
-    <div class="container mt-20 flex">
-      <div class="col-lg-3 bg-danger">
-        <div class="intro-excerpt">
-          <h1>Let buy together <span clsas="d-block">everyone</span></h1>
-          <p class="mb-4">
-            Let enjoy to visit Phsarkasekor. Let buy something we have everything here (Fruit, Meat,
-            Vegetable...)
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-9 bg-success">hello</div>
+    <div class="container d-flex mt-30 justify-content-between mb-10">
+      <UserInfo :userStore="userStore"></UserInfo>
+      <ListProducts :productsStore="store" />
     </div>
-    {{ store.products }}
-    {{ userStore.user }}
   </WebLayout>
 </template>
 
 <script>
-import { userStore } from '@/stores/my-product' // Adjust the path as needed
+import { userStore } from '@/stores/my-product'
 import { useAuthStore } from '@/stores/auth-store'
-import WebLayout from '@/Components/Layouts/WebLayout.vue' // Adjust the path as needed
+import WebLayout from '@/Components/Layouts/WebLayout.vue'
+import ListProducts from '@/Components/MyProduct/ListProducts.vue'
+import UserInfo from '@/Components/MyProduct/UserInfo.vue'
 
 export default {
   components: {
-    WebLayout
+    WebLayout,
+    ListProducts,
+    UserInfo
   },
   data() {
     return {
@@ -33,14 +27,16 @@ export default {
     }
   },
   mounted() {
-    this.fetchData() // Fetch data on component mount
+    this.fetchData()
   },
-
   methods: {
     fetchData() {
-      // Fetch data from the store here, for example:
-      this.store.fetchUser(this.userStore.user.id) // Adjust the method name as needed
+      this.store.fetchUser(this.userStore.user.id)
     }
   }
 }
 </script>
+
+<style scoped>
+
+</style>

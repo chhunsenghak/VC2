@@ -76,15 +76,15 @@ class FrontUserSeeder extends Seeder
             'shop' => 1,
             'phone' => '012 46 78 901',
         ]);
-        $user_role = Role::where(['name', 'user']);
-        $seller_role = Role::create(['name', 'seller']);
-        $buyer_role = Role::create(['name' => 'buyer']);
+        // $user_role = Role::where(['name', 'user']);
+        // $seller_role = Role::create(['name', 'seller']);
+        // $buyer_role = Role::create(['name' => 'buyer']);
 
-        $user1->assignRole($seller_role);
-        $user2->assignRole($seller_role);
-        $user3->assignRole($user_role);
-        $user4->assignRole($user_role);
-        $user5->assignRole($buyer_role);
-        $user6->assignRole($buyer_role);
+        // $user1->assignRole($seller_role);
+        // $user2->assignRole($seller_role);
+        // $user3->assignRole($user_role);
+        // $user4->assignRole($user_role);
+        // $user5->assignRole($buyer_role);
+        // $user6->assignRole($buyer_role);
     }
 }
