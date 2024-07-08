@@ -5,20 +5,7 @@ import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const store = useAuthStore()
-const getMe = async () => {
-  try {
-    const { data } = await axiosInstance.get('/me')
-    if (data.data.shop) {
-      return true
-    } else {
-      return false
-    }
-  } catch (error) {
-    console.error(error)
-  }
-}
-const myShop = getMe()
-
+console.log(store.user);
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')
@@ -97,7 +84,7 @@ const logout = async () => {
       />
     </svg>
     <a
-      v-if="myShop"
+      v-if="store.isAuthenticated && store.user.shop"
       href="/myProducts"
       class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
     >
@@ -145,15 +132,16 @@ const logout = async () => {
           aria-expanded="false"
           data-bs-display="static"
         >
-          <img
+          <img v-if="store.user.image_url == null"
             src="../../src/assets/user.png"
             alt="Profile Picture"
             style="width: 40px"
             class="profile-picture rounded-circle"
           />
+          <img v-else :src="`http://127.0.0.1:8000/storage/profiles/${store.user.profile}`" class="rounded-circle" width="40px" alt="profile">
         </button>
         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="profileDropdown">
-          <li><a class="dropdown-item" href="#">Account</a></li>
+          <li><a class="dropdown-item" href="/profile">Account</a></li>
           <li><a class="dropdown-item" href="#">Sitting</a></li>
           <li><hr class="dropdown-divider" /></li>
           <li><button class="dropdown-item" @click="logout">Log out</button></li>

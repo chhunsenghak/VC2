@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\VillageController;
 use App\Http\Controllers\API\AddressController;
-use App\Http\Controllers\API\FrontUserController as APIFrontUserController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\Auth\FrontuserController;
@@ -14,9 +13,7 @@ use App\Http\Controllers\Front\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\StockTypeController;
-use App\Http\Controllers\Front\FrontuserController as FrontFrontuserController;
-use App\Http\Controllers\FrontuserController as ControllersFrontuserController;
-use App\Http\Controllers\API\FrontUserController as UserFrontUserController;
+use App\Http\Controllers\API\FrontUserController as UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,13 +36,14 @@ Route::post("/reset/password", [AuthController::class, 'resetPassword']);
 
 Route::prefix('/user')->middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/show/{id}', [UserFrontUserController::class, 'show']);
     Route::put('/update', [FrontuserController::class, 'updateInformationUser']);
     Route::post('/update/profile', [FrontuserController::class, 'updateProfileUser']);
+    Route::get('/{id}', [UserController::class, 'show']);
+    Route::get('/list', [UserController::class, 'index']);
 });
+
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
-
 
 // PROVINCE ROUTES
 Route::prefix('provinces')->group(function () {
@@ -101,8 +99,8 @@ Route::prefix('products')->group(function () {
     Route::get('/show/{id}', [ProductController::class, 'show']);
     Route::post('/update/{id}', [ProductController::class, 'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'destroy']);
+    Route::get("/user/list/{id}", [ProductController::class, 'listProduct']);
 });
-
 
 //ADDRESS ROUTES
 Route::prefix('addresses')->group(function () {
@@ -112,7 +110,6 @@ Route::prefix('addresses')->group(function () {
     Route::put('/update/{id}', [AddressController::class, 'update']);
     Route::delete('/delete/{id}', [AddressController::class, 'destroy']);
 });
-
 
 // STocks ROUTES
 Route::prefix('stocks')->group(function () {

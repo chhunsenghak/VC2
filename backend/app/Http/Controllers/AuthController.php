@@ -100,10 +100,21 @@ class AuthController extends Controller
     {
         $user = $request->user();
         // $roles = $user->getRoleNames();
+        $user->image_url = asset('storage/app/public' . $user->profile);
         return response()->json([
             'message' => 'Login success',
             'data' => $user,
         ]);
+    }
+
+    public function show($id)
+    {
+        // $user = Frontuser::find($id);
+        // // $roles = $user->getRoleNames();
+        // return response()->json([
+        //     'message' => 'Login success',
+        //     'data' => $user,
+        // ]);
     }
 
     public function forgotPassword(Request $request): JsonResponse

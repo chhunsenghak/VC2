@@ -101,7 +101,7 @@ router.beforeEach(async (to, from, next) => {
     simpleAcl.rules = rules()
   } catch (error) {
     /* empty */
-    next()
+
   }
 
   if (authRequired && !store.isAuthenticated) {
