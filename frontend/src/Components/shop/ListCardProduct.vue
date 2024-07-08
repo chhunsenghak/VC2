@@ -3,12 +3,28 @@
     <div class="row">
       <div class="col-md-12">
         <div class="d-flex justify-content-between align-items-center">
-          <h5 style="margin-top: 5rem">List Products</h5>
+          <h5 style="margin-top: 17rem">List Products</h5>
+          <!-- Search Products -->
+          <div class="search-wrapper">
+            <input
+              type="search"
+              v-model="searchText"
+              class="form-control search-input"
+              placeholder="Search for products..."
+              aria-label="Search"
+              aria-describedby="search-addon"
+            />
+            <i class="material-icons search-icon">search</i>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row mt-4">
-      <div class="col-md-3 mb-4" v-for="product in store.products.data" :key="product.id">
+    <div class="row mt-5">
+      <div
+        class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+        v-for="product in filteredProducts"
+        :key="product.id"
+      >
         <div class="card rounded-2 p-4 shadow-sm h-100">
           <div class="image-container rounded-2 mb-3">
             <img
@@ -48,7 +64,7 @@
           <span class="close" @click="closeModal">&times;</span>
         </div>
         <div class="modal-body d-flex flex-column flex-md-row">
-          <div class="col-md-6 d-flex justify-content-center align-items-center">
+          <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
             <img
               v-if="selectedProduct.image"
               :src="`http://127.0.0.1:8000/products_images/${selectedProduct.image}`"
@@ -56,7 +72,7 @@
               class="product-image-large img-fluid"
             />
           </div>
-          <div class="col-md-6 mt-4 mt-md-0">
+          <div class="col-12 col-md-6 mt-4 mt-md-0">
             <p class="card-title fs-5">Name: {{ selectedProduct.name }}</p>
             <p class="card-price mt-3 fs-5 text-dark">
               Price: {{ formatPrice(selectedProduct.price) }}
@@ -66,6 +82,7 @@
               Quantity:
               {{ selectedProduct.stock.quantity + ' ' + selectedProduct.stock.stock_type.name }}
             </p>
+            <p class="card-cate fs-5">Discount: {{ selectedProduct.discount }}</p>
             <p class="card-desc fs-5">Description: {{ selectedProduct.description }}</p>
           </div>
         </div>
@@ -74,9 +91,8 @@
   </div>
 </template>
 
-
 <script>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { useProductsStore } from '@/stores/products-lists.ts'
 
 export default {
@@ -85,11 +101,25 @@ export default {
     return {
       store: useProductsStore(),
       showModal: false,
-      selectedProduct: null
+      selectedProduct: null,
+      searchText: ''
     }
   },
   mounted() {
     this.fetchProducts()
+  },
+  computed: {
+    filteredProducts() {
+      if (!this.searchText.trim()) {
+        return this.store.products.data
+      }
+      const searchTextLC = this.searchText.trim().toLowerCase()
+      return this.store.products.data.filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchTextLC) ||
+          product.price.toString().includes(searchTextLC)
+      )
+    }
   },
   methods: {
     fetchProducts() {
@@ -110,14 +140,47 @@ export default {
 }
 </script>
 
-
 <style scoped>
 .container {
-  margin-top: 20px;
+  margin-top: -8rem;
+}
+.search-wrapper {
+  position: relative;
+  width: 400px; /* Adjust the width as needed */
+  margin-top: 15rem;
 }
 
+.search-input {
+  width: 100%;
+  height: 50px;
+  padding: 0 50px 0 20px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.2);
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #aaa;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.search-icon:hover {
+  color: #28a745;
+}
 .card {
-  height: 200px;
   transition: transform 0.3s, box-shadow 0.3s;
   background-color: #ffffff;
   border-radius: 15px;
@@ -155,7 +218,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 20%;
+  height: 50%;
 }
 
 .pro-name {
@@ -266,6 +329,12 @@ export default {
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    height: auto;
   }
 }
 </style>
