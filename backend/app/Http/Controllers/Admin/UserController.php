@@ -36,7 +36,8 @@ class UserController extends Controller
     public function index()
     {
         $user = User::latest()->get();
-        return view('setting.user.index', ['users' => $user]);
+        $frontuser = Frontuser::latest()->get();
+        return view('setting.user.index', ['users' => $user, 'frontuser' => $frontuser]);
     }
 
     /**

@@ -11,16 +11,16 @@
       <div class="mt-5">
         <div class="input-container mb-4">
           <i class="material-icons text-blue-500 icon-xs">phone</i>
-          <input class="form-control" disabled placeholder="+855 88 43 67 484" />
+          <input class="form-control"  style="border: none;" disabled placeholder="+855 88 43 67 484" />
         </div>
         <div class="input-container mb-4">
           <!-- <span class="fa fa-envelope"></span> -->
           <i class="material-icons text-blue-500 icon-xs">email</i>
-          <input type="email" class="form-control" disabled placeholder="sokuntheapoeun4@gmail.com" />
+          <input type="email" class="form-control" style="border: none;" disabled placeholder="sokuntheapoeun4@gmail.com" />
         </div>
         <div class="input-container mb-4">
           <i class="material-icons text-blue-500 icon-xs">location_on</i>
-          <input type="address" class="form-control" disabled placeholder="BP 511, Street 371, Phnom Penh" />
+          <input type="address" class="form-control" style="border: none;" disabled placeholder="BP 511, Street 371, Phnom Penh" />
         </div>
       </div>
     </div>
