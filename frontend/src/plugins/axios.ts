@@ -30,9 +30,6 @@ const CategoryLists = {
 };
 
 
-
-
-
 // Get Products
 const ProductLists = {
   getProducts() {
