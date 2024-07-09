@@ -16,20 +16,21 @@
           </div>
         </div>
         <div class="col-lg-5 ps-lg-5">
-          <h2 class="section-title mb-4">Natutal fruits, meat, and vegetables</h2>
+          <h2 class="section-title mb-4"> <strong>ផ្លែឈើ សាច់ និងបន្លែធម្មជាតិ</strong> </h2>
           <p>
-            Our approach blends the freshest fruits, finest meats, and vibrant vegetables to craft
-            unforgettable dishes. Each creation is a harmony of flavors, ensuring every bite is a
-            delightful journey through taste and texture.
+            វិធីសាស្រ្តរបស់យើងរួមបញ្ចូលគ្នានូវផ្លែឈើស្រស់បំផុត សាច់ល្អបំផុត
+            និងបន្លែរស់រវើកដើម្បីធ្វើម្ហូបដែលមិនអាចបំភ្លេចបាន។ ការបង្កើតនីមួយៗគឺមានភាពចុះសម្រុងគ្នានៃរសជាតិ
+            ដែលធានាថារាល់ការភ្លាក់គឺជាដំណើរដ៏រីករាយតាមរយៈរសជាតិ និងវាយនភាព។
+
           </p>
 
           <ul class="list-unstyled custom-list my-4">
-            <li>Fruit reminding us that good things take time to grow.</li>
-            <li>Vegetable Vegetables are the vibrant palette of the earth</li>
-            <li>Meat connecting us to the land and the animals we cherish."</li>
-            <li>Nutrition Balanced meals bloom from the harmony</li>
+            <li>ផ្លែ​ឈើ​រំឭក​យើង​ថា របស់​ល្អ​ត្រូវ​ការ​ពេល​វេលា​ដើម្បី​រីក​ចម្រើន។</li>
+            <li>បន្លែ បន្លែគឺជាក្ដារលាយដ៏រស់រវើកនៃផែនដី</li>
+            <li>សាច់ភ្ជាប់យើងទៅនឹងដី និងសត្វដែលយើងស្រលាញ់។"</li>
+            <li>អាហារូបត្ថម្ភ អាហារមានតុល្យភាពរីកដុះដាលពីភាពសុខដុម</li>
           </ul>
-          <p><a herf="#" class="btn">Explore</a></p>
+          <p><a herf="#" class="btn btn-secondary me-2">ទិញឥឡូវនេះ</a></p>
         </div>
       </div>
     </div>
