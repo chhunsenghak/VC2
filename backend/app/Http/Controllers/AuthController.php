@@ -173,6 +173,10 @@ class AuthController extends Controller
         return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> products
     public function updateBio(Request $request)
     {
         $user = Auth::user();
