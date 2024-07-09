@@ -4,17 +4,25 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     /> -->
-    <div class="background-container">
+    <div
+      class="background-container h-140 text-light"
+      style="
+        background-image: url('https://www.greenbaypressgazette.com/gcdn/presto/2020/06/16/PGRB/8c5a15b2-184e-43c6-8a09-e5d967b64163-Farmers_market_stand_Getty_Images.jpg'); /* Replace with your image path */
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      ">
       <div class="content">
-        <h1>សេវាកម្មរបស់យើង</h1>
-        <p>ទំនុកចិត្ត | គុណភាពខ្ពស់​​​ | អភិវឌ្ឍន៍ទីផ្សាកសិកម្ម</p>
+        <h1 class="fw-bold">សេវាកម្មរបស់យើង</h1>
+        <p class="fs-3">ទំនុកចិត្ត | គុណភាពខ្ពស់​​​ | អភិវឌ្ឍន៍ទីផ្សាកសិកម្ម</p>
       </div>
     </div>
     <div class="title mt-10">
       <h1 class="fw-bold">សេវាកម្មបច្ចុប្បន្នរបស់យើងខ្ញុំ</h1>
     </div>
-    <div class="body d-flex justify-content-around mt-10 mb-10">
-      <div class="group-card"></div>
+    <div class="group-card d-flex justify-content-around mt-10 mb-10">
       <div class="card" style="width: 18rem">
         <img
           src="https://cdn-icons-png.flaticon.com/128/7711/7711806.png"
@@ -56,54 +64,57 @@
           <a href="#3" class="btn btn-success">Detail</a>
         </div>
       </div>
-    </div>
-    <header>
-      <div class="detail-service p-5 ml-5">
-        <div class="service mt-10 d-flex flex-sm-row-reverse" id="1">
+      </div>
+      <div class="detail-service mr-10 mb-10 p-15">
+        <div class="service1 mt-10 d-flex " id="1">
           <div class="text">
             <h1 class="fw-bold">លក់ទំនិញកសិកម្ម</h1>
-            <p class="fs-5">យើងផ្ដល់អោយអ្នកនូវសេវាកម្ម លក់ដូរនូវទំនិញផ្សេងដែលលោកអ្នកមាន</p>
+            <p class="fs-5">យើងផ្ដល់អោយអ្នកនូវសេវាកម្ម លក់ដូរនូវទំនិញផ្សេងដែលលោកអ្នកមាន។​​ ពួកយើងជួយលោកអ្នកក្នុងការដោះស្រាយនូវបញ្ហាគ្មានទីផ្សារពិបាកក្នុងការលក់ផលិតផលកសិកម្ម  អីឡូវនេះអស់បារម្ភជាមួយសេវាកម្មរលក់ទំនិញកសិកម្មរបស់យើង។​ <br> អ្នកអាចផុសផលិតផលដែលមាននៅលើWebsiteយើងបានដោយងាយស្រួនិងលក់ដោយមានប្រសិទ្ធភាព។</p>
           </div>
-          <div class="img">
+          <div class="img ">
             <img
               src="https://travelinspiredliving.com/wp-content/uploads/2020/07/Farmers-Market.jpg"
               alt=""
-              width="80%"  class="rounded"
+              width="70%"
+              class="rounded"
             />
           </div>
         </div>
-        <div class="service mt-20 d-flex flex-sm-row-reverse" id="2">
-          <div class="img mr-5">
-            <img
-              src="https://extension.oregonstate.edu/sites/default/files/styles/full/public/images/2022-09/screen-shot-2022-09-28-30247-pm.png?itok=a8tvsVmJ"
-              alt=""
-              width="100%" class="rounded"
-            />
-          </div>
-          <div class="text">
-            
-          
-          <h1 class="fw-bold">ស្វែងរកទីផ្សារកសិកម្ម</h1>
-            <p class="fs-5">​យើងអាចជួយលោកអ្នកស្វែងនូវទីផ្សាលក់ផលិតផលផ្សេងៗនិងងាយស្រួលដល់ការលក់ដូររបស់អ្នក។​
-              មិនតែប៉ុណ្ណោះទេ.....</p>
-            </div>
-        </div>
-        <div class="service mt-20 d-flex flex-sm-row-reverse" id="3">  
-          <div class="text">
-            <h1 class="fw-bold">ទិញទំនិញកសិកម្ម</h1>
-            <p class="fs-5">យើងផ្ដល់អោយអ្នកនូវសេវាកម្មដែលអាចទិញឬលក់ផលិតកសិកម្មរបស់អ្នក​​ ព្រមទាំង...</p>
+        <div class="service2 mt-20 d-flex  flex-sm-row-reverse" id="2">
+          <div class="text ">
+            <h1 class="fw-bold">ស្វែងរកទីផ្សារកសិកម្ម</h1>
+            <p class="fs-5">
+              ​យើងអាចជួយលោកអ្នកស្វែងនូវទីផ្សាលក់ផលិតផលផ្សេងៗនិងងាយស្រួលដល់ការលក់ដូររបស់អ្នក។​
+              មិនតែប៉ុណ្ណោះទេ យើងជាផ្នែកមួយក្នុងការធ្វើអោយអាជីវកម្មលោកអ្នកកាន់តែរីកចម្រើន និងងាយស្រួលដល់ប្រជាជនកសិករគ្រប់រូប។
+            </p>
           </div>
           <div class="img">
             <img
-              src="https://producersmarket.com/blog/wp-content/uploads/2021/03/pexels-erik-scheel-95425-1024x683.jpg"
+              src="https://extension.oregonstate.edu/sites/default/files/styles/full/public/images/2022-09/screen-shot-2022-09-28-30247-pm.png?itok=a8tvsVmJ"
               alt=""
-              width="90%" class="rounded"
+              width="79.5%"
+              class="rounded"
+            />
+          </div>
+        </div>
+        <div class="service3 mt-10 " id="3">
+          <div class="text">
+            <h1 class="fw-bold">ទិញទំនិញកសិកម្ម</h1>
+            <p class="fs-5">
+              យើងផ្ដល់អោយអ្នកនូវសេវាកម្មដែលអាចទិញឬលក់ផលិតកសិកម្មរបស់អ្នក​​។ អ្នកអាចស្វែងរកនូវផលិតផលកសិកម្មណាមួយដែលអ្នកត្រូវការនៅលើWebsiteយើងដោយទំនុកចិត្ត។
+            </p>
+          </div>
+          <div class="img">
+            <img
+              src="https://media.istockphoto.com/id/1159376930/photo/vegetables-and-fruit-in-reusable-bag-on-a-farmers-market-zero-waste-concept.jpg?s=612x612&w=0&k=20&c=rvK_UPWYJ8vdCzucmZwY1kzS7pc7DtmdjA8J43i1cek="
+              alt=""
+              width="103.7%"
+              class="rounded"
             />
           </div>
         </div>
       </div>
-      <!-- </div> -->
-    </header>
+
   </WebLayout>
 </template>
 
@@ -119,25 +130,9 @@ export default {
 </script>
 
 <style>
-.background-container {
-  background-image: url('https://www.greenbaypressgazette.com/gcdn/presto/2020/06/16/PGRB/8c5a15b2-184e-43c6-8a09-e5d967b64163-Farmers_market_stand_Getty_Images.jpg'); /* Replace with your image path */
-  background-size: cover;
-  background-position: center;
-  height: 75vh; /* Full viewport height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white; /* Text color */
-}
-
 .content {
   text-align: center;
-  background: rgba(
-    83,
-    119,
-    95,
-    0.49
-  ); /* Optional: Add a semi-transparent background to the content */
+  background: rgba(83, 119, 95, 0.49);
   padding: 20px;
   border-radius: 10px;
 }
@@ -150,9 +145,95 @@ export default {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  transition-property: transform, box-shadow;
   cursor: pointer;
   color: black;
 }
 
+.service1{
+  height: 60vh;
+  width: 100%;
+
+}
+.service2{
+  height: 60vh;
+  width: 100%;
+
+}
+
+.service3{
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: space-around;
+}
+.detail-service{
+  width: 100%;
+}
+.service1>.text, .service2>.text, .service3>.text{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.service1>.img, .service2>img{
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.service3>img{
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .group-card{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .service1>.text, .service2>.text, .service3>.text{
+    width: 100%;
+  }
+  .service1>.img, .service2>img, .service3>img{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+  .detail-service{
+    margin-top: auto;
+  }
+}
+@media (min-width:428px) and (max-width:768px)  {
+
+  .detail-service {
+   width: 100%;
+  }
+  .service1, .service2, .service3{
+    display: block;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    widows: 100%;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  .service2{
+    display: flex;
+    
+    flex-direction: column-reverse;
+  }
+  .service1>.text, .service2>.text, .service3>.text{
+    width: 100%;
+    text-align: center;
+  }
+  .service1>.img, .service2>img, .service3>img{
+    widows: 100%;
+  }
+}
 </style>
+
