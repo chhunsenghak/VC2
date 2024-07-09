@@ -128,5 +128,5 @@ Route::middleware('auth:sanctum')->group(function(){
 //Update Profile Picture
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::put('/update-profile', [AuthController::class, 'updateProfilePicture']);
+    Route::post('/update-profile', [AuthController::class, 'updateProfilePicture']);
 });

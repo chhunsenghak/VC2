@@ -210,31 +210,29 @@ class AuthController extends Controller
 
     public function updateProfilePicture(Request $request)
     {
-        $user = Auth::user();
-        $validator = Validator::make($request->all(), [
-            'profile' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        try {
+            $user = $request->user();
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-
-        if ($request->hasFile('profile')) {
-            // Delete the old profile image if it exists
-            if ($user->profile) {
-                Storage::disk('public')->delete($user->profile);
+            if ($request->hasFile('profile')) {
+                $img = $request->file('profile');
+                $ext = $img->getClientOriginalExtension();
+                $imageName = time() . '.' . $ext;
+                $img->move(public_path('uploads'), $imageName);
+                $user->profile = $imageName;
             }
-
-            // Store the new profile image
-            $profilePath = $request->file('profile')->store('profiles', 'public');
-            $user->profile = $profilePath;
+            
             $user->save();
-        }
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Profile picture updated successfully',
-            'user' => $user,
-        ]);
+            return response()->json([
+                'success' => true,
+                'data' => $user,
+                'message' => 'Profile updated successfully'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }
