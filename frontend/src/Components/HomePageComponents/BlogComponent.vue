@@ -19,7 +19,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry  mb-4 ">
-              <h3 ><a style="color: #455C24; font-weight: bold;" href="/shop">Phnom Penh</a></h3>
+              <h3 ><a style="color: #455C24; font-weight: bold;" href="/shop">ភ្នំពេញ</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -28,7 +28,7 @@
               style="width: 230px; height: 180px;"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="/shop">Kompong Chhnang</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="/shop">កំពង់ឆ្នាំង</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -37,7 +37,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Takeo</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">តាកែវ</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -46,7 +46,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Siem Reap</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">សៀមរាប</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -55,7 +55,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Banteay Meanchey</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">បន្ទាយមានជ័យ</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -64,7 +64,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Battambang</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">បាត់ដំបង</a></h3>
             </div>
           </div>
           
@@ -74,7 +74,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Preah Sihanouk</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">ព្រះសីហនុ</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -83,7 +83,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Poi Pet</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">ប៉ោយប៉ែត</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -92,7 +92,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Kompong Cham</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">កំពង់ចាម</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -101,7 +101,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Kompong Thom</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">កំពង់ធំ</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -110,7 +110,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Kompot</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">កំពត</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -119,7 +119,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Kampong Speu</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">កំពង់ស្ពឺ</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -128,7 +128,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Pursat</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">ពោធិ៍សាត់</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -137,7 +137,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Svay Rieng</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">ស្វាយ​រៀង</a></h3>
             </div>
           </div>
           <div class="post-entry">
@@ -146,7 +146,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry mb-4 " >
-              <h3><a style="color: #455C24;font-weight: bold;" href="#">Ta khmao</a></h3>
+              <h3><a style="color: #455C24;font-weight: bold;" href="#">តាខ្មៅ</a></h3>
             </div>
           </div>
 

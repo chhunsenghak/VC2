@@ -8,7 +8,7 @@
       </div>
 
       
-      <div class="row m-3 p-5" style="background-color: green; border-radius: 8px;">
+      <div class="row m-3 p-5" style="background-color:#009900; border-radius: 8px;">
         <div class="col d-flex text-center align-items-center justify-content-between">
           
           <!-- start card of province -->
