@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Storage;
+
 use App\Http\Resources\FrontUserResource;
 use App\Models\Frontuser;
 use App\Models\User;
@@ -12,6 +16,7 @@ use App\Models\Password;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
 
 class AuthController extends Controller
 {
@@ -165,13 +170,71 @@ class AuthController extends Controller
         $token  = $user->createToken('auth_token')->plainTextToken;
         $user->save();
         $passwordReset->delete(); // Remove the password reset record
-        return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token'=> $token]);
+        return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
     }
 
 
-    public function updateProfile(Request $request){
-        
+    public function updateBio(Request $request)
+    {
+        $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'bio' => 'string|max:1000',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $user->bio = $request->bio;
+
+        return response()->json([
+            'message' => 'Bio updated successfully',
+            'user' => $user,
+        ]);
+    }
+    public function updatePhoneNumber(Request $request)
+    {
+        $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'phoneNumber' => 'string|max:15',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        $user->phoneNumber = $request->phoneNumber;
+        return response()->json([
+            'message' => 'Phone number updated successfully',
+            'user' => $user,
+        ]);
+    }
+
+    public function updateProfilePicture(Request $request)
+    {
+        $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'profile' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        if ($request->hasFile('profile')) {
+            // Delete the old profile image if it exists
+            if ($user->profile) {
+                Storage::disk('public')->delete($user->profile);
+            }
+
+            // Store the new profile image
+            $profilePath = $request->file('profile')->store('profiles', 'public');
+            $user->profile = $profilePath;
+            $user->save();
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Profile picture updated successfully',
+            'user' => $user,
+        ]);
     }
 }
-
-
