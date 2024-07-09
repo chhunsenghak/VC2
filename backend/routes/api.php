@@ -117,8 +117,8 @@ Route::prefix('stocks')->group(function () {
     Route::get('/list', [StockTypeController::class, 'index']);
 });
 
-
-Route::prefix("chat")->group(function () {
+Route::prefix("chat")->middleware('auth:sanctum')->group(function () {
     Route::post("/message", [ChatController::class, 'sendMessage']);
-    Route::get("/message", [ChatController::class, 'index']);    
+    Route::get("/message", [ChatController::class, 'index']);
+    Route::post("/sendImage", [ChatController::class, 'uploadMutipleImages']);
 });
