@@ -174,10 +174,6 @@ class AuthController extends Controller
     }
 
 
-<<<<<<< HEAD
-    public function updateProfile(Request $request)
-    {
-=======
     public function updateBio(Request $request)
     {
         $user = Auth::user();
@@ -238,6 +234,5 @@ class AuthController extends Controller
                 'message' => $e->getMessage()
             ], 500);
         }
->>>>>>> user_profile_edit
     }
 }
