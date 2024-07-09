@@ -8,6 +8,8 @@ use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Models\Stock;
 use App\Models\StockType;
+use App\Models\Frontuser;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -37,7 +39,8 @@ class ProductController extends Controller
     {
         $stockTypes = StockType::all();
         $categories = Categorys::all();
-        return view('product.new', ['stockTypes' => $stockTypes, 'categories' => $categories]);
+        $users = Frontuser::all();
+        return view('product.new', ['stockTypes' => $stockTypes, 'categories' => $categories, 'users' => $users]);
     }
     /**
      * Store a newly created resource in storage.
@@ -47,52 +50,39 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
         $validated = $request->validate([
+            'frontuser_id' => 'required|integer',
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|string',
             'categorys_id' => 'required|integer',
-            'discount' => 'string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'stock_type_id' => 'integer',
-            'quantity' => 'integer',
-            'shop_id' => 'integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        
         $stock_type = StockType::find($request->stock_type_id);
         if ($stock_type->limit_quantity > $request->quantity) {
             $stock = Stock::create([
                 'quantity' => $request->quantity,
                 'stock_type_id' => $request->stock_type_id,
             ]);
-            if ($request->hasFile('image')) {
-                $imageName = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('products_images'), $imageName);
-                Products::create([
-                    "name" => $request->name,
-                    "description" => $request->description,
-                    "price" => $request->price,
-                    "discount" => $request->discount,
-                    "stock_id" => $stock->id,
-                    "shop_id" => $request->shop_id,
-                    "image" => 'products_images/' . $imageName,
-                    "categorys_id" => $request->categorys_id
-                ]);
-                return redirect()->route('admin.products.index')->withSuccess('Product create!');
-            } else {
-                Products::create([
-                    "name" => $request->name,
-                    "description" => $request->description,
-                    "price" => $request->price,
-                    "discount" => $request->discount,
-                    "stock_id" => $stock->id,
-                    "shop_id" => $request->shop_id,
-                    "categorys_id" => $request->categorys_id
-                ]);
-                return redirect()->route('admin.products.index')->withSuccess('Product create!');
-            }
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('products_images'), $imageName);
+
+            $product = Products::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'discount' => $request->discount,
+                'categorys_id' => $request->categorys_id,
+                'stock_id' => $stock->id,
+                'break_product_at' => $request->break_product_at,
+                'image' => $imageName,
+                'quantity' => $request->quantity,
+                'frontuser_id' => $request->frontuser_id,
+            ]);
+            return redirect()->route('admin.products.index')->withSuccess('Product create!');
         } else {
-            return redirect()->back()->with('error', 'Stock Limit Exceeded');
+            return redirect()->back()->with('error', 'Can not create product because stock in more than limit');
         }
     }
 
@@ -112,7 +102,8 @@ class ProductController extends Controller
         $categories = Categorys::all();
         $stock = Stock::find($product->stock_id);
         $stockTypes = StockType::all();
-        return view('product.edit', ['product' => $product, 'categories' => $categories, 'stock' => $stock, 'stockTypes' => $stockTypes]);
+        $users = Frontuser::all();
+        return view('product.edit', ['product' => $product, 'categories' => $categories, 'stock' => $stock, 'stockTypes' => $stockTypes, 'users' => $users]);
     }
 
     /**
@@ -125,17 +116,13 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Products::findOrFail($id);
-
         $validated = $request->validate([
+            'frontuser_id' => 'required|integer',
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|string',
             'categorys_id' => 'required|integer',
-            'discount' => 'string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'stock_type_id' => 'integer',
-            'quantity' => 'integer',
-            'shop_id' => 'integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $stock_type = StockType::find($request->stock_type_id);
         if ($stock_type->limit_quantity > $request->quantity) {
@@ -143,31 +130,21 @@ class ProductController extends Controller
                 'quantity' => $request->quantity,
                 'stock_type_id' => $request->stock_type_id,
             ]);
-            if ($request->hasFile('image')) {
-                $imageName = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('products_images'), $imageName);
-                $product->image = 'products_images/' . $imageName;
-                $product->update([
-                    'name' => $request->name,
-                    'description' => $request->description,
-                    'price' => $request->price,
-                    'discount' => $request->discount,
-                    'categorys_id' => $request->categorys_id,
-                    'stock_id' => $stock->id,
-                    'shop_id' => $request->shop_id,
-                    'image' => $imageName
-                ]);
-            } else {
-                $product->update([
-                    'name' => $request->name,
-                    'description' => $request->description,
-                    'price' => $request->price,
-                    'discount' => $request->discount,
-                    'categorys_id' => $request->categorys_id,
-                    'stock_id' => $stock->id,
-                    'shop_id' => $request->shop_id
-                ]);
-            }
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('products_images'), $imageName);
+            $product->image = 'products_images/' . $imageName;
+            $product->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'discount' => $request->discount,
+                'categorys_id' => $request->categorys_id,
+                'stock_id' => $stock->id,
+                'break_product_at' => $request->break_product_at,
+                'image' => $imageName,
+                'quantity' => $request->quantity,
+                'frontuser_id' => $request->frontuser_id,
+            ]);
             return redirect()->route('admin.products.index')->withSuccess('Product updated!');
         } else {
             return redirect()->back()->with('error', 'Stock Limit Exceeded');

@@ -168,4 +168,11 @@ class ProductController extends Controller
 
         return response(['success' => true, 'products' => $products], 200);
     }
+
+    public function listProduct($id)
+    {
+        $products = Products::where('frontuser_id', $id)->get();
+        $products = ListProductResource::collection($products);
+        return response()->json(['success' => true, 'data' => $products], 200);
+    }
 }

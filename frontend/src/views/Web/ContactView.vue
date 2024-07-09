@@ -33,8 +33,6 @@ img {
 }
 
 
-
-
 .info-right input {
   border: 1px solid #89ad6c;
   border-radius: 5px;

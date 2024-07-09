@@ -1,29 +1,20 @@
 <template>
   <WebLayout>
-    <div class="container" style="margin-top: 4.8rem;">
+    <div class="container">
       <div class="row">
-        <div
-          class="col-md-12 p-5"
-          style="
-            background-color: #a9eaa8;
-            height: 60vh;
-            justify-content: space-between;
-            display: flex;
-          "
-        >
-          <div class="info-text mt-5 ml-10">
-            <h1>GROCERY STORE</h1>
-            <p>Fresh Fruits, Meats & Vegetables</p>
-            <br />
-            <button class="btn btn-danger">Shop Now</button>
+        <div class="background-container p-5" style="height: 70vh">
+          <div class="content-text">
+            <h4>
+              យើងនឹងផ្តល់ជូននូវបន្លែ និងផ្លែឈើសរីរាង្គស្រស់ៗពីចម្ការរបស់ប្រជាជនកម្ពុជាដោយផ្ទាល់
+            </h4>
+            <p>រួសរាន់ឡើង | ទិញឥឡូវនេះ!</p>
           </div>
-          <img src="/src/assets/images/image 74.png" alt="" class="mr-9" style="height: 50vh" />
         </div>
       </div>
 
       <!-- Categories -->
-      <div class="row" style="height: 30vh; margin-top: -40px">
-        <h5 style="margin-top:6rem;">All Categories</h5>
+      <div class="row">
+        <h5 style="margin-top: 5rem">ប្រភេទ​ទាំងអស់</h5>
         <div class="category-container">
           <div
             class="category-item p-4 rounded-3 m-3 shadow-sm"
@@ -31,7 +22,7 @@
             :key="category.id"
           >
             <a
-              :href="`/category/${category.id}`"
+              :href="`/allProducts?categoryId=${category.id}`"
               class="category-link d-flex flex-column align-items-center"
             >
               <img
@@ -44,15 +35,15 @@
           </div>
         </div>
       </div>
-      <list-card-product class="mt-5"></list-card-product>
+      <list-card-product></list-card-product>
     </div>
   </WebLayout>
 </template>
 
 <script setup lang="ts">
 import axiosInstance, { CategoryLists, ProductLists } from '@/plugins/axios'
-import WebLayout from '../../../Components/Layouts/WebLayout.vue'
-import ListCardProduct from '../../../Components/shop/ListCardProduct.vue'
+import WebLayout from '@/Components/Layouts/WebLayout.vue'
+import ListCardProduct from '@/Components/shop/ListCardProduct.vue'
 import { onMounted, ref, computed } from 'vue'
 
 const categories = ref([])
@@ -61,11 +52,9 @@ const products = ref([])
 onMounted(async () => {
   try {
     const categoryResponse = await CategoryLists.getCategories()
-    console.log('Category data:', categoryResponse.data.data)
     categories.value = categoryResponse.data.data
 
-    const productResponse = await ProductLists.getProducts() // Adjust this based on your API or data source
-    console.log('Product data:', productResponse.data.data)
+    const productResponse = await ProductLists.getProducts()
     products.value = productResponse.data.data
   } catch (error) {
     console.error('Error fetching data:', error)
@@ -74,16 +63,68 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.background-container {
+  position: relative;
+  background-image: url('https://images.pexels.com/photos/4207908/pexels-photo-4207908.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-position: center;
+  background-size: cover;
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(10, 3, 3); /* Text color */
+  height: 100vh; /* Adjust height as needed */
+  overflow: hidden; /* Ensures text doesn't overflow */
+}
+
+.background-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  ); /* Gradient overlay */
+  z-index: 1;
+  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
+  opacity: 0; /* Initially hidden */
+}
+
+.background-container:hover::before {
+  opacity: 1; /* Show overlay on hover */
+}
+
+.content-text {
+  position: relative;
+  z-index: 2;
+  color: white; /* Ensuring text is readable */
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+}
+
+.background-container:hover .content-text {
+  transform: scale(1.1); /* Zoom effect on hover */
+}
 .category-container {
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* For Firefox */
+  -ms-overflow-style: none;
+  /* For Internet Explorer and Edge */
 }
 
 .category-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
+  display: none;
+  margin-top: 2rem;
 }
 .category-item {
   flex: 0 0 auto;

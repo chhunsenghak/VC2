@@ -19,9 +19,16 @@ const getCsrfToken = async () => {
 // Get Categories
 const CategoryLists = {
   getCategories() {
-    return axiosInstance.get('/category/list')
+    return axiosInstance.get('/category/list');
+  },
+  getProductsByCategory(categoryId: any) {
+    return axiosInstance.get(`/category/show/${categoryId}`);
+  },
+  getAllProducts() {
+    return axiosInstance.get('/products');
   }
-}
+};
+
 
 // Get Products
 const ProductLists = {
@@ -38,7 +45,6 @@ axiosInstance.interceptors.request.use(
     // For example, add an authentication token
     let token = localStorage.getItem('access_token')
     if (token) {
-      token = token.split('"').join('');
       config.headers.Authorization = `Bearer ${token}`
     }
     return config

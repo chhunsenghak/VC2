@@ -19,20 +19,10 @@
       </div>
       <div class="col-12 mt-3">
         <label for="desc" class="form-label">ពីព័រណ៍</label>
-        <textarea
-          class="form-control"
-          id="desc"
-          name="desc"
-          rows="3"
-          placeholder="បញ្ជូនអត្ថបទនៅទីនេះ"
-        ></textarea>
+        <textarea class="form-control" id="desc" name="desc" rows="3" placeholder="បញ្ជូនអត្ថបទនៅទីនេះ"></textarea>
       </div>
       <div class="text-center">
-        <button
-          type="submit"
-          style="background-color: green; width: 100px; color: white"
-          class="btn text-white​"
-        >
+        <button type="submit" style="background-color: green; width: 100px; color: white" class="btn text-white​">
           ផ្ញើរ
         </button>
       </div>
@@ -45,4 +35,5 @@ export default {}
 </script>
 
 <style>
+
 </style>
