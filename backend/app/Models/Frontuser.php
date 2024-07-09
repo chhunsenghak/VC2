@@ -25,14 +25,10 @@ class Frontuser extends Authenticatable
         'name',
         'email',
         'password',
-<<<<<<< HEAD
-        'profile'
-=======
         'bio',
         'phoneNumber',
         'profile',
 
->>>>>>> user_profile_edit
     ];
 
     /**
