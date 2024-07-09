@@ -38,10 +38,11 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = auth()->user();
-
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id . ',id',
+
+        
         ]);
 
 
@@ -52,14 +53,15 @@ class ProfileController extends Controller
             $validated['password'] = bcrypt($request->password);
         }
 
+        
         if ($request->hasFile('profile')) {
             if ($name = $this->saveImage($request->profile)) {
                 $validated['profile'] = $name;
             }
         }
 
+        
         $user->update($validated);
-
         return redirect()->back()->withSuccess('User updated !!!');
     }
 }
