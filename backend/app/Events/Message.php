@@ -18,15 +18,15 @@ class Message implements ShouldBroadcast
      * Create a new event instance.
      */
 
-    public $message;
-    public $send_id;
-    public $recieve_id;
+    public $text;
+    public $sender_id;
+    public $reciever_id;
     public $images;
-    public function __construct($message, $recieve_id, $send_id, $images)
+    public function __construct($reciever_id, $sender_id, $text, $images)
     {
-        $this->recieve_id = $recieve_id;
-        $this->send_id = $send_id;
-        $this->message = $message;
+        $this->reciever_id = $reciever_id;
+        $this->sender_id = $sender_id;
+        $this->text = $text;
         $this->images = $images;
     }
 

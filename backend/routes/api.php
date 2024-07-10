@@ -118,7 +118,9 @@ Route::prefix('stocks')->group(function () {
 });
 
 Route::prefix("chat")->middleware('auth:sanctum')->group(function () {
-    Route::post("/message", [ChatController::class, 'sendMessage']);
     Route::get("/message", [ChatController::class, 'index']);
-    Route::post("/sendImage", [ChatController::class, 'uploadMutipleImages']);
+    Route::post("/sendText", [ChatController::class, 'sendTextMessage']);
+    Route::post("/message", [ChatController::class, 'index']);
+    Route::post("/sendImage", [ChatController::class, 'uploadMultipleImages']);
+    Route::get("/getUser/{id}", [ChatController::class, 'getUser']);
 });

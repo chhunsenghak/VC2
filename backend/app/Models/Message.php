@@ -11,8 +11,15 @@ class Message extends Model
 
     protected $fillable = [
         'sender_id',
-        'recipient_id',
+        'receiver_id',
         'text',
         'images'
     ];
+
+    public function frontuser()
+    {
+        return $this->belongsTo(Frontuser::class, 'receiver_id');
+    }
+
+    
 }

@@ -48,4 +48,9 @@ class Frontuser extends Authenticatable
     {
         return $this->hasMany(Products::class);
     }
+
+    public function message()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

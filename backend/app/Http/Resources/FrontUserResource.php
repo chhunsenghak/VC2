@@ -23,7 +23,6 @@ class FrontUserResource extends JsonResource
             "shop" => $this->shop,
             "check" => $this->check,
             "phone" => $this->phone,
-            "products" => $this->products
         ];
     }
 }

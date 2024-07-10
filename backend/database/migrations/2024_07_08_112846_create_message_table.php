@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('message', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->integer('send_id')->reference('id')
+            $table->unsignedBigInteger('sender_id')->nullable(false);
+            $table->integer('receiver_id')->reference('id')
                 ->on('frontuser')
                 ->onDelete('cascade');
-            $table->integer('recieve_id')->reference('id')
-                ->on('frontuser')
-                ->onDelete('cascade');
-            $table->text('message')->nullable();
+            $table->text('text')->nullable();
             $table->string('images')->nullable();
             $table->timestamps();
         });
