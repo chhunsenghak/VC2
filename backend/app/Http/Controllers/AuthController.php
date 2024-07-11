@@ -175,9 +175,12 @@ class AuthController extends Controller
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> products
+=======
+>>>>>>> chat_message
     public function updateBio(Request $request)
     {
         $user = Auth::user();
