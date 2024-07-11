@@ -115,16 +115,6 @@ Route::prefix('addresses')->group(function () {
 Route::prefix('stocks')->group(function () {
     Route::get('/list', [StockTypeController::class, 'index']);
 });
-//Update Bio Route
 Route::middleware('auth:sanctum')->group(function () {
-    Route::put('/update-bio', [AuthController::class, 'updateBio']);
-});
-//Upadete Phone Number Route
-Route::middleware('auth:sanctum')->group(function(){
-    Route::put('/update-phoneNumber', [AuthController::class, 'updatePhoneNumber']);
-});
-//Update Profile Picture
-
-Route::middleware('auth:sanctum')->group(function(){
-    Route::post('/update-profile', [AuthController::class, 'updateProfilePicture']);
+    Route::post('/update-profile', [AuthController::class, 'updateProfile']);
 });

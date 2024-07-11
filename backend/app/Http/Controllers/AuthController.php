@@ -173,65 +173,40 @@ class AuthController extends Controller
         return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
     }
 
-    public function updateBio(Request $request)
-    {
-        $user = Auth::user();
-        $validator = Validator::make($request->all(), [
-            'bio' => 'string|max:1000',
-        ]);
+    public function updateProfile(Request $request)
+{
+    $user = Auth::user();
+    $validator = Validator::make($request->all(), [
+        'bio' => 'string|max:1000|nullable',
+        'phone' => 'string|max:15|nullable',
+        'profile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
+    ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+    }
 
+    if ($request->has('bio')) {
         $user->bio = $request->bio;
-
-        return response()->json([
-            'message' => 'Bio updated successfully',
-            'user' => $user,
-        ]);
-    }
-    public function updatePhoneNumber(Request $request)
-    {
-        $user = Auth::user();
-        $validator = Validator::make($request->all(), [
-            'phoneNumber' => 'string|max:15',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-        $user->phoneNumber = $request->phoneNumber;
-        return response()->json([
-            'message' => 'Phone number updated successfully',
-            'user' => $user,
-        ]);
     }
 
-    public function updateProfilePicture(Request $request)
-    {
-        try {
-            $user = $request->user();
-
-            if ($request->hasFile('profile')) {
-                $img = $request->file('profile');
-                $ext = $img->getClientOriginalExtension();
-                $imageName = time() . '.' . $ext;
-                $img->move(public_path('uploads'), $imageName);
-                $user->profile = $imageName;
-            }
-
-            $user->save();
-
-            return response()->json([
-                'success' => true,
-                'data' => $user,
-                'message' => 'Profile updated successfully'
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => $e->getMessage()
-            ], 500);
-        }
+    if ($request->has('phone')) {
+        $user->phone = $request->phone;
     }
+
+    if ($request->hasFile('profile')) {
+        $img = $request->file('profile');
+        $ext = $img->getClientOriginalExtension();
+        $imageName = time() . '.' . $ext;
+        $img->move(public_path('uploads'), $imageName);
+        $user->profile = $imageName;
+    }
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Profile updated successfully',
+        'user' => $user,
+    ], 200);
+}
+
 }
