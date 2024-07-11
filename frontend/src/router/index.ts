@@ -42,6 +42,11 @@ const router = createRouter({
       component: () => import('../views/Web/HomeView.vue')
     },
     {
+      path: '/form_createSelling',
+      name: 'form_creatSelling',
+      component: () => import('../Components/HomePageComponents/FormCreateSell.vue')
+    },
+    {
       path: '/post',
       name: 'post',
       component: () => import('@/views/Web/Post/ListView.vue')
@@ -80,7 +85,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/reset_password', '/services']
+  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/reset_password', '/services','/form_createSelling']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore();
   try {
