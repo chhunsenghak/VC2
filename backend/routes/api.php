@@ -115,6 +115,7 @@ Route::prefix('addresses')->group(function () {
 Route::prefix('stocks')->group(function () {
     Route::get('/list', [StockTypeController::class, 'index']);
 });
+//Update profile route
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/update-profile', [AuthController::class, 'updateProfile']);
 });
