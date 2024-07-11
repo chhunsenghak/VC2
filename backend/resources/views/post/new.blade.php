@@ -14,6 +14,10 @@
               <label for="description" class="text-gray-700 select-none font-medium">Description</label>
               <textarea name="description" id="description" placeholder="Enter description" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" rows="5">{{ old('description') }}</textarea>
             </div>
+            <div class="flex flex-col space-y-2">
+              <label for="Image" class="text-gray-700 select-none font-medium">Image</label>
+              <input type="file" name="image" id="Image" placeholder="Enter Image" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+            </div>
 
             <h3 class="text-xl my-4 text-gray-600">Role</h3>
             <div class="grid grid-cols-3 gap-4">
