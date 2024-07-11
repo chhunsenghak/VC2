@@ -102,12 +102,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-<<<<<<< HEAD
-
-  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password','/post', '/reset_password', '/services','/post_detail', '/allProducts','/chat']
-=======
   const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/reset_password', '/services','/form_createSelling']
->>>>>>> sell_contact
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore();
   try {
