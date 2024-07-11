@@ -64,9 +64,14 @@ onMounted(async () => {
 
 <style scoped>
 .background-container {
+<<<<<<< HEAD
   position: relative;
   background-image: url('https://images.pexels.com/photos/4207908/pexels-photo-4207908.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
   background-position: center;
+=======
+  background-image: url('https://www.eatthis.com/wp-content/uploads/sites/4/2023/07/fruits-and-vegetables.jpg?quality=82&strip=1');
+  background-position: center;             
+>>>>>>> 12844d9d6c5fe260904ac32e328f1a526e9780f4
   background-size: cover;
   margin-top: 5%;
   display: flex;
