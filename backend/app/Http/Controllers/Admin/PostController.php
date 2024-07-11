@@ -52,15 +52,29 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the uploaded image and other required data
+        $request->validate([
+            'title' => 'required|string|max:255', // Example field
+            'description' => 'required|string',       // Example field
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
+
         if ($request->hasFile('image')) {
-            dd($data);
+            $img = $request->file('image');
+            $ext = $img->getClientOriginalExtension();
+            $imageName = time() . '.' . $ext;
+            $img->move(public_path('storage/post_images'), $imageName);
+            $data['image'] = $imageName;
         }
 
-        // $Post = Post::create($data);
-        // return redirect()->back()->withSuccess('Post created !!!');
+        $Post = Post::create($data);
+
+        return redirect()->back()->withSuccess('Post created !!!');
     }
+
 
     /**
      * Display the specified resource.
@@ -93,7 +107,20 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $post->update($request->all());
+        $request->validate([
+            'title' => 'required|string|max:255', // Example field
+            'description' => 'required|string',       // Example field
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $ext = $img->getClientOriginalExtension();
+            $imageName = time() . '.' . $ext;
+            $img->move(public_path('storage/post_images'), $imageName);
+            $data['image'] = $imageName;
+        }
+        $post->update($data);
         return redirect()->back()->withSuccess('Post updated !!!');
     }
 

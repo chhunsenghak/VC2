@@ -47,7 +47,7 @@ const router = createRouter({
       component: () => import('@/views/Web/Post/ListView.vue')
     },
     {
-      path: '/post_detail',
+      path: '/post/show/:id',
       name: 'postpage',
       component: () => import('@/views/Web/Post/PostPage.vue')
     },
