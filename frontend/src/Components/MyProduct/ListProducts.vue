@@ -90,7 +90,7 @@
         style="width: 16rem"
       >
         <img
-          class="card-img-top"
+          class="card-img-top w-40 ml-13"
           :src="`http://127.0.0.1:8000/products_images/${product.image}`"
           alt="Card image cap"
         />
