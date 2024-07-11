@@ -23,7 +23,7 @@
       <div class="row mt-5">
         <div
           class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
-          v-for="product in filteredProducts"
+          v-for="product in fetchProducts"
           :key="product.id"
         >
           <div class="card rounded-2 p-4 shadow-sm h-100">
@@ -41,7 +41,7 @@
                 <i class="material-icons view-detail" @click="openModal(product)">visibility</i>
               </div>
               <div class="d-flex flex-column justify-content-between seller-part h-100">
-                <p class="mb-2 fw-bold pro-price">{{ product.price }} Riels</p>
+                <p class="mb-2 fw-bold pro-price">{{ formatPrice(product.price) }}</p>
                 <p class="mb-2 pro-discount">បញ្ចុះតម្លៃ: {{ product.discount }}</p>
                 <button type="button" class="btn btn-success">Chat Now</button>
               </div>
@@ -49,7 +49,6 @@
           </div>
         </div>
       </div>
-
       <!-- Modal for Product Details -->
       <div
         v-if="showModal"
@@ -86,58 +85,103 @@
           </div>
         </div>
       </div>
+      {{ productStore.products }}
+      {{ category_id }}
     </div>
   </WebLayout>
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { useProductsStore } from '@/stores/products-lists.ts'
-
+import { useRoute } from 'vue-router'
+import { categoryProStore } from '@/stores/product-in-category.ts'
 export default {
   name: 'ProductEachCate',
   components: {
     WebLayout
   },
-  data() {
-    return {
-      store: useProductsStore(),
-      showModal: false,
-      selectedProduct: null,
-      searchText: ''
-    }
-  },
-  mounted() {
-    this.fetchProducts()
-  },
-  computed: {
-    filteredProducts() {
-      if (!this.searchText.trim()) {
-        return this.store.products.data
+  setup() {
+    const store = useProductsStore()
+    const productStore = categoryProStore()
+    const showModal = ref(false)
+    const selectedProduct = ref(null)
+    const searchText = ref('')
+    let categoryId = ref(null)
+    const route = useRoute()
+    const category_id = route.query.categoryId
+
+    onMounted(() => {
+      fetchData()
+    })
+
+    const fetchData = async () => {
+      try {
+        await productStore.fetchCategory(category_id)
+      } catch (error) {
+        console.error('Error fetching user data:', error)
       }
-      const searchTextLC = this.searchText.trim().toLowerCase()
-      return this.store.products.data.filter(
+    }
+    onMounted(async () => {
+      categoryId.value = new URLSearchParams(window.location.search).get('categoryId')
+      if (categoryId.value) {
+        await fetchProducts(categoryId.value)
+      } else {
+        console.error('Category ID not found in URL parameters.')
+      }
+    })
+
+    const fetchProducts = async (categoryId) => {
+      try {
+        await store.fetchProductsByCategory(categoryId)
+        // console.log('Products fetched:', store.products.data)
+      } catch (error) {
+        console.error('Error fetching products:', error)
+      }
+    }
+
+    const filteredProducts = computed(() => {
+      if (!searchText.value.trim()) {
+        return store.products.data
+      }
+      const searchTextLC = searchText.value.trim().toLowerCase()
+      return store.products.data.filter(
         (product) =>
           product.name.toLowerCase().includes(searchTextLC) ||
           product.price.toString().includes(searchTextLC)
       )
+    })
+
+    const openModal = (product) => {
+      selectedProduct.value = product
+      showModal.value = true
     }
-  },
-  methods: {
-    fetchProducts() {
-      this.store.fetchProducts()
-    },
-    openModal(product) {
-      this.selectedProduct = product
-      this.showModal = true
-    },
-    closeModal() {
-      this.showModal = false
-      this.selectedProduct = null
-    },
-    formatPrice(price) {
+
+    const closeModal = () => {
+      showModal.value = false
+      selectedProduct.value = null
+    }
+
+    const formatPrice = (price) => {
       return new Intl.NumberFormat().format(price) + ' Riels'
+    }
+
+    onMounted(async () => {
+      this.productStore.fetchCategory(this.category_id)
+      console.log(this.productStore)
+    })
+
+    return {
+      showModal,
+      selectedProduct,
+      searchText,
+      fetchProducts,
+      filteredProducts,
+      openModal,
+      closeModal,
+      formatPrice,
+      productStore: categoryProStore()
     }
   }
 }

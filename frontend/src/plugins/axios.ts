@@ -21,22 +21,14 @@ const CategoryLists = {
   getCategories() {
     return axiosInstance.get('/category/list');
   },
-  getProductsByCategory(categoryId: any) {
-    return axiosInstance.get(`/category/show/${categoryId}`);
-  },
-  getAllProducts() {
-    return axiosInstance.get('/products');
-  }
 };
-
 
 // Get Products
 const ProductLists = {
   getProducts() {
-    return axiosInstance.get('/products/list')
+    return axiosInstance.get('/products/list');
   },
-}
-
+};
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(

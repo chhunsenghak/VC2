@@ -4,10 +4,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     /> -->
+    <div class="container">
     <div
-      class="background-container h-140 text-light"
+      class="background-container h-150 text-light"
       style="
-        background-image: url('https://www.greenbaypressgazette.com/gcdn/presto/2020/06/16/PGRB/8c5a15b2-184e-43c6-8a09-e5d967b64163-Farmers_market_stand_Getty_Images.jpg'); /* Replace with your image path */
+        background-image: url('https://st4.depositphotos.com/1606977/20336/i/450/depositphotos_203363174-stock-photo-farmer-inspecting-corn-field-summer.jpg'); /* Replace with your image path */
         background-size: cover;
         background-position: center;
         display: flex;
@@ -69,13 +70,13 @@
         <div class="service1 mt-10 d-flex " id="1">
           <div class="text">
             <h1 class="fw-bold">លក់ទំនិញកសិកម្ម</h1>
-            <p class="fs-5">យើងផ្ដល់អោយអ្នកនូវសេវាកម្ម លក់ដូរនូវទំនិញផ្សេងដែលលោកអ្នកមាន។​​ ពួកយើងជួយលោកអ្នកក្នុងការដោះស្រាយនូវបញ្ហាគ្មានទីផ្សារពិបាកក្នុងការលក់ផលិតផលកសិកម្ម  អីឡូវនេះអស់បារម្ភជាមួយសេវាកម្មរលក់ទំនិញកសិកម្មរបស់យើង។​ <br> អ្នកអាចផុសផលិតផលដែលមាននៅលើWebsiteយើងបានដោយងាយស្រួនិងលក់ដោយមានប្រសិទ្ធភាព។</p>
+            <p class="fs-5">យើងផ្ដល់អោយអ្នកនូវសេវាកម្ម លក់ដូរនូវទំនិញផ្សេងដែលលោកអ្នកមាន។​​ ពួកយើងជួយលោកអ្នកក្នុងការដោះស្រាយនូវបញ្ហាគ្មានទីផ្សារពិបាកក្នុងការលក់ផលិតផលកសិកម្ម  អីឡូវនេះអស់បារម្ភជាមួយសេវាកម្មរលក់ទំនិញកសិកម្មរបស់យើង។​ <br> អ្នកអាចផុសផលិតផលដែលមាននៅលើWebsiteយើងបានដោយងាយស្រួលនិងលក់ដោយមានប្រសិទ្ធភាព។</p>
           </div>
-          <div class="img ">
+          <div class="img1 ">
             <img
               src="https://travelinspiredliving.com/wp-content/uploads/2020/07/Farmers-Market.jpg"
               alt=""
-              width="70%"
+              width="75%"
               class="rounded"
             />
           </div>
@@ -88,7 +89,7 @@
               មិនតែប៉ុណ្ណោះទេ យើងជាផ្នែកមួយក្នុងការធ្វើអោយអាជីវកម្មលោកអ្នកកាន់តែរីកចម្រើន និងងាយស្រួលដល់ប្រជាជនកសិករគ្រប់រូប។
             </p>
           </div>
-          <div class="img">
+          <div class="img2">
             <img
               src="https://extension.oregonstate.edu/sites/default/files/styles/full/public/images/2022-09/screen-shot-2022-09-28-30247-pm.png?itok=a8tvsVmJ"
               alt=""
@@ -104,7 +105,7 @@
               យើងផ្ដល់អោយអ្នកនូវសេវាកម្មដែលអាចទិញឬលក់ផលិតកសិកម្មរបស់អ្នក​​។ អ្នកអាចស្វែងរកនូវផលិតផលកសិកម្មណាមួយដែលអ្នកត្រូវការនៅលើWebsiteយើងដោយទំនុកចិត្ត។
             </p>
           </div>
-          <div class="img">
+          <div class="img3">
             <img
               src="https://media.istockphoto.com/id/1159376930/photo/vegetables-and-fruit-in-reusable-bag-on-a-farmers-market-zero-waste-concept.jpg?s=612x612&w=0&k=20&c=rvK_UPWYJ8vdCzucmZwY1kzS7pc7DtmdjA8J43i1cek="
               alt=""
@@ -114,6 +115,7 @@
           </div>
         </div>
       </div>
+    </div>
 
   </WebLayout>
 </template>
@@ -132,7 +134,7 @@ export default {
 <style>
 .content {
   text-align: center;
-  background: rgba(83, 119, 95, 0.49);
+  background: rgba(80, 87, 82, 0.49);
   padding: 20px;
   border-radius: 10px;
 }
@@ -149,17 +151,11 @@ export default {
   color: black;
 }
 
-.service1{
+.service1,.service2{
   height: 60vh;
   width: 100%;
 
 }
-.service2{
-  height: 60vh;
-  width: 100%;
-
-}
-
 .service3{
   width: 100%;
   height: 60vh;
@@ -172,11 +168,10 @@ export default {
 .service1>.text, .service2>.text, .service3>.text{
   width: 50%;
   display: flex;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
 }
-.service1>.img, .service2>img{
+.service1>.img1{
   width: 90%;
   display: flex;
   justify-content: end;
@@ -189,51 +184,74 @@ export default {
   align-items: center;
 }
 @media (max-width: 768px) {
-  .group-card{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .service1>.text, .service2>.text, .service3>.text{
-    width: 100%;
-  }
-  .service1>.img, .service2>img, .service3>img{
-    width: 100%;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-  }
+
+  
   .detail-service{
     margin-top: auto;
+  
   }
-}
-@media (min-width:428px) and (max-width:768px)  {
 
-  .detail-service {
-   width: 100%;
+.service1 .text > h1,
+.service2 .text > h1,
+.service3 .text > h1,
+.service1 .text > p,
+.service2 .text > p,
+.service3 .text > p{
+    text-align: start;
+    padding: 10px;
   }
-  .service1, .service2, .service3{
-    display: block;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+.service1 .img1{
+  width: 600%;
+  justify-content:center;
+}
+}
+@media (min-width: 428px) and (max-width: 768px) {
+  .group-card{
     flex-wrap: wrap;
-    flex-direction: column-reverse;
-    widows: 100%;
+    gap: 20px;
+    margin: 10px 0 30px 0px;
+  }
+  .detail-service {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .service1, .service2, .service3 {
+    display: block;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
     gap: 10px;
     margin: 0;
     padding: 0;
     margin-bottom: 0;
   }
-  .service2{
-    display: flex;
-    
-    flex-direction: column-reverse;
+  .service2, .service3{
+    margin-top: 20%;
   }
-  .service1>.text, .service2>.text, .service3>.text{
+
+  .service1 > .text, .service2 > .text, .service3 > .text {
     width: 100%;
+    font-size: medium;
     text-align: center;
   }
-  .service1>.img, .service2>img, .service3>img{
-    widows: 100%;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  .service2>img{
+    width: 100%;
+    height: auto;
+    display: flex;
+    
   }
 }
+
 </style>
 

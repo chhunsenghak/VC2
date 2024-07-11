@@ -173,7 +173,6 @@ class AuthController extends Controller
         return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
     }
 
-
     public function updateBio(Request $request)
     {
         $user = Auth::user();
@@ -220,7 +219,7 @@ class AuthController extends Controller
                 $img->move(public_path('uploads'), $imageName);
                 $user->profile = $imageName;
             }
-            
+
             $user->save();
 
             return response()->json([
