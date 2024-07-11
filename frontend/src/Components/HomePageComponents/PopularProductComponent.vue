@@ -22,7 +22,7 @@
           <div class="post-entry " >
             <div class="post-content-entry  mb-4 ">
               <h2 style="color: white; font-weight: bold;">ចាប់ផ្តើមលក់ផលិតផលរបស់អ្នកឥឡូវនេះ យើងនឹងគាំទ្រអ្នក។</h2><br>
-              <h3 ><a href="/contact_us" class="btn btn-secondary me-2">ទំនាក់ទំនងភ្លាមៗ​ !</a></h3>
+              <h3 ><a href="/form_createSelling" class="btn btn-secondary me-2">ទំនាក់ទំនងភ្លាមៗ​ !</a></h3>
             </div>
           </div>
 
@@ -30,7 +30,6 @@
           <!-- end card of province -->
         </div>
       </div>
-
     </div>
   </div>
 </template>
