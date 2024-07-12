@@ -36,11 +36,11 @@
                   <span v-if="!editMode">{{ user.phone }}</span>
                   <input v-else v-model="user.phone" type="tel" class="form-control">
                 </li>
-                <li v-if="user.address" class="list-group-item">
+                <!-- <li v-if="user.address" class="list-group-item">
                   <i class="fas fa-map-marker-alt mr-2"></i>
                   <span v-if="!editMode">{{ user.address }}</span>
                   <input v-else v-model="user.address" type="text" class="form-control">
-                </li>
+                </li> -->
               </ul>
               <button v-if="editMode" @click="saveChanges" class="btn btn-primary">Save Changes</button>
             </div>
@@ -82,8 +82,11 @@ export default {
   },
   data() {
     return {
-      user: { ...useAuthStore().user }, // Ensure a copy of user data is used to track changes
-      editMode: false
+      // user: { ...useAuthStore().user }, // Ensure a copy of user data is used to track changes
+      // editMode: false
+
+      user: {...useAuthStore().user },
+      editMode: false,
     }
   },
   methods: {
@@ -92,7 +95,7 @@ export default {
         bio: this.user.bio,
         phone: this.user.phone,
         email: this.user.email,
-        address: this.user.address,
+        // address: this.user.address,
       };
       axios.post('http://127.0.0.1:8000/api/update-profile', updatedData)
         .then(() => {
