@@ -5,7 +5,6 @@ import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const store = useAuthStore()
-console.log(store.user)
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')
@@ -103,10 +102,10 @@ const logout = async () => {
     </a>
     <a
       v-if="store.isAuthenticated"
-      href=""
+      href="/chat"
       class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
     >
-      <svg 
+      <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
         height="20"

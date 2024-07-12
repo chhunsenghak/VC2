@@ -53,6 +53,7 @@ class ChatController extends Controller
             'message' => 'No images were uploaded.',
         ], 400);
     }
+
     public function sendTextMessage(Request $request)
     {
         $request->validate([
@@ -78,6 +79,7 @@ class ChatController extends Controller
             ], 200);
         }
     }
+
     public function getUser($id)
     {
         $data = DB::table('messages')
@@ -91,8 +93,89 @@ class ChatController extends Controller
             $array[$item->receiver_id] = $item;
             $item->receiver_id = DB::table('frontusers')->where('id', $item->receiver_id)->get();
         }
-        // foreach ($data as $item){
-        // }    
         return $array;
+    }
+
+    public function getConversation(Request $request, $receiver_id)
+    {
+        // return [$request->user(), $receiver_id];
+        $data = DB::table('messages')
+            ->selectRaw('sender_id, receiver_id, text, images, created_at')
+            ->where('sender_id', $request->user()->id)
+            ->where('receiver_id', $receiver_id)
+            ->orWhere('sender_id', $receiver_id)
+            ->where('receiver_id', $request->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return $data;
+    }
+
+    public function editText(Request $request,  $id)
+    {
+        try {
+            $request->validate([
+                'text' => 'required|string',
+            ]);
+            $message = chat::find($id);
+            $message->text = $request->text;
+            $message->save();
+            return response()->json([
+                'data' => $message,
+            ], 200);
+        } catch (\Exception) {
+            return response()->json([
+                'error' => 'Message not found',
+            ], 404);
+        }
+    }
+
+    public function removeAllConversations(Request $request, $user_id)
+    {
+        $user = $request->user();
+        try {
+            Chat::where('receiver_id', $user_id)->delete();
+            Chat::create(["sender_id" => $user->id, "receiver_id" => $user_id]);
+            return response()->json([
+                'status' => true,
+                'data' => 'All conversations deleted successfully',
+            ], 200);
+        } catch (\Exception) {
+            return response()->json([
+                'status' => false,
+                'error' => 'Message not found',
+            ], 404);
+        }
+    }
+
+    public function deleteTextMessage($id)
+    {
+        try {
+            $message = chat::find($id);
+            $message->delete();
+            return response()->json([
+                'data' => 'Message deleted successfully',
+            ], 200);
+        } catch (\Exception) {
+            return response()->json([
+                'error' => 'Message not found',
+            ], 404);
+        }
+    }
+
+    public function removeChatUser(Request $request, $user_id)
+    {
+        $user = $request->user();
+        try {
+            Chat::where('sender_id', $user->id)
+                ->where('receiver_id', $user_id)
+                ->delete();
+            return response()->json([
+                'data' => 'Chat history with user deleted successfully',
+            ], 200);
+        } catch (\Exception $error) {
+            return response()->json([
+                'error' => 'Error deleting chat history',
+            ], 404);
+        }
     }
 }

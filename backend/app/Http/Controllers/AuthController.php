@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Storage;
+
 use App\Http\Resources\FrontUserResource;
 use App\Models\Frontuser;
 use App\Models\User;
@@ -12,6 +16,7 @@ use App\Models\Password;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
 
 class AuthController extends Controller
 {
@@ -168,8 +173,65 @@ class AuthController extends Controller
         return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
     }
 
-
-    public function updateProfile(Request $request)
+    public function updateBio(Request $request)
     {
+        $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'bio' => 'string|max:1000',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $user->bio = $request->bio;
+
+        return response()->json([
+            'message' => 'Bio updated successfully',
+            'user' => $user,
+        ]);
+    }
+    public function updatePhoneNumber(Request $request)
+    {
+        $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'phoneNumber' => 'string|max:15',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        $user->phoneNumber = $request->phoneNumber;
+        return response()->json([
+            'message' => 'Phone number updated successfully',
+            'user' => $user,
+        ]);
+    }
+
+    public function updateProfilePicture(Request $request)
+    {
+        try {
+            $user = $request->user();
+
+            if ($request->hasFile('profile')) {
+                $img = $request->file('profile');
+                $ext = $img->getClientOriginalExtension();
+                $imageName = time() . '.' . $ext;
+                $img->move(public_path('uploads'), $imageName);
+                $user->profile = $imageName;
+            }
+
+            $user->save();
+
+            return response()->json([
+                'success' => true,
+                'data' => $user,
+                'message' => 'Profile updated successfully'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }
