@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Controllers;
 use App\Http\Controllers\Admin\CommuneController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\ProvinceController;
