@@ -5,7 +5,7 @@
         <div class="background-container p-5" style="height: 70vh">
           <div class="content-text">
             <h4>
-              យើងនឹងផ្តល់ជូននូវបន្លែ និងផ្លែឈើសរីរាង្គស្រស់ៗពីចម្ការរបស់យើងដល់មាត់ទ្វាររបស់អ្នក។
+              យើងនឹងផ្តល់ជូននូវបន្លែ និងផ្លែឈើសរីរាង្គស្រស់ៗពីចម្ការរបស់ប្រជាជនកម្ពុជាដោយផ្ទាល់
             </h4>
             <p>រួសរាន់ឡើង | ទិញឥឡូវនេះ!</p>
           </div>
@@ -22,7 +22,7 @@
             :key="category.id"
           >
             <a
-              :href="`/category/${category.id}`"
+              :href="`/allProducts?categoryId=${category.id}`"
               class="category-link d-flex flex-column align-items-center"
             >
               <img
@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import axiosInstance, { CategoryLists, ProductLists } from '@/plugins/axios'
-import WebLayout from '../../../Components/Layouts/WebLayout.vue'
+import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import ListCardProduct from '@/Components/shop/ListCardProduct.vue'
 import { onMounted, ref, computed } from 'vue'
 
@@ -52,11 +52,9 @@ const products = ref([])
 onMounted(async () => {
   try {
     const categoryResponse = await CategoryLists.getCategories()
-    console.log('Category data:', categoryResponse.data.data)
     categories.value = categoryResponse.data.data
 
-    const productResponse = await ProductLists.getProducts() // Adjust this based on your API or data source
-    console.log('Product data:', productResponse.data.data)
+    const productResponse = await ProductLists.getProducts()
     products.value = productResponse.data.data
   } catch (error) {
     console.error('Error fetching data:', error)
@@ -66,6 +64,8 @@ onMounted(async () => {
 
 <style scoped>
 .background-container {
+  position: relative;
+  background-position: center;
   background-image: url('https://www.eatthis.com/wp-content/uploads/sites/4/2023/07/fruits-and-vegetables.jpg?quality=82&strip=1');
   background-position: center;             
   background-size: cover;
@@ -74,19 +74,45 @@ onMounted(async () => {
   justify-content: center;
   align-items: center;
   color: rgb(10, 3, 3); /* Text color */
-}
-.content-text {
-  text-align: center;
-  background: rgba(
-    237,
-    244,
-    239,
-    0.5
-  ); /* Optional: Add a semi-transparent background to the content */
-  padding: 20px;
-  border-radius: 10px;
+  height: 100vh; /* Adjust height as needed */
+  overflow: hidden; /* Ensures text doesn't overflow */
 }
 
+.background-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  ); /* Gradient overlay */
+  z-index: 1;
+  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
+  opacity: 0; /* Initially hidden */
+}
+
+.background-container:hover::before {
+  opacity: 1; /* Show overlay on hover */
+}
+
+.content-text {
+  position: relative;
+  z-index: 2;
+  color: white; /* Ensuring text is readable */
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+}
+
+.background-container:hover .content-text {
+  transform: scale(1.1); /* Zoom effect on hover */
+}
 .category-container {
   display: flex;
   overflow-x: auto;

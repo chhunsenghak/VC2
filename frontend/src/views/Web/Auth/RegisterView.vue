@@ -65,7 +65,7 @@ const { handleSubmit, isSubmitting } = useForm({
 const register = handleSubmit(async (values) => {
   try {
     const { data } = await axiosInstance.post('/register', values)
-    localStorage.setItem('access_token', JSON.stringify(data.token))
+    localStorage.setItem('access_token', data.access_token)
     router.push('/')
   } catch (error) {
     alert = true
