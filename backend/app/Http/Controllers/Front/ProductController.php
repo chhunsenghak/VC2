@@ -169,6 +169,7 @@ class ProductController extends Controller
 
         return response(['success' => true, 'products' => $products], 200);
     }
+
     /**
      * Get a list of product price.
      */
@@ -192,17 +193,15 @@ class ProductController extends Controller
     /**
      * Sort and filter products by price.
      */
-    public function sortedProductsPrice(Request $request){
-    $priceFilter = $request->input('price');
-
-    $products = Products::query();
-
-    if ($priceFilter) {
-        $products->where('price', 'like', '%' . $priceFilter . '%');
-    }
-
-    $products = $products->orderBy('price')->get();
-    return response()->json(['success' => true, 'data' => $products], 200);
+    public function sortedProductsPrice(Request $request)
+    {
+        $priceFilter = $request->price;
+        $query = Products::query();
+        if ($priceFilter) {
+            $query->where('price', 'like', '%' . $priceFilter . '%');
+        }
+        $products = $query->orderBy('price', 'asc')->get();
+    
+        return response()->json(['success' => true, 'data' => $products], 200);
     }
 }
-
