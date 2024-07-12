@@ -30,20 +30,31 @@
       <div class="card-grid">
         <!-- Loop through posts based on pagination -->
         <div class="card" v-for="(store, index) in paginatedPosts" :key="index">
-          <a href="/post_detail">
+          <router-link :to="'/post/show/' + store.id">
             <img
-              v-if="store.image != null"
-              :src="`http://127.0.0.1:8000/storage/post_images/nothing.png`"
-              alt="store.title"
+              v-if="store.image == null"
+              :src="`http://127.0.0.1:8000/storage/logo.jpg`"
+              alt="card image"
+              class="w-100"
+            />
+
+            <img
+              v-else-if="store.image !== null"
+              :src="`http://127.0.0.1:8000/storage/${store.image}`"
+              alt="card image"
               class="card-image"
             />
             <div class="card-content">
               <h3 class="card-title">
                 {{ store.title }}
               </h3>
-              <p class="card-date">ថ្ងៃ​ {{ formattedDate(store.created_at) }} ម៉ោង{{ formattedTime(store.created_at) }}</p>
+              <p class="card-date">
+                ថ្ងៃ​ {{ formattedDate(store.created_at) }} ម៉ោង{{
+                  formattedTime(store.created_at)
+                }}
+              </p>
             </div>
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
@@ -84,7 +95,7 @@ export default {
       return moment(date).format('DD-MM-YYYY')
     },
     formattedTime(date) {
-      return moment(date).format('HH:mm');
+      return moment(date).format('HH:mm')
     },
     fetchPosts() {
       this.store.fetchPosts() // Assuming this method exists in your store

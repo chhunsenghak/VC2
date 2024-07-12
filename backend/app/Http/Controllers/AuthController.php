@@ -78,8 +78,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
-                'user' => $user,
-                'token' => $user->createToken("API TOKEN")->plainTextToken
+                'access_token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -184,39 +183,38 @@ class AuthController extends Controller
 
     public function updateProfile(Request $request)
     {
-    $user = Auth::user();
-    $validator = Validator::make($request->all(), [
-        'bio' => 'string|max:1000|nullable',
-        'phone' => 'string|max:15|nullable',
-        'profile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
-    ]);
+        $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'bio' => 'string|max:1000|nullable',
+            'phone' => 'string|max:15|nullable',
+            'profile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
+        ]);
 
 
-    if ($validator->fails()) {
-        return response()->json($validator->errors(), 422);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        if ($request->has('bio')) {
+            $user->bio = $request->bio;
+        }
+
+        if ($request->has('phone')) {
+            $user->phone = $request->phone;
+        }
+
+        if ($request->hasFile('profile')) {
+            $img = $request->file('profile');
+            $ext = $img->getClientOriginalExtension();
+            $imageName = time() . '.' . $ext;
+            $img->move(public_path('uploads'), $imageName);
+            $user->profile = $imageName;
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile updated successfully',
+            'user' => $user,
+        ], 200);
     }
-
-    if ($request->has('bio')) {
-        $user->bio = $request->bio;
-    }
-
-    if ($request->has('phone')) {
-        $user->phone = $request->phone;
-    }
-
-    if ($request->hasFile('profile')) {
-        $img = $request->file('profile');
-        $ext = $img->getClientOriginalExtension();
-        $imageName = time() . '.' . $ext;
-        $img->move(public_path('uploads'), $imageName);
-        $user->profile = $imageName;
-    }
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Profile updated successfully',
-        'user' => $user,
-    ], 200);
-}
-
 }

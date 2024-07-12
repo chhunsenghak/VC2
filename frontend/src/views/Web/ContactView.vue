@@ -1,13 +1,12 @@
 <template>
   <WebLayout>
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
     <div class="container mt-20">
       <div class="image-contact">
         <img src="../../assets/images/contact.png" class="card" />
       </div>
       <div class="d-flex justify-content-around col-12 mt-10">
         <InformationComponentVue></InformationComponentVue>
-        <div class="border-start"> </div>
+        <div class="border-start"></div>
         <ContactComponentVue></ContactComponentVue>
       </div>
     </div>
@@ -27,45 +26,16 @@ export default {
   }
 }
 </script>
+<<<<<<< HEAD
 <style  scoped>
 
 
+=======
+<style scoped>
+>>>>>>> b12955c4ddaf34069921dfbb97ac4978bd555299
 img {
   width: 100%;
 }
 
 
-.info-right input {
-  border: 1px solid #89ad6c;
-  border-radius: 5px;
-  outline: none;
-  height: 50px;
-  width: 70%;
-}
-
-.info-left input {
-  border: 1px solid #89ad6c;
-  background-color: #ecf2f3;
-  border-radius: 5px;
-  padding: 10px;
-  outline: none;
-  width: 100%;
-}
-
-.input-container {
-  position: relative;
-}
-
-.input-container i {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 15px;
-  font-size: 1.2em;
-  color: #40740c;
-}
-
-.input-container input {
-  padding-left: 40px;
-}
 </style>

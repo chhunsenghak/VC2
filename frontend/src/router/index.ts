@@ -47,7 +47,7 @@ const router = createRouter({
       component: () => import('@/views/Web/Post/ListView.vue')
     },
     {
-      path: '/post_detail',
+      path: '/post/show/:id',
       name: 'postpage',
       component: () => import('@/views/Web/Post/PostPage.vue')
     },
@@ -91,14 +91,13 @@ const router = createRouter({
       path: '/chat',
       name: 'chatPage',
       component: () => import('@/views/Web/Chat/CartPageView.vue'),
-      
+
     }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-
-  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password','/post', '/reset_password', '/services','/post_detail', '/allProducts','/chat']
+  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/reset_password', '/services']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore();
   try {

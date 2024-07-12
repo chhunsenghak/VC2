@@ -5,7 +5,6 @@ import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const store = useAuthStore()
-console.log(store.user)
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')
@@ -84,7 +83,7 @@ const logout = async () => {
       />
     </svg>
     <a
-      v-if="store.isAuthenticated && store.user.shop"
+      v-if="store.isAuthenticated && store.user.shop" 
       href="/myProducts"
       class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
     >
@@ -102,7 +101,7 @@ const logout = async () => {
       </svg>
     </a>
     <a
-      v-if="store.isAuthenticated"
+      v-if="store.isAuthenticated "
       href=""
       class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
     >
@@ -141,7 +140,7 @@ const logout = async () => {
           />
           <img
             v-else
-            :src="`http://127.0.0.1:8000/storage/profiles/${store.user.profile}`"
+            :src="`http://127.0.0.1:8000/storage/${store.user.profile}`"
             class="rounded-circle"
             width="40px"
             alt="profile"
