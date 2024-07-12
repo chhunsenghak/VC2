@@ -141,7 +141,7 @@ const logout = async () => {
           />
           <img
             v-else
-            :src="`http://127.0.0.1:8000/storage/profiles/${store.user.profile}`"
+            :src="`http://127.0.0.1:8000/storage/${store.user.profile}`"
             class="rounded-circle"
             width="40px"
             alt="profile"

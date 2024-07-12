@@ -43,7 +43,10 @@ Route::prefix('/user')->middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
-Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
+Route::prefix('/post')->middleware('auth:sanctum')->group(function () {
+    Route::get('/list', [PostController::class, 'index']);
+    Route::get('/show/{id}', [PostController::class, 'show']);
+});
 
 // PROVINCE ROUTES
 Route::prefix('provinces')->group(function () {
