@@ -78,8 +78,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
-                'user' => $user,
-                'token' => $user->createToken("API TOKEN")->plainTextToken
+                'access_token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -195,6 +194,10 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
         if ($request->has('bio')) {
             $user->bio = $request->bio;
         }
@@ -216,11 +219,5 @@ class AuthController extends Controller
             'message' => 'Profile updated successfully',
             'user' => $user,
         ], 200);
-    }
-    public function createShop(Request $request)
-    {
-        $user = $request->user();
-        return $user;
-        // return response()->json(['message' => 'Shop created successfully', 'data' => $shop], 200);
     }
 }

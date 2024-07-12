@@ -5,7 +5,6 @@ import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const store = useAuthStore()
-console.log(store.user)
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')
@@ -141,7 +140,7 @@ const logout = async () => {
           />
           <img
             v-else
-            :src="`http://127.0.0.1:8000/storage/profiles/${store.user.profile}`"
+            :src="`http://127.0.0.1:8000/storage/${store.user.profile}`"
             class="rounded-circle"
             width="40px"
             alt="profile"
