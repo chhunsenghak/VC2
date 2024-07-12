@@ -42,11 +42,6 @@ const router = createRouter({
       component: () => import('../views/Web/HomeView.vue')
     },
     {
-      path: '/form_createSelling',
-      name: 'form_creatSelling',
-      component: () => import('../Components/HomePageComponents/FormCreateSell.vue')
-    },
-    {
       path: '/post',
       name: 'post',
       component: () => import('@/views/Web/Post/ListView.vue')

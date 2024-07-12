@@ -5,7 +5,6 @@ import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const store = useAuthStore()
-console.log(store.user)
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')

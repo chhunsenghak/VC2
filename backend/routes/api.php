@@ -40,9 +40,11 @@ Route::prefix('/user')->middleware('auth:sanctum')->group(function () {
     Route::post('/update/profile', [FrontuserController::class, 'updateProfileUser']);
     Route::get('/{id}', [UserController::class, 'show']);
     Route::get('/list', [UserController::class, 'index']);
+    Route::put('/create/shop', [UserController::class,'edit']);
 });
 
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
+
 Route::prefix('/post')->middleware('auth:sanctum')->group(function () {
     Route::get('/list', [PostController::class, 'index']);
     Route::get('/show/{id}', [PostController::class, 'show']);
