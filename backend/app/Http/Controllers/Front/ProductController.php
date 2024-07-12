@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ListAllNameProductsResource;
 use App\Http\Resources\ListProductResource;
 use App\Models\Products;
+use App\Models\Stock;
+use App\Models\StockType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -27,35 +29,50 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        // Validate request data
+        $validated = $request->validate([
+            'frontuser_id' => 'required|integer',
             'name' => 'required|string',
             'description' => 'required|string',
-            'price' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'discount' => 'string',
-            'stock_type_id' => 'integer',
+            'price' => 'required|string',
             'categorys_id' => 'required|integer',
-            'shop_id' => 'integer',
+            'stock_type_id' => 'required|integer', 
+            'quantity' => 'required|integer', 
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
+        // Check if StockType exists and its limit_quantity
+        $stock_type = StockType::find($request->stock_type_id);
+        if (!$stock_type) {
+            return response()->json(['success' => false, 'message' => 'Stock Type not found'], 404);
         }
 
-        $imageName = null;
-        if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('products_images'), $imageName);
+        if ($stock_type->limit_quantity < $request->quantity) {
+            return response()->json(['success' => false, 'message' => 'Stock limit exceeded'], 422);
         }
 
+        // Create stock entry
+        $stock = Stock::create([
+            'quantity' => $request->quantity,
+            'stock_type_id' => $request->stock_type_id,
+        ]);
+
+        // Handle image upload
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('products_images'), $imageName);
+
+        // Create product
         $product = Products::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image' => $imageName ? 'products_images/' . $imageName : null,
             'price' => $request->price,
             'discount' => $request->discount,
-            'stock' => $request->stock,
             'categorys_id' => $request->categorys_id,
+            'stock_id' => $stock->id,
+            'break_product_at' => $request->break_product_at,
+            'image' => $imageName,
+            'quantity' => $request->quantity,
+            'frontuser_id' => $request->frontuser_id,
         ]);
 
         return response()->json(['success' => true, 'data' => $product], 201);
@@ -99,6 +116,18 @@ class ProductController extends Controller
             return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
         }
 
+        // Check if StockType exists and its limit_quantity
+        if ($request->has('stock_type_id')) {
+            $stock_type = StockType::find($request->stock_type_id);
+            if (!$stock_type) {
+                return response()->json(['success' => false, 'message' => 'Stock Type not found'], 404);
+            }
+
+            if ($stock_type->limit_quantity < $request->quantity) {
+                return response()->json(['success' => false, 'message' => 'Stock limit exceeded'], 422);
+            }
+        }
+
         $imageName = $product->image;
         if ($request->hasFile('image')) {
             // Delete the old image if exists
@@ -108,7 +137,6 @@ class ProductController extends Controller
 
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('products_images'), $imageName);
-            $imageName = 'products_images/' . $imageName;
         }
 
         $product->update($request->all());

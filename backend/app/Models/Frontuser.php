@@ -26,7 +26,7 @@ class Frontuser extends Authenticatable
         'email',
         'password',
         'bio',
-        'phoneNumber',
+        'phone',
         'profile',
 
     ];
