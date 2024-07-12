@@ -33,15 +33,15 @@
           <router-link :to="'/post/show/' + store.id">
             <img
               v-if="store.image == null"
-              :src="`http://127.0.0.1:8000/storage/post_images/logo.jpg`"
-              alt="store.title"
+              :src="`http://127.0.0.1:8000/storage/logo.jpg`"
+              alt="card image"
               class="w-100"
             />
 
             <img
-              v-if="store.image !== null"
-              :src="`http://127.0.0.1:8000/storage/post_images/${store.image}`"
-              alt="store.title"
+              v-else-if="store.image !== null"
+              :src="`http://127.0.0.1:8000/storage/${store.image}`"
+              alt="card image"
               class="card-image"
             />
             <div class="card-content">
