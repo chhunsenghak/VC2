@@ -10,8 +10,8 @@
               តោះរីករាយទស្សនាផ្សារកសិករ តោះទិញរបស់ដែលយើងមានទាំងអស់នៅទីនេះ (ផ្លែឈើ សាច់ បន្លែ...)
             </p>
             <p>
-              <a href="" class="btn btn-secondary me-2">ទិញឥឡូវនេះ</a>
-              <a href="#" class="btn btn-white-outline">អំពីរយើង</a>
+              <a href="" class="btn btn-secondary me-2 px-5 ">ទិញឥឡូវនេះ</a>
+        
             </p>
           </div>
         </div>

@@ -18,28 +18,30 @@
     <div class="card-section">
       <!-- Pagination Controls -->
       <div class="pagination mb-5">
-        <button @click="previousPage" :disabled="currentPage === 1">ពីមុន</button>
-        <span>{{ currentPage }} / {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages">បន្ទាប់</button>
-        <button @click="showAllPosts">មើលបន្ថែម​</button>
+        <button class="btn" @click="previousPage" :disabled="currentPage === 1">ពីមុន</button>
+        <span class="text-center mt-2">{{ currentPage }} / {{ totalPages }}</span>
+        <button class="btn" @click="nextPage" :disabled="currentPage === totalPages">
+          បន្ទាប់
+        </button>
+        <button class="btn" @click="showAllPosts">មើលបន្ថែម​</button>
       </div>
 
       <!-- Card Post -->
       <div class="card-grid">
         <!-- Loop through posts based on pagination -->
-        <div class="card" v-for="(post, index) in paginatedPosts" :key="index">
+        <div class="card" v-for="(store, index) in paginatedPosts" :key="index">
           <a href="/post_detail">
             <img
-              src="https://img.freepik.com/free-photo/healthy-drink-vegetable-smoothie_1150-26219.jpg?t=st=1720432009~exp=1720435609~hmac=e8d15e33f2ea7514087138a4363cc631a951003cad5474398885ffb4e0a88ffd&w=900"
-              alt="post.title"
+              v-if="store.image != null"
+              :src="`http://127.0.0.1:8000/storage/post_images/nothing.png`"
+              alt="store.title"
               class="card-image"
             />
             <div class="card-content">
               <h3 class="card-title">
-                ទឹក៣យ៉ាង សម្បូរវីតាមីន សារធាតុចិញ្ចឹម ជួយបណ្ដេញ ជាតិពុលគ្រោះថ្នាក់ កាកសំណល់កង្វក់
-                ចេញពីក្នុងខ្លួន គ្មានសល់
+                {{ store.title }}
               </h3>
-              <p class="card-date">July 08 2024</p>
+              <p class="card-date">ថ្ងៃ​ {{ formattedDate(store.created_at) }} ម៉ោង{{ formattedTime(store.created_at) }}</p>
             </div>
           </a>
         </div>
@@ -52,7 +54,7 @@
 <script>
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { usePostStore } from '@/stores/post-list'
-
+import moment from 'moment'
 export default {
   name: 'PostList',
   components: { WebLayout },
@@ -60,7 +62,7 @@ export default {
     return {
       store: usePostStore(),
       currentPage: 1,
-      postsPerPage: 4 // Number of posts per page
+      postsPerPage: 8 // Number of posts per page
     }
   },
   computed: {
@@ -78,6 +80,12 @@ export default {
     this.fetchPosts()
   },
   methods: {
+    formattedDate(date) {
+      return moment(date).format('DD-MM-YYYY')
+    },
+    formattedTime(date) {
+      return moment(date).format('HH:mm');
+    },
     fetchPosts() {
       this.store.fetchPosts() // Assuming this method exists in your store
     },

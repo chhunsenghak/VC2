@@ -173,6 +173,15 @@ class AuthController extends Controller
         return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
     }
 
+
+
+    // public function updateBio(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     $validator = Validator::make($request->all(), [
+    //         'bio' => 'string|max:1000',
+    //     ]);
+
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
@@ -208,7 +217,8 @@ class AuthController extends Controller
             'user' => $user,
         ], 200);
     }
-    public function createShop(Request $request){
+    public function createShop(Request $request)
+    {
         $user = $request->user();
         return $user;
         // return response()->json(['message' => 'Shop created successfully', 'data' => $shop], 200);

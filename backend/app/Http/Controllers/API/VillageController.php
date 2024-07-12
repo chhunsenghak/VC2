@@ -57,3 +57,5 @@ class VillageController extends Controller
         return response(['sucess' => true, 'message' => "Village was deleted"], 200);
     }
 }
+
+

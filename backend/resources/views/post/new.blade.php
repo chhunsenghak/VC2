@@ -3,16 +3,20 @@
     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
       <div class="container mx-auto px-6 py-1 pb-16">
         <div class="bg-white shadow-md rounded my-6 p-5">
-          <form method="POST" action="{{ route('admin.posts.store') }}">
+          <form method="POST" action="{{ route('admin.posts.store') }}" ​​​ enctype="multipart/form-data">
             @csrf
             <div class="flex flex-col space-y-2">
               <label for="title" class="text-gray-700 select-none font-medium">Title</label>
-              <input id="title" type="text" name="title" value="{{ old('title') }}" placeholder="Enter title" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+              <input id="title" type="text" value="{{old('title')}}" name="title" placeholder="Enter title" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
             </div>
 
             <div class="flex flex-col space-y-2">
               <label for="description" class="text-gray-700 select-none font-medium">Description</label>
               <textarea name="description" id="description" placeholder="Enter description" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" rows="5">{{ old('description') }}</textarea>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <label for="image" class="text-gray-700 select-none font-medium">Images</label>
+              <input id="image" type="file" name="image" placeholder="Enter Image" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
             </div>
 
             <h3 class="text-xl my-4 text-gray-600">Role</h3>

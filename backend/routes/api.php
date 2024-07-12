@@ -94,6 +94,8 @@ Route::prefix('category')->group(function () {
 Route::prefix('products')->group(function () {
     Route::get('/sorted-products', [ProductController::class, 'sortedProducts']);
     Route::get('/list-name-products', [ProductController::class, 'listNameProducts']);
+    Route::get('/sorted-products-price', [ProductController::class, 'sortedProductsPrice']);
+    Route::get('/list-price-products', [ProductController::class, 'listPriceProducts']);
     Route::get('/list', [ProductController::class, 'index']);
     Route::post('/create', [ProductController::class, 'store']);
     Route::get('/show/{id}', [ProductController::class, 'show']);
@@ -118,3 +120,4 @@ Route::prefix('stocks')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/update-profile', [AuthController::class, 'updateProfile']);
 });
+
