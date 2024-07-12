@@ -111,9 +111,9 @@ export default {
 <style scoped>
 .pagination {
   margin-left: 65rem;
-  button {
-    border: 1px solid grey;
-  }
+}
+button {
+  border: 1px solid grey;
 }
 .banner-container {
   position: relative;
@@ -182,10 +182,10 @@ export default {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  a {
-    color: black;
-    text-decoration: none;
-  }
+}
+a {
+  color: black;
+  text-decoration: none;
 }
 
 .card:hover {

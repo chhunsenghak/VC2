@@ -36,6 +36,7 @@ class ProductController extends Controller
             'stock_type_id' => 'integer',
             'categorys_id' => 'required|integer',
             'shop_id' => 'integer',
+            
         ]);
 
         if ($validator->fails()) {
