@@ -8,7 +8,7 @@ const store = useAuthStore()
 console.log(store.user)
 const logout = async () => {
   try {
-    const { data } = await axiosInstance.post('/user/logout')
+    const  data  = await axiosInstance.post('/user/logout')
     localStorage.removeItem('access_token')
     location.reload()
     router.push('/login')

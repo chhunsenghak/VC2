@@ -4,21 +4,22 @@
       <div class="row">
         <div class="col-md-4 text-center">
           <img
-            :src="`http://127.0.0.1:8000/storage/profiles/${user.user.profile}`"
+            :src="`http://127.0.0.1:8000/storage/profiles/${user.profile}`"
             class="rounded-circle mb-3" width="120px"
-            alt="Profile Picture"
+            alt="User Profile"
           />
-          <h2>{{ user.user.name }}</h2>
-          <p>{{ user.user.email }}</p>
+          <h2>{{ user.name }}</h2>
+          <p>{{ user.email }}</p>
+          <button @click="editMode = true" class="btn btn-primary">Edit Profile</button>
         </div>
         <div class="col-md-8">
           <div class="card">
             <div class="card-body">
               <h3 class="card-title">About Me</h3>
-              <p v-if="user.user.bio !== null" class="card-text">
-                {{ user.user.bio }}
+              <p v-if="!editMode" class="card-text">
+                {{ user.bio }}
               </p>
-              <p v-else>add bio</p>
+              <textarea v-else v-model="user.bio" class="form-control"></textarea>
             </div>
           </div>
           <div class="card mt-4">
@@ -27,17 +28,21 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   <i class="fas fa-envelope mr-2"></i>
-                  {{ user.user.email }}
+                  <span v-if="!editMode">{{ user.email }}</span>
+                  <input v-else v-model="user.email" type="email" class="form-control">
                 </li>
                 <li class="list-group-item">
                   <i class="fas fa-phone-alt mr-2"></i>
-                  {{ user.user.phone }}
+                  <span v-if="!editMode">{{ user.phone }}</span>
+                  <input v-else v-model="user.phone" type="tel" class="form-control">
                 </li>
-                <li v-if="user.user.address" class="list-group-item">
+                <li v-if="user.address" class="list-group-item">
                   <i class="fas fa-map-marker-alt mr-2"></i>
-                  {{ user.user.address }}
+                  <span v-if="!editMode">{{ user.address }}</span>
+                  <input v-else v-model="user.address" type="text" class="form-control">
                 </li>
               </ul>
+              <button v-if="editMode" @click="saveChanges" class="btn btn-primary">Save Changes</button>
             </div>
           </div>
           <div class="card mt-4">
@@ -64,10 +69,12 @@
     </div>
   </WebLayout>
 </template>
-  
-  <script>
+
+<script>
+import axios from 'axios';
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { useAuthStore } from '@/stores/auth-store'
+
 export default {
   name: 'ProfilePage',
   components: {
@@ -75,11 +82,33 @@ export default {
   },
   data() {
     return {
-      user: useAuthStore()
+      user: { ...useAuthStore().user }, // Ensure a copy of user data is used to track changes
+      editMode: false
+    }
+  },
+  methods: {
+    saveChanges() {
+      const updatedData = {
+        bio: this.user.bio,
+        phone: this.user.phone,
+        email: this.user.email,
+        address: this.user.address,
+      };
+      axios.post('http://127.0.0.1:8000/api/update-profile', updatedData)
+        .then(() => {
+          this.editMode = false;
+          // Show success alert
+          alert('Changes saved successfully!');
+        })
+        .catch(error => {
+          console.error(error);
+          // Show error alert
+          alert('Failed to save changes.');
+        });
     }
   }
 }
 </script>
-  
-  <style>
+
+<style>
 </style>
