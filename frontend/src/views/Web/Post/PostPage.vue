@@ -13,7 +13,7 @@
           </p>
           <img
             v-if="store.post.image !== null"
-            :src="`http://127.0.0.1:8000/storage/post_images/${store.post.image}`"
+            :src="`http://127.0.0.1:8000/storage/${store.post.image}`"
             alt="blog.image"
             style="width: 100%; margin-top: 0.5rem; border-radius: 0.5rem"
           />

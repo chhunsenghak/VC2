@@ -66,7 +66,7 @@ class PostController extends Controller
             $img = $request->file('image');
             $ext = $img->getClientOriginalExtension();
             $imageName = time() . '.' . $ext;
-            $img->move(public_path('storage/post_images'), $imageName);
+            $img->move(public_path('storage'), $imageName);
             $data['image'] = $imageName;
         }
 
@@ -117,7 +117,7 @@ class PostController extends Controller
             $img = $request->file('image');
             $ext = $img->getClientOriginalExtension();
             $imageName = time() . '.' . $ext;
-            $img->move(public_path('storage/post_images'), $imageName);
+            $img->move(public_path('storage'), $imageName);
             $data['image'] = $imageName;
         }
         $post->update($data);
