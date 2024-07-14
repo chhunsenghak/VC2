@@ -190,13 +190,10 @@ class AuthController extends Controller
             'profile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
-        }
+        }   
 
         if ($request->has('bio')) {
             $user->bio = $request->bio;
