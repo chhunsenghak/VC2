@@ -193,7 +193,7 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
-        }
+        }   
 
         if ($request->has('bio')) {
             $user->bio = $request->bio;

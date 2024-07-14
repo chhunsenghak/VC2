@@ -3,7 +3,7 @@
     <div class="card-content​ text-center">
       <div class="card-img">
         <img
-          :src="`http://127.0.0.1:8000/storage/profiles/${userStore.user.profile}`"
+          :src="`http://127.0.0.1:8000/storage/${userStore.user.profile}`"
           alt="user.profile"
           class="profile-image"
         />
