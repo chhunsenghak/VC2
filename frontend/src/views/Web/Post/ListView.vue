@@ -1,5 +1,6 @@
 <template>
   <WebLayout>
+    <div class="container">
     <!-- Banner Section -->
     <div class="banner-container">
       <img
@@ -9,8 +10,8 @@
       />
       <div class="banner-overlay"></div>
       <div class="banner-content">
-        <h2 class="banner-title">Discover Our Posts</h2>
-        <p class="banner-subtitle">Explore the latest posts and insights</p>
+        <h2 class="banner-title">ស្វែងយល់បន្ថែមអំពីការផ្សព្វផ្សាយផលិតផលរបស់ពួកយើង</h2>
+        <p class="banner-subtitle">ស្វែងរកការបង្ហោះ និងការយល់ដឹងថ្មីៗបំផុត</p>
       </div>
     </div>
 
@@ -18,9 +19,9 @@
     <div class="card-section">
       <!-- Pagination Controls -->
       <div class="pagination mb-5">
-        <button class="btn" @click="previousPage" :disabled="currentPage === 1">ពីមុន</button>
-        <span class="text-center mt-2">{{ currentPage }} / {{ totalPages }}</span>
-        <button class="btn" @click="nextPage" :disabled="currentPage === totalPages">
+        <button class="btn " @click="previousPage" :disabled="currentPage === 1">ពីមុន</button>
+        <span class="text-center mt-2 p-2">{{ currentPage }} / {{ totalPages }}</span>
+        <button class="btn mr-3" @click="nextPage" :disabled="currentPage === totalPages">
           បន្ទាប់
         </button>
         <button class="btn" @click="showAllPosts">មើលបន្ថែម​</button>
@@ -58,6 +59,7 @@
         </div>
       </div>
     </div>
+  </div>
   </WebLayout>
 </template>
 
@@ -121,7 +123,7 @@ export default {
 
 <style scoped>
 .pagination {
-  margin-left: 65rem;
+  margin-left: 56rem;
 }
 button {
   border: 1px solid grey;

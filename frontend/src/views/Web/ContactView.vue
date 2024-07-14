@@ -26,13 +26,7 @@ export default {
   }
 }
 </script>
-<<<<<<< HEAD
-<style  scoped>
-
-
-=======
 <style scoped>
->>>>>>> b12955c4ddaf34069921dfbb97ac4978bd555299
 img {
   width: 100%;
 }

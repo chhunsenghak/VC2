@@ -63,13 +63,13 @@
           </div>
         </div>
 
-        <div class="col-lg-5" style="margin-top: -3rem;">
+        <div class="col-lg-5" >
           <div class="img-wrap">
             <img src="../../assets/images/why-choose-us-img.jpg" alt="Image" class="img-fluid" width="300px" />
-            <img src="../../assets/images/why-choose-us-img.jpg" alt="Image" class="img-fluid" width="250px"
-              style="margin-top: -15rem;margin-left: 40%;" />
-            <img src="../../assets/images/why-choose-us-img.jpg" alt="Image" class="img-fluid" width="230px"
-              style="margin-top: -7rem;margin-left: 5%;" />
+            <img src="../../assets/images/vegetables/Avocado.jpg" alt="Image" class="img-fluid" width="250px"
+              style="margin-top: -18rem;margin-left: 45%;" />
+            <img src="../../assets/images/vegetables/Cabbage.jpg" alt="Image" class="img-fluid" width="230px"
+              style="margin-top: -8rem;margin-left: 10%;" />
           </div>
         </div>
       </div>
