@@ -1,5 +1,5 @@
 <template>
-  <div v-if="productsStore.length <0" class="row col-8">
+  <div v-if="productsStore.length > 0" class="row col-8">
     <!-- Button to Open Dialog -->
     <form-create-product></form-create-product>
 
@@ -54,7 +54,7 @@
         <img src="../../image/empty-cart.png" width="250px" class="mx-5">
       
         <h5 class="card-title">No Product Available</h5>
-        <p class="card-text">We currently do not have any product information available..</p>
+        <p class="card-text">We currently do not have any product information available.</p>
       </div>
     </div>
   </div>
@@ -114,10 +114,11 @@ export default {
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
 }
 
 .card-header {
-  background-color: #007bff;
+  background-color: #088a54;
   color: #fff;
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid #dee2e6;
