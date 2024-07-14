@@ -23,26 +23,24 @@ class ChatController extends Controller
         event(new Message($request->input('send_id'), $request->input('receiver_id'), $request->input('text'), $request->input('images')));
     }
 
-    public function uploadMultipleImages(Request $request)
+    public function uploadMultipleImages(Request $request, $id)
     {
         $request->validate([
             'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'sender_id' => 'required|integer',
-            'receiver_id' => 'required|integer',
         ]);
         $imagesPaths = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . $image->getClientOriginalName();
-                $image->move(public_path('storage/message_images'), $imageName);
+                $image->move(public_path('storage'), $imageName);
                 $imagesPaths[] = $imageName;
             }
             $message = chat::create([
-                "sender_id" => $request->input('sender_id'),
-                "receiver_id" => $request->input('receiver_id'),
+                "sender_id" => $request->user()->id,
+                "receiver_id" => $id,
                 "images" => implode(',', $imagesPaths),
             ]);
-            event(new Message($request->input('sender_id'), $request->input('receiver_id'), $request->input('text'), $request->input('imagesPaths')));
+            event(new Message($request->input('text'), $request->input('imagesPaths')));
             return response()->json([
                 'success' => true,
                 'data' => $message,
@@ -54,20 +52,18 @@ class ChatController extends Controller
         ], 400);
     }
 
-    public function sendTextMessage(Request $request)
+    public function sendTextMessage(Request $request, $id)
     {
         $request->validate([
             'text' => 'required|string',
-            'sender_id' => 'required|integer',
-            'receiver_id' => 'required|integer',
         ]);
         try {
             $message = chat::create([
-                "sender_id" => $request->input('sender_id'),
-                "receiver_id" => $request->input('receiver_id'),
+                "sender_id" => $request->user()->id,
+                "receiver_id" => $id,
                 "text" => $request->input('text'),
             ]);
-            event(new Message($request->input('sender_id'), $request->input('receiver_id'), $request->input('text'), $request->input('imagesPaths')));
+            event(new Message($request->input('text'), $request->input('imagesPaths')));
             return response()->json([
                 'success' => true,
                 'data' => $message,
@@ -80,20 +76,26 @@ class ChatController extends Controller
         }
     }
 
-    public function getUser($id)
+    public function getUser(Request $request)
     {
         $data = DB::table('messages')
-            ->selectRaw('distinct sender_id, receiver_id, text, images, created_at')
-            ->where('sender_id', $id)
+            ->select('sender_id', 'receiver_id', DB::raw('MIN(text) as text'), DB::raw('MIN(images) as images'), DB::raw('MIN(created_at) as created_at'))
+            ->where('sender_id', $request->user()->id)
+            ->Where('receiver_id', "!=", $request->user()->id)
+            ->orWhere('sender_id', "!=", $request->user()->id)
+            ->where('receiver_id', $request->user()->id)
             ->orderBy('created_at', 'desc')
+            ->groupBy('sender_id', 'receiver_id')
             ->get();
-        $data = ListChatUserResource::collection($data);
+        // $data = ListChatUserResource::collection($data);
         $array = [];
         foreach ($data as $item) {
-            $array[$item->receiver_id] = $item;
+            $array[] = $item;
             $item->receiver_id = DB::table('frontusers')->where('id', $item->receiver_id)->get();
         }
-        return $array;
+        return response()->json([
+            'data' => $array,
+        ], 200);
     }
 
     public function getConversation(Request $request, $receiver_id)

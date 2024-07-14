@@ -1,18 +1,12 @@
 <template>
   <div class="container">
     <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
-      <div
-        class="d-flex align-items-center flex-shrink-8 p-3 link-dark text-decoration-none border-botton"
-      ></div>
+      <div class="d-flex align-items-center flex-shrink-8 p-3 link-dark text-decoration-none border-botton"></div>
       <div class="list-group list-group-flush border-bottom scrollarea">
-        <div
-          class="list-group-item list-group-item-action py-3 th-tight"
-          v-for="message in messages"
-          :key="message"
-        >
+        <div class="list-group-item list-group-item-action py-3 th-tight" v-for="message in messages" :key="message">
           {{ message }}
           <div class="d-flex w-100 align-items-center justify-content-between">
-            
+
           </div>
           <div class="col-18-mb-1 small">
             {{ message.text }}
@@ -20,17 +14,13 @@
         </div>
       </div>
     </div>
-    <div
-      class="d-flex align-items-center flex-shrink-8 p-3 link-dark text-decoration-none border-top"
-    >
+    <div class="d-flex align-items-center flex-shrink-8 p-3 link-dark text-decoration-none border-top">
       <form @submit.prevent="sendMessage">
         <input class="fs-5 fw-semibold" v-model="text" />
       </form>
     </div>
   </div>
 </template>
-  
-
 <script>
 import { ref } from 'vue'
 import axios from 'axios'

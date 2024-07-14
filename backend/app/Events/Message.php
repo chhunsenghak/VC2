@@ -19,13 +19,9 @@ class Message implements ShouldBroadcast
      */
 
     public $text;
-    public $sender_id;
-    public $reciever_id;
     public $images;
-    public function __construct($reciever_id, $sender_id, $text, $images)
+    public function __construct( $text, $images)
     {
-        $this->reciever_id = $reciever_id;
-        $this->sender_id = $sender_id;
         $this->text = $text;
         $this->images = $images;
     }

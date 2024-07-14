@@ -119,14 +119,14 @@ Route::prefix('stocks')->group(function () {
 
 Route::prefix("chat")->middleware('auth:sanctum')->group(function () {
     Route::get("/message", [ChatController::class, 'index']);
-    Route::post("/sendText", [ChatController::class, 'sendTextMessage']);
-    Route::post("/sendImage", [ChatController::class, 'uploadMultipleImages']);
-    Route::get("/getUser/{id}", [ChatController::class, 'getUser']);
+    Route::get("/getUser", [ChatController::class, 'getUser']);
+    Route::get("/getConversation/{receiver_id}", [ChatController::class, 'getConversation']);
+    Route::post("/sendText/{receiver_id}", [ChatController::class, 'sendTextMessage']);
+    Route::post("/sendImage/{receiver_id}", [ChatController::class, 'uploadMultipleImages']);
     Route::put("/edit/text/{id}", [ChatController::class, 'editText']);
     Route::delete("/remove/message/{id}", [ChatController::class, 'deleteTextMessage']);
     Route::delete("/remove/all/messages/{id}", [ChatController::class, 'removeAllConversations']);
     Route::delete("/remove/user/{id}", [ChatController::class, 'removeChatUser']);
-    Route::get("/getConversation/{receiver_id}", [ChatController::class, 'getConversation']);
 });
 //Update Bio Route
 Route::middleware('auth:sanctum')->group(function () {
