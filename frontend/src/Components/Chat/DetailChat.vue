@@ -1,78 +1,106 @@
 <template>
-  <div class="col-8 overflow-y-scroll" style="height: 550px; ">
+  <div v-if="userChatDetail.length !== 0" class="col-8 overflow-y-scroll" style="height: 550px; scrollbar-width: thin;">
     <div
       class="col-8 chat-header bg-white text-dark shadow-sm p-3 d-flex justify-content-between align-items-center position-fixed">
       <div class="d-flex align-items-center">
         <div class="avatar mr-3">
-          <img :src="currentUser.avatar" alt="Avatar" class="rounded-circle" />
+          <img v-if="userChatDetail.receiver.profile"
+            :src="`http://127.0.0.1:8000/storage/${userChatDetail.receiver.profile}`" class="rounded-circle  w-20"
+            alt="Avatar" />
+          <img v-else src="../../assets/images/user.png" class="rounded-circle  w-18" alt="Avatar" />
         </div>
         <div class="user-info">
-          <h5 class="mb-0">{{ currentUser.name }}</h5>
-          <small>{{ currentUser.status }}</small>
+          <h5 class="mb-1">{{ userChatDetail.receiver.name }}</h5>
         </div>
       </div>
       <div class="actions">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-          class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-          <path
-            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
-        </svg>
+        <button class="btn text-white dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+            class="bi bi-three-dots-vertical text-dark" viewBox="0 0 16 16">
+            <path
+              d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+          </svg>
+        </button>
+        <ul class="dropdown-menu">
+          <li><button class="dropdown-item" @click="clearAllMessage(userChatDetail.receiver.id)">Clear</button></li>
+          <li><button class="dropdown-item" @click="deleteUserChat(userChatDetail.receiver.id)">Delete</button></li>
+        </ul>
       </div>
     </div>
-    <div class="chat-body p-3" ref="chatBody">
-      <div class="message" v-for="message in messages" :key="message.id">
-        <div class="message-bubble p-2 rounded" :class="{ 'bg-primary text-white': message.sender === 'you' }">
-          <p class="mb-1">{{ message.text }}</p>
-          <small class="text-muted">{{ getFormattedTime(message.timestamp) }}</small>
+    <div class="chat-body p-3 mt-20 mb-20" ref="chatBody">
+      <div v-for="message in userChatDetail.data" :key="message.id">
+        <div v-if="message.sender_id == store.user.id && message.text !== null && message.images == null"
+          class="message">
+          <div class="message-bubble p-2 rounded​​ bg-primary rounded text-white">
+            <p class="mb-1">{{ message.text }}</p>
+            <small class="text-muted">{{ getFormattedTime(message.created_at) }}</small>
+          </div>
+        </div>
+        <div v-else-if="message.sender_id == store.user.id && message.text == null && message.images !== null"
+          class="message">
+          <div class="message-bubble p-2 rounded​​ d-flex flex-column rounded text-white">
+            <img v-if="userChatDetail.receiver.profile" :src="`http://127.0.0.1:8000/storage/${message.images}`"
+              class="rounded img" alt="Avatar" />
+            <small class="text-muted">{{ getFormattedTime(message.created_at) }}</small>
+          </div>
+        </div>
+        <div v-else-if="message.sender_id != store.user.id && message.text !== null" class="text-start p-2 rounded">
+          <div class="message-bubble p-2 rounded​​​">
+            <p class="mb-1">{{ message.text }}</p>
+            <small class="text-muted">{{ getFormattedTime(message.created_at) }}</small>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-8 bg-white chat-footer p-3 border-top position-fixed top-40" style="margin-top: 400px">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Type your message..." v-model="newMessage"
-          @keyup.enter="sendMessage" />
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button" @click="sendMessage">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor"
-              class="bi bi-send-plus-fill" viewBox="0 0 16 16">
-              <path
-                d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471z" />
-              <path
-                d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5" />
-            </svg>
-          </button>
+      <div class="chat-box">
+        <div class="chat-input d-flex align-items-center ">
+          <label class="btn btn-light">
+            <span class="material-icons">
+              insert_photo
+            </span>
+            <input type="file" class="form-control d-none" accept="image/*" />
+          </label>
+          <input type="text" class="form-control" style="height: 40px;" v-model="message.text"
+            placeholder="Type a message..." />
+          <button class="btn bg-primary text-white d-flex align-items-center position-relative"
+            @click="sendMessage(userChatDetail.receiver.id)"><span class="material-icons">
+              send
+            </span></button>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
+import { useAuthStore } from '@/stores/auth-store'
+import { userChatStore } from '@/stores/user-chat.ts'
 export default {
+  props: ["userChatDetail"],
   data() {
     return {
-      currentUser: {
-        name: 'John Doe',
-        status: 'Online',
-        avatar: 'https://via.placeholder.com/150',
+      store: useAuthStore(),
+      chat: userChatStore(),
+      message: {
+        text: null,
+        receiver_id: null,
       },
-      otherUser: {
-        name: 'Jane Smith',
-        avatar: 'https://via.placeholder.com/150',
-      },
-      messages: [
-        { id: 1, sender: 'you', text: 'Hello!', timestamp: new Date() },
-        { id: 2, sender: 'other', text: 'Hi there!', timestamp: new Date() },
-        { id: 3, sender: 'you', text: 'How are you?', timestamp: new Date() },
-        { id: 3, sender: 'you', text: 'How are you?', timestamp: new Date() },
-        { id: 3, sender: 'you', text: 'How are you?', timestamp: new Date() },
-        { id: 3, sender: 'you', text: 'How are you?', timestamp: new Date() },
-        { id: 4, sender: 'other', text: 'I\'m doing great, thanks for asking!', timestamp: new Date() },
-      ],
-      newMessage: '',
     };
   },
   methods: {
+    sendMessage(id) {
+      this.message.receiver_id = id;
+      if (this.message.text !== null && this.receiver_id !== null) {
+        this.sendTextMessage();
+      }
+    },
+
+    async sendTextMessage() {
+      this.chat.sendText(this.message);
+      this.message.text = "";
+
+    },
+
     getFormattedTime(timestamp) {
       const date = new Date(timestamp);
       const hours = date.getHours();
@@ -81,21 +109,25 @@ export default {
       const formattedHours = hours % 12 || 12;
       return `${formattedHours}:${minutes} ${amPm}`;
     },
-    sendMessage() {
-      if (this.newMessage.trim() !== '') {
-        const newMessage = {
-          id: this.messages.length + 1,
-          sender: 'you',
-          text: this.newMessage,
-          timestamp: new Date(),
-        };
-        this.messages.push(newMessage);
-        this.newMessage = '';
-        this.$nextTick(() => {
-          this.$refs.chatBody.scrollTop = this.$refs.chatBody.scrollHeight;
-        });
-      }
+    clearAllMessage(id) {
+      this.removeAllMessage(id)
     },
+    async removeAllMessage(id) {
+      this.chat.removeAllMessages(id);
+      setTimeout(function () {
+        window.location.reload();
+      }, 2500);
+    },
+    deleteUserChat(id) {
+      this.deleteUserChat(id)
+    },
+    async deleteUserChat(id) {
+      this.chat.deleteUserChat(id);
+      setTimeout(function () {
+        window.location.reload();
+      }, 2500);
+    },
+
   },
 };
 </script>
@@ -116,6 +148,10 @@ export default {
   height: 40px;
 }
 
+.img {
+  max-width: 200px;
+}
+
 .chat-body {
   flex-grow: 1;
   overflow-y: auto;
@@ -133,5 +169,33 @@ export default {
 
 .message-bubble.bg-primary {
   align-self: flex-end;
+}
+
+.col-8 {
+  /* Ensure scrollbars are visible only when needed */
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff #ffffff;
+  /* Color of the thumb and track */
+  overflow-y: auto;
+}
+
+/* WebKit Browsers (Chrome, Safari) */
+.col-8::-webkit-scrollbar {
+  width: 5px;
+  /* Adjust width as needed */
+  height: 5px;
+  /* Adjust height as needed */
+}
+
+.col-8::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  /* Color of the thumb */
+  border-radius: 5px;
+  /* Rounded corners */
+}
+
+.col-8::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  /* Color of the track */
 }
 </style>

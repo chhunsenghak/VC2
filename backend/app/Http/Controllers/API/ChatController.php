@@ -8,6 +8,7 @@ use App\Events\Message;
 use App\Models\Message as chat;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ListChatUserResource;
+use App\Models\Frontuser;
 use Illuminate\Support\Collection;
 
 class ChatController extends Controller
@@ -52,7 +53,7 @@ class ChatController extends Controller
         ], 400);
     }
 
-    public function sendTextMessage(Request $request, $id)
+    public function sendTextMessage(Request $request)
     {
         $request->validate([
             'text' => 'required|string',
@@ -60,7 +61,7 @@ class ChatController extends Controller
         try {
             $message = chat::create([
                 "sender_id" => $request->user()->id,
-                "receiver_id" => $id,
+                "receiver_id" => $request->input('receiver_id'),
                 "text" => $request->input('text'),
             ]);
             event(new Message($request->input('text'), $request->input('imagesPaths')));
@@ -81,17 +82,24 @@ class ChatController extends Controller
         $data = DB::table('messages')
             ->select('sender_id', 'receiver_id', DB::raw('MIN(text) as text'), DB::raw('MIN(images) as images'), DB::raw('MIN(created_at) as created_at'))
             ->where('sender_id', $request->user()->id)
-            ->Where('receiver_id', "!=", $request->user()->id)
-            ->orWhere('sender_id', "!=", $request->user()->id)
-            ->where('receiver_id', $request->user()->id)
+            ->orWhere('receiver_id', $request->user()->id)
             ->orderBy('created_at', 'desc')
             ->groupBy('sender_id', 'receiver_id')
             ->get();
-        // $data = ListChatUserResource::collection($data);
+        $data = ListChatUserResource::collection($data);
         $array = [];
         foreach ($data as $item) {
-            $array[] = $item;
+            $item->sender_id = DB::table('frontusers')->where('id', $item->sender_id)->get();
             $item->receiver_id = DB::table('frontusers')->where('id', $item->receiver_id)->get();
+            if (count($array) > 0) {
+                foreach ($array as $key) {
+                    if ($key->sender_id !== $item->receiver_id && $key->receiver_id !== $item->sender_id) {
+                        $array[] = $item;
+                    }
+                }
+            } else {
+                $array[] = $item;
+            }
         }
         return response()->json([
             'data' => $array,
@@ -100,16 +108,36 @@ class ChatController extends Controller
 
     public function getConversation(Request $request, $receiver_id)
     {
-        // return [$request->user(), $receiver_id];
+        $receiver = Frontuser::find($receiver_id);
         $data = DB::table('messages')
-            ->selectRaw('sender_id, receiver_id, text, images, created_at')
+            ->selectRaw('id, sender_id, receiver_id, text, images, created_at',)
             ->where('sender_id', $request->user()->id)
             ->where('receiver_id', $receiver_id)
             ->orWhere('sender_id', $receiver_id)
             ->where('receiver_id', $request->user()->id)
-            ->orderBy('created_at', 'desc')
+            // ->orderBy("created_at", "desc")
             ->get();
-        return $data;
+        return response()->json([
+            'data' => $data,
+            'receiver' => $receiver
+        ], 200);
+    }
+
+    public function recieverMessage(Request $request, $receiver_id)
+    {
+        $receiver = Frontuser::find($receiver_id);
+        $data = DB::table('messages')
+            ->selectRaw('id, sender_id, receiver_id, text, images, created_at',)
+            ->where('sender_id', $request->user()->id)
+            ->where('receiver_id', $receiver_id)
+            ->orWhere('sender_id', $receiver_id)
+            ->where('receiver_id', $request->user()->id)
+            // ->orderBy("created_at", "desc")
+            ->get();
+        return response()->json([
+            'data' => $data,
+            'receiver' => $receiver
+        ], 200);
     }
 
     public function editText(Request $request,  $id)
@@ -131,12 +159,16 @@ class ChatController extends Controller
         }
     }
 
-    public function removeAllConversations(Request $request, $user_id)
+    public function removeAllConversations(Request $request, $receiver_id)
     {
         $user = $request->user();
         try {
-            Chat::where('receiver_id', $user_id)->delete();
-            Chat::create(["sender_id" => $user->id, "receiver_id" => $user_id]);
+            Chat::where('receiver_id', $receiver_id)
+                ->where('sender_id', $request->user()->id)
+                ->orWhere('receiver_id', $request->user()->id)
+                ->where('sender_id', $receiver_id)
+                ->delete();
+            Chat::create(["sender_id" => $user->id, "receiver_id" => $receiver_id]);
             return response()->json([
                 'status' => true,
                 'data' => 'All conversations deleted successfully',

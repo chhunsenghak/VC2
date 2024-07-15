@@ -20,6 +20,7 @@ class ListChatUserResource extends JsonResource
             'receiver_id' => $this->receiver_id,
             'text' => $this->text,
             'images' => $this->images,
+            'created_at' => $this->created_at,
         ];
     }
 }
