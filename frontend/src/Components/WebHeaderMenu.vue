@@ -3,6 +3,11 @@
 import { useAuthStore } from '@/stores/auth-store'
 import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { ElButton, ElDrawer } from 'element-plus'
+import { CircleCloseFilled } from '@element-plus/icons-vue'
+
+const visible = ref(false)
 const router = useRouter()
 const store = useAuthStore()
 const logout = async () => {
@@ -182,7 +187,7 @@ const logout = async () => {
                   >ទំនាក់ទំនង</a
                 ></el-dropdown-item
               >
-              <!-- <el-dropdown-item>
+      
                 <div class="icon d-flex gap-5">
                   <svg
                     v-if="store.isAuthenticated"
@@ -247,7 +252,6 @@ const logout = async () => {
                     </svg>
                   </a>
                 </div>
-              </el-dropdown-item> -->
             </el-dropdown-menu>
           </template>
         </el-dropdown>
