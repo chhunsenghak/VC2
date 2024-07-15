@@ -228,14 +228,6 @@ export default {
   }
 }
 @media (min-width: 428px) and (max-width: 768px) {
-  .background-container{
-    width: 100%;
-    height: 50vh;
-  }
-  .content{
-    font-size: 4px;
-    margin-top: 35%;
-  }
   .group-card {
     flex-wrap: wrap;
     gap: 20px;
