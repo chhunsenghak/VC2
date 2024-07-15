@@ -1,7 +1,11 @@
 <template>
-  <div v-if="productsStore.length > 0" class="row col-8">
+  <div v-if="productsStore.products.data != ''" class="row col-8">
+    <form-create-product>
+      
+
+    </form-create-product>
     <!-- Button to Open Dialog -->
-    <form-create-product></form-create-product>
+
 
     <!-- Update Product Form as Overlay -->
     <form-update-product
@@ -45,13 +49,15 @@
   </div>
   <div v-else class="row col-8">
   <!-- create card to confirm that we do not have product yet -->
-  <div class="no-product-card">
+  <form-create-product></form-create-product>
+
+  <div class="d-flex">
     <div class="card">
       <div class="card-header">
         Product Information
       </div>
       <div class="card-body">
-        <img src="../../image/empty-cart.png" width="250px" class="mx-5">
+        <img src="../../image/empty-cart.png" width="250px" class="ml-13">
       
         <h5 class="card-title">No Product Available</h5>
         <p class="card-text">We currently do not have any product information available.</p>
