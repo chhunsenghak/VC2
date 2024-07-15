@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Admin\{
+    CalendarController,
     ProfileController,
     MailSettingController,
 };
-use App\Http\Controllers\FrontuserController;
-
+use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,7 @@ Route::get('/test-mail', function () {
 
     $message = "Testing mail";
 
-    \Mail::raw('Hi, welcome!', function ($message) {
+    Mail::raw('Hi, welcome!', function ($message) {
         $message->to('ajayydavex@gmail.com')
             ->subject('Testing mail');
     });
@@ -39,17 +40,17 @@ Route::get('/test-mail', function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('front.dashboard');
-})->middleware(['front'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('front.dashboard');
+// })->middleware(['front'])->name('dashboard');
 
 
 require __DIR__ . '/front_auth.php';
 
 // Admin routes
-Route::get('/admin/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('admin.dashboard');
+// Route::get('/admin/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('admin.dashboard');
 
 require __DIR__ . '/auth.php';
 
@@ -60,6 +61,14 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('users', 'UserController');
         Route::resource('posts', 'PostController');
         Route::resource('categorys', 'CategoryController');
+        Route::resource('products', 'ProductController');
+        Route::resource("dashboard", 'DashboardController');
+        Route::resource("locations", 'LocationController');
+        Route::resource("province", 'ProvinceController');
+        Route::resource("district", 'DistrictController');
+        Route::resource("commune", 'CommuneController');
+        Route::resource("village", 'VillageController');
+        Route::resource("stockType", 'StockTypeController');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
         Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/mail', [MailSettingController::class, 'index'])->name('mail.index');

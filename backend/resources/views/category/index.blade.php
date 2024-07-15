@@ -5,8 +5,8 @@
                 <div class="flex justify-between">
                     <h1>Total Category: {{count($categorys)}}</h1>
                     <div class="text-right">
-                        @can('Cateogry add')
-                        <a href="{{route('admin.categorys.create')}}" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">New User</a>
+                        @can('Category create')
+                        <a href="{{route('admin.categorys.create')}}" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">New Category</a>
                         @endcan
                     </div>
                 </div>
@@ -29,10 +29,17 @@
                                 </td>
                                 <td class="py-4 px-6 border-b border-grey-light">{{ $category->name }}</td>
                                 <td class="py-4 px-6 border-b border-grey-light">{{ $category->description }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $category->gender }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">
+
+                                <td class="py-4 px-6 border-b border-grey-light text-right">
                                     @can('Category edit')
-                                    <a href="{{route('admin.categorys.edit',$category->id)}}" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-blue-400">Edit</a>
+                                    <a href="{{route('admin.categorys.edit',$category->id)}}" class="bg-yellow-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Update</a>
+                                    @endcan
+                                    @can('Category delete')
+                                    <form action="{{ route('admin.categorys.destroy', $category->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="bg-red-500 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-white">Delete</button>
+                                    </form>
                                     @endcan
                                 </td>
                             </tr>
@@ -40,6 +47,11 @@
                             @endcan
                         </tbody>
                     </table>
+                    @can('Post access')
+                    <div class="text-right p-4 py-10">
+                        {{ $categorys->links() }}
+                    </div>
+                    @endcan
                 </div>
             </div>
         </main>

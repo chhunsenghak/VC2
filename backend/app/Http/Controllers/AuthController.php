@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Storage;
+
+use App\Http\Resources\FrontUserResource;
 use App\Models\Frontuser;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Password;
@@ -11,9 +17,10 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+
 class AuthController extends Controller
 {
-    public function login(Request $request): JsonResponse
+    public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email'     => 'required|string|max:255',
@@ -37,7 +44,6 @@ class AuthController extends Controller
 
         return response()->json([
             'message'       => 'Login success',
-            'user' => $user,
             'access_token'  => $token,
             'token_type'    => 'Bearer'
         ]);
@@ -72,8 +78,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
-                'user'=> $user,
-                'token' => $user->createToken("API TOKEN")->plainTextToken
+                'access_token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -98,12 +103,21 @@ class AuthController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        // $permissions = $user->getAllPermissions();
-        // $roles = $user->getRoleNames();
+        // $roles = $user->getR oleNames();
         return response()->json([
             'message' => 'Login success',
             'data' => $user,
         ]);
+    }
+
+    public function show($id)
+    {
+        // $user = Frontuser::find($id);
+        // // $roles = $user->getRoleNames();
+        // return response()->json([
+        //     'message' => 'Login success',
+        //     'data' => $user,
+        // ]);
     }
 
     public function forgotPassword(Request $request): JsonResponse
@@ -120,12 +134,12 @@ class AuthController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
         $token = Str::random(60);
-        Password::create([
+        $store_token = Password::create([
             'email' => $user->email,
             'token' => $token,
             'expires_at' => now()->addHours(1), // Example: Token expires in 1 hour
         ]);
-        return response()->json(['message' => 'Password reset link sent to your email', 'token' => $token]);
+        return response()->json(['message' => 'Password reset link sent to your email', "store_token" => $store_token]);
     }
     // Reset the user's password
     public function resetPassword(Request $request): JsonResponse
@@ -151,8 +165,56 @@ class AuthController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
         $user->password = Hash::make($request->password);
+        $user   = Frontuser::where('email', $request->email)->firstOrFail();
+        $token  = $user->createToken('auth_token')->plainTextToken;
         $user->save();
         $passwordReset->delete(); // Remove the password reset record
-        return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password]);
+        return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
+    }
+
+
+
+    // public function updateBio(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     $validator = Validator::make($request->all(), [
+    //         'bio' => 'string|max:1000',
+    //     ]);
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'bio' => 'string|max:1000|nullable',
+            'phone' => 'string|max:15|nullable',
+            'profile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }   
+
+        if ($request->has('bio')) {
+            $user->bio = $request->bio;
+        }
+
+        if ($request->has('phone')) {
+            $user->phone = $request->phone;
+        }
+
+        if ($request->hasFile('profile')) {
+            $img = $request->file('profile');
+            $ext = $img->getClientOriginalExtension();
+            $imageName = time() . '.' . $ext;
+            $img->move(public_path('uploads'), $imageName);
+            $user->profile = $imageName;
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile updated successfully',
+            'user' => $user,
+        ], 200);
     }
 }

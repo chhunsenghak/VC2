@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categorys;
 use App\Models\Frontuser;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -35,7 +36,8 @@ class UserController extends Controller
     public function index()
     {
         $user = User::latest()->get();
-        return view('setting.user.index', ['users' => $user]);
+        $frontuser = Frontuser::latest()->get();
+        return view('setting.user.index', ['users' => $user, 'frontuser' => $frontuser]);
     }
 
     /**

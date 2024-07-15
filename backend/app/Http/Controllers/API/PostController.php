@@ -13,8 +13,11 @@ class PostController extends Controller
         // dd(1);
         // Retrieve all posts
         $posts = Post::all();
-
         // Return posts as a JSON response
         return response()->json($posts);
+    }
+    public function show($id){
+        $post = Post::find($id);
+        return response()->json($post);
     }
 }
