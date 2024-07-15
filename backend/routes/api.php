@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\StockTypeController;
 use App\Http\Controllers\API\FrontUserController as UserController;
+use App\Http\Controllers\API\ChatController as ChatController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -122,7 +123,22 @@ Route::prefix('addresses')->group(function () {
 Route::prefix('stocks')->group(function () {
     Route::get('/list', [StockTypeController::class, 'index']);
 });
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/update-profile', [AuthController::class, 'updateProfile']);
-});
 
+Route::prefix("chat")->middleware('auth:sanctum')->group(function () {
+    Route::get("/message", [ChatController::class, 'index']);
+    Route::get("/getUser", [ChatController::class, 'getUser']);
+    Route::get("/recieveMessage/{id}", [ChatController::class, 'recieverMessage']);
+    Route::get("/getConversation/{receiver_id}", [ChatController::class, 'getConversation']);
+    Route::post("/sendText", [ChatController::class, 'sendTextMessage']);
+    Route::post("/sendImage/{receiver_id}", [ChatController::class, 'uploadMultipleImages']);
+    Route::put("/edit/text/{id}", [ChatController::class, 'editText']);
+    Route::delete("/remove/message/{id}", [ChatController::class, 'deleteTextMessage']);
+    Route::delete("/remove/all/messages/{id}", [ChatController::class, 'removeAllConversations']);
+    Route::delete("/remove/user/{id}", [ChatController::class, 'removeChatUser']);
+});
+//Update Bio Route
+Route::middleware('auth:sanctum')->group(function () {
+    Route::put('/update-bio', [AuthController::class, 'updateBio']);
+    Route::put('/update-phoneNumber', [AuthController::class, 'updatePhoneNumber']);
+    Route::post('/update-profile', [AuthController::class, 'updateProfilePicture']);
+});
