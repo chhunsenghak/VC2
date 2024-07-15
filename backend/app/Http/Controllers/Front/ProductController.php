@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ListAllNameProductsResource;
+use App\Http\Resources\ListAllPriceProductResource;
 use App\Http\Resources\ListProductResource;
 use App\Models\Products;
 use App\Models\Stock;
@@ -197,10 +198,38 @@ class ProductController extends Controller
         return response(['success' => true, 'products' => $products], 200);
     }
 
+    /**
+     * Get a list of product price.
+     */
+    public function listPriceProducts()
+    {
+        // Get only the 'name' column from the products table
+        $products = Products::select('price')->get();
+
+        // Transform the products collection using the resource class
+        $products = ListAllPriceProductResource::collection($products);
+
+        return response(['success' => true, 'products' => $products], 200);
+    }
+
     public function listProduct($id)
     {
         $products = Products::where('frontuser_id', $id)->get();
         $products = ListProductResource::collection($products);
+        return response()->json(['success' => true, 'data' => $products], 200);
+    }
+    /**
+     * Sort and filter products by price.
+     */
+    public function sortedProductsPrice(Request $request)
+    {
+        $priceFilter = $request->price;
+        $query = Products::query();
+        if ($priceFilter) {
+            $query->where('price', 'like', '%' . $priceFilter . '%');
+        }
+        $products = $query->orderBy('price', 'asc')->get();
+    
         return response()->json(['success' => true, 'data' => $products], 200);
     }
 }

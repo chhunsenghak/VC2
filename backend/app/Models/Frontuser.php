@@ -28,6 +28,10 @@ class Frontuser extends Authenticatable
         'bio',
         'phone',
         'profile',
+        'shop',
+        'check',
+        'gender',
+        'address'
 
     ];
 

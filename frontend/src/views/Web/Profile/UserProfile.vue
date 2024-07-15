@@ -4,8 +4,9 @@
       <div class="row">
         <div class="col-md-4 text-center">
           <img
-            :src="`http://127.0.0.1:8000/storage/profiles/${user.user.profile}`"
-            class="rounded-circle mb-3" width="120px"
+            :src="`http://127.0.0.1:8000/storage/${user.user.profile}`"
+            class="rounded-circle mb-3"
+            width="120px"
             alt="Profile Picture"
           />
           <h2>{{ user.user.name }}</h2>

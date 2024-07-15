@@ -40,10 +40,15 @@ Route::prefix('/user')->middleware('auth:sanctum')->group(function () {
     Route::post('/update/profile', [FrontuserController::class, 'updateProfileUser']);
     Route::get('/{id}', [UserController::class, 'show']);
     Route::get('/list', [UserController::class, 'index']);
+    Route::put('/create/shop', [UserController::class,'edit']);
 });
 
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
-Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
+
+Route::prefix('/post')->middleware('auth:sanctum')->group(function () {
+    Route::get('/list', [PostController::class, 'index']);
+    Route::get('/show/{id}', [PostController::class, 'show']);
+});
 
 // PROVINCE ROUTES
 Route::prefix('provinces')->group(function () {
@@ -94,6 +99,8 @@ Route::prefix('category')->group(function () {
 Route::prefix('products')->group(function () {
     Route::get('/sorted-products', [ProductController::class, 'sortedProducts']);
     Route::get('/list-name-products', [ProductController::class, 'listNameProducts']);
+    Route::get('/sorted/products', [ProductController::class, 'sortedProductsPrice']);
+    Route::get('/list-price-products', [ProductController::class, 'listPriceProducts']);
     Route::get('/list', [ProductController::class, 'index']);
     Route::post('/create', [ProductController::class, 'store']);
     Route::get('/show/{id}', [ProductController::class, 'show']);
@@ -118,3 +125,4 @@ Route::prefix('stocks')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/update-profile', [AuthController::class, 'updateProfile']);
 });
+
