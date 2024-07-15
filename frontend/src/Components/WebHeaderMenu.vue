@@ -3,11 +3,7 @@
 import { useAuthStore } from '@/stores/auth-store'
 import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
-import { ElButton, ElDrawer } from 'element-plus'
-import { CircleCloseFilled } from '@element-plus/icons-vue'
 
-const visible = ref(false)
 const router = useRouter()
 const store = useAuthStore()
 const logout = async () => {
