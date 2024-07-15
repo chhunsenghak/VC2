@@ -3,11 +3,7 @@
 import { useAuthStore } from '@/stores/auth-store'
 import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
-import { ElButton, ElDrawer } from 'element-plus'
-import { CircleCloseFilled } from '@element-plus/icons-vue'
 
-const visible = ref(false)
 const router = useRouter()
 const store = useAuthStore()
 const logout = async () => {
@@ -21,7 +17,7 @@ const logout = async () => {
 </script>
 <template>
   <nav
-    class="navbar navbar-expand-md navbar-dark fixed-top flex justify-between px-10 py-1 bg-white items-center m-0 shadow-background shadow-sm p-3 mb-5 bg-white rounded"
+    class="navbar navbar-expand-md navbar-dark fixed-top flex justify-between px-10 py-1 bg-white items-center m-0 shadow-background shadow-sm p-3 mb-5 bg-white"
   >
     <!-- {{ store }} -->
     <!-- Logo -->

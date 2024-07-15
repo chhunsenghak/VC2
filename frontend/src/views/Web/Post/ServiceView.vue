@@ -232,6 +232,10 @@ export default {
     width: 100%;
     height: 50vh;
   }
+  .content{
+    font-size: 4px;
+    margin-top: 35%;
+  }
   .group-card {
     flex-wrap: wrap;
     gap: 20px;
