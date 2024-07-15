@@ -28,6 +28,9 @@ const ProductLists = {
   getProducts() {
     return axiosInstance.get('/products/list');
   },
+  createProduct() {
+    return axiosInstance.post('/products/create');
+  }
 };
 
 // Add a request interceptor

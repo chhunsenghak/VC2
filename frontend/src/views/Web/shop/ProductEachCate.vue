@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="d-flex justify-content-between align-items-center">
-            <h5 style="margin-top: 17rem">បញ្ជីផលិតផល</h5>
+            <h4 style="margin-top: 17rem" class="fw-bold">{{ products.products.name }}</h4>
             <!-- Search Products -->
             <div class="search-wrapper">
               <input
@@ -20,35 +20,49 @@
           </div>
         </div>
       </div>
-      <div class="row mt-5">
-        <div
-          class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
-          v-for="product in fetchProducts"
-          :key="product.id"
-        >
-          <div class="card rounded-2 p-4 shadow-sm h-100">
-            <div class="image-container rounded-2 mb-3">
-              <img
-                v-if="product.image"
-                :src="`http://127.0.0.1:8000/products_images/${product.image}`"
-                :alt="product.name"
-                class="product-image"
-              />
-            </div>
-            <div class="card-content">
-              <div class="d-flex justify-content-between mb-3">
-                <h5 class="pro-name fw-bold">{{ product.name }}</h5>
-                <i class="material-icons view-detail" @click="openModal(product)">visibility</i>
+      {{proudctCount}}
+      <div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
+          <div v-for="product in products.products.products" :key="product.id" class="col">
+            <div class="card rounded-2 p-4 shadow-sm h-100">
+              <div class="image-container rounded-2 mb-3">
+                <img
+                  v-if="product.image"
+                  :src="`http://127.0.0.1:8000/products_images/${product.image}`"
+                  :alt="product.name"
+                  class="product-image"
+                />
               </div>
-              <div class="d-flex flex-column justify-content-between seller-part h-100">
-                <p class="mb-2 fw-bold pro-price">{{ formatPrice(product.price) }}</p>
-                <p class="mb-2 pro-discount">បញ្ចុះតម្លៃ: {{ product.discount }}</p>
-                <button type="button" class="btn btn-success">Chat Now</button>
+              <div class="card-content">
+                <div class="d-flex justify-content-between mb-3">
+                  <h5 class="pro-name fw-bold">{{ product.name }}</h5>
+                  <i class="material-icons view-detail" @click="openModal(product)">visibility</i>
+                </div>
+                <div class="d-flex flex-column justify-content-between seller-part h-100">
+                  <p class="mb-2 pro-price fw-bold">{{ product.price }} រៀល</p>
+                  <p class="mb-2 pro-discount">បញ្ចុះតម្លៃ: {{ product.discount }}</p>
+                  <button type="button" class="btn btn-success">Chat Now</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div
+          class="d-flex justify-content-center align-items-center vh-100"
+          style="margin-top: -10rem"
+        >
+          <div class="card p-5 w-50 text-center">
+            <h4 class="fw-bold text-danger" style="font-family: 'Arial Black', sans-serif">
+              មិនទាន់មានផលិតផលទេ
+            </h4>
+            <p style="font-size: 18px; color: #777">
+              Check back later or explore other categories!
+            </p>
+          </div>
+        </div>
       </div>
+
       <!-- Modal for Product Details -->
       <div
         v-if="showModal"
@@ -64,16 +78,14 @@
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
               <img
                 v-if="selectedProduct.image"
-                :src="`http://127.0.0.1:8000/products_images/${selectedProduct.image}`"
+                :src="`http://127.0.0.1:8000/products_images/${product.image}`"
                 :alt="selectedProduct.name"
                 class="product-image-large img-fluid"
               />
             </div>
             <div class="col-12 col-md-6 mt-4 mt-md-0">
-              <p class="card-title fs-5">Name: {{ selectedProduct.name }}</p>
-              <p class="card-price mt-3 fs-5 text-dark">
-                Price: {{ formatPrice(selectedProduct.price) }}
-              </p>
+              <p class="card-title fs-5">Name: {{ product.name }}</p>
+              <p class="card-price mt-3 fs-5 text-dark">Price: {{ product.price }}</p>
               <p class="card-cate fs-5">Category: {{ selectedProduct.category.name }}</p>
               <p class="card-quan fs-5">
                 Quantity:
@@ -85,8 +97,6 @@
           </div>
         </div>
       </div>
-      {{ productStore.products }}
-      {{ category_id }}
     </div>
   </WebLayout>
 </template>
@@ -96,92 +106,25 @@ import { ref, computed, onMounted } from 'vue'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { useProductsStore } from '@/stores/products-lists.ts'
 import { useRoute } from 'vue-router'
-import { categoryProStore } from '@/stores/product-in-category.ts'
+
 export default {
   name: 'ProductEachCate',
   components: {
     WebLayout
   },
+
   setup() {
-    const store = useProductsStore()
-    const productStore = categoryProStore()
-    const showModal = ref(false)
-    const selectedProduct = ref(null)
-    const searchText = ref('')
-    let categoryId = ref(null)
     const route = useRoute()
-    const category_id = route.query.categoryId
-
-    onMounted(() => {
-      fetchData()
-    })
-
-    const fetchData = async () => {
-      try {
-        await productStore.fetchCategory(category_id)
-      } catch (error) {
-        console.error('Error fetching user data:', error)
-      }
-    }
+    const id = route.params.id
+    const products = useProductsStore()
     onMounted(async () => {
-      categoryId.value = new URLSearchParams(window.location.search).get('categoryId')
-      if (categoryId.value) {
-        await fetchProducts(categoryId.value)
-      } else {
-        console.error('Category ID not found in URL parameters.')
-      }
+      await products.fetchCategory(id)
     })
 
-    const fetchProducts = async (categoryId) => {
-      try {
-        await store.fetchProductsByCategory(categoryId)
-        // console.log('Products fetched:', store.products.data)
-      } catch (error) {
-        console.error('Error fetching products:', error)
-      }
-    }
-
-    const filteredProducts = computed(() => {
-      if (!searchText.value.trim()) {
-        return store.products.data
-      }
-      const searchTextLC = searchText.value.trim().toLowerCase()
-      return store.products.data.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchTextLC) ||
-          product.price.toString().includes(searchTextLC)
-      )
-    })
-
-    const openModal = (product) => {
-      selectedProduct.value = product
-      showModal.value = true
-    }
-
-    const closeModal = () => {
-      showModal.value = false
-      selectedProduct.value = null
-    }
-
-    const formatPrice = (price) => {
-      return new Intl.NumberFormat().format(price) + ' Riels'
-    }
-
-    onMounted(async () => {
-      this.productStore.fetchCategory(this.category_id)
-      console.log(this.productStore)
-    })
-
+    
     return {
-      showModal,
-      selectedProduct,
-      searchText,
-      fetchProducts,
-      filteredProducts,
-      openModal,
-      closeModal,
-      formatPrice,
-      productStore: categoryProStore()
+      products,
+      id
     }
   }
 }

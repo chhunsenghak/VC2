@@ -21,17 +21,17 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <a
-              :href="`/allProducts?categoryId=${category.id}`"
+            <router-link
+              :to="{ name: 'AllProducts', params: { id: category.id } }"
               class="category-link d-flex flex-column align-items-center"
             >
               <img
-                :src="`http://127.0.0.1:8000/categories_images/${category.image}`"
+                :src="`http://127.0.0.1:8000/storage/${category.image}`"
                 class="rounded-circle p-2 category-image"
                 style="width: 100px; height: 100px"
               />
               <h6 class="category-name">{{ category.name }}</h6>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ onMounted(async () => {
   position: relative;
   background-position: center;
   background-image: url('https://www.eatthis.com/wp-content/uploads/sites/4/2023/07/fruits-and-vegetables.jpg?quality=82&strip=1');
-  background-position: center;             
+  background-position: center;
   background-size: cover;
   margin-top: 5%;
   display: flex;

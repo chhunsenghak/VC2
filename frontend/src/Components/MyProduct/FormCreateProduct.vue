@@ -178,9 +178,9 @@ export default {
         formData.append('category', category.value)
         formData.append('discount', discount.value)
         formData.append('quantity', quantity.value)
-        // formData.append('stock_type_id', stock_type_id.value)
+        formData.append('stock_type_id', stock_type_id.value)
 
-        const response = await axiosInstance.post('/api/products/create', formData, {
+        const response = await axiosInstance.post('/products/create', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

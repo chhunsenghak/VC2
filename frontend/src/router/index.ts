@@ -82,7 +82,7 @@ const router = createRouter({
       component: () => import('@/views/Web/Product/MyProducts.vue')
     },
     {
-      path: '/allProducts',
+      path: '/products/:id',
       name: 'AllProducts',
       component: () => import('@/views/Web/shop/ProductEachCate.vue'),
       props: true
