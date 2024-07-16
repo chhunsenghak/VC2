@@ -181,7 +181,7 @@ const logout = async () => {
               >ទំនាក់ទំនង</a
             >
           </div>
-          <div class="icon-menu d-flex flex-column gap-5 w-100">
+          <div class="icon-menu mt-10 d-flex flex-column gap-5 w-100">
             <svg
               v-if="store.isAuthenticated"
               xmlns="http://www.w3.org/2000/svg"
