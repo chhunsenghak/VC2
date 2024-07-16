@@ -86,7 +86,7 @@ const router = createRouter({
       name: "map",
       component: () => import("@/views/Web/Map/ViewMap.vue")
     }, {
-      path: '/allProducts',
+      path: '/category/:id',
       name: 'AllProducts',
       component: () => import('@/views/Web/shop/ProductEachCate.vue'),
       props: true
@@ -100,7 +100,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/post', '/reset_password', '/services', '/allProducts', '/chat']
+  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/reset_password', '/post_detail', '/services']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore();
   try {

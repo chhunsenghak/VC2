@@ -100,7 +100,7 @@ Route::prefix('category')->group(function () {
 Route::prefix('products')->group(function () {
     Route::get('/sorted-products', [ProductController::class, 'sortedProducts']);
     Route::get('/list-name-products', [ProductController::class, 'listNameProducts']);
-    Route::get('/sorted-products-price', [ProductController::class, 'sortedProductsPrice']);
+    Route::get('/sorted/products', [ProductController::class, 'sortedProductsPrice']);
     Route::get('/list-price-products', [ProductController::class, 'listPriceProducts']);
     Route::get('/list', [ProductController::class, 'index']);
     Route::post('/create', [ProductController::class, 'store']);

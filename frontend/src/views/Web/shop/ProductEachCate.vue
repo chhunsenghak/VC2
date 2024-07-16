@@ -3,59 +3,54 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="d-flex justify-content-between align-items-center">
-            <h5 style="margin-top: 17rem">បញ្ជីផលិតផល</h5>
+          <div class="d-flex justify-content-between align-items-center ">
+            <h4 style="margin-top: 17rem" class="fw-bold">{{  }}</h4>
             <!-- Search Products -->
             <div class="search-wrapper">
-              <input
-                type="search"
-                v-model="searchText"
-                class="form-control search-input"
-                placeholder="ស្វែងរកផលិតផល..."
-                aria-label="Search"
-                aria-describedby="search-addon"
-              />
+              <input type="search" v-model="searchText" class="form-control search-input" placeholder="ស្វែងរកផលិតផល..."
+                aria-label="Search" aria-describedby="search-addon" />
               <i class="material-icons search-icon">search</i>
             </div>
           </div>
         </div>
       </div>
-      <div class="row mt-5">
-        <div
-          class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
-          v-for="product in filteredProducts"
-          :key="product.id"
-        >
-          <div class="card rounded-2 p-4 shadow-sm h-100">
-            <div class="image-container rounded-2 mb-3">
-              <img
-                v-if="product.image"
-                :src="`http://127.0.0.1:8000/products_images/${product.image}`"
-                :alt="product.name"
-                class="product-image"
-              />
-            </div>
-            <div class="card-content">
-              <div class="d-flex justify-content-between mb-3">
-                <h5 class="pro-name fw-bold">{{ product.name }}</h5>
-                <i class="material-icons view-detail" @click="openModal(product)">visibility</i>
+      <div class="m-3">
+        <div v-if="products.products.numberOfProduct > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
+          <div v-for="product in products.products.data.products" :key="product.id" class="col">
+            <div v-if="product != ''" class="card rounded-2 p-4 shadow-sm h-100">
+              <div class="image-container rounded-2 mb-3">
+                <img v-if="product.image" :src="`http://127.0.0.1:8000/products_images/${product.image}`"
+                  :alt="product.name" class="product-image" />
               </div>
-              <div class="d-flex flex-column justify-content-between seller-part h-100">
-                <p class="mb-2 fw-bold pro-price">{{ product.price }} Riels</p>
-                <p class="mb-2 pro-discount">បញ្ចុះតម្លៃ: {{ product.discount }}</p>
-                <button type="button" class="btn btn-success">Chat Now</button>
+              <div class="card-content">
+                <div class="d-flex justify-content-between mb-3">
+                  <h5 class="pro-name fw-bold">{{ product.name }}</h5>
+                  <i class="material-icons view-detail" @click="openModal(product)">visibility</i>
+                </div>
+                <div class="d-flex flex-column justify-content-between seller-part h-100">
+                  <p class="mb-2 pro-price fw-bold">{{ product.price }} រៀល</p>
+                  <p class="mb-2 pro-discount">បញ្ចុះតម្លៃ: {{ product.discount }}</p>
+                  <button type="button" class="btn btn-success">Chat Now</button>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div v-else-if="products.products.numberOfProduct == 0"
+          class="d-flex justify-content-center align-items-center vh-100" style="margin-top: -10rem">
+          <div class="card p-5 w-50 text-center">
+            <h4 class="fw-bold text-danger" style="font-family: 'Arial Black', sans-serif">
+              មិនទាន់មានផលិតផលទេ
+            </h4>
+            <p style="font-size: 18px; color: #777">
+              Check back later or explore other categories!
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Modal for Product Details -->
-      <div
-        v-if="showModal"
-        class="modal d-flex justify-content-center align-items-center"
-        @click.self="closeModal"
-      >
+      <div v-if="showModal" class="modal d-flex justify-content-center align-items-center" @click.self="closeModal">
         <div class="modal-content d-flex flex-column">
           <div class="modal-header d-flex justify-content-between align-items-center">
             <h3>Product Detail</h3>
@@ -63,18 +58,12 @@
           </div>
           <div class="modal-body d-flex flex-column flex-md-row">
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-              <img
-                v-if="selectedProduct.image"
-                :src="`http://127.0.0.1:8000/products_images/${selectedProduct.image}`"
-                :alt="selectedProduct.name"
-                class="product-image-large img-fluid"
-              />
+              <img v-if="selectedProduct.image" :src="`http://127.0.0.1:8000/products_images/${product.image}`"
+                :alt="selectedProduct.name" class="product-image-large img-fluid" />
             </div>
             <div class="col-12 col-md-6 mt-4 mt-md-0">
-              <p class="card-title fs-5">Name: {{ selectedProduct.name }}</p>
-              <p class="card-price mt-3 fs-5 text-dark">
-                Price: {{ formatPrice(selectedProduct.price) }}
-              </p>
+              <p class="card-title fs-5">Name: {{ product.name }}</p>
+              <p class="card-price mt-3 fs-5 text-dark">Price: {{ product.price }}</p>
               <p class="card-cate fs-5">Category: {{ selectedProduct.category.name }}</p>
               <p class="card-quan fs-5">
                 Quantity:
@@ -91,53 +80,27 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { useProductsStore } from '@/stores/products-lists.ts'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'ProductEachCate',
   components: {
     WebLayout
   },
-  data() {
+
+  setup() {
+    const route = useRoute()
+    const id = route.params.id
+    const products = useProductsStore()
+    onMounted(async () => {
+      await products.fetchCategory(id)
+    })
     return {
-      store: useProductsStore(),
-      showModal: false,
-      selectedProduct: null,
-      searchText: ''
-    }
-  },
-  mounted() {
-    this.fetchProducts()
-  },
-  computed: {
-    filteredProducts() {
-      if (!this.searchText.trim()) {
-        return this.store.products.data
-      }
-      const searchTextLC = this.searchText.trim().toLowerCase()
-      return this.store.products.data.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchTextLC) ||
-          product.price.toString().includes(searchTextLC)
-      )
-    }
-  },
-  methods: {
-    fetchProducts() {
-      this.store.fetchProducts()
-    },
-    openModal(product) {
-      this.selectedProduct = product
-      this.showModal = true
-    },
-    closeModal() {
-      this.showModal = false
-      this.selectedProduct = null
-    },
-    formatPrice(price) {
-      return new Intl.NumberFormat().format(price) + ' Riels'
+      products,
+      id
     }
   }
 }
@@ -147,9 +110,11 @@ export default {
 .container {
   margin-top: -8rem;
 }
+
 .search-wrapper {
   position: relative;
-  width: 400px; /* Adjust the width as needed */
+  width: 400px;
+  /* Adjust the width as needed */
   margin-top: 15rem;
 }
 
@@ -183,6 +148,7 @@ export default {
 .search-icon:hover {
   color: #28a745;
 }
+
 .card {
   transition: transform 0.3s, box-shadow 0.3s;
   background-color: #ffffff;
@@ -330,6 +296,7 @@ export default {
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
   }

@@ -6,16 +6,7 @@
     /> -->
     <div class="container">
       <div
-        class="background-container h-150 text-light"
-        style="
-          background-image: url('https://st4.depositphotos.com/1606977/20336/i/450/depositphotos_203363174-stock-photo-farmer-inspecting-corn-field-summer.jpg'); /* Replace with your image path */
-          background-size: cover;
-          background-position: center;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        "
-      >
+        class="background-container text-light">
         <div class="content">
           <h1 class="fw-bold">សេវាកម្មរបស់យើង</h1>
           <p class="fs-3">ទំនុកចិត្ត | គុណភាពខ្ពស់​​​ | អភិវឌ្ឍន៍ទីផ្សាកសិកម្ម</p>
@@ -139,9 +130,26 @@ export default {
 </script>
 
 <style>
+.container{
+  margin: 0;
+  padding: 0;
+}
+.background-container {
+  position: relative;
+  background-position: center;
+  background-image: url('https://thebettercambodia.com/wp-content/uploads/2022/09/middle-aged-asian-farmer-man-scaled.jpg');
+  background-position: center;             
+  background-size: cover;
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* Adjust height as needed */
+  overflow: hidden; /* Ensures text doesn't overflow */
+}
 .content {
   text-align: center;
-  background: rgba(80, 87, 82, 0.49);
+  background: rgba(55, 58, 56, 0.49);
   padding: 20px;
   border-radius: 10px;
 }
@@ -196,7 +204,10 @@ export default {
   .detail-service {
     margin-top: auto;
   }
-
+  .background-container{
+    width: 100%;
+    height: 35vh;
+  }
   .service1 .text > h1,
   .service2 .text > h1,
   .service3 .text > h1,

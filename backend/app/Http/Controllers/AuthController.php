@@ -172,16 +172,7 @@ class AuthController extends Controller
         return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
     }
 
-
-
-    // public function updateBio(Request $request)
-    // {
-    //     $user = Auth::user();
-    //     $validator = Validator::make($request->all(), [
-    //         'bio' => 'string|max:1000',
-    //     ]);
-
-    public function updateProfile(Request $request)
+    public function updateBio(Request $request)
     {
         $user = Auth::user();
         $validator = Validator::make($request->all(), [
@@ -193,7 +184,7 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
-        }
+        }   
 
         if ($request->has('bio')) {
             $user->bio = $request->bio;
