@@ -20,7 +20,6 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('image')->nullable();
             $table->integer('price');
-            $table->string('discount', 5, 2)->nullable();
             $table->string('quantity')->nullable();
             $table->integer('stock_id')->references('id')
                 ->on('stocks')

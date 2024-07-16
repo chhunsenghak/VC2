@@ -35,7 +35,7 @@ export const useProductsStore = defineStore('products', {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           }
         })
-        this.products = response.data.data;
+        this.products = response.data;
       } catch (error) {
         console.error('Error fetching products:', error)
       }

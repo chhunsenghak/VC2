@@ -3,35 +3,24 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="d-flex justify-content-between align-items-center">
-            <h4 style="margin-top: 17rem" class="fw-bold">{{ products.products.name }}</h4>
+          <div class="d-flex justify-content-between align-items-center ">
+            <h4 style="margin-top: 17rem" class="fw-bold">{{  }}</h4>
             <!-- Search Products -->
             <div class="search-wrapper">
-              <input
-                type="search"
-                v-model="searchText"
-                class="form-control search-input"
-                placeholder="ស្វែងរកផលិតផល..."
-                aria-label="Search"
-                aria-describedby="search-addon"
-              />
+              <input type="search" v-model="searchText" class="form-control search-input" placeholder="ស្វែងរកផលិតផល..."
+                aria-label="Search" aria-describedby="search-addon" />
               <i class="material-icons search-icon">search</i>
             </div>
           </div>
         </div>
       </div>
-      {{proudctCount}}
-      <div>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
-          <div v-for="product in products.products.products" :key="product.id" class="col">
-            <div class="card rounded-2 p-4 shadow-sm h-100">
+      <div class="m-3">
+        <div v-if="products.products.numberOfProduct > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
+          <div v-for="product in products.products.data.products" :key="product.id" class="col">
+            <div v-if="product != ''" class="card rounded-2 p-4 shadow-sm h-100">
               <div class="image-container rounded-2 mb-3">
-                <img
-                  v-if="product.image"
-                  :src="`http://127.0.0.1:8000/products_images/${product.image}`"
-                  :alt="product.name"
-                  class="product-image"
-                />
+                <img v-if="product.image" :src="`http://127.0.0.1:8000/products_images/${product.image}`"
+                  :alt="product.name" class="product-image" />
               </div>
               <div class="card-content">
                 <div class="d-flex justify-content-between mb-3">
@@ -47,11 +36,8 @@
             </div>
           </div>
         </div>
-
-        <div
-          class="d-flex justify-content-center align-items-center vh-100"
-          style="margin-top: -10rem"
-        >
+        <div v-else-if="products.products.numberOfProduct == 0"
+          class="d-flex justify-content-center align-items-center vh-100" style="margin-top: -10rem">
           <div class="card p-5 w-50 text-center">
             <h4 class="fw-bold text-danger" style="font-family: 'Arial Black', sans-serif">
               មិនទាន់មានផលិតផលទេ
@@ -64,11 +50,7 @@
       </div>
 
       <!-- Modal for Product Details -->
-      <div
-        v-if="showModal"
-        class="modal d-flex justify-content-center align-items-center"
-        @click.self="closeModal"
-      >
+      <div v-if="showModal" class="modal d-flex justify-content-center align-items-center" @click.self="closeModal">
         <div class="modal-content d-flex flex-column">
           <div class="modal-header d-flex justify-content-between align-items-center">
             <h3>Product Detail</h3>
@@ -76,12 +58,8 @@
           </div>
           <div class="modal-body d-flex flex-column flex-md-row">
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-              <img
-                v-if="selectedProduct.image"
-                :src="`http://127.0.0.1:8000/products_images/${product.image}`"
-                :alt="selectedProduct.name"
-                class="product-image-large img-fluid"
-              />
+              <img v-if="selectedProduct.image" :src="`http://127.0.0.1:8000/products_images/${product.image}`"
+                :alt="selectedProduct.name" class="product-image-large img-fluid" />
             </div>
             <div class="col-12 col-md-6 mt-4 mt-md-0">
               <p class="card-title fs-5">Name: {{ product.name }}</p>
@@ -120,8 +98,6 @@ export default {
     onMounted(async () => {
       await products.fetchCategory(id)
     })
-
-    
     return {
       products,
       id
@@ -134,9 +110,11 @@ export default {
 .container {
   margin-top: -8rem;
 }
+
 .search-wrapper {
   position: relative;
-  width: 400px; /* Adjust the width as needed */
+  width: 400px;
+  /* Adjust the width as needed */
   margin-top: 15rem;
 }
 
@@ -170,6 +148,7 @@ export default {
 .search-icon:hover {
   color: #28a745;
 }
+
 .card {
   transition: transform 0.3s, box-shadow 0.3s;
   background-color: #ffffff;
@@ -317,6 +296,7 @@ export default {
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
   }
