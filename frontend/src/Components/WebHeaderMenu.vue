@@ -284,7 +284,7 @@ const logout = async () => {
         </div>
       </div>
       <div v-else px-10 py-2>
-        <a href="/login" class="btn btn-outline-success">Sign in</a>
+        <a href="/login" class="btn btn-outline-success">ចូលគណនី</a>
       </div>
     </div>
   </nav>
