@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      {{proudctCount}}
+
       <div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
           <div v-for="product in products.products.products" :key="product.id" class="col">
@@ -121,7 +121,6 @@ export default {
       await products.fetchCategory(id)
     })
 
-    
     return {
       products,
       id
