@@ -25,7 +25,7 @@
           <div class="card-body">
             <h5 class="card-title">លក់ទំនិញកសិកម្ម</h5>
             <p class="card-text">យើងផ្ដល់អោយអ្នកនូវសេវាកម្ម លក់ដូរនូវទំនិញផ្សេងដែលលោកអ្នកមាន...</p>
-            <a href="#1" class="btn btn-success">Detail</a>
+            <a href="#1" class="btn btn-success">លម្អិត</a>
           </div>
         </div>
         <div class="card" style="width: 18rem">
@@ -40,7 +40,7 @@
               យើងអាចជួយលោកអ្នកស្វែងនូវទីផ្សាលក់ផលិតផលផ្សេងៗនិងងាយស្រួលដល់ការលក់ដូររបស់អ្នក។​
               មិនតែប៉ុណ្ណោះទេ.....
             </p>
-            <a href="#2" class="btn btn-success">Detail</a>
+            <a href="#2" class="btn btn-success">លម្អិត</a>
           </div>
         </div>
         <div class="card" style="width: 18rem">
@@ -54,7 +54,7 @@
             <p class="card-text">
               យើងផ្ដល់អោយអ្នកនូវសេវាកម្មដែលអាចទិញឬលក់ផលិតកសិកម្មរបស់អ្នក​​ ព្រមទាំង...
             </p>
-            <a href="#3" class="btn btn-success">Detail</a>
+            <a href="#3" class="btn btn-success">លម្អិត</a>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
             />
           </div>
         </div>
-        <div class="service2 mt-20 d-flex flex-sm-row-reverse" id="2">
+        <div class="service2 mt-30 d-flex flex-sm-row-reverse" id="2">
           <div class="text">
             <h1 class="fw-bold">ស្វែងរកទីផ្សារកសិកម្ម</h1>
             <p class="fs-5">
@@ -96,7 +96,7 @@
             />
           </div>
         </div>
-        <div class="service3 mt-10" id="3">
+        <div class="service3 mt-20" id="3">
           <div class="text">
             <h1 class="fw-bold">ទិញទំនិញកសិកម្ម</h1>
             <p class="fs-5">
@@ -255,7 +255,6 @@ export default {
   .service3 {
     margin-top: 20%;
   }
-
   .service1 > .text,
   .service2 > .text,
   .service3 > .text {

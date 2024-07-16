@@ -102,7 +102,7 @@ const logout = async () => {
             <a class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
               href="/contact_us">ទំនាក់ទំនង</a>
           </div>
-          <div class="icon-menu d-flex flex-column gap-5 w-100">
+          <div class="icon-menu mt-10 d-flex flex-column gap-5 w-100">
             <svg v-if="store.isAuthenticated" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
               fill="currentColor" class="mt-3 ml-4 bi bi-bell-fill" viewBox="0 0 16 16">
               <path
@@ -155,7 +155,7 @@ const logout = async () => {
         </div>
       </div>
       <div v-else px-10 py-2>
-        <a href="/login" class="btn btn-outline-success">Sign in</a>
+        <a href="/login" class="btn btn-outline-success">ចូលគណនី</a>
       </div>
     </div>
   </nav>
