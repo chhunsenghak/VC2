@@ -29,7 +29,7 @@
           <div class="image-container rounded-2 mb-3">
             <img
               v-if="product.image"
-              :src="`http://127.0.0.1:8000/products_images/${product.image}`"
+              :src="`http://127.0.0.1:8000/storage/${product.image}`"
               :alt="product.name"
               class="product-image"
             />
@@ -64,7 +64,7 @@
           <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
             <img
               v-if="selectedProduct.image"
-              :src="`http://127.0.0.1:8000/products_images/${selectedProduct.image}`"
+              :src="`http://127.0.0.1:8000/storage/${selectedProduct.image}`"
               :alt="selectedProduct.name"
               class="product-image-large img-fluid"
             />
