@@ -36,8 +36,9 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $categories = Categorys::find($id);
+        $number = count($categories["products"]);
         $categories = new ListCategoryResource($categories);
-        return response(['sucess' => true, 'data' => $categories], 200);
+        return response(['sucess' => true, 'numberOfProduct'=> $number, 'data' => $categories], 200);
     }
 
     /**

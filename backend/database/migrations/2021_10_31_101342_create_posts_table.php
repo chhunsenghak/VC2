@@ -17,12 +17,11 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->boolean('publish')->default(0);
-            $table->string("image")->nullable();
+            $table->boolean('publish')->default(1);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
         });
     }
 
