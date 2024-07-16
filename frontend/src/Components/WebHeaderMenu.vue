@@ -42,21 +42,20 @@ const logout = async () => {
       <a class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
         href="/contact_us">ទំនាក់ទំនង</a>
     </div>
-    <div class="d-flex align-items-center">
-      <!-- <a href="" class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900">
+    <!-- <div class="icon d-flex gap-5"> -->
       <svg v-if="store.isAuthenticated" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-        class="mt-2.98 bi bi-bell-fill" viewBox="0 0 16 16">
+        class="bi bi-bell-fill" viewBox="0 0 16 16">
         <path
           d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
       </svg>
-      </a>
+      
       <a href="" class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900">
       <svg v-if="store.isAuthenticated" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-        class="mt-2.98 bi bi-brightness-high" viewBox="0 0 16 16">
+        class=" bi bi-brightness-high" viewBox="0 0 16 16">
         <path
           d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
       </svg>
-      </a> -->
+      </a>
       <a v-if="store.isAuthenticated && store.user.shop" href="/myProducts"
         class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-shop-window"
@@ -73,7 +72,7 @@ const logout = async () => {
             d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105" />
         </svg>
       </a>
-    </div>
+    <!-- </div> -->
     <div class="nav-right">
       <div class="menu mb-3 ml-10">
         <el-button @click="visible = true">
