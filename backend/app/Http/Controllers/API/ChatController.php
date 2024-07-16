@@ -79,33 +79,80 @@ class ChatController extends Controller
 
     public function getUser(Request $request)
     {
+        // $data = DB::table('messages')
+        //     ->select('sender_id', 'receiver_id', DB::raw('MIN(text) as text'), DB::raw('MIN(images) as images'), DB::raw('MIN(created_at) as created_at'))->where('sender_id', $request->user()->id)
+        //     ->where(function ($query) use ($request) {
+        //         $user_id = $request->user()->id;
+        //         $query->where('sender_id', $user_id)
+        //             ->orWhere('receiver_id', $user_id);
+        //     })
+        //     ->orderBy('created_at', 'desc')
+        //     ->groupBy('sender_id', 'receiver_id')
+        //     ->get();
+        // $data = ListChatUserResource::collection($data);
+        // $array = [];
+        // foreach ($data as $item) {
+        //     $item->sender_id = DB::table('frontusers')->where('id', $item->sender_id)->get();
+        //     $item->receiver_id = DB::table('frontusers')->where('id', $item->receiver_id)->get();
+        //     if (count($array) > 0) {
+        //         foreach ($array as $key) {
+        //             if ($key->sender_id !== $item->receiver_id && $key->receiver_id !== $item->sender_id) {
+        //                 $array[] = $item;
+        //             }
+        //         }
+        //     } else {
+        //         $array[] = $item;
+        //     }
+        // }
+        // return response()->json([
+        //     'data' => $array,
+        // ], 200);
+        $userId = $request->user()->id;
+
+        // Query to fetch messages involving the authenticated user
         $data = DB::table('messages')
-            ->select('sender_id', 'receiver_id', DB::raw('MIN(text) as text'), DB::raw('MIN(images) as images'), DB::raw('MIN(created_at) as created_at'))
-            ->where('sender_id', $request->user()->id)
-            ->orWhere('receiver_id', $request->user()->id)
+            ->select('sender_id', 'receiver_id', 'text', 'images', 'created_at')
+            ->where(function ($query) use ($userId) {
+                $query->where('sender_id', $userId)
+                    ->orWhere('receiver_id', $userId);
+            })
             ->orderBy('created_at', 'desc')
-            ->groupBy('sender_id', 'receiver_id')
             ->get();
-        $data = ListChatUserResource::collection($data);
-        $array = [];
-        foreach ($data as $item) {
-            $item->sender_id = DB::table('frontusers')->where('id', $item->sender_id)->get();
-            $item->receiver_id = DB::table('frontusers')->where('id', $item->receiver_id)->get();
-            if (count($array) > 0) {
-                foreach ($array as $key) {
-                    if ($key->sender_id !== $item->receiver_id && $key->receiver_id !== $item->sender_id) {
-                        $array[] = $item;
-                    }
+
+        $chattedUsers = [];
+
+        foreach ($data as $message) {
+            // Determine the other user in the chat
+            $otherUserId = ($message->sender_id == $userId) ? $message->receiver_id : $message->sender_id;
+
+            // Check if this user is already in $chattedUsers array
+            $found = false;
+            foreach ($chattedUsers as $user) {
+                if ($user['id'] == $otherUserId) {
+                    $found = true;
+                    break;
                 }
-            } else {
-                $array[] = $item;
+            }
+
+            // If not found, fetch user details and add to $chattedUsers array
+            if (!$found) {
+                $userDetails = DB::table('frontusers')->where('id', $otherUserId)->first();
+                if ($userDetails) {
+                    $chattedUsers[] = [
+                        'id' => $otherUserId,
+                        'name' => $userDetails->name,
+                        'email' => $userDetails->email,
+                        'latest_message' => [
+                            'text' => $message->text,
+                            'images' => $message->images,
+                            'created_at' => $message->created_at,
+                        ]
+                    ];
+                }
             }
         }
-        return response()->json([
-            'data' => $array,
-        ], 200);
+        return response()->json(['data' => $chattedUsers], 200);
     }
-
     public function getConversation(Request $request, $receiver_id)
     {
         $receiver = Frontuser::find($receiver_id);

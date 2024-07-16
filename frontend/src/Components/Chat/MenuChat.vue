@@ -6,36 +6,18 @@
     </div>
     <div v-for="user in userChat.users.data" :key="user.id"
       class="link-offset-2 link-underline link-underline-opacity-0 text-dark">
-      <button v-if="store.user.id !== user.receiver_id[0].id" @click="chatDetail(user.receiver_id[0].id)"
-        class="border-none bg-white w-100">
+      <button @click="chatDetail(user.id)" class="border-none bg-white w-100">
         <div class="d-flex hover-bg p-2 align-items-center gap-3 border-bottom">
-          <img v-if="user.receiver_id[0].profile" :src="`http://127.0.0.1:8000/storage/${user.receiver_id[0].profile}`"
-            class="rounded-circle  w-15" alt="Avatar" />
+          <img v-if="user.profile" :src="`http://127.0.0.1:8000/storage/${user.profile}`" class="rounded-circle  w-15"
+            alt="Avatar" />
           <img v-else src="../../assets/images/user.png" class="rounded-circle  w-18" alt="Avatar" />
           <div class="d-flex flex-column justify-content-center w-100">
             <div class="d-flex justify-content-between ">
-              <h6>{{ user.receiver_id[0].name }}</h6>
-              <span class="time-message">{{ formattedTime(user.created_at) }}</span>
+              <h6>{{ user.name }}</h6>
+              <span class="time-message">{{ formattedTime(user.latest_message.created_at) }}</span>
             </div>
             <div class="d-flex justify-content-between ">
-              <p>{{ user.text }}</p>
-            </div>
-          </div>
-        </div>
-      </button>
-      <button v-else-if="user.receiver_id[0].id == store.user.id" @click="receiverDetail(user.sender_id[0].id)"
-        class="border-none bg-white w-100">
-        <div class="d-flex hover-bg p-2 align-items-center gap-3 border-bottom">
-          <img v-if="user.sender_id[0].profile" :src="`http://127.0.0.1:8000/storage/${user.sender_id[0].profile}`"
-            class="rounded-circle  w-15" alt="Avatar" />
-          <img v-else src="../../assets/images/user.png" class="rounded-circle  w-18" alt="Avatar" />
-          <div class="d-flex flex-column justify-content-center w-100">
-            <div class="d-flex justify-content-between ">
-              <h6>{{ user.sender_id[0].name }}</h6>
-              <span class="time-message">{{ formattedTime(user.created_at) }}</span>
-            </div>
-            <div class="d-flex justify-content-between ">
-              <p>{{ user.text }}</p>
+              <p>{{ user.latest_message.text }}</p>
             </div>
           </div>
         </div>
@@ -46,12 +28,14 @@
 
 <script>
 import { useAuthStore } from '@/stores/auth-store'
+import { userChatStore } from '@/stores/user-chat.ts'
 export default {
   props: ["userChat"],
   data() {
     return {
       user_id: "",
       store: useAuthStore(),
+      userChatStore: userChatStore(),
     }
   },
   methods: {
@@ -67,10 +51,6 @@ export default {
     chatDetail(id) {
       this.$emit('reciever_id', id);
     },
-
-    receiverDetail(id) {
-      this.$emit('sender_id', id);
-    }
   }
 }
 </script>

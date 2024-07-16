@@ -4,15 +4,10 @@ import { string } from 'yup';
 export const userChatStore = defineStore('users', {
   state: () => ({
     users: [] as Array<{
-      sender_id: number,
-      receiver_id: [],
-      frontuser_id: number,
-      price: string,
-      image: string,
-      discount: string,
-      quantity: string,
-      stock_id: number,
-      categorys_id: number
+      id: number,
+      name: string,
+      email: string,
+      latest_message: any,
     }>,
     receiverUser: [],
     chat: [] as Array<{

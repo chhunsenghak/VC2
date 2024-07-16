@@ -1,7 +1,7 @@
 <template>
   <div v-if="userChatDetail.length !== 0" class="col-8 overflow-y-scroll" style="height: 550px; scrollbar-width: thin;">
     <div
-      class="col-8 chat-header bg-white text-dark shadow-sm p-3 d-flex justify-content-between align-items-center position-fixed">
+      class="col-8 chat-header text-dark shadow-sm p-3 d-flex justify-content-between align-items-center position-fixed">
       <div class="d-flex align-items-center">
         <div class="avatar mr-3">
           <img v-if="userChatDetail.receiver.profile"
@@ -21,7 +21,7 @@
               d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
           </svg>
         </button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu bg-white">
           <li><button class="dropdown-item" @click="clearAllMessage(userChatDetail.receiver.id)">Clear</button></li>
           <li><button class="dropdown-item" @click="deleteUserChat(userChatDetail.receiver.id)">Delete</button></li>
         </ul>
@@ -97,8 +97,8 @@ export default {
 
     async sendTextMessage() {
       this.chat.sendText(this.message);
+      this.$emit('reciever_id', this.message.id);
       this.message.text = "";
-
     },
 
     getFormattedTime(timestamp) {
