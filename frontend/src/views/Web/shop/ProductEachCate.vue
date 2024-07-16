@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="d-flex justify-content-between align-items-center ">
-            <h4 style="margin-top: 17rem" class="fw-bold">{{  }}</h4>
+            <!-- <h4 style="margin-top: 17rem" class="fw-bold">{{ products.products.data }}</h4> -->
             <!-- Search Products -->
             <div class="search-wrapper">
               <input type="search" v-model="searchText" class="form-control search-input" placeholder="ស្វែងរកផលិតផល..."
@@ -19,7 +19,7 @@
           <div v-for="product in products.products.data.products" :key="product.id" class="col">
             <div v-if="product != ''" class="card rounded-2 p-4 shadow-sm h-100">
               <div class="image-container rounded-2 mb-3">
-                <img v-if="product.image" :src="`http://127.0.0.1:8000/products_images/${product.image}`"
+                <img v-if="product.image" :src="`http://127.0.0.1:8000/storage/${product.image}`"
                   :alt="product.name" class="product-image" />
               </div>
               <div class="card-content">
