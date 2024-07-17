@@ -3,8 +3,25 @@
 import { useAuthStore } from '@/stores/auth-store'
 import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
+import { userChatStore } from '@/stores/user-chat.ts'
+import { onMounted } from 'vue';
+import MenuChat from '@/Components/Chat/MenuChat.vue'
+
 const router = useRouter()
 const store = useAuthStore()
+const userChat = userChatStore()
+
+
+onMounted(() => {
+  fetchChatUser()
+})
+
+const fetchChatUser = async () => {
+  await userChat.fetchChatUser()
+  console.log(userChat.users);
+}
+  
+
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')
@@ -63,6 +80,7 @@ const logout = async () => {
           d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 1 0-2 1 1 0 0 1 0 2" />
       </svg>
     </a>
+
     <!-- Sign In -->
 
     <!-- User Profile -->
@@ -72,8 +90,8 @@ const logout = async () => {
           data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
           <img v-if="store.user.profile == null" src="../../src/assets/user.png" alt="Profile Picture"
             style="width: 40px" class="profile-picture rounded-circle" />
-          <img v-else :src="`http://127.0.0.1:8000/storage/${store.user.profile}`" class="rounded-circle"
-            width="40px" alt="profile" />
+          <img v-else :src="`http://127.0.0.1:8000/storage/${store.user.profile}`" class="rounded-circle" width="40px"
+            alt="profile" />
         </button>
         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="profileDropdown">
           <li><a class="dropdown-item" href="/profile">Account</a></li>
@@ -89,4 +107,66 @@ const logout = async () => {
       <a href="/login" class="btn btn-outline-success">Sign in</a>
     </div>
   </nav>
+  <div class="d-flex justify-content-end">
+    <div class="z-3 position-absolute​ custom-fixed bottom-0 end-9 p-3">
+      <div class="dropup​">
+        <button type="button" class="btn btn-primary dropdown-toggle rounded-circle" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor"
+            class="bi bi-chat-left-text" viewBox="0 0 16 16">
+            <path
+              d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+            <path
+              d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
+          </svg>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li class="d-flex justify-content-between align-items-center pl-3 pb-1 ​ border-bottom">
+            <div class=""><img v-if="store.user.profile == null" src="../../src/assets/user.png" alt="Profile Picture"
+                style="width: 40px" class="profile-picture rounded-circle" />
+              <img v-else :src="`http://127.0.0.1:8000/storage/${store.user.profile}`" class="rounded-circle"
+                width="40px" alt="profile" />
+              <span><b>Messaging</b></span>
+            </div>
+          </li>
+
+          <li>
+            <div class="p-3">
+              <input type="text" class="form-control h-10">
+            </div>
+          </li>
+          <MenuChat :userChat="userChat"></MenuChat>
+          
+            <!-- {{ userChat }} -->
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
+
+<style>
+.custom-fixed {
+  position: fixed;
+  top: 550px;
+  border-radius: 50%;
+  width: 20px;
+  z-index: 100;
+}
+
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+.dropdown-menu .dropdown-item {
+  width: 300px;
+  padding: 10px;
+  background: rgb(255, 255, 255);
+  overflow: inherit !important;
+}
+
+.dropdown-menu {
+  height: 450px;
+  width: 330px;
+}
+</style>

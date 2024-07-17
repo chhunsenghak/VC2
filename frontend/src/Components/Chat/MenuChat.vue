@@ -1,27 +1,27 @@
 <template>
-  <div class="col-4  p-3 overflow-y-scroll" style="height: 550px; scrollbar-width: thin;">
-    <h4>Chat Messages</h4>
-    <div class="d-flex align-items-center gap-3">
-      <input type="text" class="form-control rounded-4 border-1 border-dark mb-3" placeholder="Search">
-    </div>
-    <div v-for="user in userChat.users.data" :key="user.id"
-      class="link-offset-2 link-underline link-underline-opacity-0 text-dark">
-      <button @click="chatDetail(user.id)" class="border-none bg-white w-100">
-        <div class="d-flex hover-bg p-2 align-items-center gap-3 border-bottom">
-          <img v-if="user.profile" :src="`http://127.0.0.1:8000/storage/${user.profile}`" class="rounded-circle  w-15"
-            alt="Avatar" />
-          <img v-else src="../../assets/images/user.png" class="rounded-circle  w-18" alt="Avatar" />
-          <div class="d-flex flex-column justify-content-center w-100">
-            <div class="d-flex justify-content-between ">
-              <h6>{{ user.name }}</h6>
-              <span class="time-message">{{ formattedTime(user.latest_message.created_at) }}</span>
+  <div class="overflow-y-scroll" style="height: 320px">
+    <div class="list-group pl-4 gap-1" id="myList" role="tablist">
+
+      <li v-for="user in userChat.users.data" :key="user.id" class="list-group-item p-0">
+        <button @click="chatDetail(user.id)" class="border-none w-100 d-flex p-1 gap-3">
+          <div>
+            <img v-if="user.profile" :src="`http://127.0.0.1:8000/storage/${user.profile}`" class="rounded-circle  w-10"
+              alt="Avatar" />
+            <img v-else src="../../assets/images/user.png" class="rounded-circle  w-10" alt="Avatar" />
+          </div>
+          <div class="flex-grow-1 bg-danger">
+            <!-- Name and time -->
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="">{{ user.name }}</h5>
+              <small class="text-muted">{{ formattedTime(user.latest_message.created_at) }}</small>
             </div>
-            <div class="d-flex justify-content-between ">
-              <p>{{ user.latest_message.text }}</p>
+            <!-- Latest message -->
+            <div>
+              <p class="mb-0">{{ user.latest_message.text }}</p>
             </div>
           </div>
-        </div>
-      </button>
+        </button>
+      </li>
     </div>
   </div>
 </template>
@@ -55,42 +55,4 @@ export default {
 }
 </script>
 
-<style>
-.hover-bg {
-  transition: background-color 0.3s ease;
-  /* Smooth transition for background color change */
-}
-
-.hover-bg:hover {
-  background-color: #f6f6f6;
-  /* New background color on hover */
-}
-
-.col-4 {
-  /* Ensure scrollbars are visible only when needed */
-  scrollbar-width: thin;
-  scrollbar-color: #ffffff #ffffff;
-  /* Color of the thumb and track */
-  overflow-y: auto;
-}
-
-/* WebKit Browsers (Chrome, Safari) */
-.col-4::-webkit-scrollbar {
-  width: 5px;
-  /* Adjust width as needed */
-  height: 5px;
-  /* Adjust height as needed */
-}
-
-.col-4::-webkit-scrollbar-thumb {
-  background-color: #ffffff;
-  /* Color of the thumb */
-  border-radius: 5px;
-  /* Rounded corners */
-}
-
-.col-4::-webkit-scrollbar-track {
-  background-color: #f0f0f0;
-  /* Color of the track */
-}
-</style>
+<style></style>

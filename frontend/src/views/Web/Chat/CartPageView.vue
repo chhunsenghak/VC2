@@ -10,7 +10,6 @@
 
 <script>
 import WebHeaderMenu from '@/Components/WebHeaderMenu.vue'
-import MenuChat from '@/Components/Chat/MenuChat.vue'
 import DetailChat from '@/Components/Chat/DetailChat.vue'
 import { userChatStore } from '@/stores/user-chat.ts'
 import { useAuthStore } from '@/stores/auth-store'
