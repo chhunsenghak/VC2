@@ -1,7 +1,13 @@
 <template>
-  <div>
+  <div class="container">
     <!-- Button to open the product creation dialog -->
-    <button class="btn btn-success ml-300" @click="openDialog">បង្កើត</button>
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h5 class="fw-bold">ផលិតផលរបស់ខ្ញុំ</h5>
+        <div class="w-38" style="border-bottom: 2px solid green;"></div>
+      </div>
+      <button class="btn btn-success float-end" @click="openDialog">បង្កើត</button>
+    </div>
 
     <!-- Background overlay for dialog -->
     <div class="dialog-background" v-if="isDialogOpen" @click="closeDialog"></div>
@@ -74,11 +80,7 @@
               <label for="category" class="form-label">ប្រភេទផលិតផល</label>
               <select class="form-select" v-model="category">
                 <option disabled selected>ជ្រើសរើស...</option>
-                <option
-                  v-for="category in categorys.categorys.data"
-                  :key="category.id"
-                  :value="category.id"
-                >
+                <option v-for="category in categorys.categorys.data" :key="category.id" :value="category.id">
                   {{ category.name }}
                 </option>
               </select>
@@ -88,13 +90,7 @@
             <!-- Image Of Product -->
             <div class="mb-3 mt-5">
               <label for="file" class="form-label">រូបភាពផលិតផល</label>
-              <input
-                type="file"
-                class="form-control"
-                id="file"
-                accept="image/*"
-                @change="handleFileUpload"
-              />
+              <input type="file" class="form-control" id="file" accept="image/*" @change="handleFileUpload" />
               <span class="text-danger">{{ imageError }}</span>
             </div>
           </div>

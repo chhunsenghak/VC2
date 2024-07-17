@@ -14,7 +14,10 @@ export const userStore = defineStore('products', {
       stock_id: number,
       categorys_id: number
     }>,
-    deleteProduct: [] as Array<string>,
+    deleteMessage: [] as Array<{
+      'message': string,
+      'status' : boolean
+    }>,
   }),
   actions: {
     async fetchUser(id) {
@@ -36,7 +39,7 @@ export const userStore = defineStore('products', {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           },
         });
-        this.deleteProduct = response.data;
+        this.deleteMessage = response.data;
       } catch (error) {
         console.error('Error fetching products:', error);
       }
