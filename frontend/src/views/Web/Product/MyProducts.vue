@@ -1,7 +1,7 @@
 <template>
   <WebLayout>
-    <div class="container d-flex mt-30 justify-content-between mb-10">
-      <UserInfo :userStore="userStore"></UserInfo>
+    <div class="container d-flex mt-30 mb-10 p-8">
+      <!-- <UserInfo :userStore="userStore"></UserInfo> -->
       <ListProducts :productsStore="store" />
     </div>
   </WebLayout>

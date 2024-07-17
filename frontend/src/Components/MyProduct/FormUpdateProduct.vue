@@ -53,7 +53,7 @@
           <!-- Category -->
           <div class="mb-3">
             <label for="category" class="form-label">ប្រភេទផលិតផល</label>
-            <select class="form-select" v-model="product.category">
+            <select class="form-select" v-model="product.category.name">
               <option value="">ជ្រើសរើស...</option>
               <option>Fruit</option>
               <option>Vegetable</option>
@@ -71,7 +71,7 @@
       <!-- Action Buttons -->
       <div class="text-center mt-4">
         <button type="button" class="btn btn-danger" @click="closeDialog">បោះបង់</button>
-        <button type="submit" class="btn btn-success ms-2">បញ្ជូល</button>
+        <button type="submit" class="btn btn-success ms-2" @click="submitProduct">បញ្ជូល</button>
       </div>
     </form>
   </dialog>
@@ -93,6 +93,7 @@ export default {
       const file = event.target.files[0]
       this.product.image = file
     }
+    //edit product
   }
 }
 </script>
