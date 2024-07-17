@@ -9,7 +9,7 @@
     <!-- Product creation dialog -->
     <dialog ref="productDialog" class="product-dialog">
       <!-- Form to create a new product -->
-      <form @submit.prevent="submitProduct" class="product-form" enctype="multipart/form-data">
+      <form @submit.prevent="handleSubmit(submitProduct)" class="product-form" enctype="multipart/form-data">
         <h4 class="form-title text-center mb-3">បង្កើតផលិតផល</h4>
 
         <div class="row">
@@ -254,8 +254,10 @@ export default {
       this.$refs.productDialog.close()
     },
     submitProduct() {
-      this.$emit('submit', this.product)
-    },
+      if (this.$refs.productForm.isValid) {
+        this.submitProduct()
+      }
+    }
   }
 }
 </script>

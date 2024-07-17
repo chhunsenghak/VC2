@@ -16,26 +16,24 @@ class ProductSeeder extends Seeder
         //
         $products = [
             [
-                'name' => 'orange',
-                'description' => 'good product for is orange',
-                'price' => 100,
+                'name' => 'ផ្លែក្រូច',
+                'description' => 'ផ្លែក្រូចកំពង់ចាម',
+                'price' => 10000,
                 'frontuser_id' => 1,
-                'image' => 'orange.jfif',
+                'image' => '1720927018.jpg',
                 'categorys_id' => 1,
                 'stock_id' => 1,
-                'discount' => '10%',
                 'quantity' => 10,
                 'break_product_at' => now()
             ],
             [
-                'name' => 'apple',
-                'description' => 'good product for is apple',
+                'name' => 'ផ្លែប៉ោង',
+                'description' => 'ដាំដុះដោយកសិករនៅខេត្តកំពង់ធំ',
                 'price' => 100,
                 'frontuser_id' => 1,
-                'image' => 'apple.jiif',
+                'image' => 'apple.jpg',
                 'categorys_id' => 1,
                 'stock_id' => 1,
-                'discount' => '10%',
                 'quantity' => 10,
                 'break_product_at' => now()
             ],
@@ -48,18 +46,16 @@ class ProductSeeder extends Seeder
                 'categorys_id' => 1,
                 'stock_id' => 1,
                 'quantity' => 10,
-                'discount' => '10%',
             ],
             [
-                'name' => 'ស្រូវសាលី',
-                'description' => 'ជលិតផលដែលបុរសចូលចិត្តខ្លាំងជាងគេ',
+                'name' => 'អង្ករដំណើប',
+                'description' => 'អង្ករដែលល្អ',
                 'price' => 100,
                 'frontuser_id' => 1,
-                'image' => 'rice.jpg',
+                'image' => '1720927081.jpg',
                 'categorys_id' => 1,
                 'stock_id' => 2,
                 'quantity' => 10,
-                'discount' => '10%',
             ]
         ];
         foreach ($products as $product) {

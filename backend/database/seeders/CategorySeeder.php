@@ -15,29 +15,20 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'id' => 1,
                 'name' => 'ផ្លៃឈើ',
+                'image' => 'licensed-image.jfif',
                 'description' => 'ផ្លៃឈើដែលមានគុណភាពល្អចេញពីកសិផលរបស់កសិករខ្មែរយើងសុទ្ទ១០០ភាគរយ',
             ],
             [
-                'id' => 2,
                 'name' => 'ស្រូវ',
+                'image' => 'rices.webp',
                 'description' => 'ផលិតផលដែលសម្បូរនឹងជាអាហារចម្បងរបស់ប្រជាជនកម្ពុជា',
             ],
             [
-                'id' => 3,
                 'name' => 'ត្រី',
+                'image' => 'fish.jfif',
                 'description' => 'ត្រីធម្មជាតិរបស់ប្រជាជននៅតាមជនបទ',
             ],
-            [
-                'id' => 4,
-                'name' => 'គ្រាប់ធុញ្ញជាតិ',
-                'description' => 'ផលិតផលសុទ្ធពីកសិករខ្មែរ',
-            ],[
-                'id' => 5,
-                'name' => 'អង្ករ',
-                'description' => 'អង្កររបស់ប្រជាជនខ្មែរ',
-            ]
         ];
         foreach ($categories as $category) {
             Categorys::create($category);

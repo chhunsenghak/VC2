@@ -66,13 +66,12 @@ class ProductController extends Controller
                 'stock_type_id' => $request->stock_type_id,
             ]);
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('products_images'), $imageName);
+            $request->image->move(public_path('storage'), $imageName);
 
             $product = Products::create([
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
-                'discount' => $request->discount,
                 'categorys_id' => $request->categorys_id,
                 'stock_id' => $stock->id,
                 'break_product_at' => $request->break_product_at,
@@ -131,13 +130,12 @@ class ProductController extends Controller
                 'stock_type_id' => $request->stock_type_id,
             ]);
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('products_images'), $imageName);
-            $product->image = 'products_images/' . $imageName;
+            $request->image->move(public_path('storage'), $imageName);
+            $product->image = $imageName;
             $product->update([
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
-                'discount' => $request->discount,
                 'categorys_id' => $request->categorys_id,
                 'stock_id' => $stock->id,
                 'break_product_at' => $request->break_product_at,

@@ -1,12 +1,9 @@
 <template>
   <div v-if="productsStore.products.data != ''" class="row ">
+    {{  store }}
     <form-create-product>
-
-
     </form-create-product>
     <!-- Button to Open Dialog -->
-
-
     <!-- Update Product Form as Overlay -->
     <form-update-product v-if="isDialogOpen" :product="selectedProduct" @close="closeDialog" @submit="submitProduct"
       class="overlay"></form-update-product>
@@ -44,7 +41,7 @@
             </td>
             <td>{{ product.description }}</td>
             <td>
-              <i class="material-icons text-danger me-3">delete</i>
+              <button class="btn" @click="deleteProduct(product.id)"><i class="material-icons text-danger me-3">delete</i></button>
               <i class="material-icons text-success" @click="openDialog(product)">edit</i>
             </td>
           </tr>
@@ -72,15 +69,15 @@
         </div>
       </div>
     </div>
-
   </div>
-
 
 </template>
 
 <script>
 import FormCreateProduct from '/src/Components/MyProduct/FormCreateProduct.vue'
 import FormUpdateProduct from '/src/Components/MyProduct/FormUpdateProduct.vue'
+import {userStore} from '@/stores/my-product'
+
 
 export default {
   props: ['productsStore'],
@@ -92,7 +89,8 @@ export default {
   data() {
     return {
       isDialogOpen: false,
-      selectedProduct: null
+      selectedProduct: null,
+      store : userStore()
     }
   },
   methods: {
@@ -111,6 +109,17 @@ export default {
     // formattedDate(date) {
     //   return moment(date).format('YYYY-MM-DD HH:mm:ss')
     // }
+    deleteProduct(id){
+      this.deletePro(id)
+    },
+    async deletePro(id){
+      if (this.selectedProduct){
+        this.store.products.data = this.store.products.data.filter(product => product.id!== id)
+        return  alert('Product deleted')
+      }
+      this.store.deleteProduct(id)
+      // console.log(this.store);
+    }
   }
 }
 </script>

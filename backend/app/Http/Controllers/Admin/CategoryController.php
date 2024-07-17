@@ -50,7 +50,7 @@ class CategoryController extends Controller
         ]);
 
         $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('categories_images'), $imageName);
+        $request->image->move(public_path('storage'), $imageName);
 
         $category = Categorys::create([
             'name' => $request->name,
@@ -95,8 +95,8 @@ class CategoryController extends Controller
         ]);
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('categories_images'), $imageName);
-            $category->image = 'images/' . $imageName;
+            $request->image->move(public_path('storage'), $imageName);
+            $category->image = $imageName;
             $category->update([
                 'name' => $request->name,
                 'description' => $request->description,
