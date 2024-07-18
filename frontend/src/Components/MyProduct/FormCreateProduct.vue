@@ -1,13 +1,8 @@
 <template>
   <div class="container">
+
     <!-- Button to open the product creation dialog -->
-    <div class="d-flex justify-content-between align-items-center">
-      <div>
-        <h5 class="fw-bold">ផលិតផលរបស់ខ្ញុំ</h5>
-        <div class="w-38" style="border-bottom: 2px solid green;"></div>
-      </div>
-      <button class="btn btn-success float-end" @click="openDialog">បង្កើត</button>
-    </div>
+    <button class="btn btn-success float-end" @click="openDialog">បង្កើត</button>
 
     <!-- Background overlay for dialog -->
     <div class="dialog-background" v-if="isDialogOpen" @click="closeDialog"></div>
@@ -15,57 +10,52 @@
     <!-- Product creation dialog -->
     <dialog ref="productDialog" class="product-dialog">
       <!-- Form to create a new product -->
-      <form @submit.prevent="handleSubmit(submitProduct)" class="product-form" enctype="multipart/form-data">
-        <h4 class="form-title text-center mb-3">បង្កើតផលិតផល</h4>
+      <el-form @submit="submitProduct">
+        <h4 class="form-title text-center mb-4">បង្កើតផលិតផល</h4>
 
         <div class="row">
           <div class="col-md-6">
             <!-- Name Of Product -->
-            <div class="mb-3">
+            <div class="mb-4">
               <label for="name" class="form-label">ឈ្មោះផលិតផល</label>
-              <input type="text" class="form-control" id="name" v-model="name" />
-              <span class="text-danger">{{ nameError }}</span>
+              <el-form-item :error="nameError">
+                <el-input placeholder="ឈ្មោះ" v-model="name" size="large" type="text" />
+              </el-form-item>
             </div>
 
             <!-- Price Of Product -->
-            <div class="mb-3">
+            <div class="mb-4">
               <label for="price" class="form-label">តម្លៃ</label>
-              <div class="input-group">
-                <span class="input-group-text">រៀល</span>
-                <input type="text" class="form-control" id="price" v-model="price" />
-              </div>
-              <span class="text-danger">{{ priceError }}</span>
+              <el-form-item class="row" :error="priceError">
+                <el-input type="number" size="large" v-model="price" />
+                <small class="text-danger">តម្លៃរៀល*</small>
+              </el-form-item>
             </div>
 
             <!-- Description Of Product -->
-            <div class="mb-3">
+            <div class="mb-4">
               <label for="desc" class="form-label">ពិពណ៍នាផលិតផល</label>
               <textarea class="form-control" id="desc" v-model="description"></textarea>
               <span class="text-danger">{{ descriptionError }}</span>
             </div>
 
             <!-- Date Of Product -->
-            <div class="mb-3">
+            <div class="mb-4">
               <label for="date" class="form-label">ផុតកំណត់</label>
-              <input type="date" class="form-control" id="date" v-model="date" />
-              <span class="text-danger">{{ dateError }}</span>
+              <el-form-item :error="dateError">
+                <el-input type="date" id="date" size="large" v-model="break_product_at" />
+              </el-form-item>
+
             </div>
           </div>
 
           <div class="col-md-6">
-            <!-- Discount -->
-            <div class="mb-3">
-              <label for="discount" class="form-label">បញ្ចុះតម្លៃ</label>
-              <input type="text" class="form-control" id="discount" v-model="discount" />
-              <span class="text-danger">{{ discountError }}</span>
-            </div>
-
             <!-- Quantity Of Products -->
-            <div class="mb-3">
-              <label for="quantity" class="form-label">ចំនួន</label>
+            <div class="mb-4">
+              <label for="quantity" class="form-label">ចំនួន នឹង ប្រភេទស្ដុប</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="quantity" v-model="quantity" />
-                <select class="form-select" aria-label="Select Unit" v-model="stock_type_id">
+                <input type="number" class="form-control" v-model="quantity" />
+                <select class="form-select​" aria-label="Select Unit" v-model="stock_type_id">
                   <option disabled selected>ជ្រើសរើស...</option>
                   <option v-for="stock in stocks.stocks" :key="stock.id" :value="stock.id">
                     {{ stock.name }}
@@ -76,21 +66,22 @@
             </div>
 
             <!-- Category -->
-            <div class="mb-3">
+            <div class="mb-4">
               <label for="category" class="form-label">ប្រភេទផលិតផល</label>
-              <select class="form-select" v-model="category">
+              <select class="form-select" v-model="categorys_id" :error="categoryError">
                 <option disabled selected>ជ្រើសរើស...</option>
                 <option v-for="category in categorys.categorys.data" :key="category.id" :value="category.id">
                   {{ category.name }}
                 </option>
               </select>
-              <span class="text-danger">{{ categoryError }}</span>
             </div>
 
             <!-- Image Of Product -->
-            <div class="mb-3 mt-5">
+            <div class="mb-4 mt-5">
               <label for="file" class="form-label">រូបភាពផលិតផល</label>
-              <input type="file" class="form-control" id="file" accept="image/*" @change="handleFileUpload" />
+              <input v-if="!imageUrl" type="file" class="form-control" id="file" required accept="image/*"
+                @change="handleFileUpload" />
+              <img v-if="imageUrl" class="w-100" :src="imageUrl" alt="Uploaded Image" />
               <span class="text-danger">{{ imageError }}</span>
             </div>
           </div>
@@ -98,164 +89,137 @@
 
         <!-- Action Buttons -->
         <div class="action-btn text-center mt-4">
-          <button type="button" class="btn btn-danger" @click="closeDialog">cancle</button>
-          <button type="submit" class="btn btn-success ms-2" @click="submitProduct">Send</button>
+          <el-button type="button" class="btn btn-danger" @click="closeDialog">cancle</el-button>
+          <el-button type="primary" native-type="submit" class="btn btn-success ms-2">Send</el-button>
         </div>
-      </form>
+      </el-form>
     </dialog>
-
-    <!-- Product Cards List -->
-    <!-- <div class="product-cards mt-4">
-      <div class="product-card" v-for="product in productsArr" :key="product.id">
-        <img :src="product.image" alt="Product Image" class="product-image" />
-        <div class="product-details">
-          <h5>{{ product.name }}</h5>
-          <p>{{ product.price }} រៀល</p>
-          <p>{{ product.description }}</p>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import { categoryStore } from '@/stores/category-store'
 import { stockStore } from '@/stores/stock-type-store'
 import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
+import { useAuthStore } from '@/stores/auth-store'
 import * as yup from 'yup'
+
+const user = useAuthStore();
+const stocks = stockStore();
+const categorys = categoryStore();
+const isDialogOpen = ref(false);
+const imageUrl = ref('');
+const productDialog = ref<HTMLDialogElement | null>(null);
 
 const formSchema = yup.object({
   name: yup.string().required().label('Product name'),
-  price: yup.string().required().label('Price'),
+  price: yup.number().required().label('Price'),
   description: yup.string().label('Description'),
-  date: yup.date().required().label('Date'),
-  image: yup.mixed().required().label('Image'),
-  category: yup.number().required().label('Category'),
-  discount: yup.string().label('Discount'),
+  break_product_at: yup.date().required().label('Date'),
+  image: yup
+    .mixed()
+    .required('Image is required')
+    .test('fileSize', 'The file is too large', (value) => {
+      return !value || (value && value.size <= 2000000); // 2MB
+    })
+    .test('fileType', 'Only image files are allowed', (value) => {
+      return !value || (value && ['image/jpeg', 'image/png', 'image/gif'].includes(value.type));
+    }),
+  categorys_id: yup.number().required().label('categorys_id'),
   quantity: yup.number().required().label('Quantity'),
   stock_type_id: yup.number().required().label('Stock Type')
 })
 
-export default {
-  name: 'FormCreateProduct',
-  data() {
-    return {
-      isDialogOpen: false,
-      stocks: stockStore(),
-      categorys: categoryStore(),
-      productsArr: [] // Assuming this is where products will be stored
-    }
+const { handleSubmit, isSubmitting, resetForm } = useForm({
+  initialValues: {
+    name: '',
+    price: '',
+    description: '',
+    break_product_at: '',
+    image: '',
+    categorys_id: '',
+    quantity: '',
+    stock_type_id: '',
+    frontuser_id: user.user.id,
   },
-  setup() {
-    const { handleSubmit, isSubmitting } = useForm({
-      validationSchema: formSchema
+  validationSchema: formSchema
+})
+
+const submitProduct = handleSubmit(async (values) => {
+  console.log(values);
+  try {
+    const formData = new FormData();
+    for (let key in values) {
+      formData.append(key, values[key]);
+    }
+
+    const response = await axiosInstance.post('/products/create', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     })
+    closeDialog();
 
-    const { value: name, errorMessage: nameError } = useField('name')
-    const { value: price, errorMessage: priceError } = useField('price')
-    const { value: description, errorMessage: descriptionError } = useField('description')
-    const { value: date, errorMessage: dateError } = useField('date')
-    const { value: image, errorMessage: imageError } = useField('image')
-    const { value: category, errorMessage: categoryError } = useField('category')
-    const { value: discount, errorMessage: discountError } = useField('discount')
-    const { value: quantity, errorMessage: quantityError } = useField('quantity')
-    const { value: stock_type_id, errorMessage: stockTypeIdError } = useField('stock_type_id')
-
-    const submitProduct = async () => {
-      try {
-        const formData = new FormData()
-        formData.append('name', name.value)
-        formData.append('price', price.value)
-        formData.append('description', description.value)
-        formData.append('date', date.value)
-        formData.append('image', image.value)
-        formData.append('category', category.value)
-        formData.append('discount', discount.value)
-        formData.append('quantity', quantity.value)
-        formData.append('stock_type_id', stock_type_id.value)
-
-        const response = await axiosInstance.post('/products/create', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-
-        // Assuming addProductToCard and closeDialog are defined elsewhere
-        this.productsArr.push(response.data)
-        this.closeDialog()
-      } catch (error) {
-        console.error('Error creating product:', error)
-      }
-    }
-
-    const handleFileUpload = (event) => {
-      const file = event.target.files[0]
-      image.value = file
-    }
-
-    return {
-      name,
-      nameError,
-      price,
-      priceError,
-      description,
-      descriptionError,
-      date,
-      dateError,
-      image,
-      imageError,
-      category,
-      categoryError,
-      discount,
-      discountError,
-      stock_type_id,
-      quantity,
-      quantityError,
-      handleSubmit,
-      isSubmitting,
-      submitProduct,
-      handleFileUpload
-    }
-  },
-
-  async mounted() {
-    await this.fetchDataStock()
-    await this.fetchDataCategory()
-  },
-  methods: {
-    async fetchDataStock() {
-      try {
-        await this.stocks.fetchStocks()
-      } catch (error) {
-        console.error('Error fetching stocks:', error)
-      }
-    },
-
-    async fetchDataCategory() {
-      try {
-        await this.categorys.fetchCategorys()
-      } catch (error) {
-        console.error('Error fetching category:', error)
-      }
-    },
-    openDialog() {
-      this.isDialogOpen = true
-      this.$refs.productDialog.showModal()
-    },
-
-    closeDialog() {
-      this.isDialogOpen = false
-      this.$refs.productDialog.close()
-    },
-    submitProduct() {
-      if (this.$refs.productForm.isValid) {
-        this.submitProduct()
-      }
-    }
+    resetForm();
+  } catch (error) {
+    console.error('Error creating product:', error);
   }
-}
+})
+
+const { value: name, errorMessage: nameError } = useField('name');
+const { value: price, errorMessage: priceError } = useField('price');
+const { value: description, errorMessage: descriptionError } = useField('description');
+const { value: break_product_at, errorMessage: dateError } = useField('break_product_at');
+const { value: image, errorMessage: imageError } = useField('image');
+const { value: categorys_id, errorMessage: categoryError } = useField('categorys_id');
+const { value: quantity, errorMessage: quantityError } = useField('quantity');
+const { value: stock_type_id, errorMessage: stockTypeError } = useField('stock_type_id');
+
+
+const handleFileUpload = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  if (target.files && target.files[0]) {
+    image.value = target.files[0];
+    loadImage(target.files[0]);
+  }
+  console.log(target.files)
+};
+
+const loadImage = (file: File) => {
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    imageUrl.value = event.target?.result;
+  };
+  reader.readAsDataURL(file);
+};
+
+const openDialog = () => {
+  isDialogOpen.value = true;
+  productDialog.value?.showModal();
+};
+
+const closeDialog = () => {
+  isDialogOpen.value = false;
+  productDialog.value?.close();
+};
+
+onMounted(async () => {
+  try {
+    await stocks.fetchStocks()
+  } catch (error) {
+    console.error('Error fetching stocks:', error)
+  }
+});
+
+onMounted(async () => {
+  try {
+    await categorys.fetchCategorys()
+  } catch (error) {
+    console.error('Error fetching category:', error)
+  }
+});
 </script>
 
 <style scoped>

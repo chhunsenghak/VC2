@@ -60,7 +60,7 @@ class ProductController extends Controller
 
         // Handle image upload
         $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('products_images'), $imageName);
+        $request->image->move(public_path('storage'), $imageName);
 
         // Create product
         $product = Products::create([
@@ -136,7 +136,7 @@ class ProductController extends Controller
             }
 
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('products_images'), $imageName);
+            $request->image->move(public_path('storage'), $imageName);
         }
 
         $product->update($request->all());

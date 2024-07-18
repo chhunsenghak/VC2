@@ -18,10 +18,14 @@
     <div v-if="store.products.data != ''" class="row ">
       <form-create-product>
       </form-create-product>
+      <h5 class="fw-bold">ផលិតផលរបស់ខ្ញុំ</h5>
+      <div class="w-38" style="border-bottom: 2px solid green;"></div>
       <form-update-product v-if="isDialogOpen" :product="selectedProduct" @close="closeDialog" @submit="submitProduct"
         class="overlay"></form-update-product>
 
       <div class="mt-4 ">
+
+
         <table class="table table-bordered">
           <thead class="table-success ">
             <tr>
@@ -83,6 +87,7 @@ import FormCreateProduct from '/src/Components/MyProduct/FormCreateProduct.vue'
 import FormUpdateProduct from '/src/Components/MyProduct/FormUpdateProduct.vue'
 import { userStore } from '@/stores/my-product'
 import { useAuthStore } from '@/stores/auth-store'
+
 export default {
   components: {
     FormCreateProduct,
@@ -101,6 +106,7 @@ export default {
     }
   },
   methods: {
+
     fetchData() {
       this.store.fetchUser(this.userStore.user.id)
     },
