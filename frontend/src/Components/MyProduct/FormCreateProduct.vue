@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Button to open the product creation dialog -->
-    <button class="btn btn-success ml-181" @click="openDialog">បង្កើត</button>
+    <button class="btn btn-success ml-300" @click="openDialog">បង្កើត</button>
 
     <!-- Background overlay for dialog -->
     <div class="dialog-background" v-if="isDialogOpen" @click="closeDialog"></div>
@@ -9,7 +9,7 @@
     <!-- Product creation dialog -->
     <dialog ref="productDialog" class="product-dialog">
       <!-- Form to create a new product -->
-      <form @submit.prevent="submitProduct" class="product-form" enctype="multipart/form-data">
+      <form @submit.prevent="handleSubmit(submitProduct)" class="product-form" enctype="multipart/form-data">
         <h4 class="form-title text-center mb-3">បង្កើតផលិតផល</h4>
 
         <div class="row">
@@ -102,8 +102,8 @@
 
         <!-- Action Buttons -->
         <div class="action-btn text-center mt-4">
-          <button type="button" class="btn btn-danger" @click="closeDialog">បោះបង់</button>
-          <button type="submit" class="btn btn-success ms-2">បញ្ជូល</button>
+          <button type="button" class="btn btn-danger" @click="closeDialog">cancle</button>
+          <button type="submit" class="btn btn-success ms-2" @click="submitProduct">Send</button>
         </div>
       </form>
     </dialog>
@@ -244,7 +244,6 @@ export default {
         console.error('Error fetching category:', error)
       }
     },
-
     openDialog() {
       this.isDialogOpen = true
       this.$refs.productDialog.showModal()
@@ -253,6 +252,11 @@ export default {
     closeDialog() {
       this.isDialogOpen = false
       this.$refs.productDialog.close()
+    },
+    submitProduct() {
+      if (this.$refs.productForm.isValid) {
+        this.submitProduct()
+      }
     }
   }
 }
@@ -313,23 +317,23 @@ export default {
 }
 
 .btn-danger {
-  background-color: #dc3545;
+  background-color: #d65965;
   color: #fff;
   border: none;
 }
 
 .btn-danger:hover {
-  background-color: #c82333;
+  background-color: #9d0817;
 }
 
 .btn-success {
-  background-color: #28a745;
+  background-color: #35a14f;
   color: #fff;
   border: none;
 }
 
 .btn-success:hover {
-  background-color: #218838;
+  background-color: #09571a;
 }
 
 .text-danger {
