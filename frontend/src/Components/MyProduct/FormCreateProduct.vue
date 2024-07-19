@@ -1,8 +1,45 @@
 <template>
-  <div class="container">
-
-    <!-- Button to open the product creation dialog -->
+  <div class="d-flex justify-content-between align-items-center col-12​">
+    <div>
+      <h5 class="fw-bold">ផលិតផលរបស់ខ្ញុំ</h5>
+      <div class="w-38" style="border-bottom: 2px solid green;"></div>
+    </div>
     <button class="btn btn-success float-end" @click="openDialog">បង្កើត</button>
+  </div>
+  <div class="container">
+    <button type="button" class="btn btn-primary d-none" @click="showToastCreate">Show live toast</button>
+    <!-- Toast container -->
+    <div class="toast-container position-fixed top-0 end-0 p-1">
+      <div id="showToast" class="p-2 toast bg-primary text-white p-2" role="alert" aria-live="assertive"
+        aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">សារ</strong>
+          <small class="text-muted">Now</small>
+          <button type="button" class="btn-close" @click="hideToast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          បង្កើតដោយជោគជ័យ
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary d-none" @click="showErrorCreate">Show live toast</button>
+    <!-- Toast container -->
+    <div class="toast-container position-fixed top-0 end-0 p-1">
+      <div id="showToastError" class="toast bg-danger text-white p-2" role="alert" aria-live="assertive"
+        aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Notification</strong>
+          <small class="text-muted">Now</small>
+          <button type="button" class="btn-close" @click="hideToast" aria-label="Close"></button>
+        </div>
+        <div class="error-toast-body">
+
+        </div>
+      </div>
+    </div>
+    <!-- Button to open the product creation dialog -->
+
 
     <!-- Background overlay for dialog -->
     <div class="dialog-background" v-if="isDialogOpen" @click="closeDialog"></div>
@@ -45,7 +82,6 @@
               <el-form-item :error="dateError">
                 <el-input type="date" id="date" size="large" v-model="break_product_at" />
               </el-form-item>
-
             </div>
           </div>
 
@@ -79,14 +115,12 @@
             <!-- Image Of Product -->
             <div class="mb-4 mt-5">
               <label for="file" class="form-label">រូបភាពផលិតផល</label>
-              <input v-if="!imageUrl" type="file" class="form-control" id="file" required accept="image/*"
-                @change="handleFileUpload" />
+              <input type="file" class="form-control" id="file" required accept="image/*" @change="handleFileUpload" />
               <img v-if="imageUrl" class="w-100" :src="imageUrl" alt="Uploaded Image" />
               <span class="text-danger">{{ imageError }}</span>
             </div>
           </div>
         </div>
-
         <!-- Action Buttons -->
         <div class="action-btn text-center mt-4">
           <el-button type="button" class="btn btn-danger" @click="closeDialog">cancle</el-button>
@@ -98,7 +132,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import { categoryStore } from '@/stores/category-store'
 import { stockStore } from '@/stores/stock-type-store'
 import axiosInstance from '@/plugins/axios'
@@ -148,25 +182,60 @@ const { handleSubmit, isSubmitting, resetForm } = useForm({
 })
 
 const submitProduct = handleSubmit(async (values) => {
-  console.log(values);
   try {
     const formData = new FormData();
     for (let key in values) {
       formData.append(key, values[key]);
     }
-
     const response = await axiosInstance.post('/products/create', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
     closeDialog();
-
     resetForm();
+    showToastCreate();
   } catch (error) {
-    console.error('Error creating product:', error);
+    if (error.response.data.message == "Stock limit exceeded") {
+      closeDialog();
+      showErrorCreate(error.response.data.data);
+    };
   }
 })
+
+const showToastCreate = () => {
+  nextTick(() => {
+    const toastEl = document.getElementById('showToast');
+    if (toastEl) {
+      const bsToast = new bootstrap.Toast(toastEl);
+      bsToast.show();
+    }
+  });
+}
+
+const showErrorCreate = (message) => {
+  console.log(message);
+  nextTick(() => {
+    const toastE2 = document.getElementById('showToastError');
+    const error_toast_body = document.querySelector('.error-toast-body');
+    error_toast_body.textContent = "អ្នកមិនអាចបង្កើតកសិផលបានទេ ពីព្រោះចំនួន "
+      + message.quantity + "​ " + message.name + " ច្រើនជាងចំនួនកំណត់ " +
+      message.limit_quantity + " " + message.name + " ដើម្បីបង្កើតលក់កសិផលបានច្រើនដោយគ្មានដែនកំណត់ អ្នកគ្រាន់តែធ្វើការបង់លុយសម្រាប់រយះពេលណាមួយ​ អ្នកនឹងអាចលក់កសិផលបានគ្រប់មុខដោយគ្មានដែនកំណត់";
+    if (toastE2) {
+      const bsToastError = new bootstrap.Toast(toastE2);
+      bsToastError.show();
+    }
+  });
+}
+
+const hideToast = () => {
+  const toastEl = document.getElementById('showToast');
+  if (toastEl) {
+    const bsToast = new bootstrap.Toast(toastEl);
+    imageUrl.value = ""
+    bsToast.hide();
+  }
+}
 
 const { value: name, errorMessage: nameError } = useField('name');
 const { value: price, errorMessage: priceError } = useField('price');

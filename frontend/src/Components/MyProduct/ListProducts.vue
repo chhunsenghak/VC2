@@ -13,48 +13,39 @@
       </div>
     </div>
   </div>
-
   <div class="container">
     <div v-if="store.products.data != ''" class="row ">
       <form-create-product>
       </form-create-product>
-      <h5 class="fw-bold">ផលិតផលរបស់ខ្ញុំ</h5>
-      <div class="w-38" style="border-bottom: 2px solid green;"></div>
-      <form-update-product v-if="isDialogOpen" :product="selectedProduct" @close="closeDialog" @submit="submitProduct"
-        class="overlay"></form-update-product>
-
+      <form-update-product v-if="isDialogOpen" :product="selectedProduct" @close="closeDialog" @submmit="submitProduct"
+        class="overlay">
+      </form-update-product>
       <div class="mt-4 ">
-
-
         <table class="table table-bordered">
           <thead class="table-success ">
             <tr>
-              <th scope="col">ល.រ</th>
-              <th scope="col">ឈ្មោះ</th>
-              <th scope="col">តម្លៃ</th>
-              <th scope="col">ប្រភេទ</th>
-              <th scope="col">ថ្ងៃផុសទំនិញ</th>
-              <th scope="col">រូបភាព</th>
-              <th scope="col">ពិពណ៍នា</th>
-              <th scope="col">សមកម្មភាព</th>
+              <th>ឈ្មោះ</th>
+              <th>តម្លៃ</th>
+              <th>ប្រភេទ</th>
+              <th>ថ្ងៃផុសទំនិញ</th>
+              <th>រូបភាព</th>
+              <th>ពិពណ៍នា</th>
+              <th>សកម្មភាព</th>
             </tr>
           </thead>
           <tbody v-for="product in store.products.data" :key="product.id">
             <tr>
-              <th scope="row">{{ product.id }}</th>
               <td>{{ product.name }}</td>
-              <td>{{ product.price }}</td>
+              <td>{{ product.price }} រៀល</td>
               <td>{{ product.category.name }}</td>
               <td>{{ product.created_at }}</td>
-              <td>
-                <img class="card-img-top w-10 h-10 " :src="`http://127.0.0.1:8000/storage/${product.image}`"
-                  alt="image product" style="border-radius: 50%;" />
+              <td class="p-0">
+                <img class="w-10" :src="`http://127.0.0.1:8000/storage/${product.image}`" alt="image product" />
               </td>
               <td>{{ product.description }}</td>
-              <td>
-                <button class="btn" @click="deleteProduct(product.id)"><i
-                    class="material-icons text-danger me-3">delete</i></button>
-                <i class="material-icons text-success" @click="openDialog(product)">edit</i>
+              <td class="d-flex justify-content-end gap-1">
+                <button class="btn​ btn-primary rounded shadow-none" @click="openDialog(product)">កែ</button>
+                <button class="btn btn-danger" @click="deleteProduct(product.id)">លុប</button>
               </td>
             </tr>
           </tbody>
@@ -63,9 +54,9 @@
       <!-- end product  -->
     </div>
     <!-- create card to confirm that we do not have product yet -->
-    <div v-else class="row col-8">
+    <div v-else-if="store.products.data == ''" class="row col-12">
       <form-create-product></form-create-product>
-      <div class="d-flex justify-content-center" style="margin-left: 15rem;">
+      <div class="d-flex justify-content-center align-items-center">
         <div class="card text-center">
           <div class="card-header fw-bold">
             ព័ត៌មាន​អំពី​ផលិតផល
@@ -79,15 +70,12 @@
       </div>
     </div>
   </div>
-
 </template>
-
 <script>
 import FormCreateProduct from '/src/Components/MyProduct/FormCreateProduct.vue'
 import FormUpdateProduct from '/src/Components/MyProduct/FormUpdateProduct.vue'
 import { userStore } from '@/stores/my-product'
 import { useAuthStore } from '@/stores/auth-store'
-
 export default {
   components: {
     FormCreateProduct,
@@ -96,6 +84,9 @@ export default {
   name: 'NoProductCard',
   mounted() {
     this.fetchData()
+    setInterval(() => {
+      this.fetchData()
+    }, 2000)
   },
   data() {
     return {
@@ -106,7 +97,6 @@ export default {
     }
   },
   methods: {
-
     fetchData() {
       this.store.fetchUser(this.userStore.user.id)
     },
@@ -119,12 +109,8 @@ export default {
       this.selectedProduct = null
     },
     submitProduct(updatedProduct) {
-      // Handle the update logic here
       this.closeDialog()
     },
-    // formattedDate(date) {
-    //   return moment(date).format('YYYY-MM-DD HH:mm:ss')
-    // }
     deleteProduct(id) {
       this.deletePro(id)
     },
