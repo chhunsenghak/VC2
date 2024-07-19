@@ -10,7 +10,7 @@ export const postStore = defineStore('post', {
         }>
     }),
     actions: {
-        async fetchPost(id) {
+        async fetchPost(id: number) {
             try {
                 const response = await axiosInstance.get(`/post/show/${id}`, {
                     headers: {
