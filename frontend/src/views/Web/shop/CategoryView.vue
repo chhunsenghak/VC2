@@ -44,7 +44,7 @@ onMounted(async () => {
 .background-container {
   position: relative;
   background-position: center;
-  background-image: url('https://www.eatthis.com/wp-content/uploads/sites/4/2023/07/fruits-and-vegetables.jpg?quality=82&strip=1');
+  background-image: url('https://img.freepik.com/premium-photo/female-gardener-grows-cucumbers-concept-gardening-farming-cucumber-growing-close-up_194143-2226.jpg?w=996');
   background-position: center;
   background-size: cover;
   margin-top: 5%;
@@ -68,10 +68,12 @@ onMounted(async () => {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   /* Black overlay with 50% opacity */
-  background: linear-gradient(180deg,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(0, 0, 0, 0.3) 50%,
-      rgba(0, 0, 0, 0.5) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
   /* Gradient overlay */
   z-index: 1;
   transition: opacity 0.3s ease;
@@ -100,7 +102,6 @@ onMounted(async () => {
   transform: scale(1.1);
   /* Zoom effect on hover */
 }
-
 
 .category-item {
   flex: 0 0 auto;
