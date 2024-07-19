@@ -31,17 +31,17 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         // Validate request data
+        // return $request;
         $validated = $request->validate([
             'frontuser_id' => 'required|integer',
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|string',
             'categorys_id' => 'required|integer',
-            'stock_type_id' => 'required|integer', 
-            'quantity' => 'required|integer', 
+            'stock_type_id' => 'required|integer',
+            'quantity' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
         // Check if StockType exists and its limit_quantity
         $stock_type = StockType::find($request->stock_type_id);
         if (!$stock_type) {
@@ -49,7 +49,7 @@ class ProductController extends Controller
         }
 
         if ($stock_type->limit_quantity < $request->quantity) {
-            return response()->json(['success' => false, 'message' => 'Stock limit exceeded'], 422);
+            return response()->json(['success' => false, 'data' => ["name" => $stock_type->name, "limit_quantity" => $stock_type->limit_quantity, "quantity" => $request->quantity], 'message' => 'Stock limit exceeded'], 422);
         }
 
         // Create stock entry
@@ -60,14 +60,13 @@ class ProductController extends Controller
 
         // Handle image upload
         $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('products_images'), $imageName);
+        $request->image->move(public_path('storage'), $imageName);
 
         // Create product
         $product = Products::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'discount' => $request->discount,
             'categorys_id' => $request->categorys_id,
             'stock_id' => $stock->id,
             'break_product_at' => $request->break_product_at,
@@ -102,45 +101,21 @@ class ProductController extends Controller
         if (!$product) {
             return response()->json(['success' => false, 'message' => 'Product not found'], 404);
         }
-
         $validator = Validator::make($request->all(), [
-            'name' => 'string',
-            'description' => 'string',
-            'price' => 'numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'discount' => 'string',
-            'stock' => 'integer',
-            'categorys_id' => 'integer',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
         }
 
         // Check if StockType exists and its limit_quantity
-        if ($request->has('stock_type_id')) {
-            $stock_type = StockType::find($request->stock_type_id);
-            if (!$stock_type) {
-                return response()->json(['success' => false, 'message' => 'Stock Type not found'], 404);
-            }
-
-            if ($stock_type->limit_quantity < $request->quantity) {
-                return response()->json(['success' => false, 'message' => 'Stock limit exceeded'], 422);
-            }
-        }
-
-        $imageName = $product->image;
         if ($request->hasFile('image')) {
-            // Delete the old image if exists
-            if ($imageName) {
-                File::delete(public_path($imageName));
-            }
-
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('products_images'), $imageName);
+            $request->image->move(public_path('storage'), $imageName);
         }
 
         $product->update($request->all());
+
         if ($request->hasFile('image')) {
             $product->update(['image' => $imageName]);
         }
@@ -164,7 +139,7 @@ class ProductController extends Controller
         }
 
         $product->delete();
-        return response()->json(['message' => 'Product deleted successfully'], 200);
+        return response()->json(['message' => 'Product deleted successfully', 'status' => true], 200);
     }
 
     /**
@@ -229,7 +204,7 @@ class ProductController extends Controller
             $query->where('price', 'like', '%' . $priceFilter . '%');
         }
         $products = $query->orderBy('price', 'asc')->get();
-    
+
         return response()->json(['success' => true, 'data' => $products], 200);
     }
 }
