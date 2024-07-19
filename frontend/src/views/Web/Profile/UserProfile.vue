@@ -6,18 +6,17 @@
           <img
             :src="`http://127.0.0.1:8000/storage/${user.user.profile}`"
             class="rounded-circle mb-3 mt-4"
-    
             alt="Profile Image"
           />
-          <h2>{{ user.user.name }}</h2>
-          <p>{{ user.user.email }}</p>
-          <button @click="editProfile" class="btn btn-primary">Edit Profile</button>
+          <h2 class="text-success">{{ user.user.name }}</h2>
+          <p class="text-success"> {{ user.user.email }}</p>
+          <button @click="editProfile" class="btn btn-success">កែសម្រួលពត៍មាន</button>
         </div>
 
         <div class="col-md-8 mt-4">
           <div class="card mb-4 bg-success">
             <div class="card-body">
-              <h3 class="text-white">Bio</h3>
+              <h3 class="text-white">អំពី</h3>
               <p v-if="user.user.bio !== null" class="card-text text-white">
                 {{ user.user.bio }}
               </p>
@@ -25,76 +24,71 @@
           </div>
           <div class="card mb-4 bg-success">
             <div class="card-body">
-              <h3 class="text-white">Contact Information</h3>
-              <p class="text-white mt-3">
-               Email : {{ user.user.email }}
-              </p>
-              <p class="text-white">
-               Phone : {{ user.user.phone }}
-              </p>
+              <h3 class="text-white">មធ្យេាបាយទំនាក់ទង</h3>
+              <p class="text-white mt-3">អុីម៊ែល : {{ user.user.email }}</p>
+              <p class="text-white">ទូរស័ព្ទ : {{ user.user.phone }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="card">
-  <div class="card-body text-center">
-    <h3 class="card-title">Contact Us</h3>
-    <div class="d-flex justify-content-center">
-      <a href="#" class="social-icon">
-        <img src="../Profile/SocialMediaPictures.vue/facebook.png" alt="Facebook">
-      </a>
-      <a href="#" class="social-icon">
-        <img src="../Profile/SocialMediaPictures.vue/tiktok.png" alt="TikTok">
-      </a>
-      <a href="https://t.me/phsarkasekor2" class="social-icon">
-        <img src="../Profile/SocialMediaPictures.vue/telegram.png" alt="Telegram">
-      </a>
-      <a href="https://www.linkedin.com/in/chhuneii-oeuy-9521692a2/" class="social-icon">
-        <img src="../Profile/SocialMediaPictures.vue/lin.png" alt="Linkedin">
-      </a>
+    <div class="card border  border-1 border-success">
+      <div class="card-body text-center">
+        <h3 class="card-title text-success">តាមដានព័ត៍មានពួកយើង</h3>
+        <div class="d-flex justify-content-center mt-4 " >
+          <a href="https://t.me/phsarkasekor2" class="social-icon">
+            <img src="../Profile/SocialMediaPictures.vue/facebook.png" alt="Facebook" />
+          </a>
+          <a href="https://t.me/phsarkasekor2" class="social-icon">
+            <img src="../Profile/SocialMediaPictures.vue/telegram.png" alt="Telegram" />
+          </a>
+          <a href="https://www.linkedin.com/in/chhuneii-oeuy-9521692a2/" class="social-icon">
+            <img src="../Profile/SocialMediaPictures.vue/lin.png" alt="Linkedin" />
+          </a>
+          <a href="https://t.me/phsarkasekor2" class="social-icon">
+            <img src="../Profile/SocialMediaPictures.vue/ig.png" alt="Instagram" />
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
     <!-- Edit Profile Modal -->
     <div v-if="isEditing" class="modal" tabindex="-1" role="dialog" style="display: block">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Edit Profile</h5>
-            <button type="button" class="close" @click="closeModal">
+            <h5 class="modal-title">កែសម្រួល ព័ត៍មាន</h5>
+            <button type="button" class="close " @click="closeModal">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="profile">Profile Picture</label>
-                <input type="file" class="form-control" id="file" @change="handleProfileChange" />
+                <label for="profile">រូបភាព</label>
+                <input type="file"  class="form-control" id="file" @change="handleProfileChange" />
                 <img v-if="imageUrl" :src="imageUrl" alt="Profile Image" />
               </div>
               <div class="form-group">
-                <label for="bio">Bio</label>
+                <label for="bio">អំពី</label>
                 <textarea class="form-control" v-model="user.user.bio"></textarea>
               </div>
               <div class="form-group">
-                <label for="phone">Phone</label>
+                <label for="phone">ទូរស័ព្ទ</label>
                 <input type="tel" class="form-control" v-model="user.user.phone" />
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-            <button type="button" class="btn btn-primary" @click="saveChanges">Save Changes</button>
+            <button type="button" class="btn btn-danger" @click="closeModal">បដិសេធ</button>
+            <button type="button" class="btn btn-success" @click="saveChanges">រក្សាទុក</button>
           </div>
         </div>
       </div>
     </div>
   </WebLayout>
 </template>
-
 
 <script>
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
@@ -152,7 +146,6 @@ export default {
 }
 </script>
 
-
 <style>
 .card {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -183,8 +176,8 @@ export default {
   font-size: 18px;
 }
 img {
-  max-width:200px;
-  max-height:200px;
+  max-width: 200px;
+  max-height: 200px;
   margin-top: 0px;
 }
 .card {
@@ -206,7 +199,9 @@ img {
 
 .social-icon img {
   width: 50px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 
 .social-icon img:hover {
