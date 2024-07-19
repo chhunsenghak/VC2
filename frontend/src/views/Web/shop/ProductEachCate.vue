@@ -22,49 +22,51 @@
       </div>
 
       <div v-if="products.products.numberOfProduct > 0" class="container mt-5 mb-5">
-        <div class="row justify-content-center g-3 ">
+        <div class="row justify-content-center g-3">
           <div
             v-for="product in products.products.data.products"
             :key="product.id"
             class="col-12 col-sm-6 col-md-4 col-lg-3"
           >
-            <div v-if="product != ''" class="card rounded-2 shadow-sm h-100 position-relative">
-              <div
-                class="d-flex justify-content-center align-items-center bg-light rounded-top"
-                style="height: 165px"
-              >
-                <img
-                  v-if="product.image"
-                  :src="`http://127.0.0.1:8000/storage/${product.image}`"
-                  :alt="product.name"
-                  class="card-img-top product-image mt-4"
-                  style="width: 60%; height: 130px; object-fit: cover"
-                />
-              </div>
-              <div
-                class="card-body d-flex flex-column justify-content-between text-center flex-grow-1"
-              >
-                <h5 class="card-title mt-0">{{ product.name }}</h5>
-                <p
-                  class="card-text fw-bold text-white ml-20"
-                  style="
-                    border: 1px solid green;
-                    padding: 5px;
-                    border-radius: 5px;
-                    width: 100px;
-                    background: green;
-                  "
+            <router-link :to="{ name: 'detail', params: { id: product.id } }" class="text-decoration-none">
+              <div v-if="product != ''" class="card rounded-2 shadow-sm h-100 position-relative">
+                <div
+                  class="d-flex justify-content-center align-items-center bg-light rounded-top"
+                  style="height: 165px"
                 >
-                  {{ product.price }} រៀល
-                </p>
+                  <img
+                    v-if="product.image"
+                    :src="`http://127.0.0.1:8000/storage/${product.image}`"
+                    :alt="product.name"
+                    class="card-img-top product-image mt-4"
+                    style="width: 60%; height: 130px; object-fit: cover"
+                  />
+                </div>
+                <div
+                  class="card-body d-flex flex-column justify-content-between text-center flex-grow-1"
+                >
+                  <h5 class="card-title mt-0">{{ product.name }}</h5>
+                  <p
+                    class="card-text fw-bold text-white ml-20"
+                    style="
+                      border: 1px solid green;
+                      padding: 5px;
+                      border-radius: 5px;
+                      width: 100px;
+                      background: green;
+                    "
+                  >
+                    {{ product.price }} រៀល
+                  </p>
+                </div>
+                <div
+                  class="product-description position-absolute d-flex align-items-center justify-content-center"
+                  v-if="product.description"
+                >
+                  <h6>{{ product.description }}</h6>
+                </div>
               </div>
-              <div
-                class="product-description position-absolute d-flex align-items-center justify-content-center"
-                v-if="product.description"
-              >
-                <h6>{{ product.description }}</h6>
-              </div>
-            </div>
+            </router-link>
           </div>
         </div>
       </div>
