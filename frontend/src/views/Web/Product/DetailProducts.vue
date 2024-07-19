@@ -185,7 +185,7 @@ export default {
   margin-top: 7rem;
   margin-bottom: 10rem;
   padding: 0 5%;
-  margin-left: 9rem;
+  margin-left: 10rem;
 }
 
 .product-grid-container {
