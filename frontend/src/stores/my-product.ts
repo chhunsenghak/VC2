@@ -13,7 +13,8 @@ export const userStore = defineStore('products', {
       quantity: string,
       stock_id: number,
       categorys_id: number
-    }>
+    }>,
+    deleteProduct: [] as Array<string>,
   }),
   actions: {
     async fetchUser(id) {
@@ -24,6 +25,18 @@ export const userStore = defineStore('products', {
           },
         });
         this.products = response.data;
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    },
+    async deleteProduct(id) {
+      try {
+        const response = await axiosInstance.delete(`/products/delete/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+          },
+        });
+        this.deleteProduct = response.data;
       } catch (error) {
         console.error('Error fetching products:', error);
       }

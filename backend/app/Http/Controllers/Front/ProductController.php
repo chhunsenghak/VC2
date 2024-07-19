@@ -31,6 +31,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         // Validate request data
+        // return $request;
         $validated = $request->validate([
             'frontuser_id' => 'required|integer',
             'name' => 'required|string',
@@ -41,7 +42,6 @@ class ProductController extends Controller
             'quantity' => 'required|integer', 
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
         // Check if StockType exists and its limit_quantity
         $stock_type = StockType::find($request->stock_type_id);
         if (!$stock_type) {
@@ -67,7 +67,6 @@ class ProductController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'discount' => $request->discount,
             'categorys_id' => $request->categorys_id,
             'stock_id' => $stock->id,
             'break_product_at' => $request->break_product_at,
@@ -164,7 +163,7 @@ class ProductController extends Controller
         }
 
         $product->delete();
-        return response()->json(['message' => 'Product deleted successfully'], 200);
+        return response()->json(['message' => 'Product deleted successfully', 'status' => true], 200);
     }
 
     /**
