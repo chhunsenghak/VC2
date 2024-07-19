@@ -31,7 +31,7 @@ onMounted(() => {
       .marker([latitude, longitude])
       .addTo(map)
       .bindPopup(
-        `Saved Marker at (<strong>${latitude.toFixed(2)},${longitude.toFixed(2)}</strong>)`
+        Saved Marker at (<strong>${latitude.toFixed(2)},${longitude.toFixed(2)}</strong>)
       )
   })
 
@@ -42,7 +42,7 @@ onMounted(() => {
       .marker([latitude, longitude])
       .addTo(map)
       .bindPopup(
-        `Saved Marker at (<strong>${latitude.toFixed(2)},${longitude.toFixed(2)}</strong>)`
+        Saved Marker at (<strong>${latitude.toFixed(2)},${longitude.toFixed(2)}</strong>)
       )
 
     nearbyMarkers.value.push({ latitude, longitude })
