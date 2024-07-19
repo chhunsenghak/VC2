@@ -11,7 +11,6 @@
             alt="User's profile picture"
           />
         </div>
-        <!-- <img src="https://i.pinimg.com/564x/b2/90/72/b29072084649b1cbf0ee6ec17863da57.jpg" width="15%" height="60%" class="rounded-circle  border-4 mt-20 ml-50 d-flex aligin-center" alt="..."> -->
           <!-- User's details -->
         <div class=" info mt-15 w-90">
           <h4>User Name</h4>
@@ -107,7 +106,7 @@
 <script>
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 export default {
-  props: ["userStore"],
+  // props: ["userStore"],
   name: 'ViewUserDetail',
   components: {
     WebLayout
