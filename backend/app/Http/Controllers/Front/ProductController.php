@@ -90,7 +90,7 @@ class ProductController extends Controller
         }
 
         $productResource = new ListProductResource($product);
-        return response(['success' => true, 'data' => $productResource], 200);
+        return response(['data' => $productResource], 200);
     }
 
     /**
