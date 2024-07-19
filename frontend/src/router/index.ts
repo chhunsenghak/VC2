@@ -95,6 +95,11 @@ const router = createRouter({
       path: '/chat',
       name: 'chatPage',
       component: () => import('@/views/Web/Chat/CartPageView.vue'),
+    },
+    {
+      path: '/conditions',
+      name: 'Conditions',
+      component: () => import('@/views/Web/Conditions/ConditionView.vue'),
     }
   ]
 })
