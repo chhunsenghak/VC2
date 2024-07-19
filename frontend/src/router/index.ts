@@ -82,10 +82,11 @@ const router = createRouter({
       component: () => import('@/views/Web/Product/MyProducts.vue')
     },
     {
-      path: "/map",
-      name: "map",
-      component: () => import("@/views/Web/Map/ViewMap.vue")
-    }, {
+      path: '/map',
+      name: 'map',
+      component: () => import('@/views/Web/Map/ViewMap.vue')
+    },
+    {
       path: '/category/:id',
       name: 'AllProducts',
       component: () => import('@/views/Web/shop/ProductEachCate.vue'),
@@ -94,15 +95,33 @@ const router = createRouter({
     {
       path: '/chat',
       name: 'chatPage',
-      component: () => import('@/views/Web/Chat/CartPageView.vue'),
+      component: () => import('@/views/Web/Chat/CartPageView.vue')
+    },
+    {
+      path: '/product/:id',
+      name: 'detail',
+      component: () => import('@/views/Web/Product/DetailProducts.vue'),
+      props: true
     }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/', '/register', '/login', '/shop', '/contact_us', '/about_us', '/forgot_password', '/reset_password', '/post_detail', '/services']
+  const publicPages = [
+    '/',
+    '/register',
+    '/login',
+    '/shop',
+    '/contact_us',
+    '/about_us',
+    '/forgot_password',
+    '/reset_password',
+    '/post_detail',
+    '/services',
+    
+  ]
   const authRequired = !publicPages.includes(to.path)
-  const store = useAuthStore();
+  const store = useAuthStore()
   try {
     const { data } = await axiosInstance.get('/me')
     store.isAuthenticated = true
@@ -121,7 +140,6 @@ router.beforeEach(async (to, from, next) => {
     simpleAcl.rules = rules()
   } catch (error) {
     /* empty */
-
   }
 
   if (authRequired && !store.isAuthenticated) {
