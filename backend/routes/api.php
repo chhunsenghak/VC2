@@ -136,9 +136,8 @@ Route::prefix("chat")->middleware('auth:sanctum')->group(function () {
     Route::delete("/remove/all/messages/{id}", [ChatController::class, 'removeAllConversations']);
     Route::delete("/remove/user/{id}", [ChatController::class, 'removeChatUser']);
 });
-//Update Bio Route
+//Update Profile Route
 Route::middleware('auth:sanctum')->group(function () {
-    Route::put('/update-bio', [AuthController::class, 'updateBio']);
-    Route::put('/update-phoneNumber', [AuthController::class, 'updatePhoneNumber']);
-    Route::post('/update-profile', [AuthController::class, 'updateProfilePicture']);
+    Route::post('/update-profile', [AuthController::class, 'updateProfile']);
 });
+
