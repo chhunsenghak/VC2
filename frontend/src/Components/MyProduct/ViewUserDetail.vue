@@ -105,46 +105,14 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, watch } from 'vue'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
-import { useProductsStore } from '@/stores/products-lists.ts'
-import { useRoute } from 'vue-router'
-
 export default {
   props: ["userStore"],
   name: 'ViewUserDetail',
   components: {
     WebLayout
   },
-  setup() {
-    const route = useRoute()
-    const id = route.params.id
-    const products = useProductsStore()
-    const searchText = ref('')
-
-    onMounted(async () => {
-      await products.fetchCategory(id)
-    })
-
-    const filteredProducts = computed(() => {
-      return products.items.filter((product) =>
-        product.name.toLowerCase().includes(searchText.value.toLowerCase())
-      )
-    })
-
-    watch(searchText, () => {
-      products.searchProduct(searchText.value)
-    })
-
-    return {
-      products,
-      searchText,
-      filteredProducts,
-      id
-    }
-  }
- 
-
+  
 }
 </script>
 

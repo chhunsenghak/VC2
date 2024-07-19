@@ -1,6 +1,6 @@
 <template>
   <div class="card-user-info">
-    <div class="card-content​ text-center">
+    <div class="card-content text-center">
       <div class="card-img">
         <img
           :src="`http://127.0.0.1:8000/storage/${userStore.user.profile}`"
