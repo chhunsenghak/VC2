@@ -15,7 +15,6 @@
           <div class="product-details-container d-flex flex-column gap-2">
             <div class="product-header">
               <h4 class="product-name fs-3">{{ product.name }}</h4>
-             
             </div>
             <div class="product-pricing">
               <p class="product-price">{{ product.price }} រៀល</p>
@@ -24,17 +23,19 @@
             <div class="product-info d-flex flex-column gap-2">
               <div class="product-category">
                 <span>ប្រភេទ : </span>
-                <span class="product-category-name">{{ product.category.name }}</span>
+                <span class="product-category-name fw-bold">{{ product.category.name }}</span>
               </div>
               <div class="product-stock">
                 <span>ចំនួនក្នុងស្តុក : </span>
-                <span class="product-stock-quantity"
+                <span class="product-stock-quantity fw-bold"
                   >{{ product.stock.quantity }} {{ product.stock.stock_type.name }}</span
                 >
               </div>
               <div class="product-expiration">
                 <span>ផុតកំណត់​ : </span>
-                <span class="product-expiration-date text-danger fw-bold">{{ product.break_product_at }}</span>
+                <span class="product-expiration-date text-danger fw-bold">{{
+                  product.break_product_at
+                }}</span>
               </div>
             </div>
           </div>
@@ -115,8 +116,18 @@
               </a>
             </div>
           </div>
+          <div class="chat-container ml-3 mt-4 mb-2">
+            <div class="chat-content">
+              <div class="chat-message">
+                <span style="font-size: 15px">សូមទំនាក់ទំនងអ្នកលក់សម្រាប់ព័ត៌មានលម្អិត។</span>
+              </div>
+              <div class="chat-button">
+                <button class="btn btn-success mt-2">Chat Now</button>
+              </div>
+            </div>
+          </div>
           <hr />
-          <div class="user-address">
+          <div class="user-address mb-2">
             <i class="fas fa-map-marker-alt"></i>
             <a
               :href="
