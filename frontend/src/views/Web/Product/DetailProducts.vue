@@ -15,9 +15,7 @@
           <div class="product-details-container d-flex flex-column gap-2">
             <div class="product-header">
               <h4 class="product-name fs-3">{{ product.name }}</h4>
-              <div class="product-badges">
-                <span class="badge" >{{ product.discount }} off</span>
-              </div>
+             
             </div>
             <div class="product-pricing">
               <p class="product-price">{{ product.price }} រៀល</p>
