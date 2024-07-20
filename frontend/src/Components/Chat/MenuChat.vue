@@ -1,26 +1,26 @@
 <template>
   <div class="overflow-y-scroll" style="height: 320px">
     <div class="list-group pl-4 gap-1" id="myList" role="tablist">
-
-      <li v-for="user in userChat.users.data" :key="user.id" class="list-group-item p-0">
-        <button @click="chatDetail(user.id)" class="border-none w-100 d-flex p-1 gap-3">
-          <div>
+      <li v-for="user in userChat.users.data" :key="user.id" class="list-group-item p-0" data-bs-dismiss="dropdown">
+        <button @click="chatDetail(user.id)" class="border-none w-100 d-flex p-1 gap-1">
+          <div class="col-2">
             <img v-if="user.profile" :src="`http://127.0.0.1:8000/storage/${user.profile}`" class="rounded-circle  w-10"
               alt="Avatar" />
             <img v-else src="../../assets/images/user.png" class="rounded-circle  w-10" alt="Avatar" />
           </div>
-          <div class="flex-grow-1 ">
+          <div class="col-9 d-flex flex-column mt-1">
             <!-- Name and time -->
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="">{{ user.name }}</h5>
+            <div class="d-flex justify-content-between align-items-center">
+              <h6 class="">{{ user.name }}</h6>
               <small class="text-muted">{{ formattedTime(user.latest_message.created_at) }}</small>
             </div>
-            <small class="fs-6">{{ user.latest_message.text }}</small>
             <!-- Latest message -->
-            <div>
+            <div class="">
+              <p class="text-truncate text-start">{{ user.latest_message.text }}</p>
             </div>
           </div>
         </button>
+        <!-- Dropdown menu for user actions -->
       </li>
     </div>
   </div>
@@ -49,6 +49,7 @@ export default {
     },
 
     chatDetail(id) {
+      console.log(id);
       this.$emit('reciever_id', id);
     },
   }

@@ -142,6 +142,7 @@ class ChatController extends Controller
                         'id' => $otherUserId,
                         'name' => $userDetails->name,
                         'email' => $userDetails->email,
+                        'profile' => $userDetails->profile,
                         'latest_message' => [
                             'text' => $message->text,
                             'images' => $message->images,

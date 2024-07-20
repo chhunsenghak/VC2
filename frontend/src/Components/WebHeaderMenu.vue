@@ -33,7 +33,7 @@ const logout = async () => {
 </script>
 <template>
   <nav
-    class="navbar navbar-expand-md navbar-dark fixed-top flex justify-between px-10 py-1 bg-white items-center m-0 shadow-background shadow-sm p-3 mb-5 bg-white rounded">
+    class="navbar  navbar-expand-md navbar-dark fixed-top flex justify-between px-10 py-1 bg-white items-center m-0 shadow-background shadow-sm p-3 mb-5 bg-white rounded">
     <!-- {{ store }} -->
     <!-- Logo -->
     <div class="flex items-center space-x-20 px-10 py-2 w-25">
@@ -120,7 +120,7 @@ const logout = async () => {
               d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
           </svg>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end">
+        <ul class="dropdown-menu dropdown-menu-end" data-bs-auto-close="false">
           <li class="d-flex justify-content-between align-items-center pl-3 pb-1 ​ border-bottom">
             <div class=""><img v-if="store.user.profile == null" src="../../src/assets/user.png" alt="Profile Picture"
                 style="width: 40px" class="profile-picture rounded-circle" />
@@ -128,6 +128,7 @@ const logout = async () => {
                 width="40px" alt="profile" />
               <span><b>Messaging</b></span>
             </div>
+
           </li>
 
           <li>
@@ -136,7 +137,7 @@ const logout = async () => {
             </div>
           </li>
           <MenuChat :userChat="userChat"></MenuChat>
-
+          
           <!-- {{ userChat }} -->
         </ul>
       </div>
