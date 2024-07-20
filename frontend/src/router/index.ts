@@ -102,7 +102,7 @@ const router = createRouter({
       name: 'detail',
       component: () => import('@/views/Web/Product/DetailProducts.vue'),
       props: true
-    }
+    },
   ]
 })
 
