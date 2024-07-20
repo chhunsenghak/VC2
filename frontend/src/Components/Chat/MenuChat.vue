@@ -9,15 +9,15 @@
               alt="Avatar" />
             <img v-else src="../../assets/images/user.png" class="rounded-circle  w-10" alt="Avatar" />
           </div>
-          <div class="flex-grow-1 bg-danger">
+          <div class="flex-grow-1 ">
             <!-- Name and time -->
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h5 class="">{{ user.name }}</h5>
               <small class="text-muted">{{ formattedTime(user.latest_message.created_at) }}</small>
             </div>
+            <small class="fs-6">{{ user.latest_message.text }}</small>
             <!-- Latest message -->
             <div>
-              <p class="mb-0">{{ user.latest_message.text }}</p>
             </div>
           </div>
         </button>

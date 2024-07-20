@@ -20,7 +20,7 @@ const fetchChatUser = async () => {
   await userChat.fetchChatUser()
   console.log(userChat.users);
 }
-  
+
 
 const logout = async () => {
   try {
@@ -136,8 +136,8 @@ const logout = async () => {
             </div>
           </li>
           <MenuChat :userChat="userChat"></MenuChat>
-          
-            <!-- {{ userChat }} -->
+
+          <!-- {{ userChat }} -->
         </ul>
       </div>
     </div>
