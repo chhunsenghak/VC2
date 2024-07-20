@@ -9,10 +9,10 @@ class Locations extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['province_id', 'district_id', 'commune_id', 'village_id'];
+    protected $fillable = ["latitude", "longitude"];
 
-    public function shop()
+    public function frontuser()
     {
-        return $this->belongsTo(Shops::class);
+        return $this->belongsTo(FrontUser::class);
     }
 }
