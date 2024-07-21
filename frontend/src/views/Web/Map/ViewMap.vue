@@ -1,27 +1,41 @@
 <template>
-  <div class="container m-5 gap-5">
-    <div class="form-group mb-3">
-      <input type="text" class="form-control" placeholder="Your address" v-model="sourceAddress" id="source">
+  <WebLayout>
+  <div class="row p-5" style="margin-top: 95px">
+    <div class="col-4 shadow rounded p-3">
+      <div class="col mb-3">
+        <label for="your_address">ចេញដំណើរ</label>
+        <input type="text" class="form-control" placeholder="Your address" v-model="sourceAddress" id="source">
+      </div>
+      <div class="col">
+        <label for="destination_address">គោលដៅ</label>
+        <input type="text" class="form-control" placeholder="Destination address" v-model="destAddress" id="dest">
+      </div>
+      <div class="col mb-3">
+        <label for="date_time"></label>
+        <button @click="calcRoute" class="btn btn-primary mt-3">Get Directions</button>
+      </div>
+      <button @click="getCurrentLocation" class="btn btn-secondary mt-3">Get Current Location</button>
+      <div id="route-info" class="mt-3">
+        <div v-for="(route, index) in routeInfo" :key="index">
+          <strong>{{ route.mode }}:</strong> {{ route.duration }} ({{ route.distance }})
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Destination address" v-model="destAddress" id="dest">
-    </div>
-    <button @click="getCurrentLocation" class="btn btn-secondary mt-3">Get Current Location</button>
-    <button @click="calcRoute" class="btn btn-primary mt-3">Get Directions</button>
-    <div id="route-info" class="mt-3">
-      <div v-for="(route, index) in routeInfo" :key="index">
-        <strong>{{ route.mode }}:</strong> {{ route.duration }} ({{ route.distance }})
+    <div class="col-8 ">
+      <div class="card-body">
+        <div class="rounded" id="map" style="height: 500px; width: 100%;"></div>
       </div>
     </div>
   </div>
-  <div class="m-5 ml-10" id="map" style="height: 500px; width: 93%;"></div>
+</WebLayout>
 </template>
 
 <script>
 import { onMounted, ref } from 'vue';
-
+import WebLayout from '@/Components/Layouts/WebLayout.vue';
 export default {
   name: 'GoogleMap',
+  components: { WebLayout },
   setup() {
     const sourceAddress = ref('');
     const destAddress = ref('');

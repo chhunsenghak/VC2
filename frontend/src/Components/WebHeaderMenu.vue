@@ -4,11 +4,12 @@
   import axiosInstance from '@/plugins/axios'
   import { useRouter } from 'vue-router'
   import { ref } from 'vue'
-
-
   const visible = ref(false)
   const router = useRouter()
   const store = useAuthStore()
+  const googleTranslateElementInit = () => {
+    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+  }
   const logout = async () => {
     try {
       const { data } = await axiosInstance.post('/user/logout')
@@ -19,6 +20,7 @@
   }
 </script>
   <template>
+    <div id="google_translate_element" class="text-right"></div>
     <nav
       class="navbar navbar-expand-md navbar-dark fixed-top flex justify-between px-10 py-1 bg-white items-center m-0 shadow-background shadow-sm p-3 mb-5 bg-white">
       <!-- {{ store }} -->
