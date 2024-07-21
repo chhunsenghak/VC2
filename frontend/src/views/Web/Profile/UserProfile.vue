@@ -37,17 +37,14 @@
       <div class="card-body text-center">
         <h3 class="card-title text-success">តាមដានព័ត៍មានពួកយើង</h3>
         <div class="d-flex justify-content-center mt-4 " >
-          <a href="https://t.me/phsarkasekor2" class="social-icon">
+          <a :href="user.user.facebook" class="social-icon">
             <img src="../Profile/SocialMediaPictures.vue/facebook.png" alt="Facebook" />
           </a>
-          <a href="https://t.me/phsarkasekor2" class="social-icon">
+          <a :href="user.user.telegram" class="social-icon">
             <img src="../Profile/SocialMediaPictures.vue/telegram.png" alt="Telegram" />
           </a>
-          <a href="https://www.linkedin.com/in/chhuneii-oeuy-9521692a2/" class="social-icon">
+          <a :href="user.user.linkedin" class="social-icon">
             <img src="../Profile/SocialMediaPictures.vue/lin.png" alt="Linkedin" />
-          </a>
-          <a href="https://t.me/phsarkasekor2" class="social-icon">
-            <img src="../Profile/SocialMediaPictures.vue/ig.png" alt="Instagram" />
           </a>
         </div>
       </div>
@@ -58,7 +55,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">កែសម្រួល ព័ត៍មាន</h5>
+            <h5 class="modal-title">កែសម្រួលព័ត៍មាន</h5>
             <button type="button" class="close " @click="closeModal">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -78,6 +75,19 @@
                 <label for="phone">ទូរស័ព្ទ</label>
                 <input type="tel" class="form-control" v-model="user.user.phone" />
               </div>
+              <div class="form-group">
+                <label for="facebook">ហ្វេសប៊ុក</label>
+                <input type="text" class="form-control" v-model="user.user.facebook" />
+              </div>
+              <div class="form-group">
+                <label for="telegram">តេឡេក្រាម</label>
+                <input type="text" class="form-control" v-model="user.user.telegram" />
+              </div>
+              <div class="form-group">
+                <label for="linkedin">លីងអុីន</label>
+                <input type="text" class="form-control" v-model="user.user.linkedin" />
+              </div>
+
             </form>
           </div>
           <div class="modal-footer">
@@ -126,6 +136,9 @@ export default {
       }
       formData.append('bio', this.user.user.bio)
       formData.append('phone', this.user.user.phone)
+      formData.append('facebook', this.user.user.facebook)
+      formData.append('telegram', this.user.user.telegram)
+      formData.append('linkedin', this.user.user.linkedin)
 
       try {
         const response = await axiosInstance.post('/update-profile', formData, {
@@ -137,6 +150,7 @@ export default {
         this.user.user.profile = response.data.profile
         this.user.user.bio = response.data.bio
         this.user.user.phone = response.data.phone
+        this.user.user.linkedin = response.data.linkedin
         this.isEditing = false
       } catch (error) {
         console.error(error)
