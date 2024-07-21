@@ -35,4 +35,6 @@ class FrontuserController extends Controller
         $user = Frontuser::findOrFail($id);
         return view('user.detail', compact('user'));
     }
+
+  
 }
