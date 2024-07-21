@@ -27,7 +27,7 @@ class ProductSeeder extends Seeder
                 'break_product_at' => now()
             ],
             [
-                'name' => 'ផ្លែប៉ោង',
+                'name' => 'ផ្លែប៉ោម',
                 'description' => 'ដាំដុះដោយកសិករនៅខេត្តកំពង់ធំ',
                 'price' => 100,
                 'frontuser_id' => 1,
@@ -38,14 +38,15 @@ class ProductSeeder extends Seeder
                 'break_product_at' => now()
             ],
             [
-                'name' => 'ត្រីអណ្ដែង',
+                'name' => 'ត្រីក្រាញ់',
                 'description' => 'ជាត្រីដែលមានរសជាតិឆ្ងាញ់អាចយកទៅស្លរ អាំងជាដើមដែលប្រជាជនភាគច្រើនចូលចិត្ត',
                 'price' => 100,
                 'frontuser_id' => 1,
-                'image' => 'fish.jfif',
+                'image' => 'fish kranh.jpg',
                 'categorys_id' => 3,
                 'stock_id' => 1,
                 'quantity' => 10,
+                'break_product_at' => now()
             ],
             [
                 'name' => 'អង្ករដំណើប',
@@ -56,6 +57,7 @@ class ProductSeeder extends Seeder
                 'categorys_id' => 5,
                 'stock_id' => 2,
                 'quantity' => 10,
+                'break_product_at' => now()
             ],
             [
                 'name' => 'អង្ករនាងនួន',
@@ -66,6 +68,7 @@ class ProductSeeder extends Seeder
                 'categorys_id' => 5,
                 'stock_id' => 2,
                 'quantity' => 10,
+                'break_product_at' => now()
             ],
             [
                 'name' => 'ស្ពៃក្តោប',
@@ -76,6 +79,7 @@ class ProductSeeder extends Seeder
                 'categorys_id' => 7,
                 'stock_id' => 2,
                 'quantity' => 10,
+                'break_product_at' => now()
             ],
             [
                 'name' => 'ប៊ីចេង',
@@ -86,6 +90,7 @@ class ProductSeeder extends Seeder
                 'categorys_id' => 8,
                 'stock_id' => 2,
                 'quantity' => 10,
+                'break_product_at' => now()
             ],
             [
                 'name' => 'ទឹកត្នោត',
@@ -96,6 +101,7 @@ class ProductSeeder extends Seeder
                 'categorys_id' => 6,
                 'stock_id' => 2,
                 'quantity' => 10,
+                'break_product_at' => now()
             ],
         ];
         foreach ($products as $product) {
