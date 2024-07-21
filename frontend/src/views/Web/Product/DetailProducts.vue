@@ -27,9 +27,9 @@
               </div>
               <div class="product-stock">
                 <span>ចំនួនក្នុងស្តុក : </span>
-                <span class="product-stock-quantity fw-bold"
-                  >{{ product.stock.quantity }} {{ product.stock.stock_type.name }}</span
-                >
+                <span class="product-stock-quantity fw-bold">
+                  {{ product.stock.quantity }} {{ product.stock.stock_type.name }}
+                </span>
               </div>
               <div class="product-expiration">
                 <span>ផុតកំណត់​ : </span>
@@ -51,32 +51,36 @@
 
       <div class="card-user" v-for="product in store.product" :key="product.id">
         <div class="card">
-          <div
-            class="card-body d-flex flex-column align-items-center justify-content-center text-center"
+          <router-link
+            :to="{ name: 'userDetail', params: { id: product.frontuser.id } }"
+            class="text-decoration-none"
           >
-            <img
-              v-if="product.frontuser.profile == null"
-              src="../../src/assets/user.png"
-              alt="Profile Picture"
-              class="profile-picture mb-3"
-            />
-            <img
-              v-else
-              :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`"
-              class="profile-picture mb-3"
-              alt="Profile Picture"
-            />
-            <div class="user-info">
-              <div class="user-header">
-                <h5 class="card-name mb-1 ml-8">{{ product.frontuser.name }}</h5>
-                <span class="badge">Seller</span>
+            <div
+              class="card-body d-flex flex-column align-items-center justify-content-center text-center"
+            >
+              <img
+                v-if="product.frontuser.profile == null"
+                src="../../src/assets/user.png"
+                alt="Profile Picture"
+                class="profile-picture mb-3"
+              />
+              <img
+                v-else
+                :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`"
+                class="profile-picture mb-3"
+                alt="Profile Picture"
+              />
+              <div class="user-info">
+                <div class="user-header">
+                  <h5 class="card-name mb-1 ml-8">{{ product.frontuser.name }}</h5>
+                  <span class="badge">Seller</span>
+                </div>
+                <p v-if="product.frontuser.bio !== null" class="card-text text-black">
+                  {{ product.frontuser.bio }}
+                </p>
               </div>
-              <p v-if="product.frontuser.bio !== null" class="card-text">
-                {{ product.frontuser.bio }}
-              </p>
             </div>
-          </div>
-
+          </router-link>
           <div class="user-contact">
             <div class="contact-item">
               <i class="bi bi-telephone-outbound-fill"></i>
@@ -152,6 +156,7 @@ import { useProductsStore } from '@/stores/products-lists.ts'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth-store'
+
 export default {
   name: 'ListCardProduct',
   components: { WebLayout },
@@ -162,7 +167,6 @@ export default {
     const user = useAuthStore()
     const fetchProductById = async (id) => {
       productById.value = await store.fetchProductDetail(id)
-      console.log(store.product.data)
     }
 
     onMounted(() => {

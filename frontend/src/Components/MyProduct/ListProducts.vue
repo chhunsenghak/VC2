@@ -1,6 +1,5 @@
 <template>
   <div v-if="productsStore.products.data != ''" class="row ">
-    {{  store }}
     <form-create-product>
     </form-create-product>
     <!-- Button to Open Dialog -->

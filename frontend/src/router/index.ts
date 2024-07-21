@@ -102,6 +102,12 @@ const router = createRouter({
       name: 'detail',
       component: () => import('@/views/Web/Product/DetailProducts.vue'),
       props: true
+    },
+    {
+      path: '/seller/:id',
+      name: 'userDetail',
+      component: () => import('@/views/Web/Profile/UserDetail.vue'),
+      props: true
     }
   ]
 })
