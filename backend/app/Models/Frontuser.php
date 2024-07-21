@@ -66,6 +66,6 @@ class Frontuser extends Authenticatable
 
     public function location()
     {
-        return $this->belongsTo(Locations::class);
+        return $this->belongsTo(Locations::class, 'location_id');
     }
 }
