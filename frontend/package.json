@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "apexcharts": "^3.50.0",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.0",
     "dayjs": "^1.11.11",
@@ -30,6 +31,7 @@
     "vue-gates": "^2.1.2",
     "vue-router": "^4.3.0",
     "vue-simple-acl": "^2.0.2",
+    "vue3-apexcharts": "^1.5.3",
     "yup": "^1.4.0"
   },
   "devDependencies": {
