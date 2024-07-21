@@ -31,7 +31,10 @@ class Frontuser extends Authenticatable
         'shop',
         'check',
         'gender',
-        'address'
+        'address',
+        'linkedin',
+        'facebook',
+        'telegram',
 
     ];
 

@@ -177,6 +177,9 @@ class AuthController extends Controller
             'profile' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'bio' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:15',
+            'linkedin'=> 'nullable|string|max:255',
+            'facebook'=> 'nullable|string|max:255',
+            'telegram'=> 'nullable|string|max:255',
         ]);
     
         $user = $request->user();
@@ -189,6 +192,10 @@ class AuthController extends Controller
         }
         $user->bio = $request->input('bio', $user->bio);
         $user->phone = $request->input('phone', $user->phone);
+        $user->linkedin = $request->input('linkedin', $user->linkedin);
+        $user->facebook = $request->input('facebook', $user->facebook);
+        $user->telegram = $request->input('telegram', $user->telegram);
+
     
         $user->save();
     
