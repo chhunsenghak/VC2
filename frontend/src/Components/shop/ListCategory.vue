@@ -34,7 +34,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 .category-item {
   transition: all 0.3s ease;
   display: flex;
