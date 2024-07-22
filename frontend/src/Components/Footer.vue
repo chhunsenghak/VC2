@@ -3,7 +3,7 @@
     <div class="container text-md-left">
       <div class="row text-md-left">
         <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-          <h5 class="mb-4 font-weight-bold">About Us</h5>
+          <h5 class="mb-4 font-weight-bold">អំពីយើង</h5>
           <p>
             យើងចង់បង្កើតគេហទំព័រពាណិជ្ជកម្មអេឡិចត្រូនិក ដែលកសិករអាចបង្ហាញ
             និងលក់ផលិតផលរបស់ពួកគេនៅលើគេហទំព័ររបស់យើង។ គេហទំព័ររបស់យើងជួយពួកគេក្នុងការស្វែងរកទីផ្សារ

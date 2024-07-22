@@ -30,7 +30,9 @@
             <li>សាច់ភ្ជាប់យើងទៅនឹងដី និងសត្វដែលយើងស្រលាញ់។"</li>
             <li>អាហារូបត្ថម្ភ អាហារមានតុល្យភាពរីកដុះដាលពីភាពសុខដុម</li>
           </ul>
-          <p><a herf="#" class="btn btn-secondary me-2">ទិញឥឡូវនេះ</a></p>
+          <p>
+            <a href="/shop" class="btn btn-secondary me-2">ទិញឥឡូវនេះ</a>
+          </p>
         </div>
       </div>
     </div>
