@@ -270,7 +270,7 @@ const dialogVisible = ref(false)
             <span class="badge rounded-pill badge-notification bg-danger position-absolute translate-middle">4</span>
           </div>
           <el-dialog v-model="dialogVisible" title="ព័ត៍មាន​​ ឬសារជូនដំណឹង" width="500" :before-close="handleClose" >
-            <div class="card  border-2 mb-2 " style="max-width: 28rem">
+            <div class="card border-2 mb-2 " style="max-width: 28rem">
               <div
                 class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
               >
@@ -445,7 +445,6 @@ const dialogVisible = ref(false)
   transition: background-color 0.3s;
   cursor: pointer;
   border: none;
-  
 }
 @media (max-width: 768px) {
   .menu {
