@@ -113,6 +113,11 @@ const router = createRouter({
       name: 'userDetail',
       component: () => import('@/views/Web/Profile/UserDetail.vue'),
       props: true
+    },
+    {
+      path: '/condition',
+      name: 'condition',
+      component: () => import('@/views/Web/Conditions/ConditionView.vue'),
     }
   ]
 })
