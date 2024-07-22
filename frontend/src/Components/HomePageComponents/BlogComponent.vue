@@ -19,7 +19,7 @@
               style="width: 230px; height: 180px"
             /></a>
             <div class="post-content-entry  mb-4 ">
-              <h3 ><a style="color: #455C24; font-weight: bold;" href="/shop">ភ្នំពេញ</a></h3>
+              <h3 ><a style="color: black; font-weight: bold;" href="/shop">ភ្នំពេញ</a></h3>
             </div>
           </div>
           <div class="post-entry">

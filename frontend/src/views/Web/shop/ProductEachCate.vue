@@ -5,31 +5,22 @@
         <div class="col-md-12">
           <div class="d-flex justify-content-between align-items-center">
             <h4 style="margin-top: 17rem" class="fw-bold">បញ្ជីផលិតផល</h4>
-            <!-- Search Products -->
-            <div class="search-wrapper">
-              <input
-                type="search"
-                v-model="searchText"
-                class="form-control search-input"
-                placeholder="ស្វែងរកផលិតផល..."
-                aria-label="Search"
-                aria-describedby="search-addon"
-              />
-              <i class="material-icons search-icon">search</i>
-            </div>
           </div>
         </div>
       </div>
 
-      <div v-if="products.products.numberOfProduct > 0" class="container mt-5 mb-5">
-        <div class="row justify-content-center g-3">
+      <div v-if="products.products.numberOfProduct > 0" class="container mt-2 mb-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mt-3 mb-15">
           <div
             v-for="product in products.products.data.products"
             :key="product.id"
-            class="col-12 col-sm-6 col-md-4 col-lg-3"
+            class="col-12 col-sm-6 col-md-4 col-lg-3 rounded-5"
           >
-            <router-link :to="{ name: 'detail', params: { id: product.id } }" class="text-decoration-none">
-              <div v-if="product != ''" class="card rounded-2 shadow-sm h-100 position-relative">
+            <router-link
+              :to="{ name: 'detail', params: { id: product.id } }"
+              class="text-decoration-none"
+            >
+              <div v-if="product != ''" class="card shadow-sm rounded-8 h-100 position-relative">
                 <div
                   class="d-flex justify-content-center align-items-center bg-light rounded-top"
                   style="height: 165px"
@@ -38,32 +29,59 @@
                     v-if="product.image"
                     :src="`http://127.0.0.1:8000/storage/${product.image}`"
                     :alt="product.name"
-                    class="card-img-top product-image mt-4"
-                    style="width: 60%; height: 130px; object-fit: cover"
+                    class="card-img-top rounded-8 product-image"
+                    style="width: 100%; height: 200px; object-fit: cover"
                   />
                 </div>
-                <div
-                  class="card-body d-flex flex-column justify-content-between text-center flex-grow-1"
-                >
-                  <h5 class="card-title mt-0">{{ product.name }}</h5>
-                  <p
-                    class="card-text fw-bold text-white ml-20"
-                    style="
-                      border: 1px solid green;
-                      padding: 5px;
-                      border-radius: 5px;
-                      width: 100px;
-                      background: green;
-                    "
-                  >
-                    {{ product.price }} រៀល
-                  </p>
+                <div class="card-body d-flex flex-column justify-content-between flex-grow-1">
+                  <small class="text-muted text-truncate" style="margin-top: -15px">{{
+                    getFormattedTime(product.created_at)
+                  }}</small>
+                  <div class="d-flex justify-content-between">
+                    <p class="card-title text-success text-wrap mt-0">
+                      <b>{{ product.name }}</b>
+                    </p>
+                    <p class="card-text text-success fw-bold">{{ product.price }} រៀល</p>
+                  </div>
                 </div>
                 <div
-                  class="product-description position-absolute d-flex align-items-center justify-content-center"
-                  v-if="product.description"
+                  class="pl-3 border shadow-sm rounded-8 pr-3 d-flex justify-content-between"
+                  style="margin-top: -15px"
                 >
-                  <h6>{{ product.description }}</h6>
+                  <div class="d-flex align-items-center gap-1">
+                    <img
+                      :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`"
+                      class="w-10 shadow-sm rounded-circle"
+                      alt=""
+                    />
+                    <p class="card-text mb-0">{{ product.frontuser.name }}</p>
+                  </div>
+                  <div class="p-2 d-flex gap-2" style="font-size: 26px">
+                    <a
+                      v-if="product.frontuser.facebook !== null"
+                      :href="'https://www.facebook.com/' + product.frontuser.facebook"
+                      target="_blank"
+                      class="social-link"
+                    >
+                      <i class="fab fa-facebook-square"></i>
+                    </a>
+                    <a
+                      v-if="product.frontuser.telegram !== null"
+                      :href="'https://t.me/' + product.frontuser.telegram"
+                      target="_blank"
+                      class="social-link"
+                    >
+                      <i class="fab fa-telegram"></i>
+                    </a>
+                    <a
+                      v-if="product.frontuser.linkedin !== null"
+                      :href="'https://www.linkedin.com/in/' + product.frontuser.linkedin"
+                      target="_blank"
+                      class="social-link"
+                    >
+                      <i class="fab fa-linkedin"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </router-link>
@@ -72,7 +90,7 @@
       </div>
       <div
         v-else-if="products.products.numberOfProduct == 0"
-        class="justify-content-center align-items-center vh-100"
+        class="justify-content-center align-items-center"
       >
         <div class="card p-5 w-100 text-center border-0 shadow-sm">
           <h4 class="fw-bold text-danger" style="font-family: 'Arial Black', sans-serif">
@@ -95,6 +113,60 @@ export default {
   name: 'ProductEachCate',
   components: {
     WebLayout
+  },
+  methods: {
+    getFormattedTime(timestamp) {
+      const daysOfWeek = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+      ]
+
+      const currentDate = new Date()
+      const inputDate = new Date(timestamp)
+
+      // Get components for current date
+      const currentDay = currentDate.getDate()
+      const currentMonth = currentDate.getMonth()
+      const currentYear = currentDate.getFullYear()
+
+      // Get components for input date
+      const inputDay = inputDate.getDate()
+      const inputMonth = inputDate.getMonth()
+      const inputYear = inputDate.getFullYear()
+
+      // Compare date parts
+      if (currentYear === inputYear && currentMonth === inputMonth && currentDay === inputDay) {
+        // Today: Show only time
+        const hours = inputDate.getHours()
+        const minutes = inputDate.getMinutes().toString().padStart(2, '0')
+        const amPm = hours >= 12 ? 'PM' : 'AM'
+        const formattedHours = hours % 12 || 12
+        return `${formattedHours}:${minutes} ${amPm}`
+      } else if (
+        currentYear === inputYear &&
+        currentMonth === inputMonth &&
+        currentDay - inputDay === 1
+      ) {
+        // Yesterday: Show 'Yesterday'
+        return 'Yesterday'
+      } else {
+        // Other days: Show full date and time
+        const dayOfWeek = daysOfWeek[inputDate.getDay()]
+        const dayOfMonth = inputDate.getDate()
+        const month = inputDate.toLocaleString('default', { month: 'long' })
+        const year = inputDate.getFullYear()
+        const hours = inputDate.getHours()
+        const minutes = inputDate.getMinutes().toString().padStart(2, '0')
+        const amPm = hours >= 12 ? 'PM' : 'AM'
+        const formattedHours = hours % 12 || 12
+        return `${dayOfWeek}, ${month} ${dayOfMonth}, ${year} - ${formattedHours}:${minutes} ${amPm}`
+      }
+    }
   },
 
   setup() {
@@ -170,51 +242,38 @@ export default {
   color: #28a745;
 }
 
-.card {
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
 .product-image {
-  width: 100%;
+  width: 90%;
   height: 120px;
   object-fit: contain;
   max-width: 100%;
   max-height: 100%;
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+  padding: 10px;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
 }
 
-.pro-name {
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: capitalize;
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
 }
 
-.pro-price {
-  font-size: 1rem;
-  color: green;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(79, 216, 81, 0.15);
 }
 
-.product-description {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(79, 106, 79, 0.7);
+.price-badge {
   color: #fff;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  border: 1px solid green;
+  /* Adjust border color */
+  background: green;
+  padding: 5px;
+  width: 100px;
+  border-radius: 10px;
+  margin: auto;
+  display: inline-block;
+  /* Ensures the badge does not expand unnecessarily */
   text-align: center;
-  padding: 1rem;
-  border-radius: 0.25rem;
-}
-
-.card:hover .product-description {
-  opacity: 1;
+  /* Centers the text within the badge */
 }
 </style>
