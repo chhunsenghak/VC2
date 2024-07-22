@@ -1,6 +1,6 @@
 <template>
-  <div class="product-section"  style="margin-bottom: -3rem;">
-    <div class="container">
+  <div class="product-section" >
+    <div class="container ">
       <div class="row">
         <!-- Start Column 1 -->
         <div class="col-md-12  text-center">
