@@ -45,6 +45,7 @@
 
       <div class="card-user col-5" v-for="product in store.product" :key="product.id">
         <div class="card">
+          <router-link :to="{ name: 'userDetail', params: { id: product.frontuser.id } }" class="text-decoration-none">
           <div class="card-body d-flex flex-column align-items-center justify-content-center text-center">
             <img v-if="product.frontuser.profile == null" src="../../src/assets/user.png" alt="Profile Picture"
               class="profile-picture mb-3" />
@@ -60,6 +61,7 @@
               </p>
             </div>
           </div>
+          </router-link>
 
           <div class="user-contact">
             <div class="contact-item">
@@ -127,7 +129,7 @@ export default {
     const user = useAuthStore()
     const fetchProductById = async (id) => {
       productById.value = await store.fetchProductDetail(id)
-      initMap();
+      initMap()
     }
 
     onMounted(() => {
@@ -137,18 +139,18 @@ export default {
     })
 
     const initMap = () => {
-      const latitude = parseFloat(store.product.data.frontuser.location.latitude);
-      const longitude = parseFloat(store.product.data.frontuser.location.longitude);
+      const latitude = parseFloat(store.product.data.frontuser.location.latitude)
+      const longitude = parseFloat(store.product.data.frontuser.location.longitude)
 
       const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: { lat: latitude, lng: longitude }
-      });
+      })
 
       new google.maps.Marker({
         position: { lat: latitude, lng: longitude },
         map: map
-      });
+      })
     }
 
     const formatPrice = (price) => {
