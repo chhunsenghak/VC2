@@ -4,8 +4,13 @@
       <div class="product-grid-container col-6">
         <div class="product-grid" v-for="product in store.product" :key="product.id">
           <div class="card-image">
-            <img :src="`http://127.0.0.1:8000/storage/${product.image}`" class="img-fluid ml-20" alt="Product Image"
-              :width="300" :height="300" />
+            <img
+              :src="`http://127.0.0.1:8000/storage/${product.image}`"
+              class="img-fluid ml-20"
+              alt="Product Image"
+              :width="300"
+              :height="300"
+            />
           </div>
           <div class="product-details-container d-flex flex-column gap-2">
             <div class="product-header">
@@ -22,8 +27,9 @@
               </div>
               <div class="product-stock">
                 <span>ចំនួនក្នុងស្តុក : </span>
-                <span class="product-stock-quantity fw-bold">{{ product.stock.quantity }} {{
-                  product.stock.stock_type.name }}</span>
+                <span class="product-stock-quantity fw-bold"
+                  >{{ product.stock.quantity }} {{ product.stock.stock_type.name }}</span
+                >
               </div>
               <div class="product-expiration">
                 <span>ផុតកំណត់​ : </span>
@@ -45,21 +51,33 @@
 
       <div class="card-user col-5" v-for="product in store.product" :key="product.id">
         <div class="card">
-          <div class="card-body d-flex flex-column align-items-center justify-content-center text-center">
-            <img v-if="product.frontuser.profile == null" src="../../src/assets/user.png" alt="Profile Picture"
-              class="profile-picture mb-3" />
-            <img v-else :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`" class="profile-picture mb-3"
-              alt="Profile Picture" />
-            <div class="user-info">
-              <div class="user-header">
-                <h5 class="card-name mb-1 ml-8">{{ product.frontuser.name }}</h5>
-                <span class="badge">Seller</span>
+          <router-link :to="{ name: 'userDetail', params: { id: product.frontuser.id } }" class="text-decoration-none">
+            <div
+              class="card-body d-flex flex-column align-items-center justify-content-center text-center"
+            >
+              <img
+                v-if="product.frontuser.profile == null"
+                src="../../src/assets/user.png"
+                alt="Profile Picture"
+                class="profile-picture mb-3"
+              />
+              <img
+                v-else
+                :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`"
+                class="profile-picture mb-3"
+                alt="Profile Picture"
+              />
+              <div class="user-info">
+                <div class="user-header">
+                  <h5 class="card-name mb-1 ml-8">{{ product.frontuser.name }}</h5>
+                  <span class="badge">Seller</span>
+                </div>
+                <p v-if="product.frontuser.bio !== null" class="card-text">
+                  {{ product.frontuser.bio }}
+                </p>
               </div>
-              <p v-if="product.frontuser.bio !== null" class="card-text">
-                {{ product.frontuser.bio }}
-              </p>
             </div>
-          </div>
+          </router-link>
 
           <div class="user-contact">
             <div class="contact-item">
@@ -71,19 +89,38 @@
               <p>{{ product.frontuser.email }}</p>
             </div>
           </div>
-          <div v-if="product.frontuser.facebook || product.frontuser.telegram || product.frontuser.linkedin != null" class="user-media">
+          <div
+            v-if="
+              product.frontuser.facebook ||
+              product.frontuser.telegram ||
+              product.frontuser.linkedin != null
+            "
+            class="user-media"
+          >
             <p class="fw-bold text-success">Social Media</p>
             <div class="media-links">
-              <a v-if="product.frontuser.facebook !== null"
-                :href="'https://www.facebook.com/' + product.frontuser.facebook" target="_blank" class="social-link">
+              <a
+                v-if="product.frontuser.facebook !== null"
+                :href="'https://www.facebook.com/' + product.frontuser.facebook"
+                target="_blank"
+                class="social-link"
+              >
                 <i class="fab fa-facebook-square"></i>
               </a>
-              <a v-if="product.frontuser.telegram !== null" :href="'https://t.me/' + product.frontuser.telegram"
-                target="_blank" class="social-link">
+              <a
+                v-if="product.frontuser.telegram !== null"
+                :href="'https://t.me/' + product.frontuser.telegram"
+                target="_blank"
+                class="social-link"
+              >
                 <i class="fab fa-telegram"></i>
               </a>
-              <a v-if="product.frontuser.linkedin !== null"
-                :href="'https://www.linkedin.com/in/' + product.frontuser.linkedin" target="_blank" class="social-link">
+              <a
+                v-if="product.frontuser.linkedin !== null"
+                :href="'https://www.linkedin.com/in/' + product.frontuser.linkedin"
+                target="_blank"
+                class="social-link"
+              >
                 <i class="fab fa-linkedin"></i>
               </a>
             </div>
@@ -100,10 +137,19 @@
           </div>
           <hr />
           <div v-if="product.frontuser.location != null" class="mb-2">
-            <a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(product.frontuser.location.latitude + ',' + product.frontuser.location.longitude)"
-              target="_blank" class="btn w-100 border mb-1"> <i class="fas fa-map-marker-alt"> View on map</i>
+            <a
+              :href="
+                'https://www.google.com/maps/search/?api=1&query=' +
+                encodeURIComponent(
+                  product.frontuser.location.latitude + ',' + product.frontuser.location.longitude
+                )
+              "
+              target="_blank"
+              class="btn w-100 border mb-1"
+            >
+              <i class="fas fa-map-marker-alt"> View on map</i>
             </a>
-            <div id="map" style="width: 290px; height: 150px;"></div>
+            <div id="map" style="width: 290px; height: 150px"></div>
           </div>
         </div>
       </div>
@@ -127,7 +173,7 @@ export default {
     const user = useAuthStore()
     const fetchProductById = async (id) => {
       productById.value = await store.fetchProductDetail(id)
-      initMap();
+      initMap()
     }
 
     onMounted(() => {
@@ -137,18 +183,18 @@ export default {
     })
 
     const initMap = () => {
-      const latitude = parseFloat(store.product.data.frontuser.location.latitude);
-      const longitude = parseFloat(store.product.data.frontuser.location.longitude);
+      const latitude = parseFloat(store.product.data.frontuser.location.latitude)
+      const longitude = parseFloat(store.product.data.frontuser.location.longitude)
 
       const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: { lat: latitude, lng: longitude }
-      });
+      })
 
       new google.maps.Marker({
         position: { lat: latitude, lng: longitude },
         map: map
-      });
+      })
     }
 
     const formatPrice = (price) => {

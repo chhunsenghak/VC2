@@ -28,7 +28,6 @@ class FrontUserSeeder extends Seeder
             'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
-            'address' => 'BP 511, Phum Tropeang Chhuk (Borey Sorla) Sangtak, Street 371, Phnom Penh',
         ]);
         $user2 = Frontuser::Create([
             'name' => 'eii',
@@ -43,7 +42,6 @@ class FrontUserSeeder extends Seeder
             'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
-            'address' => 'BP 511, Phum Tropeang Chhuk (Borey Sorla) Sangtak, Street 371, Phnom Penh',
         ]);
         $user3 = Frontuser::Create([
             'name' => 'rady',
@@ -58,7 +56,6 @@ class FrontUserSeeder extends Seeder
             'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
-            'address' => 'BP 511, Phum Tropeang Chhuk (Borey Sorla) Sangtak, Street 371, Phnom Penh',
         ]);
         $user4 = Frontuser::Create([
             'name' => 'neardy',
@@ -72,7 +69,6 @@ class FrontUserSeeder extends Seeder
             'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
-            'address' => 'BP 511, Phum Tropeang Chhuk (Borey Sorla) Sangtak, Street 371, Phnom Penh',
         ]);
         $user5 = Frontuser::Create([
             'name' => 'kunthea',
@@ -87,7 +83,6 @@ class FrontUserSeeder extends Seeder
             'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
-            'address' => 'BP 511, Phum Tropeang Chhuk (Borey Sorla) Sangtak, Street 371, Phnom Penh',
         ]);
         $user6 = Frontuser::Create([
             'name' => 'Senghak',
@@ -101,7 +96,6 @@ class FrontUserSeeder extends Seeder
             'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
-            'address' => 'BP 511, Phum Tropeang Chhuk (Borey Sorla) Sangtak, Street 371, Phnom Penh',
         ]);
         // $user_role = Role::where(['name', 'user']);
         // $seller_role = Role::create(['name', 'seller']);

@@ -24,8 +24,8 @@
               <small class="text-muted text-truncate" style="margin-top: -15px;">{{ getFormattedTime(product.created_at)
                 }}</small>
               <div class="d-flex justify-content-between">
-                <p class="card-title text-primary text-wrap mt-0"><b>{{ product.name }}</b></p>
-                <p class="card-text fw-bold">
+                <p class="card-title text-success text-wrap mt-0"><b>{{ product.name }}</b></p>
+                <p class="card-text text-success fw-bold">
                   {{ product.price }} រៀល
                 </p>
               </div>
@@ -52,10 +52,6 @@
               </a>
             </div>
           </div>
-          <!-- <div class="product-description position-absolute d-flex align-items-center justify-content-center"
-              v-if="product.description">
-              <h6>{{ product.description }}</h6>
-            </div> -->
         </div>
       </div>
     </div>
@@ -204,10 +200,6 @@ export default {
   box-shadow: 0 8px 20px rgba(79, 216, 81, 0.15);
 }
 
-/* .product-image:hover {
-  transform: scale(1.1);
-} */
-
 .price-badge {
   color: #fff;
   border: 1px solid green;
@@ -222,22 +214,4 @@ export default {
   text-align: center;
   /* Centers the text within the badge */
 }
-
-/* .product-description {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(79, 106, 79, 0.7);
-  color: #fff;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 0.25rem;
-} */
-
-/* .card:hover .product-description {
-  opacity: 1;
-} */
 </style>
