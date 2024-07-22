@@ -13,17 +13,6 @@ class LocationSeeder extends Seeder
      */
     public function run(): void
     {
-        Locations::create([
-            'province_id' => 1,
-            'district_id' => 1,
-            'commune_id' => 1,
-            'village_id' => 1
-        ]);
-        Locations::create([
-            'province_id' => 1,
-            'district_id' => 1,
-            'commune_id' => 1,
-            'village_id' => 2
-        ]);
+        
     }
 }

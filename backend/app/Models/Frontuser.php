@@ -31,7 +31,7 @@ class Frontuser extends Authenticatable
         'shop',
         'check',
         'gender',
-        'address'
+        'location_id'
 
     ];
 
@@ -62,5 +62,10 @@ class Frontuser extends Authenticatable
     public function message()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Locations::class, 'location_id');
     }
 }
