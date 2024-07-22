@@ -18,11 +18,16 @@ class FrontUserResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "email" => $this->email,
-            "gender" => $this->gender,
+            "bio" => $this->bio,
+            "linkedin" => $this->linkedin,
+            "facebook" => $this->facebook,
+            "telegram" => $this->telegram,
+            "phone" => $this->phone,
             "profile" => $this->profile,
+            "gender" => $this->gender,
             "shop" => $this->shop,
             "check" => $this->check,
-            "phone" => $this->phone,
+            "location" => $this->location
         ];
     }
 }

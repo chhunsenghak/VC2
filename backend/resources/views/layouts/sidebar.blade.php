@@ -103,15 +103,6 @@
             <span class="mx-3">Seller</span>
         </a>
         @endcanany
-
-        @canany('Product access','Product add','Product edit','Product delete')
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.locations.index') ? 'active' : '' }}" href="{{ route('admin.locations.index')}}">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2c-3.87 0-7 3.13-7 7s7 13 7 13 7-9.13 7-13-3.13-7-7-7zm0 5a2 2 0 100 4 2 2 0 000-4z" />
-            </svg>
-            <span class="mx-3">Address</span>
-        </a>
-        @endcanany
         <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.stockType.index') ? 'active' : '' }}" href="{{ route('admin.stockType.index')}}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2H5zm1 14a1 1 0 01-1-1V7a1 1 0 011-1h8a1 1 0 011 1v8a1 1 0 01-1 1H6z" clip-rule="evenodd" />

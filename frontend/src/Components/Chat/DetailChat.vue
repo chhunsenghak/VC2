@@ -1,5 +1,5 @@
 <template>
-  <div v-if="userChatDetail.length !== 0" class="col-8 overflow-y-scroll" style="height: 550px; scrollbar-width: thin;">
+  <div v-if="userChatDetail.length !== 0" class="col-6 overflow-y-scroll" style="height: 550px; scrollbar-width: thin;">
     <div
       class="col-8 chat-header bg-white text-dark shadow-sm p-3 d-flex justify-content-between align-items-center position-fixed">
       <div class="d-flex align-items-center">

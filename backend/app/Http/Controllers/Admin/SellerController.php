@@ -29,7 +29,7 @@ class SellerController extends Controller
 
     public function index()
     {
-        $users = Frontuser::where('shop', 1)->latest()->get();
+        $users = Frontuser::where('shop', 1)->paginate(5);
         return view('seller.index', ['users' => $users]);
     }
     public function create()
@@ -45,7 +45,13 @@ class SellerController extends Controller
     public function edit($id)
     {
         $user = Frontuser::find($id);
-        return view('product.edit', [ 'users' => $user]);
+        return view('seller.edit', [ 'user' => $user]);
+    }
+    public function update(Request $request, $id)
+    {
+        $user = Frontuser::find($id);
+        $user->update(["check" => $request->check]);
+        return redirect()->route('admin.seller.index')->withSuccess('Updated Chcek for user ');
     }
 
     public function destroy($id)

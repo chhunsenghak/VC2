@@ -5,7 +5,7 @@
       <div class="row justify-content-evenly">
         <div class="col-lg-3" >
           <div class="intro-excerpt">
-            <h1>ស្វាគមន៍មកកាន់<span clsas="d-block">ទីផ្សារកសិករ</span></h1>
+            <h1>ស្វាគមន៍មកកាន់ទីផ្សារកសិករ</h1>
             <p class="mb-4">
               តោះរីករាយទស្សនាផ្សារកសិករ តោះទិញរបស់ដែលយើងមានទាំងអស់នៅទីនេះ (ផ្លែឈើ សាច់ បន្លែ...)
             </p>

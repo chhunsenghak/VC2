@@ -64,11 +64,6 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('products', 'ProductController');
         Route::resource('seller', 'SellerController');
         Route::resource("dashboard", 'DashboardController');
-        Route::resource("locations", 'LocationController');
-        Route::resource("province", 'ProvinceController');
-        Route::resource("district", 'DistrictController');
-        Route::resource("commune", 'CommuneController');
-        Route::resource("village", 'VillageController');
         Route::resource("stockType", 'StockTypeController');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
         Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
