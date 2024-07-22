@@ -23,7 +23,7 @@ class CreateFrontusersTable extends Migration
             $table->string('telegram')->nullable();
             $table->string('password');
             $table->string('phone')->nullable();
-            $table->string('address')->nullable();
+            $table->integer('location_id')->nullable();
             $table->string('profile')->nullable();
             $table->string('gender')->nullable();
             $table->integer("shop")->nullable();

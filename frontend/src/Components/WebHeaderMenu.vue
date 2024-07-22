@@ -447,7 +447,7 @@ const dialogVisible = ref(false)
   border: none;
 }
 .el-dialog{
-  margin-right: 20%;
+  margin-right: 10%;
 }
 @media (max-width: 768px) {
   .menu {

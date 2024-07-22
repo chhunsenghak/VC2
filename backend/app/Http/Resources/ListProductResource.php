@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use PhpParser\Node\Expr\List_;
 use App\Http\Resources\ListCategoryResource;
+use App\Http\Resources\FrontUserResource;
 class ListProductResource extends JsonResource
 {
     /**
@@ -27,7 +28,8 @@ class ListProductResource extends JsonResource
             'stock_type' => $this->stock->stock_type->name,
             'category' => $this->category,
             'break_product_at' => $this->break_product_at,
-            'frontuser' => $this->frontuser
+            'frontuser' => new FrontUserResource($this->frontuser),
+            'created_at' => $this->created_at
         ];
     }
 }

@@ -37,7 +37,7 @@ export const useProductsStore = defineStore('products', {
         console.error('Error fetching products:', error)
       }
     },
-    async fetchCategory(id) {
+    async fetchCategory(id: number) {
       try {
         const response = await axiosInstance.get(`/category/show/${id}`, {
           headers: {
