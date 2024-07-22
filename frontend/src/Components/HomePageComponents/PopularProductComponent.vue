@@ -8,15 +8,9 @@
       </div>
       <div class="row m-3 rounded shadow">
         <div class="col d-flex text-center align-items-center justify-content-between">
-          <!-- start card of province -->
-
-          <div class="col-5">
-            <img src="https://appinventiv.com/wp-content/uploads/2021/09/Build-An-Organic-E-commerce-Platform.png"
-              alt="Image" class="img-fluid w-100 p-3" />
-          </div>
           <div class="col-7">
-            <div class="post-content-entry mb-4">
-              <h2>ចាប់ផ្តើមលក់ផលិតផលរបស់អ្នកឥឡូវនេះ យើងនឹងគាំទ្រអ្នក។</h2>
+            <div class="post-content-entry">
+              <h6>ចាប់ផ្ដើមលក់កសិផលរបស់អ្នក នៅថ្ងៃនេះដើម្បីគុណភាពនៃការរស់នៅ នឹងស្វែងរកទីផ្សារកសិកម្មកាន់តែមានភាពងាយស្រួលនឹងសម្បូរបែប</h6>
               <br />
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 data-bs-whatever="@getbootstrap">
@@ -43,9 +37,6 @@
                           </select>
                         </div>
                         <div class="modal-footer border-none">
-                          <el-button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            បិទ
-                          </el-button>
                           <el-button size="large" class="mt-3 w-full" type="primary"
                             native-type="submit">បង្កើត</el-button>
                         </div>
@@ -99,7 +90,7 @@ const { handleSubmit, isSubmitting } = useForm({
 
 const createShop = handleSubmit(async (values) => {
   values.latitude = latitude.value,
-  values.longitude = longitude.value
+    values.longitude = longitude.value
   try {
     const { data } = await axiosInstance.post('/user/create/shop', values)
     window.location.href = '/myProducts'
