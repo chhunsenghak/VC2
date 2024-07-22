@@ -1,9 +1,6 @@
 <template>
   <WebLayout>
-    <div class="container mt-20">
-      <div class="image-contact">
-        <img src="../../assets/images/contact.png" class="card" />
-      </div>
+    <div class="container mt-30">
       <div class="d-flex justify-content-around col-12 mt-10">
         <InformationComponentVue></InformationComponentVue>
         <div class="border-start"></div>

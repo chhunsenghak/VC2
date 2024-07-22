@@ -89,12 +89,14 @@
                     id="gender"
                     aria-label="Select gender"
                   >
-                    <option value="" disabled selected>Select an option</option>
+                    <option value="" disabled selected>ជ្រើសរើសភេទ</option>
                     <option value="Female">ស្រី</option>
                     <option value="Male">ប្រុស</option>
                   </select>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg w-100">បង្កើត</button>
+                <button type="submit" class="btn btn-success custom-submit-button">
+                  បង្កើត
+                </button>
               </form>
             </div>
           </div>
@@ -182,6 +184,58 @@ const { value: gender, errorMessage: genderError } = useField('gender')
   transform: translateY(-2px);
 }
 
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.form-control {
+  padding: 0.75rem;
+  border-radius: 5px;
+  box-shadow: none;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.custom-submit-button {
+  padding: 0.75rem;
+  background-color: rgb(16, 99, 3);
+  border: none;
+  border-radius: 5px;
+  margin-left: 40%;
+  width: 20%;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.custom-submit-button:hover {
+  background-color: #047b08;
+  transform: translateY(-2px);
+}
+
+.custom-submit-button:active {
+  background-color: #004494;
+  transform: translateY(0);
+}
+
 @media (max-width: 768px) {
   .custom-card {
     border-radius: 10px;
@@ -195,6 +249,9 @@ const { value: gender, errorMessage: genderError } = useField('gender')
   .custom-button {
     padding: 8px 16px;
     font-size: 0.875rem;
+  }
+  .custom-submit-button {
+    padding: 0.5rem;
   }
 }
 </style>
