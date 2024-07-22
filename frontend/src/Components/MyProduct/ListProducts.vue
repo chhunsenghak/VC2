@@ -1,76 +1,105 @@
 <template>
-  <div v-if="productsStore.products.data != ''" class="row col-8">
-    <form-create-product>
-    </form-create-product>
-    <!-- Button to Open Dialog -->
-    <!-- Update Product Form as Overlay -->
-    <form-update-product v-if="isDialogOpen" :product="selectedProduct" @close="closeDialog" @submit="submitProduct"
-      class="overlay"></form-update-product>
-
-    <!-- Product List Heading -->
-    <h5 class="fw-bold" v-if="!isDialogOpen">ផលិតផលរបស់ខ្ញុំ</h5>
-    <!-- Product Cards -->
-    <div class="d-flex flex-wrap gap-3" v-if="!isDialogOpen">
-      <div class="card shadow-sm product-card" v-for="product in productsStore.products.data" :key="product.id"
-        style="width: 16rem">
-        <img class="card-img-top w-50 ml-15" :src="`http://127.0.0.1:8000/storage/${product.image}`" alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.description }}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">តម្លៃ: {{ product.price }}</li>
-          <li class="list-group-item">បញ្ចុះ: {{ product.discount }}</li>
-          <li class="list-group-item">ប្រភេទ: {{ product.category.name }}</li>
-          <li class="list-group-item">
-            <i class="material-icons text-danger me-3">delete</i>
-            <i class="material-icons text-success" @click="openDialog(product)">edit</i>
-          </li>
-        </ul>
+  <button type="button" class="btn btn-primary d-none" @click="showToast">Show live toast</button>
+  <!-- Toast container -->
+  <div class="toast-container position-fixed top-17 end-0 p-3">
+    <div id="liveToast" class="toast bg-primary text-white" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Notification</strong>
+        <small class="text-muted">Now</small>
+        <button type="button" class="btn-close" @click="hideToast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Product Deleted
       </div>
     </div>
   </div>
-  <div v-else class="row col-8">
+  <div class="container">
+    <div v-if="store.products.data != ''" class="row ">
+      <form-create-product>
+      </form-create-product>
+      <form-update-product v-if="isDialogOpen" :product="selectedProduct" @close="closeDialog" @submmit="submitProduct"
+        class="overlay">
+      </form-update-product>
+      <div class="mt-4 ">
+        <table class="table table-bordered">
+          <thead class="table-success ">
+            <tr>
+              <th>ឈ្មោះ</th>
+              <th>តម្លៃ</th>
+              <th>ប្រភេទ</th>
+              <th>ថ្ងៃផុសទំនិញ</th>
+              <th>រូបភាព</th>
+              <th>ពិពណ៍នា</th>
+              <th>សកម្មភាព</th>
+            </tr>
+          </thead>
+          <tbody v-for="product in store.products.data" :key="product.id">
+            <tr>
+              <td>{{ product.name }}</td>
+              <td>{{ product.price }} រៀល</td>
+              <td>{{ product.category.name }}</td>
+              <td>{{ product.created_at }}</td>
+              <td class="p-0">
+                <img class="w-10" :src="`http://127.0.0.1:8000/storage/${product.image}`" alt="image product" />
+              </td>
+              <td>{{ product.description }}</td>
+              <td class="d-flex justify-content-end gap-1">
+                <button class="btn​ btn-primary rounded shadow-none" @click="openDialog(product)">កែ</button>
+                <button class="btn btn-danger" @click="deleteProduct(product.id)">លុប</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end product  -->
+    </div>
     <!-- create card to confirm that we do not have product yet -->
-    <form-create-product></form-create-product>
-
-    <div class="d-flex">
-      <div class="card">
-        <div class="card-header">
-          Product Information
-        </div>
-        <div class="card-body">
-          <img src="../../image/empty-cart.png" width="250px" class="ml-13">
-
-          <h5 class="card-title">No Product Available</h5>
-          <p class="card-text">We currently do not have any product information available.</p>
+    <div v-else-if="store.products.data == ''" class="row col-12">
+      <form-create-product></form-create-product>
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="card text-center">
+          <div class="card-header fw-bold">
+            ព័ត៌មាន​អំពី​ផលិតផល
+          </div>
+          <div class="card-body">
+            <img src="../../image/empty-cart.png" width="250px">
+            <h5 class="card-title">មិនមានផលិតផលនោះទេ</h5>
+            <p class="card-text">បច្ចុប្បន្ននេះ អ្នកមិនទាន់មានព័ត៌មានអំពីផលិតផលណាមួយទេ</p>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
-
-
 </template>
-
 <script>
 import FormCreateProduct from '/src/Components/MyProduct/FormCreateProduct.vue'
 import FormUpdateProduct from '/src/Components/MyProduct/FormUpdateProduct.vue'
-
+import { userStore } from '@/stores/my-product'
+import { useAuthStore } from '@/stores/auth-store'
 export default {
-  props: ['productsStore'],
   components: {
     FormCreateProduct,
     FormUpdateProduct
   },
   name: 'NoProductCard',
+  mounted() {
+    this.fetchData()
+    setInterval(() => {
+      this.fetchData()
+    }, 2000)
+  },
   data() {
     return {
       isDialogOpen: false,
-      selectedProduct: null
+      selectedProduct: null,
+      store: userStore(),
+      userStore: useAuthStore()
     }
   },
   methods: {
+    fetchData() {
+      this.store.fetchUser(this.userStore.user.id)
+    },
     openDialog(product) {
       this.selectedProduct = product
       this.isDialogOpen = true
@@ -80,40 +109,38 @@ export default {
       this.selectedProduct = null
     },
     submitProduct(updatedProduct) {
-      // Handle the update logic here
       this.closeDialog()
+    },
+    deleteProduct(id) {
+      this.deletePro(id)
+    },
+    async deletePro(id) {
+      this.store.deleteProduct(id)
+      this.fetchData()
+      this.showToast()
+      setTimeout(() => {
+        this.store.fetchProducts()
+        this.hideToast()
+      }, 2500)
+    },
+    showToast() {
+      // Initialize Bootstrap toast using Vue's nextTick to ensure DOM update
+      this.$nextTick(() => {
+        var bsToast = new bootstrap.Toast(document.getElementById('liveToast'));
+        bsToast.show();
+      });
+    },
+    hideToast() {
+      // Optional: Handle hiding the toast if needed
+      var bsToast = new bootstrap.Toast(document.getElementById('liveToast'));
+      bsToast.hide();
     }
   }
 }
 </script>
-
-
 <style scoped>
-.row col-8 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background-color: #f8f9fa;
-}
-
-.card {
-  width: 100%;
-  max-width: 400px;
-  border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-
-}
-
-.card-header {
-  background-color: #088a54;
-  color: #fff;
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid #dee2e6;
-}
-
-.card-body {
-  padding: 1.25rem;
+.toast-container {
+  z-index: 1050;
+  /* Ensure toast appears above other content */
 }
 </style>

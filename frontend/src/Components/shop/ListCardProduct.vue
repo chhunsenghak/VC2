@@ -1,87 +1,61 @@
 <template>
   <div class="container">
-    <div class="row">
+    <div class="row mb-4">
       <div class="col-md-12">
         <div class="d-flex justify-content-between align-items-center">
-          <h5 style="margin-top: 17rem">បញ្ជីផលិតផល</h5>
+          <h5 class="fw-bold">បញ្ជីផលិតផល</h5>
           <!-- Search Products -->
           <div class="search-wrapper">
-            <input
-              type="search"
-              v-model="searchText"
-              class="form-control search-input"
-              placeholder="ស្វែងរកផលិតផល..."
-              aria-label="Search"
-              aria-describedby="search-addon"
-            />
+            <input type="search" v-model="searchText" class="form-control search-input" placeholder="ស្វែងរកផលិតផល..."
+              aria-label="Search" aria-describedby="search-addon" />
             <i class="material-icons search-icon">search</i>
           </div>
         </div>
       </div>
     </div>
-    <div class="row mt-5">
-      <div
-        class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
-        v-for="product in filteredProducts"
-        :key="product.id"
-      >
-        <div class="card rounded-2 p-4 shadow-sm h-100">
-          <div class="image-container rounded-2 mb-3">
-            <img
-              v-if="product.image"
-              :src="`http://127.0.0.1:8000/storage/${product.image}`"
-              :alt="product.name"
-              class="product-image"
-            />
-          </div>
-          <div class="card-content">
-            <div class="d-flex justify-content-between mb-3">
-              <h5 class="pro-name fw-bold">{{ product.name }}</h5>
-              <i class="material-icons view-detail" @click="openModal(product)">visibility</i>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mt-5 mb-5">
+      <!-- Changed col classes and adjusted g-3 -->
+      <div v-for="product in filteredProducts" :key="product.id" class="col-4">
+        <div class="card rounded-5 d-flex flex-column">
+          <router-link :to="{ name: 'detail', params: { id: product.id } }" class="text-decoration-none">
+            <img v-if="product.image" :src="`http://127.0.0.1:8000/storage/${product.image}`" :alt="product.name"
+              class="card-img-top rounded-8 product-image" style="width: 100%; height: 200px; object-fit: cover" />
+            <div class="card-body d-flex flex-column justify-content-between  flex-grow-1">
+              <small class="text-muted text-truncate" style="margin-top: -15px;">{{ getFormattedTime(product.created_at)
+                }}</small>
+              <div class="d-flex justify-content-between">
+                <p class="card-title text-primary text-wrap mt-0"><b>{{ product.name }}</b></p>
+                <p class="card-text fw-bold">
+                  {{ product.price }} រៀល
+                </p>
+              </div>
             </div>
-            <div class="d-flex flex-column justify-content-between seller-part h-100">
-              <p class="mb-2 fw-bold pro-price">{{ product.price }} Riels</p>
-              <p class="mb-2 pro-discount">បញ្ចុះតម្លៃ: {{ product.discount }}</p>
-              <button type="button" class="btn btn-success">Chat Now</button>
+          </router-link>
+          <div class="pl-3 border shadow-sm rounded-8 pr-3 d-flex justify-content-between" style="margin-top: -15px">
+            <div class="d-flex align-items-center gap-1">
+              <img :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`"
+                class="w-10 shadow-sm rounded-circle" alt="">
+              <p class="card-text mb-0">{{ product.frontuser.name }}</p>
+            </div>
+            <div class="p-2 d-flex gap-2" style="font-size: 26px">
+              <a v-if="product.frontuser.facebook !== null"
+                :href="'https://www.facebook.com/' + product.frontuser.facebook" target="_blank" class="social-link">
+                <i class="fab fa-facebook-square "></i>
+              </a>
+              <a v-if="product.frontuser.telegram !== null" :href="'https://t.me/' + product.frontuser.telegram"
+                target="_blank" class="social-link">
+                <i class="fab fa-telegram"></i>
+              </a>
+              <a v-if="product.frontuser.linkedin !== null"
+                :href="'https://www.linkedin.com/in/' + product.frontuser.linkedin" target="_blank" class="social-link">
+                <i class="fab fa-linkedin"></i>
+              </a>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal for Product Details -->
-    <div
-      v-if="showModal"
-      class="modal d-flex justify-content-center align-items-center"
-      @click.self="closeModal"
-    >
-      <div class="modal-content d-flex flex-column">
-        <div class="modal-header d-flex justify-content-between align-items-center">
-          <h3>Product Detail</h3>
-          <span class="close" @click="closeModal">&times;</span>
-        </div>
-        <div class="modal-body d-flex flex-column flex-md-row">
-          <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-            <img
-              v-if="selectedProduct.image"
-              :src="`http://127.0.0.1:8000/storage/${selectedProduct.image}`"
-              :alt="selectedProduct.name"
-              class="product-image-large img-fluid"
-            />
-          </div>
-          <div class="col-12 col-md-6 mt-4 mt-md-0">
-            <p class="card-title fs-5">Name: {{ selectedProduct.name }}</p>
-            <p class="card-price mt-3 fs-5 text-dark">
-              Price: {{ formatPrice(selectedProduct.price) }}
-            </p>
-            <p class="card-cate fs-5">Category: {{ selectedProduct.category.name }}</p>
-            <p class="card-quan fs-5">
-              Quantity:
-              {{ selectedProduct.stock.quantity + ' ' + selectedProduct.stock.stock_type.name }}
-            </p>
-            <p class="card-cate fs-5">Discount: {{ selectedProduct.discount }}</p>
-            <p class="card-desc fs-5">Description: {{ selectedProduct.description }}</p>
-          </div>
+          <!-- <div class="product-description position-absolute d-flex align-items-center justify-content-center"
+              v-if="product.description">
+              <h6>{{ product.description }}</h6>
+            </div> -->
         </div>
       </div>
     </div>
@@ -97,8 +71,6 @@ export default {
   data() {
     return {
       store: useProductsStore(),
-      showModal: false,
-      selectedProduct: null,
       searchText: ''
     }
   },
@@ -122,16 +94,48 @@ export default {
     fetchProducts() {
       this.store.fetchProducts()
     },
-    openModal(product) {
-      this.selectedProduct = product
-      this.showModal = true
-    },
-    closeModal() {
-      this.showModal = false
-      this.selectedProduct = null
-    },
     formatPrice(price) {
       return new Intl.NumberFormat().format(price) + ' Riels'
+    },
+    getFormattedTime(timestamp) {
+      const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+      const currentDate = new Date();
+      const inputDate = new Date(timestamp);
+
+      // Get components for current date
+      const currentDay = currentDate.getDate();
+      const currentMonth = currentDate.getMonth();
+      const currentYear = currentDate.getFullYear();
+
+      // Get components for input date
+      const inputDay = inputDate.getDate();
+      const inputMonth = inputDate.getMonth();
+      const inputYear = inputDate.getFullYear();
+
+      // Compare date parts
+      if (currentYear === inputYear && currentMonth === inputMonth && currentDay === inputDay) {
+        // Today: Show only time
+        const hours = inputDate.getHours();
+        const minutes = inputDate.getMinutes().toString().padStart(2, '0');
+        const amPm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12;
+        return `${formattedHours}:${minutes} ${amPm}`;
+      } else if (currentYear === inputYear && currentMonth === inputMonth && currentDay - inputDay === 1) {
+        // Yesterday: Show 'Yesterday'
+        return 'Yesterday';
+      } else {
+        // Other days: Show full date and time
+        const dayOfWeek = daysOfWeek[inputDate.getDay()];
+        const dayOfMonth = inputDate.getDate();
+        const month = inputDate.toLocaleString('default', { month: 'long' });
+        const year = inputDate.getFullYear();
+        const hours = inputDate.getHours();
+        const minutes = inputDate.getMinutes().toString().padStart(2, '0');
+        const amPm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12;
+        return `${dayOfWeek}, ${month} ${dayOfMonth}, ${year} - ${formattedHours}:${minutes} ${amPm}`;
+      }
     }
   }
 }
@@ -139,12 +143,14 @@ export default {
 
 <style scoped>
 .container {
-  margin-top: -8rem;
+  margin-top: 1rem;
+  padding: 50px;
 }
+
 .search-wrapper {
   position: relative;
-  width: 400px; /* Adjust the width as needed */
-  margin-top: 15rem;
+  width: 400px;
+  /* Adjust the width as needed */
 }
 
 .search-input {
@@ -153,7 +159,7 @@ export default {
   padding: 0 50px 0 20px;
   border: 2px solid #ddd;
   border-radius: 25px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(198, 198, 198, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -177,161 +183,61 @@ export default {
 .search-icon:hover {
   color: #28a745;
 }
-.card {
-  transition: transform 0.3s, box-shadow 0.3s;
-  background-color: #ffffff;
-  border-radius: 15px;
-  overflow: hidden;
-  border: 1px solid #e0e0e0;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  overflow: hidden;
-}
 
 .product-image {
+  width: 90%;
+  height: 120px;
+  object-fit: contain;
   max-width: 100%;
   max-height: 100%;
+  padding: 10px;
   object-fit: cover;
   transition: transform 0.3s ease-in-out;
 }
 
-.pro-discount{
-  margin-top: -0.7rem;
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
 }
 
-.product-image:hover {
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(79, 216, 81, 0.15);
+}
+
+/* .product-image:hover {
   transform: scale(1.1);
-}
+} */
 
-.card-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 50%;
-}
-
-.pro-name {
-  font-size: 20px;
-  color: #333;
-  word-break: break-word;
-  overflow-wrap: break-word;
-}
-
-.view-detail {
-  font-size: 24px;
-  color: #6c757d;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.view-detail:hover {
-  color: #28a745;
-}
-
-.pro-price {
-  color: #018001;
-  font-size: 18px;
-  margin-top: -1rem;
-}
-
-.seller-part {
-  color: #6c757d;
-}
-
-.btn {
-  background-color: #28a745;
-  border-color: #28a745;
-  font-weight: bold;
-  padding: 8px 16px;
+.price-badge {
   color: #fff;
-  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid green;
+  /* Adjust border color */
+  background: green;
+  padding: 5px;
+  width: 100px;
+  border-radius: 10px;
+  margin: auto;
+  display: inline-block;
+  /* Ensures the badge does not expand unnecessarily */
+  text-align: center;
+  /* Centers the text within the badge */
 }
 
-.btn:hover {
-  background-color: #218838;
-  border-color: #218838;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.modal {
-  position: fixed;
+/* .product-description {
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.3s ease;
-}
+  right: 0;
+  bottom: 0;
+  background-color: rgba(79, 106, 79, 0.7);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.25rem;
+} */
 
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 800px;
-  width: 90%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #e9ecef;
-  padding-bottom: 10px;
-}
-
-.modal-header h3 {
-  margin: 0;
-}
-
-.close {
-  font-size: 24px;
-  cursor: pointer;
-  color: #333;
-}
-
-.modal-body {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.product-image-large {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@media (max-width: 576px) {
-  .card {
-    height: auto;
-  }
-}
+/* .card:hover .product-description {
+  opacity: 1;
+} */
 </style>

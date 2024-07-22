@@ -13,6 +13,15 @@ export const useProductsStore = defineStore('products', {
       quantity: string
       stock_id: number
       categorys_id: number
+    }>,
+    product: [] as Array<{
+      id: number
+      name: string
+      price: number
+      description: string
+      image: string
+      categorys_id: number
+      stock_type: string
     }>
   }),
   actions: {
@@ -28,14 +37,26 @@ export const useProductsStore = defineStore('products', {
         console.error('Error fetching products:', error)
       }
     },
-    async fetchCategory(id) {
+    async fetchCategory(id: number) {
       try {
         const response = await axiosInstance.get(`/category/show/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           }
         })
-        this.products = response.data;
+        this.products = response.data
+      } catch (error) {
+        console.error('Error fetching products:', error)
+      }
+    },
+    async fetchProductDetail(id) {
+      try {
+        const response = await axiosInstance.get(`/products/show/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+          }
+        })
+        this.product = response.data
       } catch (error) {
         console.error('Error fetching products:', error)
       }

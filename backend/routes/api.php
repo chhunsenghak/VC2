@@ -41,7 +41,7 @@ Route::prefix('/user')->middleware('auth:sanctum')->group(function () {
     Route::post('/update/profile', [FrontuserController::class, 'updateProfileUser']);
     Route::get('/{id}', [UserController::class, 'show']);
     Route::get('/list', [UserController::class, 'index']);
-    Route::put('/create/shop', [UserController::class,'edit']);
+    Route::post('/create/shop', [UserController::class,'edit']);
 });
 
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
@@ -136,9 +136,7 @@ Route::prefix("chat")->middleware('auth:sanctum')->group(function () {
     Route::delete("/remove/all/messages/{id}", [ChatController::class, 'removeAllConversations']);
     Route::delete("/remove/user/{id}", [ChatController::class, 'removeChatUser']);
 });
-//Update Bio Route
+//Update Profile Route
 Route::middleware('auth:sanctum')->group(function () {
-    Route::put('/update-bio', [AuthController::class, 'updateBio']);
-    Route::put('/update-phoneNumber', [AuthController::class, 'updatePhoneNumber']);
-    Route::post('/update-profile', [AuthController::class, 'updateProfilePicture']);
+    Route::post('/update-profile', [AuthController::class, 'updateProfile']);
 });
