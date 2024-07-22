@@ -2,7 +2,7 @@
   <WebLayout>
     <div class="container">
       <div class="row">
-        <div class="background-container p-5" style="height: 70vh">
+        <div class="background-container" style="height: 70vh">
           <div class="content-text">
             <h4>
               យើងនឹងផ្តល់ជូននូវបន្លែ និងផ្លែឈើសរីរាង្គស្រស់ៗពីចម្ការរបស់ប្រជាជនកម្ពុជាដោយផ្ទាល់
@@ -68,12 +68,10 @@ onMounted(async () => {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   /* Black overlay with 50% opacity */
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.5) 100%);
   /* Gradient overlay */
   z-index: 1;
   transition: opacity 0.3s ease;

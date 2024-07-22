@@ -64,7 +64,7 @@ const router = createRouter({
     {
       path: '/shop',
       name: 'shopPage',
-      component: () => import('@/views/Web/shop/CategoryView.vue')
+      component: () => import('@/views/Web/shop/ShopView.vue')
     },
     {
       path: '/services',
@@ -95,12 +95,23 @@ const router = createRouter({
     {
       path: '/chat',
       name: 'chatPage',
-      component: () => import('@/views/Web/Chat/CartPageView.vue')
+      component: () => import('@/views/Web/Chat/ListUserChat.vue')
+    },
+    {
+      path: '/chat/user/:id',
+      name: 'chatDetail',
+      component: () => import('@/views/Web/Chat/ChatDetail.vue')
     },
     {
       path: '/product/:id',
       name: 'detail',
       component: () => import('@/views/Web/Product/DetailProducts.vue'),
+      props: true
+    },
+    {
+      path: '/seller/:id',
+      name: 'userDetail',
+      component: () => import('@/views/Web/Profile/UserDetail.vue'),
       props: true
     }
   ]
@@ -118,7 +129,7 @@ router.beforeEach(async (to, from, next) => {
     '/reset_password',
     '/post_detail',
     '/services',
-    
+
   ]
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()

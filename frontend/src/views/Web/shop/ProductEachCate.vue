@@ -3,13 +3,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-<<<<<<< HEAD
-          <div class="d-flex justify-content-between align-items-center ">
-            <!-- <h4 style="margin-top: 17rem" class="fw-bold">{{ products.products.data }}</h4> -->
-=======
           <div class="d-flex justify-content-between align-items-center">
             <h4 style="margin-top: 17rem" class="fw-bold">បញ្ជីផលិតផល</h4>
->>>>>>> 41c5113fe14265e4108c5703c63fa5b34bccfb71
             <!-- Search Products -->
             <div class="search-wrapper">
               <input
@@ -25,20 +20,6 @@
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      <div class="m-3">
-        <div v-if="products.products.numberOfProduct > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
-          <div v-for="product in products.products.data.products" :key="product.id" class="col">
-            <div v-if="product != ''" class="card rounded-2 p-4 shadow-sm h-100">
-              <div class="image-container rounded-2 mb-3">
-                <img v-if="product.image" :src="`http://127.0.0.1:8000/storage/${product.image}`"
-                  :alt="product.name" class="product-image" />
-              </div>
-              <div class="card-content">
-                <div class="d-flex justify-content-between mb-3">
-                  <h5 class="pro-name fw-bold">{{ product.name }}</h5>
-                  <i class="material-icons view-detail" @click="openModal(product)">visibility</i>
-=======
 
       <div v-if="products.products.numberOfProduct > 0" class="container mt-5 mb-5">
         <div class="row justify-content-center g-3">
@@ -60,7 +41,6 @@
                     class="card-img-top product-image mt-4"
                     style="width: 60%; height: 130px; object-fit: cover"
                   />
->>>>>>> 41c5113fe14265e4108c5703c63fa5b34bccfb71
                 </div>
                 <div
                   class="card-body d-flex flex-column justify-content-between text-center flex-grow-1"

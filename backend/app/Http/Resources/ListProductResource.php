@@ -29,7 +29,7 @@ class ListProductResource extends JsonResource
             'category' => $this->category,
             'break_product_at' => $this->break_product_at,
             'frontuser' => new FrontUserResource($this->frontuser),
-            // 'frontuser' => $this->frontuser,
+            'created_at' => $this->created_at
         ];
     }
 }

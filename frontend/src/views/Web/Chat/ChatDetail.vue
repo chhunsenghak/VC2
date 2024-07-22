@@ -26,7 +26,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import Pusher from 'pusher-js'
 export default {
-  name: 'ShowDetailChat',
+  name: 'ChatDetail',
   setup() {
     const sender_id = ref([1])
     const receiver_id = ref([2])
