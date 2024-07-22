@@ -263,7 +263,7 @@ watchEffect(() => {
       el.style.filter = 'hue-rotate(120deg)'
     }
   }
-};
+}
 </script>
-
-<style></style>
+<style>
+</style>

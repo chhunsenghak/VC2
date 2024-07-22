@@ -3,9 +3,46 @@
   <div class="container d-flex align-items-center justify-content-center mt-20" v-if="userChat !== null">
     <div class="col-6 shadow-sm rounded-3 bg-secondary p-3" style="height: 800px;" >
       <div class="d-flex align-items-center gap-3">
-        <input type="text" class="form-control mb-2" placeholder="Search">
+        <i class='fas fa-angle-left' style='font-size:24px; color:white'></i>
+        <input type="text" class="form-control mb-2 shadow-lg" placeholder="Search">
       </div>
-      <div v-for="user in userChat.users.data" :key="user.id"
+      <div class="card-body rounded contacts_body mt-4 d-flex flex-column bg-light aligh-item-center">
+                 <ul class="user_list d-flex flex-column">
+                  <li class="active d-flex border border-2  m-3 p-1 border-top-0 border-end-0 border-start-0 gap-4">
+                      <img src="../../../../src/assets/image/06.jpg"  height="70px" width="70px" class="rounded-circle user_img ">
+                      <div class="contact-details">
+                          <div class="name">Channich NOEURN</div>
+                          <div class="status-text">Do you miss me? I want to chat with you this night</div>
+                          <div class="date mt-1 text-muted">22 March 2024 at 8:00 AM</div>
+                      </div>                      
+                    </li>                                   
+                  <li class="active d-flex border border-2  m-3 p-1 border-top-0 border-end-0 border-start-0 gap-4">
+                      <img src="../../../../src/assets/image/06.jpg"  height="70px" width="70px" class="rounded-circle user_img ">
+                      <div class="contact-details">
+                          <div class="name">Channich NOEURN</div>
+                          <div class="status-text">Do you miss me? I want to chat with you this night</div>
+                          <div class="date mt-1 text-muted">22 March 2024 at 8:00 AM</div>
+                      </div>                      
+                    </li>                                   
+                  <li class="active d-flex border border-2  m-3 p-1 border-top-0 border-end-0 border-start-0 gap-4">
+                      <img src="../../../../src/assets/image/06.jpg"  height="70px" width="70px" class="rounded-circle user_img ">
+                      <div class="contact-details">
+                          <div class="name">Channich NOEURN</div>
+                          <div class="status-text">Do you miss me? I want to chat with you this night</div>
+                          <div class="date mt-1 text-muted">22 March 2024 at 8:00 AM</div>
+                      </div>                      
+                    </li>                                   
+                  <li class="active d-flex border border-2  m-3 p-1 border-top-0 border-end-0 border-start-0 gap-4">
+                      <img src="../../../../src/assets/image/06.jpg"  height="70px" width="70px" class="rounded-circle user_img ">
+                      <div class="contact-details">
+                          <div class="name">Channich NOEURN</div>
+                          <div class="status-text">Do you miss me? I want to chat with you this night</div>
+                          <div class="date mt-1 text-muted">22 March 2024 at 8:00 AM</div>
+                      </div>                      
+                    </li>                                   
+                 </ul>
+                </div>
+      <!-- <div v-for="user in userChat.users.data" :key="user.id"
         class="link-offset-2 link-underline link-underline-opacity-0 text-dark">
         <button v-if="store.user.id !== user.receiver_id[0].id" @click="chatDetail(user.receiver_id[0].id)"
           class="border-none rounded-3 mb-2 bg-white w-100">
@@ -25,7 +62,7 @@
             </div>
           </div>
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -74,4 +111,19 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+li:hover{
+  background-color: #353b48bd;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  position: center;
+  cursor: pointer;
+  transition: background 0.3s;
+
+}
+.date {
+  font-size: 14px;
+}
+
+</style>
