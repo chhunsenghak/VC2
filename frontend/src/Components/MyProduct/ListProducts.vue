@@ -52,6 +52,7 @@
                   class="w-10"
                   :src="`http://127.0.0.1:8000/storage/${product.image}`"
                   alt="image product"
+                  style="margin-left: 12px; margin-top: 12px"
                   @click="showImageModal(product.image)"
                 />
               </td>
