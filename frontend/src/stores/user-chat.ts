@@ -33,7 +33,7 @@ export const userChatStore = defineStore('users', {
         console.error('Error fetching products:', error);
       }
     },
-    async fetchReceiverUser(id) {
+    async fetchReceiverUser(id: number) {
       try {
         const data = await axiosInstance.get(`/chat/getConversation/${id}`, {
           headers: {
@@ -45,7 +45,7 @@ export const userChatStore = defineStore('users', {
         console.error('Error fetching receiver user:', e);
       }
     },
-    async removeAllMessages(id) {
+    async removeAllMessages(id: number) {
       try {
         const data = await axiosInstance.delete(`chat/remove/all/messages/${id}`, {
           headers: {
@@ -56,7 +56,7 @@ export const userChatStore = defineStore('users', {
         console.log("Error fetching delete all conversation:", e)
       }
     },
-    async deleteUserChat(id) {
+    async deleteUserChat(id: number) {
       try {
         const data = await axiosInstance.delete(`chat/remove/user/${id}`, {
           headers: {
@@ -67,7 +67,7 @@ export const userChatStore = defineStore('users', {
         console.log("Error fetching delete all conversation:", e)
       }
     },
-    async receiveMessage(id) {
+    async receiveMessage(id: number) {
       try {
         const data = await axiosInstance.get(`chat/recieveMessage/${id}`, {
           headers: {
@@ -79,7 +79,7 @@ export const userChatStore = defineStore('users', {
         console.log("Error fetching delete all conversation:", e)
       }
     },
-    async sendText(message) {
+    async sendText(message: any) {
       try {
         const response = await axiosInstance.post("/chat/sendText", message, {
           headers: {

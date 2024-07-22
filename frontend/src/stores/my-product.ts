@@ -9,7 +9,6 @@ export const userStore = defineStore('products', {
       frontuser_id: number,
       price: string,
       image: string,
-      discount: string,
       quantity: string,
       stock_id: number,
       categorys_id: number
@@ -60,7 +59,19 @@ export const userStore = defineStore('products', {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           },
         });
-        this.deleteProduct = response.data;
+        this.deleteMessage = response.data;
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    },
+    async updateProduct(id: number) {
+      try {
+        const response = await axiosInstance.get(`/products/update/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+          },
+        });
+        this.products = response.data;
       } catch (error) {
         console.error('Error fetching products:', error);
       }
