@@ -64,25 +64,33 @@ const dialogVisible = ref(false)
         >ទំនាក់ទំនង</a
       >
     </div>
-    <div class="icon d-flex gap-5">
-      <!-- ==Notification== -->
-        <div class="noti mt-2" @click="dialogVisible = true">
-          <svg
+    <div class="icon d-flex gap-5" style="margin-left:25%">
+      <!-- ===============-Notification-================ -->
+      <div class="noti mt-2" @click="dialogVisible = true">
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
           fill="currentColor"
-          class="bi bi-bell-fill" 
+          class="bi bi-bell-fill"
           viewBox="0 0 16 16"
         >
           <path
             d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"
           />
         </svg>
-        <span class="badge rounded-pill badge-notification bg-danger position-absolute top-8 translate-middle">4</span>
+        <span
+          class="badge rounded-pill badge-notification bg-danger position-absolute top-8 translate-middle"
+          >4</span
+        >
       </div>
-      <el-dialog v-model="dialogVisible" title="ព័ត៍មាន​​ ឬសារជូនដំណឹង" width="500" :before-close="handleClose" >
-        <div class="card  border-2 mb-2 " style="max-width: 28rem">
+      <el-dialog
+        v-model="dialogVisible"
+        title="ព័ត៍មាន​​ ឬសារជូនដំណឹង"
+        width="500"
+        :before-close="handleClose"
+      >
+        <div class="card border-2 mb-2" style="max-width: 28rem">
           <div
             class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
           >
@@ -105,9 +113,21 @@ const dialogVisible = ref(false)
             <p class="card-text">សួរស្ដី​! យើ​​ងបាននាំចូលនូវផលិតផលថ្មីៗដល់លោកអ្នក</p>
           </div>
         </div>
-        <div class="card border-2 mb-2 " style="max-width: 28rem">
-          <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F19E39"><path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/></svg>
+        <div class="card border-2 mb-2" style="max-width: 28rem">
+          <div
+            class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#F19E39"
+            >
+              <path
+                d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
+              />
+            </svg>
             <h4>សារជូនដំណឹង!</h4>
             <p>Today</p>
           </div>
@@ -116,9 +136,21 @@ const dialogVisible = ref(false)
             <p class="card-text">ផ្លាស់ប្ដូរលេខសម្ងាត់បានជោគជ័យ</p>
           </div>
         </div>
-        <div class="card  border-2 mb-2 " style="max-width: 28rem">
-          <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F19E39"><path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/></svg>
+        <div class="card border-2 mb-2" style="max-width: 28rem">
+          <div
+            class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#F19E39"
+            >
+              <path
+                d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
+              />
+            </svg>
             <h4>សារជូនដំណឹង!</h4>
             <p>Today</p>
           </div>
@@ -128,14 +160,29 @@ const dialogVisible = ref(false)
           </div>
         </div>
         <div class="card border-2 mb-2" style="max-width: 28rem">
-          <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F19E39"><path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/></svg>
+          <div
+            class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#F19E39"
+            >
+              <path
+                d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
+              />
+            </svg>
             <h4>សារជូនដំណឹង!</h4>
             <p>Yesterday</p>
           </div>
-          <div class="card-body ">
+          <div class="card-body">
             <h5 class="card-title">ការបង្កើតហាង</h5>
-            <p class="card-text">ការបង្កើតហាងរបស់អ្នកទទួលបានជោគជ័ត​ លោកអ្នកអាចចាប់ផ្ដើមលក់និងទិញផលិតផលនៅលើ​ Website ដោយប្រើអាខោនរបស់អ្នក </p>
+            <p class="card-text">
+              ការបង្កើតហាងរបស់អ្នកទទួលបានជោគជ័ត​ លោកអ្នកអាចចាប់ផ្ដើមលក់និងទិញផលិតផលនៅលើ​ Website
+              ដោយប្រើអាខោនរបស់អ្នក
+            </p>
           </div>
         </div>
         <template #footer>
@@ -145,57 +192,7 @@ const dialogVisible = ref(false)
           </div>
         </template>
       </el-dialog>
-
       <!-- //==================================================== -->
-      <svg
-        v-if="store.isAuthenticated"
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        fill="currentColor"
-        class="mt-2.98 bi bi-brightness-high"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"
-        />
-      </svg>
-      <a
-        v-if="store.isAuthenticated && store.user.shop"
-        href="/myProducts"
-        class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="currentColor"
-          class="bi bi-shop-window"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5"
-          />
-        </svg>
-      </a>
-      <a
-        v-if="store.isAuthenticated"
-        href="/chat"
-        class="mb-1 font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="currentColor"
-          class="bi bi-chat"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"
-          />
-        </svg>
-      </a>
     </div>
     <div class="nav-right">
       <div class="menu mb-3 ml-10">
@@ -256,84 +253,131 @@ const dialogVisible = ref(false)
             <!-- Noification -->
             <div class="noti mt-2 ml-4" @click="dialogVisible = true">
               <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              class="bi bi-bell-fill" 
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"
-              />
-            </svg>
-            <span class="badge rounded-pill badge-notification bg-danger position-absolute translate-middle">4</span>
-          </div>
-          <el-dialog v-model="dialogVisible" title="ព័ត៍មាន​​ ឬសារជូនដំណឹង" width="500" :before-close="handleClose" >
-            <div class="card border-2 mb-2 " style="max-width: 28rem">
-              <div
-                class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-bell-fill"
+                viewBox="0 0 16 16"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24px"
-                  viewBox="0 -960 960 960"
-                  width="24px"
-                  fill="#F19E39"
+                <path
+                  d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"
+                />
+              </svg>
+              <span
+                class="badge rounded-pill badge-notification bg-danger position-absolute translate-middle"
+                >4</span
+              >
+            </div>
+            <el-dialog
+              v-model="dialogVisible"
+              title="ព័ត៍មាន​​ ឬសារជូនដំណឹង"
+              width="500"
+              :before-close="handleClose"
+            >
+              <div class="card border-2 mb-2" style="max-width: 28rem">
+                <div
+                  class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
                 >
-                  <path
-                    d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
-                  />
-                </svg>
-                <h5>ព័ត៍មាន!</h5>
-                <p>Today</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#F19E39"
+                  >
+                    <path
+                      d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
+                    />
+                  </svg>
+                  <h5>ព័ត៍មាន!</h5>
+                  <p>Today</p>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">ផលិតផលថ្មីៗ</h5>
+                  <p class="card-text">សួរស្ដី​! យើ​​ងបាននាំចូលនូវផលិតផលថ្មីៗដល់លោកអ្នក</p>
+                </div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title">ផលិតផលថ្មីៗ</h5>
-                <p class="card-text">សួរស្ដី​! យើ​​ងបាននាំចូលនូវផលិតផលថ្មីៗដល់លោកអ្នក</p>
+              <div class="card border-2 mb-2" style="max-width: 28rem">
+                <div
+                  class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#F19E39"
+                  >
+                    <path
+                      d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
+                    />
+                  </svg>
+                  <h4>សារជូនដំណឹង!</h4>
+                  <p>Today</p>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">ផ្លាស់ប្ដូរ​លេខសម្ងាត់</h5>
+                  <p class="card-text">ផ្លាស់ប្ដូរលេខសម្ងាត់បានជោគជ័យ</p>
+                </div>
               </div>
-            </div>
-            <div class="card border-2 mb-2 " style="max-width: 28rem">
-              <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F19E39"><path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/></svg>
-                <h4>សារជូនដំណឹង!</h4>
-                <p>Today</p>
+              <div class="card border-2 mb-2" style="max-width: 28rem">
+                <div
+                  class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#F19E39"
+                  >
+                    <path
+                      d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
+                    />
+                  </svg>
+                  <h4>សារជូនដំណឹង!</h4>
+                  <p>Today</p>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">បញ្ចូលផលិតផល</h5>
+                  <p class="card-text">ការបញ្ចូលផលិតផលរបស់អ្នកបានជោគជ័យ</p>
+                </div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title">ផ្លាស់ប្ដូរ​លេខសម្ងាត់</h5>
-                <p class="card-text">ផ្លាស់ប្ដូរលេខសម្ងាត់បានជោគជ័យ</p>
+              <div class="card border-2 mb-2" style="max-width: 28rem">
+                <div
+                  class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#F19E39"
+                  >
+                    <path
+                      d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
+                    />
+                  </svg>
+                  <h4>សារជូនដំណឹង!</h4>
+                  <p>Yesterday</p>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">ការបង្កើតហាង</h5>
+                  <p class="card-text">
+                    ការបង្កើតហាងរបស់អ្នកទទួលបានជោគជ័ត​ លោកអ្នកអាចចាប់ផ្ដើមលក់និងទិញផលិតផលនៅលើ​
+                    Website ដោយប្រើអាខោនរបស់អ្នក
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="card  border-2 mb-2 " style="max-width: 28rem">
-              <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F19E39"><path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/></svg>
-                <h4>សារជូនដំណឹង!</h4>
-                <p>Today</p>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">បញ្ចូលផលិតផល</h5>
-                <p class="card-text">ការបញ្ចូលផលិតផលរបស់អ្នកបានជោគជ័យ</p>
-              </div>
-            </div>
-            <div class="card border-2 mb-2" style="max-width: 28rem">
-              <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F19E39"><path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/></svg>
-                <h4>សារជូនដំណឹង!</h4>
-                <p>Yesterday</p>
-              </div>
-              <div class="card-body ">
-                <h5 class="card-title">ការបង្កើតហាង</h5>
-                <p class="card-text">ការបង្កើតហាងរបស់អ្នកទទួលបានជោគជ័ត​ លោកអ្នកអាចចាប់ផ្ដើមលក់និងទិញផលិតផលនៅលើ​ Website ដោយប្រើអាខោនរបស់អ្នក </p>
-              </div>
-            </div>
-            <template #footer>
-              <div class="dialog-footer">
-                <el-button @click="dialogVisible = false">បោះបង់</el-button>
-                <el-button type="primary" @click="dialogVisible = false"> ចែករំលែក </el-button>
-              </div>
-            </template>
-          </el-dialog>
-          <!-- ====================================== -->
+              <template #footer>
+                <div class="dialog-footer">
+                  <el-button @click="dialogVisible = false">បោះបង់</el-button>
+                  <el-button type="primary" @click="dialogVisible = false"> ចែករំលែក </el-button>
+                </div>
+              </template>
+            </el-dialog>
+            <!-- ====================================== -->
             <svg
               v-if="store.isAuthenticated"
               xmlns="http://www.w3.org/2000/svg"
@@ -389,7 +433,7 @@ const dialogVisible = ref(false)
       <!-- Sign In -->
 
       <!-- User Profile -->
-      <div v-if="store.isAuthenticated" class="px-10 py-2 mb-3">
+      <div v-if="store.isAuthenticated" class="px-10 py-2">
         <div class="dropdown">
           <button
             class="dropdown-toggle border-none bg-white"
@@ -415,12 +459,41 @@ const dialogVisible = ref(false)
             />
           </button>
           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="profileDropdown">
-            <li><a class="dropdown-item" href="/profile">Account</a></li>
-            <li><a class="dropdown-item" href="#">Sitting</a></li>
+            <li><a class="dropdown-item" href="/profile">គណនី</a></li>
+            <li>
+              <a
+                v-if="store.isAuthenticated && store.user.shop"
+                href="/myProducts"
+                class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
+              >
+                កសិផលរបស់ខ្ញុំ
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-shop-window"
+          viewBox="0 0 16 16">
+          <path
+            d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5" />
+        </svg> -->
+              </a>
+            </li>
+            <li>
+              <a
+                v-if="store.isAuthenticated"
+                href="/chat"
+                class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
+              >
+                សារ
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat"
+          viewBox="0 0 16 16">
+          <path
+            d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105" />
+        </svg> -->
+              </a>
+            </li>
+            <li><a class="dropdown-item" href="#">ការកំណត់</a></li>
             <li>
               <hr class="dropdown-divider" />
             </li>
-            <li><button class="dropdown-item" @click="logout">Log out</button></li>
+
+            <li><button class="dropdown-item" @click="logout">ចាកចេញ</button></li>
           </ul>
         </div>
       </div>
@@ -435,18 +508,18 @@ const dialogVisible = ref(false)
 .menu {
   display: none;
 }
-.card{
+.card {
   border-color: #515452f2;
-  background-color:rgb(185, 183, 183);
+  background-color: rgb(185, 183, 183);
 }
-.card:hover{
+.card:hover {
   background-color: #138f30f2;
   color: white;
   transition: background-color 0.3s;
   cursor: pointer;
   border: none;
 }
-.el-dialog{
+.el-dialog {
   margin-right: 10%;
 }
 @media (max-width: 768px) {
