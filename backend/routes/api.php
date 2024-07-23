@@ -51,42 +51,6 @@ Route::prefix('/post')->middleware('auth:sanctum')->group(function () {
     Route::get('/show/{id}', [PostController::class, 'show']);
 });
 
-// PROVINCE ROUTES
-Route::prefix('provinces')->group(function () {
-    Route::get('/list', [ProvinceController::class, 'index']);
-    Route::post('/create', [ProvinceController::class, 'store']);
-    Route::get('/show/{id}', [ProvinceController::class, 'show']);
-    Route::put('/update/{id}', [ProvinceController::class, 'update']);
-    Route::delete('/delete/{id}', [ProvinceController::class, 'destroy']);
-});
-
-// DISTRICT ROUTES
-Route::prefix('districts')->group(function () {
-    Route::get('/list', [DistrictController::class, 'index']);
-    Route::post('/create', [DistrictController::class, 'store']);
-    Route::get('/show/{id}', [DistrictController::class, 'show']);
-    Route::put('/update/{id}', [DistrictController::class, 'update']);
-    Route::delete('/delete/{id}', [DistrictController::class, 'destroy']);
-});
-
-// COMMUNE ROUTES
-Route::prefix('commune')->group(function () {
-    Route::get('/list', [CommuneController::class, 'index']);
-    Route::post('/create', [CommuneController::class, 'store']);
-    Route::get('/show/{id}', [CommuneController::class, 'show']);
-    Route::put('/update/{id}', [CommuneController::class, 'update']);
-    Route::delete('/delete/{id}', [CommuneController::class, 'destroy']);
-});
-
-// VILLAGE ROUTES
-Route::prefix('village')->group(function () {
-    Route::get('/list', [VillageController::class, 'index']);
-    Route::post('/create', [VillageController::class, 'store']);
-    Route::get('/show/{id}', [VillageController::class, 'show']);
-    Route::put('/update/{id}', [VillageController::class, 'update']);
-    Route::delete('/delete/{id}', [VillageController::class, 'destroy']);
-});
-
 // CATEGORY ROUTES
 Route::prefix('category')->group(function () {
     Route::get('/list', [CategoryController::class, 'index']);
