@@ -25,7 +25,7 @@ class FrontUserSeeder extends Seeder
             'phone' => '012 46 78 901',
             'profile' => 'nich.jpg',
             'bio' => 'លក់ប្រកបដោយភាពថ្លៃថ្នូរ',
-            'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
+            'linkedin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
         ]);
@@ -39,7 +39,7 @@ class FrontUserSeeder extends Seeder
             'phone' => '012 46 78 901',
             'profile' => 'eii.jpg',
             'bio' => 'លក់ប្រកបដោយភាពថ្លៃថ្នូរ',
-            'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
+            'linkedin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
         ]);
@@ -53,7 +53,7 @@ class FrontUserSeeder extends Seeder
             'phone' => '012 46 78 901',
             'profile' => 'rady.jpg',
             'bio' => 'លក់ប្រកបដោយភាពថ្លៃថ្នូរ',
-            'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
+            'linkedin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
         ]);
@@ -66,7 +66,7 @@ class FrontUserSeeder extends Seeder
             'phone' => '012 46 78 901',
             'profile' => 'neardy.jpg',
             'bio' => 'លក់ប្រកបដោយភាពថ្លៃថ្នូរ',
-            'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
+            'linkedin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
         ]);
@@ -80,7 +80,7 @@ class FrontUserSeeder extends Seeder
             'phone' => '012 46 78 901',
             'profile' => 'sokunthea.jpg',
             'bio' => 'លក់ប្រកបដោយភាពថ្លៃថ្នូរ',
-            'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
+            'linkedin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
         ]);
@@ -93,7 +93,7 @@ class FrontUserSeeder extends Seeder
             'shop' => 1,
             'phone' => '012 46 78 901',
             'bio' => 'លក់ប្រកបដោយភាពថ្លៃថ្នូរ',
-            'linkenin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
+            'linkedin' => 'linkedin.com/in/chan-nich-noeurn-06232a2a3',
             'facebook' => 'https://www.facebook.com/luu.lii.14203?mibextid=LQQJ4d',
             'telegram' => '@annenichz',
         ]);

@@ -14,9 +14,7 @@ const logout = async () => {
     router.push('/login')
   } catch (error) {}
 }
-
 import { ref } from 'vue'
-import { ElMessageBox } from 'element-plus'
 
 const dialogVisible = ref(false)
 </script>
@@ -24,52 +22,65 @@ const dialogVisible = ref(false)
   <nav
     class="navbar navbar-expand-md navbar-dark fixed-top flex justify-between px-10 py-1 bg-white items-center m-0 shadow-background shadow-sm p-3 mb-5 bg-white"
   >
+  <div class="container-fluid">
     <!-- {{ store }} -->
     <!-- Logo -->
     <div class="logo col-2 items-center space-x-20 px-10 py-2 w-25">
       <img src="../../src/assets/logo1.png" alt="logo" style="width: 150px" />
     </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  ></button>
     <!-- Menu Items -->
-    <div class="content-list col-6 d-flex flex-direction-column justify-center">
-      <a
+    <div class="collapse content-list col-6 d-flex flex-direction-column justify-center" id="navbarNav">
+      <router-link
         class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/"
-        >ទំព័រដើម</a
+        to="/"
+        >ទំព័រដើម</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/shop"
-        >ទំនិញ</a
+       to="/shop"
+        >ទំនិញ</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/about_us"
-        >អំពីយើង</a
+        to="/about_us"
+        >អំពីយើង</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/services"
-        >សេវាកម្ម</a
+        to="/services"
+        >សេវាកម្ម</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/post"
-        >ប្លុកថ្មីៗ</a
+        to="/post"
+        >ប្លុកថ្មីៗ</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/contact_us"
-        >ទំនាក់ទំនង</a
+        to="/contact_us"
+        >ទំនាក់ទំនង</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/map"
-        >ផែនទី</a
+        to="/map"
+        >ផែនទី</router-link
       >
     </div>
-    <div class="icon col-1  d-flex justify-content-center text-center ">
+    <div class="icon col-1 d-flex justify-content-center text-center">
       <!-- ===============-Notification-================ -->
-      <div class="noti col-1 mt-3" @click="dialogVisible = true">
+      <div class="noti col-1 mt-2" style="margin-right: 3rem" @click="dialogVisible = true">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -93,7 +104,7 @@ const dialogVisible = ref(false)
         class="mr-35 mt-17 rounded-3"
         :before-close="handleClose"
       >
-        <div class="card border-2 mb-2 m-2 " style="max-width: 28rem">
+        <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
           <div
             class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
           >
@@ -230,7 +241,7 @@ const dialogVisible = ref(false)
               <a
                 v-if="store.isAuthenticated && store.user.shop"
                 href="/myProducts"
-                class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
+                class="nav-link link-offset-2 text-decoration-none link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
               >
                 កសិផលរបស់ខ្ញុំ
               </a>
@@ -239,7 +250,7 @@ const dialogVisible = ref(false)
               <a
                 v-if="store.isAuthenticated"
                 href="/chat"
-                class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
+                class="nav-link link-offset-2 text-decoration-none link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
               >
                 សារ
               </a>
@@ -253,9 +264,10 @@ const dialogVisible = ref(false)
           </ul>
         </div>
       </div>
-      <div v-else px-10 py-2>
-        <a href="/login" class="btn btn-outline-success">ចូលគណនី</a>
+      <div v-else>
+        <a href="/login" class="btn btn-outline-success" style="margin-right: 6rem; width:55%">ចូលគណនី</a>
       </div>
+    </div>
     </div>
   </nav>
 </template>
@@ -278,5 +290,4 @@ const dialogVisible = ref(false)
   transition: box-shadow 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
 }
-
 </style>
