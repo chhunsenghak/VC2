@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CheckUser extends Model
+class LimitDuration extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'start_date',
-        'end_date',
-        'frontuser_id',
+        'duration',
+        'price',
         'limit_duration_type_id',
     ];
-
-    public function frontuser()
+    public function limitDurationType()
     {
-        return $this->belongsTo(FrontUser::class);
+        return $this->belongsTo(LimitDurationType::class);
     }
-
-    public function limit_duration
 }

@@ -11,21 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('chcek_users', function (Blueprint $table) {
+        Schema::create('limit_duration_types', function (Blueprint $table) {
             $table->id();
-            $table->string("price");
-            $table->integer("frontuser_id");
-            $table->integer('check');
-            $table->date("start_date");
-            $table->date("end_date");
+            $table->string('name');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('chcek_users');
+        Schema::dropIfExists('limit_duration_types');
     }
 };

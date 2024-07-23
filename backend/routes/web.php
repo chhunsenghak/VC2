@@ -65,6 +65,8 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('seller', 'SellerController');
         Route::resource("dashboard", 'DashboardController');
         Route::resource("stockType", 'StockTypeController');
+        Route::resource("durationtype", 'LimitDurationTypeController');
+        Route::resource("limitDuration", "LimitDurationController");
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
         Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/mail', [MailSettingController::class, 'index'])->name('mail.index');

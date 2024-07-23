@@ -10,8 +10,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-
-
 class Frontuser extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -29,10 +27,9 @@ class Frontuser extends Authenticatable
         'phone',
         'profile',
         'shop',
-        'check',
+        'check_id',
         'gender',
         'location_id'
-
     ];
 
     /**
@@ -67,5 +64,8 @@ class Frontuser extends Authenticatable
     public function location()
     {
         return $this->belongsTo(Locations::class, 'location_id');
+    }
+    public function CheckUser(){
+        return $this->hasOne(CheckUser::class, 'frontuser_id');
     }
 }
