@@ -62,6 +62,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('posts', 'PostController');
         Route::resource('categorys', 'CategoryController');
         Route::resource('products', 'ProductController');
+        Route::resource('seller', 'SellerController');
         Route::resource("dashboard", 'DashboardController');
         Route::resource("locations", 'LocationController');
         Route::resource("province", 'ProvinceController');
