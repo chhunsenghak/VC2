@@ -1,14 +1,14 @@
 <template>
   <WebLayout>
-    <div class="container mt-23">
+    <div class="container mt-23" >
       <div class="card cover-background"></div>
-      <div class="user-info d-flex" v-for="(value, key) in userInfo" :key="key">
+      <div class="user-info d-flex" v-for="(value, key) in userInfo" :key="key" > 
         <!-- Profile Image -->
         <div class="user-info-item w-100 p-5" v-if="key === 'profile'">
           <img
             :src="`http://127.0.0.1:8000/storage/${value}`"
             class="rounded-circle w-40 h-40"
-            style="border: 10px solid white; margin-top: -42rem; margin-left: 7rem"
+            style="border: 10px solid white; margin-top: -32rem; margin-left: 7rem"
           />
         </div>
         <!-- Name -->
@@ -19,7 +19,7 @@
         </div>
         <!-- Bio -->
         <div class="user-info-item" v-else-if="key === 'bio'">
-          <span class="user-info-value fs-6" style="margin-left: 9rem; margin-top: -1rem">{{
+          <span class="user-info-value fs-6" style="margin-left: 11rem; margin-top: -1rem">{{
             value
           }}</span>
         </div>
@@ -29,7 +29,7 @@
           style="margin-left: 65rem"
           v-else-if="key === 'facebook'"
         >
-          <span class="user-info-label mb-3 fs-6" style="margin-top: -10rem">Social Medias</span>
+          <span class="user-info-label mb-3 fs-6" style="margin-top: -8rem">Social Medias</span>
           <a
             class="user-info-value d-flex align-items-center text-decoration-none text-primary fs-4"
             :href="value"
@@ -62,20 +62,20 @@
           >
             <i
               class="fab fa-telegram me-2 text-primary fs-4"
-              style="margin-left: 65rem; margin-top: -15rem"
+              style="margin-left: 65rem; margin-top: -11rem"
             ></i>
           </a>
         </div>
         <div
           class="user-info-item"
-          style="margin-left: 63rem; display: flex; align-items: center; margin-top: -10rem"
+          style="margin-left: 63rem; display: flex; align-items: center; margin-top: -8rem"
           v-else-if="key === 'phone'"
         >
-          <i class="fas fa-phone-alt me-2 fs-5 text-success"></i>
+          <i class="fas fa-phone me-2 fs-6 text-success"></i>
           <span class="user-info-value fw-bold">{{ value }}</span>
         </div>
         <!-- Location -->
-        <div v-else-if="key === 'location_id'" class="mb-2">
+        <div v-else-if="key === 'location_id'" class="mb-2" >
           <a
             :href="
               'https://www.google.com/maps/search/?api=1&query=' +
@@ -91,7 +91,7 @@
           <div id="map" style="width: 290px; height: 150px"></div>
         </div>
       </div>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mt-5 mb-5">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mb-5" style="margin-top: -10rem;">
         <!-- Changed col classes and adjusted g-3 -->
         <div v-for="product in store.productList.data" :key="product.id" class="col-4">
           <div class="card rounded-5 d-flex flex-column">
