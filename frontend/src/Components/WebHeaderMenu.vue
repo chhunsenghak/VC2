@@ -14,9 +14,7 @@ const logout = async () => {
     router.push('/login')
   } catch (error) {}
 }
-
 import { ref } from 'vue'
-import { ElMessageBox } from 'element-plus'
 
 const dialogVisible = ref(false)
 </script>
@@ -24,47 +22,60 @@ const dialogVisible = ref(false)
   <nav
     class="navbar navbar-expand-md navbar-dark fixed-top flex justify-between px-10 py-1 bg-white items-center m-0 shadow-background shadow-sm p-3 mb-5 bg-white"
   >
+  <div class="container-fluid">
     <!-- {{ store }} -->
     <!-- Logo -->
     <div class="logo col-2 items-center space-x-20 px-10 py-2 w-25">
       <img src="../../src/assets/logo1.png" alt="logo" style="width: 150px" />
     </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  ></button>
     <!-- Menu Items -->
-    <div class="content-list col-6 d-flex flex-direction-column justify-center">
-      <a
+    <div class="collapse content-list col-6 d-flex flex-direction-column justify-center" id="navbarNav">
+      <router-link
         class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/"
-        >ទំព័រដើម</a
+        to="/"
+        >ទំព័រដើម</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/shop"
-        >ទំនិញ</a
+       to="/shop"
+        >ទំនិញ</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/about_us"
-        >អំពីយើង</a
+        to="/about_us"
+        >អំពីយើង</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/services"
-        >សេវាកម្ម</a
+        to="/services"
+        >សេវាកម្ម</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/post"
-        >ប្លុកថ្មីៗ</a
+        to="/post"
+        >ប្លុកថ្មីៗ</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/contact_us"
-        >ទំនាក់ទំនង</a
+        to="/contact_us"
+        >ទំនាក់ទំនង</router-link
       >
-      <a
+      <router-link
         class="nav-link font-bold link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
-        href="/map"
-        >ផែនទី</a
+        to="/map"
+        >ផែនទី</router-link
       >
     </div>
     <div class="icon col-1  d-flex justify-content-center text-center ">
@@ -256,6 +267,7 @@ const dialogVisible = ref(false)
       <div v-else px-10 py-2>
         <a href="/login" class="btn btn-outline-success">ចូលគណនី</a>
       </div>
+    </div>
     </div>
   </nav>
 </template>
