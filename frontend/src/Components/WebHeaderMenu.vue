@@ -90,7 +90,7 @@ const dialogVisible = ref(false)
         v-model="dialogVisible"
         title="ព័ត៍មាន​​ ឬសារជូនដំណឹង"
         width="500"
-        class="mr-35 mt-17"
+        class="mr-35 mt-17 rounded-3"
         :before-close="handleClose"
       >
         <div class="card border-2 mb-2 m-2 " style="max-width: 28rem">
@@ -108,7 +108,7 @@ const dialogVisible = ref(false)
                 d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
               />
             </svg>
-            <h5>ព័ត៍មាន!</h5>
+            <h4>ព័ត៍មាន!</h4>
             <p>Today</p>
           </div>
           <div class="card-body">
