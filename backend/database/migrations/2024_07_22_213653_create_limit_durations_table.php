@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('limit_durations', function (Blueprint $table) {
             $table->id();
             $table->integer("price");
-            $table->integer("durations");
+            $table->integer("durations")->nullable(false);
             $table->integer("limit_duration_type_id");
             $table->timestamps();
         });

@@ -24,9 +24,9 @@
                 <td class="py-4 px-6 border-grey-light">{{ $user->name }}</td>
                 <td class="py-4 px-6 border-grey-light">{{ $user->email }}</td>
                 <td class="py-4 px-6 border-grey-light">
-                  @if ($user->check == 0)
+                  @if ($user->check_id == null)
                   <span class="text-red-500">Free</span>
-                  @elseif ($user->check == 1)
+                  @elseif ($user->check_id)
                   <span class="text-green-500">premium</span>
                   @endif
                 </td>

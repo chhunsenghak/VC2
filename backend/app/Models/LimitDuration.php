@@ -9,7 +9,7 @@ class LimitDuration extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'duration',
+        'durations',
         'price',
         'limit_duration_type_id',
     ];

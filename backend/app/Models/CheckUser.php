@@ -12,7 +12,7 @@ class CheckUser extends Model
         'start_date',
         'end_date',
         'frontuser_id',
-        'limit_duration_type_id',
+        'limit_durations_id',
     ];
 
     public function frontuser()
@@ -20,5 +20,8 @@ class CheckUser extends Model
         return $this->belongsTo(FrontUser::class);
     }
 
-    public function limit_duration
+    public function LimitDuration()
+    {
+        return $this->belongsTo(LimitDuration::class);
+    }
 }

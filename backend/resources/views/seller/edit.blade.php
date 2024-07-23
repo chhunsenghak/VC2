@@ -7,16 +7,17 @@
                         @csrf
                         @method('put')
                         <div class="flex gap-4 mt-5">
-                            <div class="flex flex-col" style="width: 1000px;">
-                                <label for="category_id" class="text-gray-700 select-none font-medium">Check</label>
-                                <select name="check" id="check" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200">
-                                    <option value="1" {{ $user->check == old('check', $user->check) ? 'selected' : '' }}>
-                                        Not Limited
-                                    </option>
-                                    <option value="0" {{ $user->check == old('check', $user->check) ? 'selected' : '' }}>
-                                        Limited
-                                    </option>
+                            <div class="flex flex-col" style="width: 500px;">
+                                <label for="category_id" class="text-gray-700 select-none font-medium">Duration Type</label>
+                                <select name="limit_duration_type_id" id="limit_duration_type_id" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                                    @foreach($limitDurationType as $type)
+                                    <option value="{{$type->id}}">{{$type['name']}}</option>
+                                    @endforeach
                                 </select>
+                            </div>
+                            <div class="flex flex-col" style="width: 500px;">
+                                <label for="start_date" class="text-gray-700 select-none font-medium">Start Date</label>
+                                <input type="date" name="start_date" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200">
                             </div>
                         </div>
                         <div class="text-center mt-10 mb-10">
@@ -27,3 +28,10 @@
         </main>
     </div>
 </x-app-layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var total = document.getElementById('limit_duration_type_id');
+        console.log(total);
+    })
+</script>
