@@ -172,40 +172,36 @@ class AuthController extends Controller
         return response()->json(['message' => 'Password reset successfully', 'new_password' => $user->password, 'access_token' => $token]);
     }
 
-    public function updateProfile(Request $request)
-    {
-        $user = Auth::user();
-        $validator = Validator::make($request->all(), [
-            'bio' => 'string|max:1000|nullable',
-            'phone' => 'string|max:15|nullable',
-            'profile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
+    public function updateProfile(Request $request) {
+        $request->validate([
+            'profile' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'bio' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:15',
+            'linkedin'=> 'nullable|string|max:255',
+            'facebook'=> 'nullable|string|max:255',
+            'telegram'=> 'nullable|string|max:255',
         ]);
-
-
-        if ($validator->fails()){
-            return response()->json($validator->errors(), 422);
-        }   
-
-        if ($request->has('bio')) {
-            $user->bio = $request->bio;
-        }
-
-        if ($request->has('phone')) {
-            $user->phone = $request->phone;
-        }
-
+    
+        $user = $request->user();
         if ($request->hasFile('profile')) {
             $img = $request->file('profile');
             $ext = $img->getClientOriginalExtension();
             $imageName = time() . '.' . $ext;
-            $img->move(public_path('uploads'), $imageName);
+            $img->move(public_path('storage'), $imageName);
             $user->profile = $imageName;
         }
+        $user->bio = $request->input('bio', $user->bio);
+        $user->phone = $request->input('phone', $user->phone);
+        $user->linkedin = $request->input('linkedin', $user->linkedin);
+        $user->facebook = $request->input('facebook', $user->facebook);
+        $user->telegram = $request->input('telegram', $user->telegram);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Profile updated successfully',
-            'user' => $user,
-        ], 200);
+    
+        $user->save();
+    
+        return response()->json($user);
     }
+
+    
+
 }
