@@ -1,9 +1,7 @@
 <script setup lang="ts">
-// import { Icon } from '@iconify/vue'
 import { useAuthStore } from '@/stores/auth-store'
 import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
-// import { ref } from 'vue'
 
 const visible = ref(false)
 const router = useRouter()
@@ -275,4 +273,5 @@ const dialogVisible = ref(false)
   transition: box-shadow 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
 }
+
 </style>
