@@ -16,9 +16,13 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mt-5 mb-5">
       <!-- Changed col classes and adjusted g-3 -->
       <div v-for="product in filteredProducts" :key="product.id" class="col-4">
+
         <div class="card rounded-5 d-flex flex-column">
+
           <router-link :to="{ name: 'detail', params: { id: product.id } }" class="text-decoration-none">
             <img v-if="product.image" :src="`http://127.0.0.1:8000/storage/${product.image}`" :alt="product.name"
+              class="card-img-top rounded-8 product-image" style="width: 100%; height: 200px; object-fit: cover" />
+            <img v-else src="../../assets/images/no-image.jpg" :alt="product.name"
               class="card-img-top rounded-8 product-image" style="width: 100%; height: 200px; object-fit: cover" />
             <div class="card-body d-flex flex-column justify-content-between  flex-grow-1">
               <small class="text-muted text-truncate" style="margin-top: -15px;">{{ getFormattedTime(product.created_at)
@@ -31,6 +35,7 @@
               </div>
             </div>
           </router-link>
+          
           <div class="pl-3 border shadow-sm rounded-8 pr-3 d-flex justify-content-between" style="margin-top: -15px">
             <div class="d-flex align-items-center gap-1">
               <img :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`"
