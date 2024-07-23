@@ -8,30 +8,18 @@
           </div>
         </div>
       </div>
-
       <div v-if="products.products.numberOfProduct > 0" class="container mt-2 mb-5">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mt-3 mb-15">
-          <div
-            v-for="product in products.products.data.products"
-            :key="product.id"
-            class="col-12 col-sm-6 col-md-4 col-lg-3 rounded-5"
-          >
-            <router-link
-              :to="{ name: 'detail', params: { id: product.id } }"
-              class="text-decoration-none"
-            >
+          <div v-for="product in products.products.data.products" :key="product.id"
+            class="col-12 col-sm-6 col-md-4 col-lg-3 rounded-5">
+            <router-link :to="{ name: 'detail', params: { id: product.id } }" class="text-decoration-none">
               <div v-if="product != ''" class="card shadow-sm rounded-8 h-100 position-relative">
-                <div
-                  class="d-flex justify-content-center align-items-center bg-light rounded-top"
-                  style="height: 165px"
-                >
-                  <img
-                    v-if="product.image"
-                    :src="`http://127.0.0.1:8000/storage/${product.image}`"
-                    :alt="product.name"
+                <div class="d-flex justify-content-center align-items-center rounded-top" style="height: 165px">
+                  <img v-if="product.image" :src="`http://127.0.0.1:8000/storage/${product.image}`" :alt="product.name"
                     class="card-img-top rounded-8 product-image"
-                    style="width: 100%; height: 200px; object-fit: cover"
-                  />
+                    style="width: 100%; height: 200px; object-fit: cover" />
+                  <img v-else src="../../assets/image/placeholder.png" class="img-fluid rounded-top-5"
+                    alt="Don't have Product Image" :width="300" :height="300">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-between flex-grow-1">
                   <small class="text-muted text-truncate" style="margin-top: -15px">{{
@@ -44,42 +32,22 @@
                     <p class="card-text text-success fw-bold">{{ product.price }} រៀល</p>
                   </div>
                 </div>
-                <div
-                  class="pl-3 border shadow-sm rounded-8 pr-3 d-flex justify-content-between"
-                  style="margin-top: -15px"
-                >
+                <div class="pl-3 border shadow-sm rounded-8 pr-3 d-flex justify-content-between"
+                  style="margin-top: -15px">
                   <div class="d-flex align-items-center gap-1">
-                    <img
-                      :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`"
-                      class="w-10 shadow-sm rounded-circle"
-                      alt=""
-                    />
+                    <img :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`"
+                      class="w-10 shadow-sm rounded-circle" alt="" />
                     <p class="card-text mb-0">{{ product.frontuser.name }}</p>
                   </div>
                   <div class="p-2 d-flex gap-2" style="font-size: 26px">
-                    <a
-                      v-if="product.frontuser.facebook !== null"
-                      :href="'https://www.facebook.com/' + product.frontuser.facebook"
-                      target="_blank"
-                      class="social-link"
-                    >
+                    <a v-if="product.frontuser.facebook !== null"
+                      :href="'https://www.facebook.com/' + product.frontuser.facebook" target="_blank"
+                      class="social-link">
                       <i class="fab fa-facebook-square"></i>
                     </a>
-                    <a
-                      v-if="product.frontuser.telegram !== null"
-                      :href="'https://t.me/' + product.frontuser.telegram"
-                      target="_blank"
-                      class="social-link"
-                    >
+                    <a v-if="product.frontuser.telegram !== null" :href="'https://t.me/' + product.frontuser.telegram"
+                      target="_blank" class="social-link">
                       <i class="fab fa-telegram"></i>
-                    </a>
-                    <a
-                      v-if="product.frontuser.linkedin !== null"
-                      :href="'https://www.linkedin.com/in/' + product.frontuser.linkedin"
-                      target="_blank"
-                      class="social-link"
-                    >
-                      <i class="fab fa-linkedin"></i>
                     </a>
                   </div>
                 </div>
@@ -88,10 +56,7 @@
           </div>
         </div>
       </div>
-      <div
-        v-else-if="products.products.numberOfProduct == 0"
-        class="justify-content-center align-items-center"
-      >
+      <div v-else-if="products.products.numberOfProduct == 0" class="justify-content-center align-items-center">
         <div class="card p-5 w-100 text-center border-0 shadow-sm">
           <h4 class="fw-bold text-danger" style="font-family: 'Arial Black', sans-serif">
             មិនទាន់មានផលិតផលទេ

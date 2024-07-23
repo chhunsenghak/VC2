@@ -1,4 +1,4 @@
-<template> 
+<template>
   <div class="container">
     <div class="row mb-4">
       <div class="col-md-12">
@@ -20,6 +20,8 @@
           <router-link :to="{ name: 'detail', params: { id: product.id } }" class="text-decoration-none">
             <img v-if="product.image" :src="`http://127.0.0.1:8000/storage/${product.image}`" :alt="product.name"
               class="card-img-top rounded-8 product-image" style="width: 100%; height: 200px; object-fit: cover" />
+            <img v-else src="../../assets/image/placeholder.png" class="img-fluid rounded-top-5"
+              alt="Don't have Product Image" :width="300" :height="300">
             <div class="card-body d-flex flex-column justify-content-between  flex-grow-1">
               <small class="text-muted text-truncate" style="margin-top: -15px;">{{ getFormattedTime(product.created_at)
                 }}</small>
@@ -45,11 +47,7 @@
               <a v-if="product.frontuser.telegram !== null" :href="'https://t.me/' + product.frontuser.telegram"
                 target="_blank" class="social-link">
                 <i class="fab fa-telegram"></i>
-              </a>
-              <a v-if="product.frontuser.linkedin !== null"
-                :href="'https://www.linkedin.com/in/' + product.frontuser.linkedin" target="_blank" class="social-link">
-                <i class="fab fa-linkedin"></i>
-              </a>
+              </a>              
             </div>
           </div>
         </div>

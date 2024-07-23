@@ -5,11 +5,8 @@
       <div class="user-info d-flex" v-for="(value, key) in userInfo" :key="key">
         <!-- Profile Image -->
         <div class="user-info-item w-100 p-5" v-if="key === 'profile'">
-          <img
-            :src="`http://127.0.0.1:8000/storage/${value}`"
-            class="rounded-circle w-40 h-40"
-            style="border: 10px solid white; margin-top: -42rem; margin-left: 7rem"
-          />
+          <img :src="`http://127.0.0.1:8000/storage/${value}`" class="rounded-circle w-40 h-40"
+            style="border: 10px solid white; margin-top: -42rem; margin-left: 7rem" />
         </div>
         <!-- Name -->
         <div class="user-info-item mt-50" v-else-if="key === 'name'">
@@ -24,68 +21,37 @@
           }}</span>
         </div>
         <!-- Social Media Links -->
-        <div
-          class="user-info-item d-flex flex-column"
-          style="margin-left: 65rem"
-          v-else-if="key === 'facebook'"
-        >
+        <div class="user-info-item d-flex flex-column" style="margin-left: 65rem" v-else-if="key === 'facebook'">
           <span class="user-info-label mb-3 fs-6" style="margin-top: -10rem">Social Medias</span>
-          <a
-            class="user-info-value d-flex align-items-center text-decoration-none text-primary fs-4"
-            :href="value"
-            target="_blank"
-          >
+          <a class="user-info-value d-flex align-items-center text-decoration-none text-primary fs-4" :href="value"
+            target="_blank">
             <i class="fab fa-facebook-square me-2"></i>
           </a>
         </div>
-        <div
-          class="user-info-item"
-          style="margin-left: 20rem; margin-top: 3rem"
-          v-else-if="key === 'linkenin'"
-        >
-          <a
-            class="user-info-value d-flex align-items-center text-decoration-none text-primary fs-5"
-            :href="value"
-            target="_blank"
-          >
-            <i
-              class="fab fa-linkedin fa-lg me-2"
-              style="margin-left: 50rem; margin-top: -12rem"
-            ></i>
+        <div class="user-info-item" style="margin-left: 20rem; margin-top: 3rem" v-else-if="key === 'linkenin'">
+          <a class="user-info-value d-flex align-items-center text-decoration-none text-primary fs-5" :href="value"
+            target="_blank">
+            <i class="fab fa-linkedin fa-lg me-2" style="margin-left: 50rem; margin-top: -12rem"></i>
           </a>
         </div>
         <div class="user-info-item" v-else-if="key === 'telegram'">
-          <a
-            class="user-info-value d-flex align-items-center text-decoration-none text-primary fs-4"
-            :href="'https://t.me/' + value"
-            target="_blank"
-          >
-            <i
-              class="fab fa-telegram me-2 text-primary fs-4"
-              style="margin-left: 65rem; margin-top: -15rem"
-            ></i>
+          <a class="user-info-value d-flex align-items-center text-decoration-none text-primary fs-4"
+            :href="'https://t.me/' + value" target="_blank">
+            <i class="fab fa-telegram me-2 text-primary fs-4" style="margin-left: 65rem; margin-top: -15rem"></i>
           </a>
         </div>
-        <div
-          class="user-info-item"
-          style="margin-left: 63rem; display: flex; align-items: center; margin-top: -10rem"
-          v-else-if="key === 'phone'"
-        >
+        <div class="user-info-item" style="margin-left: 63rem; display: flex; align-items: center; margin-top: -10rem"
+          v-else-if="key === 'phone'">
           <i class="fas fa-phone-alt me-2 fs-5 text-success"></i>
           <span class="user-info-value fw-bold">{{ value }}</span>
         </div>
         <!-- Location -->
         <div v-else-if="key === 'location_id'" class="mb-2">
-          <a
-            :href="
-              'https://www.google.com/maps/search/?api=1&query=' +
-              encodeURIComponent(
-                product.frontuser.location.latitude + ',' + product.frontuser.location.longitude
-              )
-            "
-            target="_blank"
-            class="btn w-100 border mb-1"
-          >
+          <a :href="'https://www.google.com/maps/search/?api=1&query=' +
+            encodeURIComponent(
+              product.frontuser.location.latitude + ',' + product.frontuser.location.longitude
+            )
+            " target="_blank" class="btn w-100 border mb-1">
             <i class="fas fa-map-marker-alt"> View on map</i>
           </a>
           <div id="map" style="width: 290px; height: 150px"></div>
@@ -95,17 +61,11 @@
         <!-- Changed col classes and adjusted g-3 -->
         <div v-for="product in store.productList.data" :key="product.id" class="col-4">
           <div class="card rounded-5 d-flex flex-column">
-            <router-link
-              :to="{ name: 'detail', params: { id: product.id } }"
-              class="text-decoration-none"
-            >
-              <img
-                v-if="product.image"
-                :src="`http://127.0.0.1:8000/storage/${product.image}`"
-                :alt="product.name"
-                class="card-img-top rounded-8 product-image"
-                style="width: 100%; height: 200px; object-fit: cover"
-              />
+            <router-link :to="{ name: 'detail', params: { id: product.id } }" class="text-decoration-none">
+              <img v-if="product.image" :src="`http://127.0.0.1:8000/storage/${product.image}`" :alt="product.name"
+                class="card-img-top rounded-8 product-image" style="width: 100%; height: 200px; object-fit: cover" />
+              <img v-else src="../../../assets/image/placeholder.png" class="img-fluid rounded-top-5"
+                alt="Don't have Product Image" :width="300" :height="300">
               <div class="card-body d-flex flex-column justify-content-between flex-grow-1">
                 <small class="text-muted text-truncate" style="margin-top: -15px">{{
                   getFormattedTime(product.created_at)
@@ -118,44 +78,25 @@
                 </div>
               </div>
             </router-link>
-            <div
-              class="pl-3 border shadow-sm rounded-8 pr-3 d-flex justify-content-between"
-              style="margin-top: -15px"
-            >
-            
+            <div class="pl-3 border shadow-sm rounded-8 pr-3 d-flex justify-content-between" style="margin-top: -15px">
+
               <div class="d-flex align-items-center gap-1">
-                <img
+                <img v-if="product.frontuser.profile"
                   :src="`http://127.0.0.1:8000/storage/${product.frontuser.profile}`"
-                  class="w-10 shadow-sm rounded-circle"
-                  alt=""
-                />
+                  class="w-10 shadow-sm rounded-circle" alt="" />
+                <img v-else src="../../../assets/image/placeholder.png" class="img-fluid rounded-top-5"
+                  alt="Don't have Product Image" :width="300" :height="300">
 
                 <p class="card-text mb-0">{{ product.frontuser.name }}</p>
               </div>
               <div class="p-2 d-flex gap-2" style="font-size: 26px">
-                <a
-                  v-if="product.frontuser.facebook !== null"
-                  :href="'https://www.facebook.com/' + product.frontuser.facebook"
-                  target="_blank"
-                  class="social-link"
-                >
+                <a v-if="product.frontuser.facebook !== null"
+                  :href="'https://www.facebook.com/' + product.frontuser.facebook" target="_blank" class="social-link">
                   <i class="fab fa-facebook-square"></i>
                 </a>
-                <a
-                  v-if="product.frontuser.telegram !== null"
-                  :href="'https://t.me/' + product.frontuser.telegram"
-                  target="_blank"
-                  class="social-link"
-                >
+                <a v-if="product.frontuser.telegram !== null" :href="'https://t.me/' + product.frontuser.telegram"
+                  target="_blank" class="social-link">
                   <i class="fab fa-telegram"></i>
-                </a>
-                <a
-                  v-if="product.frontuser.linkedin !== null"
-                  :href="'https://www.linkedin.com/in/' + product.frontuser.linkedin"
-                  target="_blank"
-                  class="social-link"
-                >
-                  <i class="fab fa-linkedin"></i>
                 </a>
               </div>
             </div>
@@ -287,7 +228,8 @@ export default {
   top: 0;
   left: 0;
   width: 80%;
-  height: 250px; /* Adjust as needed */
+  height: 250px;
+  /* Adjust as needed */
   background: linear-gradient(135deg, #a6e756 0%, #226802 100%);
   z-index: -1;
   margin-left: 9rem;

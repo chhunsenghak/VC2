@@ -1,7 +1,7 @@
 <template>
   <WebLayout>
-    <div class="row p-5" style="margin-top: 95px">
-      <div class="col-4 shadow rounded p-3">
+    <div class="row p-3" style="margin-top: 95px">
+      <div class="col-3 shadow rounded p-3">
         <div class="col mb-3">
           <label for="your_address">ចេញដំណើរ</label>
           <input type="text" class="form-control" placeholder="Your address" v-model="sourceAddress" id="source">
@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-      <div class="col-8 ">
+      <div class="col-9 ">
         <div class="card-body">
           <div class="rounded" id="map" style="height: 500px; width: 100%;"></div>
         </div>
