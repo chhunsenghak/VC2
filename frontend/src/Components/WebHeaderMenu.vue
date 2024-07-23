@@ -67,9 +67,9 @@ const dialogVisible = ref(false)
         >ផែនទី</a
       >
     </div>
-    <div class="icon col-1  d-flex justify-content-center text-center ">
+    <div class="icon col-1 d-flex justify-content-center text-center">
       <!-- ===============-Notification-================ -->
-      <div class="noti col-1 mt-3" @click="dialogVisible = true">
+      <div class="noti col-1 mt-2" style="margin-right: 3rem" @click="dialogVisible = true">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -93,7 +93,7 @@ const dialogVisible = ref(false)
         class="mr-35 mt-17 rounded-3"
         :before-close="handleClose"
       >
-        <div class="card border-2 mb-2 m-2 " style="max-width: 28rem">
+        <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
           <div
             class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
           >
@@ -253,8 +253,8 @@ const dialogVisible = ref(false)
           </ul>
         </div>
       </div>
-      <div v-else px-10 py-2>
-        <a href="/login" class="btn btn-outline-success">ចូលគណនី</a>
+      <div v-else>
+        <a href="/login" class="btn btn-outline-success" style="margin-right: 6rem; width:55%">ចូលគណនី</a>
       </div>
     </div>
   </nav>
@@ -278,5 +278,4 @@ const dialogVisible = ref(false)
   transition: box-shadow 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
 }
-
 </style>

@@ -11,7 +11,7 @@ export const useProductsStore = defineStore('products', {
       price: string
       discount: string
       quantity: string
-      stock_id: number
+      stock_id: any
       categorys_id: number
     }>,
     product: [] as Array<{
