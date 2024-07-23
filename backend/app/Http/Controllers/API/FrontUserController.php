@@ -45,4 +45,6 @@ class FrontUserController extends Controller
         $user->save();
         return response()->json(["success" => true, "user" => $user]);
     }
+
+  
 }

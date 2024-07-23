@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\{
     CalendarController,
     ProfileController,
     MailSettingController,
+    SellerController
 };
 use App\Http\Controllers\Admin\DashboardController;
 /*
@@ -62,6 +63,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('posts', 'PostController');
         Route::resource('categorys', 'CategoryController');
         Route::resource('products', 'ProductController');
+        Route::resource('seller', 'SellerController');
         Route::resource("dashboard", 'DashboardController');
         Route::resource("locations", 'LocationController');
         Route::resource("province", 'ProvinceController');
@@ -79,3 +81,5 @@ Route::namespace('App\Http\Controllers\Front')->name('front.')->prefix('front')
     ->group(function () {
         Route::resource('frontuser', 'FrontuserController');
     });
+
+
