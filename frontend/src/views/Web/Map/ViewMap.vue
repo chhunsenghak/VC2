@@ -31,8 +31,9 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watchEffect } from 'vue';
 import WebLayout from '@/Components/Layouts/WebLayout.vue';
+
 export default {
   name: 'GoogleMap',
   components: { WebLayout },
@@ -145,6 +146,7 @@ export default {
         document.getElementById('dest')
       );
     }
+
     function getCurrentLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -164,6 +166,7 @@ export default {
         console.error('Geolocation is not supported by this browser.');
       }
     }
+
     function calcRoute() {
       const source = currentLocation.value ? currentLocation.value : sourceAddress.value;
       const dest = destAddress.value;
@@ -188,6 +191,7 @@ export default {
         });
       });
     }
+
     function displayRouteInfo(result, mode) {
       let route = result.routes[0].legs[0];
       let duration = route.duration.text;
@@ -199,6 +203,18 @@ export default {
         distance: distance
       });
     }
+
+    watchEffect(() => {
+      if (currentLocation.value && currentLocation.value.lat !== Number.POSITIVE_INFINITY && currentLocation.value.lng !== Number.POSITIVE_INFINITY) {
+        map.setCenter(currentLocation.value);
+        new google.maps.Marker({
+          position: currentLocation.value,
+          map: map,
+          title: "Current Location"
+        });
+      }
+    });
+
     return {
       sourceAddress,
       destAddress,
@@ -206,64 +222,10 @@ export default {
       getCurrentLocation,
       calcRoute
     };
-onMounted(() => {
-  map = leaflet.map('map').setView([userMarker.value.latitude, userMarker.value.longitude], 13)
-
-  leaflet
-    .tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    })
-    .addTo(map)
-
-  nearbyMarkers.value.forEach(({ latitude, longitude }) => {
-    leaflet
-      .marker([latitude, longitude])
-      .addTo(map)
-      .bindPopup(
-        Saved Marker at (<strong>${latitude.toFixed(2)},${longitude.toFixed(2)}</strong>)
-      )
-  })
-
-  map.addEventListener('click', (e) => {
-    const { lat: latitude, lng: longitude } = e.latlng
-
-    leaflet
-      .marker([latitude, longitude])
-      .addTo(map)
-      .bindPopup(
-        Saved Marker at (<strong>${latitude.toFixed(2)},${longitude.toFixed(2)}</strong>)
-      )
-
-    nearbyMarkers.value.push({ latitude, longitude })
-  })
-})
-
-watchEffect(() => {
-  if (
-    coords.value.latitude !== Number.POSITIVE_INFINITY &&
-    coords.value.longitude !== Number.POSITIVE_INFINITY
-  ) {
-    userMarker.value.latitude = coords.value.latitude
-    userMarker.value.longitude = coords.value.longitude
-
-    if (userGeoMarker) {
-      map.removeLayer(userGeoMarker)
-    }
-
-    userGeoMarker = leaflet
-      .marker([userMarker.value.latitude, userMarker.value.longitude])
-      .addTo(map)
-      .bindPopup('User Marker')
-
-    map.setView([userMarker.value.latitude, userMarker.value.longitude], 13)
-
-    const el = userGeoMarker.getElement()
-    if (el) {
-      el.style.filter = 'hue-rotate(120deg)'
-    }
   }
-}
+};
 </script>
+
 <style>
+/* Add any styles you need here */
 </style>

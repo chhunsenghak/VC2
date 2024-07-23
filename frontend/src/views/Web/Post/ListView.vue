@@ -1,73 +1,71 @@
 <template>
   <WebLayout>
     <div class="container">
-    <!-- Banner Section -->
-    <div class="banner-container">
-      <img
-        src="https://img.freepik.com/free-photo/portrait-asian-middle-aged-man-wearing-straw-hat-loincloth-write-clipboard-with-young-woman-farmer_1150-54166.jpg?t=st=1720428371~exp=1720431971~hmac=b78c9f1fe69708376147b46ebda3b6e0849d2dd6b3120d29512c4ae3fb4fd48c&w=900"
-        alt="banner-image"
-        class="banner-image"
-      />
-      <div class="banner-overlay"></div>
-      <div class="banner-content">
-        <h2 class="banner-title">ស្វែងយល់បន្ថែមអំពីការផ្សព្វផ្សាយផលិតផលរបស់ពួកយើង</h2>
-        <p class="banner-subtitle">ស្វែងរកការបង្ហោះ និងការយល់ដឹងថ្មីៗបំផុត</p>
-      </div>
-    </div>
+      <!-- Banner Section -->
+      <div class="banner-container">
+        <img
+          src="https://img.freepik.com/free-photo/portrait-asian-middle-aged-man-wearing-straw-hat-loincloth-write-clipboard-with-young-woman-farmer_1150-54166.jpg?t=st=1720428371~exp=1720431971~hmac=b78c9f1fe69708376147b46ebda3b6e0849d2dd6b3120d29512c4ae3fb4fd48c&w=900"
+          alt="banner-image"
+          class="banner-image"
+        />
+        <div class="banner-overlay"></div>
 
-    <!-- Card Section -->
-    <div class="card-section">
-      <!-- Pagination Controls -->
-      <div class="pagination mb-5">
-        <button class="btn " @click="previousPage" :disabled="currentPage === 1">ពីមុន</button>
-        <span class="text-center mt-2 p-2">{{ currentPage }} / {{ totalPages }}</span>
-        <button class="btn mr-3" @click="nextPage" :disabled="currentPage === totalPages">
-          បន្ទាប់
-        </button>
-        <button class="btn" @click="showAllPosts">មើលបន្ថែម​</button>
+        <div class="banner-content">
+          <h2 class="banner-title">ស្វែងយល់បន្ថែមអំពីការផ្សព្វផ្សាយផលិតផលរបស់ពួកយើង</h2>
+          <p class="banner-subtitle">ស្វែងរកការបង្ហោះ និងការយល់ដឹងថ្មីៗបំផុត</p>
+        </div>
       </div>
 
-      <!-- Card Post -->
-      <div class="card-grid">
-        <!-- Loop through posts based on pagination -->
-        <div class="card" v-for="(store, index) in paginatedPosts" :key="index">
-          <router-link :to="'/post/show/' + store.id">
-            <img
-              v-if="store.image == null"
-              :src="`http://127.0.0.1:8000/storage/logo.jpg`"
-              alt="card image"
-              class="w-100"
-            />
+      <!-- Card Section -->
+      <div class="card-section">
+        <!-- Pagination Controls -->
+        <div class="pagination mb-5">
+          <button class="btn" @click="previousPage" :disabled="currentPage === 1">ពីមុន</button>
+          <span class="text-center mt-2 p-2">{{ currentPage }} / {{ totalPages }}</span>
+          <button class="btn mr-3" @click="nextPage" :disabled="currentPage === totalPages">
+            បន្ទាប់
+          </button>
+          <button class="btn" @click="showAllPosts">មើលបន្ថែម​</button>
+        </div>
 
-            <img
-              v-else-if="store.image !== null"
-              :src="`http://127.0.0.1:8000/storage/${store.image}`"
-              alt="card image"
-              class="card-image"
-            />
-            <div class="card-content">
-              <h3 class="card-title">
-                {{ store.title }}
-              </h3>
-              <p class="card-date">
-                ថ្ងៃ​ {{ formattedDate(store.created_at) }} ម៉ោង{{
-                  formattedTime(store.created_at)
-                }}
-              </p>
-            </div>
-          </router-link>
+        <!-- Card Post -->
+        <div class="card-grid">
+          <!-- Loop through posts based on pagination -->
+          <div class="card" v-for="(store, index) in paginatedPosts" :key="index">
+            <router-link :to="'/post/show/' + store.id">
+              <img
+                v-if="store.image == null"
+                :src="`http://127.0.0.1:8000/storage/logo.jpg`"
+                alt="card image"
+                class="w-100"
+              />
+              <img
+                v-else-if="store.image !== null"
+                :src="`http://127.0.0.1:8000/storage/${store.image}`"
+                alt="card image"
+                class="card-image"
+              />
+              <div class="card-content">
+                <h3 class="card-title">{{ store.title }}</h3>
+                <p class="card-date">
+                  ថ្ងៃ​ {{ formattedDate(store.created_at) }} ម៉ោង{{
+                    formattedTime(store.created_at)
+                  }}
+                </p>
+              </div>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </WebLayout>
 </template>
-
 
 <script>
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { usePostStore } from '@/stores/post-list'
 import moment from 'moment'
+
 export default {
   name: 'PostList',
   components: { WebLayout },
@@ -122,16 +120,10 @@ export default {
 </script>
 
 <style scoped>
-.pagination {
-  margin-left: 56rem;
-}
-button {
-  border: 1px solid grey;
-}
 .banner-container {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 484px;
   overflow: hidden;
 }
 
@@ -148,10 +140,11 @@ button {
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.6),
-    rgba(0, 0, 0, 0.3)
-  ); /* Enhanced gradient */
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  ); /* Enhanced gradient with more stops */
 }
 
 .banner-content {
@@ -165,18 +158,28 @@ button {
 }
 
 .banner-title {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 .banner-subtitle {
+  font-size: 16px;
+  color: #666;
+}
+.banner-subtitle {
   font-size: 18px;
   margin-top: 10px;
 }
+
 /* Add hover effect for banner */
 .banner-container:hover .banner-overlay {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.8) 50%,
+    rgba(0, 0, 0, 1) 100%
+  ); /* Darker gradient on hover */
 }
 
 .card-section {
@@ -196,6 +199,7 @@ button {
   overflow: hidden;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+
 a {
   color: black;
   text-decoration: none;
