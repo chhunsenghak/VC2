@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\{
     CalendarController,
     ProfileController,
     MailSettingController,
+    SellerController
 };
 use App\Http\Controllers\Admin\DashboardController;
 /*
@@ -80,3 +81,5 @@ Route::namespace('App\Http\Controllers\Front')->name('front.')->prefix('front')
     ->group(function () {
         Route::resource('frontuser', 'FrontuserController');
     });
+
+

@@ -53,4 +53,6 @@ class SellerController extends Controller
         $user = Frontuser::destroy($id);
         return redirect()->back()->withSuccess('User deleted !!!');
     }
+    
+
 }

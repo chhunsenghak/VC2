@@ -10,6 +10,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\Auth\FrontuserController;
 use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\ProductController;
+
+use App\Http\Controllers\Admin\SellerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\StockTypeController;
@@ -28,6 +30,11 @@ use App\Http\Controllers\API\ChatController as ChatController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware(['auth'])->group(function () {
+    // Search route
+    Route::get('/seller/search', [SellerController::class, 'search'])->name('seller.search');
 });
 
 Route::post('/login', [AuthController::class, 'login']);
