@@ -230,7 +230,7 @@ const dialogVisible = ref(false)
               <a
                 v-if="store.isAuthenticated && store.user.shop"
                 href="/myProducts"
-                class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
+                class="nav-link link-offset-2 text-decoration-none link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
               >
                 កសិផលរបស់ខ្ញុំ
               </a>
@@ -239,7 +239,7 @@ const dialogVisible = ref(false)
               <a
                 v-if="store.isAuthenticated"
                 href="/chat"
-                class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
+                class="nav-link link-offset-2 text-decoration-none link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
               >
                 សារ
               </a>
