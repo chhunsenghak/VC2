@@ -1,9 +1,7 @@
 <script setup lang="ts">
-// import { Icon } from '@iconify/vue'
 import { useAuthStore } from '@/stores/auth-store'
 import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
-// import { ref } from 'vue'
 
 const visible = ref(false)
 const router = useRouter()
@@ -69,9 +67,9 @@ const dialogVisible = ref(false)
         >ផែនទី</a
       >
     </div>
-    <div class="icon col-1  d-flex justify-content-center text-center ">
+    <div class="icon col-1 d-flex justify-content-center text-center">
       <!-- ===============-Notification-================ -->
-      <div class="noti col-1 mt-3" @click="dialogVisible = true">
+      <div class="noti col-1 mt-2" style="margin-right: 3rem" @click="dialogVisible = true">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -92,10 +90,10 @@ const dialogVisible = ref(false)
         v-model="dialogVisible"
         title="ព័ត៍មាន​​ ឬសារជូនដំណឹង"
         width="500"
-        class="mr-35 mt-17"
+        class="mr-35 mt-17 rounded-3"
         :before-close="handleClose"
       >
-        <div class="card border-2 mb-2 m-2 " style="max-width: 28rem">
+        <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
           <div
             class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center"
           >
@@ -111,10 +109,10 @@ const dialogVisible = ref(false)
               />
             </svg>
             <h5>ព័ត៍មាន!</h5>
-            <p>Today</p>
+            <p>10:30 am</p>
           </div>
           <div class="card-body">
-            <h5 class="card-title">ផលិតផលថ្មីៗ</h5>
+            <p class="card-title fw-bold">ផលិតផលថ្មីៗ</p>
             <p class="card-text">សួរស្ដី​! យើ​​ងបាននាំចូលនូវផលិតផលថ្មីៗដល់លោកអ្នក</p>
           </div>
         </div>
@@ -133,11 +131,11 @@ const dialogVisible = ref(false)
                 d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
               />
             </svg>
-            <h4>សារជូនដំណឹង!</h4>
-            <p>Today</p>
+            <h5>សារជូនដំណឹង!</h5>
+            <p>4:00 pm</p>
           </div>
           <div class="card-body">
-            <h5 class="card-title">ផ្លាស់ប្ដូរ​លេខសម្ងាត់</h5>
+            <p class="card-title fw-bold">ផ្លាស់ប្ដូរ​លេខសម្ងាត់</p>
             <p class="card-text">ផ្លាស់ប្ដូរលេខសម្ងាត់បានជោគជ័យ</p>
           </div>
         </div>
@@ -156,11 +154,11 @@ const dialogVisible = ref(false)
                 d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
               />
             </svg>
-            <h4>សារជូនដំណឹង!</h4>
-            <p>Today</p>
+            <h5>សារជូនដំណឹង!</h5>
+            <p>7:30 pm</p>
           </div>
           <div class="card-body">
-            <h5 class="card-title">បញ្ចូលផលិតផល</h5>
+            <p class="card-title fw-bold">បញ្ចូលផលិតផល</p>
             <p class="card-text">ការបញ្ចូលផលិតផលរបស់អ្នកបានជោគជ័យ</p>
           </div>
         </div>
@@ -179,11 +177,11 @@ const dialogVisible = ref(false)
                 d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
               />
             </svg>
-            <h4>សារជូនដំណឹង!</h4>
-            <p>Yesterday</p>
+            <h5>សារជូនដំណឹង!</h5>
+            <p>ម្សិលមិញ</p>
           </div>
           <div class="card-body">
-            <h5 class="card-title">ការបង្កើតហាង</h5>
+            <p class="card-title fw-bold">ការបង្កើតហាង</p>
             <p class="card-text">
               ការបង្កើតហាងរបស់អ្នកទទួលបានជោគជ័ត​ លោកអ្នកអាចចាប់ផ្ដើមលក់និងទិញផលិតផលនៅលើ​ Website
               ដោយប្រើអាខោនរបស់អ្នក
@@ -232,7 +230,7 @@ const dialogVisible = ref(false)
               <a
                 v-if="store.isAuthenticated && store.user.shop"
                 href="/myProducts"
-                class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
+                class="nav-link link-offset-2 text-decoration-none link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
               >
                 កសិផលរបស់ខ្ញុំ
               </a>
@@ -241,7 +239,7 @@ const dialogVisible = ref(false)
               <a
                 v-if="store.isAuthenticated"
                 href="/chat"
-                class="nav-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
+                class="nav-link link-offset-2 text-decoration-none link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-200 hover:text-slate-900"
               >
                 សារ
               </a>
@@ -255,8 +253,8 @@ const dialogVisible = ref(false)
           </ul>
         </div>
       </div>
-      <div v-else px-10 py-2>
-        <a href="/login" class="btn btn-outline-success">ចូលគណនី</a>
+      <div v-else>
+        <a href="/login" class="btn btn-outline-success" style="margin-right: 6rem; width:55%">ចូលគណនី</a>
       </div>
     </div>
   </nav>

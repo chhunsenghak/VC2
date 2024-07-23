@@ -28,7 +28,7 @@
               <div class="product-stock">
                 <span>ចំនួនក្នុងស្តុក : </span>
                 <span class="product-stock-quantity fw-bold"
-                  >{{ product.stock.quantity }} {{ product.stock.stock_type.name }}</span
+                  >{{ product.stock.quantity }} {{ product.stock.stock_type }}</span
                 >
               </div>
               <div class="product-expiration">
