@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\{
     MailSettingController,
 };
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\MailController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,7 @@ Route::get('/test-mail', function () {
     dd('sent');
 });
 
+Route::get("/send-mail",[MailController::class, 'index'] );
 
 // Route::get('/dashboard', function () {
 //     return view('front.dashboard');

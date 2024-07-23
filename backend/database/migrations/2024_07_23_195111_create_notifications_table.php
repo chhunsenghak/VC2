@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\text;
+
 return new class extends Migration
 {
     /**
@@ -11,10 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments_notifications', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->integer('comment_id');
-            $table->integer('recieve_id');
+            $table->integer("receiver_id");
+            $table->string("title");
+            $table->text("description");
+            $table->string("type");
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments_notifications');
+        Schema::dropIfExists('notifications');
     }
 };

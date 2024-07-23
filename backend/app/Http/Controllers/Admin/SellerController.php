@@ -11,7 +11,7 @@ use App\Models\LimitDuration;
 use App\Models\LimitDurationType;
 use Illuminate\Cache\RateLimiting\Limit;
 use Carbon\Carbon;
-
+use App\Models\Notification;
 
 class SellerController extends Controller
 {
@@ -78,6 +78,11 @@ class SellerController extends Controller
         ]);
         $user = Frontuser::find($id);
         $user->update(["check_id" => $limitDuration->id]);
+
+        // create notification for user
+
+        $notification = new  Notification;
+        $notification = Notification::store($user->id, "អាប់ដេកលក់ផលិតផលឥតដែនកំណត់", "ការកំណត់ក្នុងការលក់ផលិតផលរបស់អ្នកត្រូវបានអាប់ដេត អ្នកអាចលក់ផលិតផលរបស់អ្នកដោយគ្មានការកំណត់ចាប់ពីថ្ងៃទៅ: ' . $request->start_date . ' រហូតដល់ថ្ងៃ: ' . $newDateString . '.'", "ជូនដំណឹង");
         return redirect()->route('admin.seller.index')->withSuccess('Updated Chcek for user ');
     }
 
