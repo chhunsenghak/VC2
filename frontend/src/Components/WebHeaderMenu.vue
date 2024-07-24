@@ -2,14 +2,10 @@
 import { useAuthStore } from '@/stores/auth-store'
 import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
-import { notificationStore } from '@/stores/notifications'
+
 const visible = ref(false)
 const router = useRouter()
 const store = useAuthStore()
-const notification = notificationStore()
-const getNotification = () => {
-  notification.fetchNotifications();
-}
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')
@@ -31,12 +27,6 @@ const dialogVisible = ref(false)
       <div class="logo col-2 items-center space-x-20 px-10 py-2 w-25">
         <img src="../../src/assets/logo1.png" alt="logo" style="width: 150px" />
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"></button>
       <!-- Menu Items -->
       <div class="collapse content-list col-6 d-flex flex-direction-column justify-center" id="navbarNav">
         <router-link
@@ -63,8 +53,8 @@ const dialogVisible = ref(false)
       </div>
       <div class="icon col-1 d-flex justify-content-center text-center">
         <!-- ===============-Notification-================ -->
-        <div class="noti col-1 mt-2" style="margin-right: 3rem" @click="dialogVisible = true">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell-fill"
+        <div class="noti col-1 mt-3" @click="dialogVisible = true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-bell-fill"
             viewBox="0 0 16 16">
             <path
               d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
@@ -88,6 +78,60 @@ const dialogVisible = ref(false)
               <p class="card-text">សួរស្ដី​! យើ​​ងបាននាំចូលនូវផលិតផលថ្មីៗដល់លោកអ្នក</p>
             </div>
           </div>
+          <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
+            <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#F19E39">
+                <path
+                  d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z" />
+              </svg>
+              <h5>សារជូនដំណឹង!</h5>
+              <p>4:00 pm</p>
+            </div>
+            <div class="card-body">
+              <p class="card-title fw-bold">ផ្លាស់ប្ដូរ​លេខសម្ងាត់</p>
+              <p class="card-text">ផ្លាស់ប្ដូរលេខសម្ងាត់បានជោគជ័យ</p>
+            </div>
+          </div>
+          <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
+            <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#F19E39">
+                <path
+                  d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z" />
+              </svg>
+              <h5>សារជូនដំណឹង!</h5>
+              <p>7:30 pm</p>
+            </div>
+            <div class="card-body">
+              <p class="card-title fw-bold">បញ្ចូលផលិតផល</p>
+              <p class="card-text">ការបញ្ចូលផលិតផលរបស់អ្នកបានជោគជ័យ</p>
+            </div>
+          </div>
+          <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
+            <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#F19E39">
+                <path
+                  d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z" />
+              </svg>
+              <h5>សារជូនដំណឹង!</h5>
+              <p>ម្សិលមិញ</p>
+            </div>
+            <div class="card-body">
+              <p class="card-title fw-bold">ការបង្កើតហាង</p>
+              <p class="card-text">
+                ការបង្កើតហាងរបស់អ្នកទទួលបានជោគជ័ត​ លោកអ្នកអាចចាប់ផ្ដើមលក់និងទិញផលិតផលនៅលើ​ Website
+                ដោយប្រើអាខោនរបស់អ្នក
+              </p>
+            </div>
+          </div>
+          <template #footer>
+            <div class="dialog-footer">
+              <el-button @click="dialogVisible = false">បោះបង់</el-button>
+              <el-button type="primary" @click="dialogVisible = false"> ចែករំលែក </el-button>
+            </div>
+          </template>
         </el-dialog>
         <!-- //==================================================== -->
 
