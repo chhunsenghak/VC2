@@ -2,31 +2,31 @@
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <el-card class="w-full max-w-md shadow-lg">
-      <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+      <h2 class="text-2xl font-bold mb-6 text-center">ចូរគណនី</h2>
       <el-form @submit="onSubmit">
         <el-form-item :error="emailError" class="mt-8">
-          <el-input placeholder="Email Address" v-model="email" size="large" />
+          <el-input placeholder="អ៊ីមែល" v-model="email" size="large" />
         </el-form-item>
 
         <el-form-item :error="passwordError" class="mt-8">
-          <el-input placeholder="Password" v-model="password" size="large" type="password" />
+          <el-input placeholder="លេខសម្ងាត់" v-model="password" size="large" type="password" />
         </el-form-item>
         <div>
           <el-button
             size="large"
             class="mt-3 w-full"
             :disabled="isSubmitting"
-            type="primary"
+            type="success"
             native-type="submit"
-            >Submit</el-button
+            >ដាក់ស្នើ</el-button
           >
         </div>
       </el-form>
       <p class="text-center text-gray-500 mt-4">
-        Don't have account yet? <a href="/register">Register</a>
+        នៅមិនទាន់មានគណនីទេ? <a href="/register">ចុះឈ្មោះ</a>
       </p>
       <div class="mt-8 text-center text-red-500">
-        Forgot password? <a href="/forgot_password">Reset Password</a>
+       ភ្លេចលេខសម្ងាត់? <a href="/forgot_password">កំណត់ពាក្យសម្ងាត់ឡើងវិញ</a>
       </div>
     </el-card>
   </div>
