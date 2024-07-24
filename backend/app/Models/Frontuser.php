@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class Frontuser extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
     public $guard = 'front';
     /**
      * The attributes that are mass assignable.
@@ -21,6 +24,16 @@ class Frontuser extends Authenticatable
         'name',
         'email',
         'password',
+        'bio',
+        'phone',
+        'profile',
+        'shop',
+        'check_id',
+        'gender',
+        'address',
+        'facebook',
+        'telegram',
+        'location_id'
     ];
 
     /**
@@ -41,4 +54,23 @@ class Frontuser extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Products()
+    {
+        return $this->hasMany(Products::class);
+    }
+
+    public function message()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Locations::class, 'location_id');
+    }
+    public function CheckUser()
+    {
+        return $this->hasOne(CheckUser::class, 'frontuser_id');
+    }
 }

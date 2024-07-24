@@ -19,17 +19,27 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/Web/Auth/LoginView.vue')
+      component: () => import('../views/Web/Auth/LoginView.vue')
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('@/views/Web/Auth/RegisterView.vue')
+      component: () => import('../views/Web/Auth/RegisterView.vue')
+    },
+    {
+      path: '/forgot_password',
+      name: 'forgot_password',
+      component: () => import('../views/Web/Auth/ForgotPasswordView.vue')
+    },
+    {
+      path: '/reset_password',
+      name: 'reset_password',
+      component: () => import('../views/Web/Auth/ResetPasswordView.vue')
     },
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/Web/HomeView.vue')
+      component: () => import('../views/Web/HomeView.vue')
     },
     {
       path: '/post',
@@ -37,15 +47,95 @@ const router = createRouter({
       component: () => import('@/views/Web/Post/ListView.vue')
     },
     {
+      path: '/post/show/:id',
+      name: 'postpage',
+      component: () => import('@/views/Web/Post/PostPage.vue')
+    },
+    {
       path: '/contact_us',
       name: 'contact',
       component: () => import('@/views/Web/ContactView.vue')
+    },
+    {
+      path: '/about_us',
+      name: 'about',
+      component: () => import('@/views/Web/Post/AboutusView.vue')
+    },
+    {
+      path: '/shop',
+      name: 'shopPage',
+      component: () => import('@/views/Web/shop/ShopView.vue')
+    },
+    {
+      path: '/services',
+      name: 'services',
+      component: () => import('@/views/Web/Post/ServiceView.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profilePage',
+      component: () => import('@/views/Web/Profile/UserProfile.vue')
+    },
+    {
+      path: '/myProducts',
+      name: 'myProducts',
+      component: () => import('@/views/Web/Product/MyProducts.vue')
+    },
+    {
+      path: '/map',
+      name: 'map',
+      component: () => import('@/views/Web/Map/ViewMap.vue')
+    },
+    {
+      path: '/category/:id',
+      name: 'AllProducts',
+      component: () => import('@/views/Web/shop/ProductEachCate.vue'),
+      props: true
+    },
+    {
+      path: '/chat',
+      name: 'chatPage',
+      component: () => import('@/views/Web/Chat/ListUserChat.vue')
+    },
+    {
+      path: '/chat/user/:id',
+      name: 'chatDetail',
+      component: () => import('@/views/Web/Chat/ChatDetail.vue')
+    },
+    {
+      path: '/product/:id',
+      name: 'detail',
+      component: () => import('@/views/Web/Product/DetailProducts.vue'),
+      props: true
+    },
+    {
+      path: '/seller/:id',
+      name: 'userDetail',
+      component: () => import('@/views/Web/Profile/UserDetail.vue'),
+      props: true
+    },
+    {
+      path: '/condition',
+      name: 'condition',
+      component: () => import('@/views/Web/Conditions/ConditionView.vue'),
     }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/register', '/login']
+  const publicPages = [
+    '/',
+    '/register',
+    '/login',
+    '/shop',
+    '/contact_us',
+    '/about_us',
+    '/forgot_password',
+    '/reset_password',
+    '/post_detail',
+    '/services',
+
+  ]
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
   try {
@@ -62,16 +152,17 @@ router.beforeEach(async (to, from, next) => {
           setRule(permission, () => true)
         })
       })
+
     simpleAcl.rules = rules()
   } catch (error) {
     /* empty */
-    console.error(error)
   }
+
   if (authRequired && !store.isAuthenticated) {
     next('/login')
   } else {
     next()
   }
-});
+})
 
 export default { router, simpleAcl }

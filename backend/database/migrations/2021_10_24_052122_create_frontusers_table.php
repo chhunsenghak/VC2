@@ -17,11 +17,17 @@ class CreateFrontusersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('bio')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('telegram')->nullable();
             $table->string('password');
             $table->string('phone')->nullable();
-            $table->string('city')->nullable();
+            $table->integer('location_id')->nullable();
             $table->string('profile')->nullable();
             $table->string('gender')->nullable();
+            $table->integer("shop")->nullable();
+            $table->integer('check_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
