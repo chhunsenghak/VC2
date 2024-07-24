@@ -20,13 +20,13 @@
           <el-input placeholder="ពាក្យសម្ងាត់" v-model="password" size="large" type="password" />
         </el-form-item>
         <div>
-          <el-button size="large" class="mt-3 w-full" type="primary" native-type="submit"
+          <el-button size="large" class="mt-3 w-full" type="success" native-type="submit"
             >បញ្ជូន</el-button
           >
         </div>
       </el-form>
       <p class="text-center text-gray-500 mt-4">
-        Already have an account? <router-link to="/login">Login</router-link>
+        មានគណនីរួចហើយ? <router-link to="/login" >ចូលគណនី</router-link>
       </p>
     </el-card>
   </div>
