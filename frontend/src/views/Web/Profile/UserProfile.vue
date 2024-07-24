@@ -43,9 +43,6 @@
           <a :href="user.user.telegram" class="social-icon">
             <img src="../Profile/SocialMediaPictures.vue/telegram.png" alt="Telegram" />
           </a>
-          <a :href="user.user.linkedin" class="social-icon">
-            <img src="../Profile/SocialMediaPictures.vue/lin.png" alt="Linkedin" />
-          </a>
         </div>
       </div>
     </div>

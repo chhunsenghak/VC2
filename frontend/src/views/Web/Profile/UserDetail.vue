@@ -74,11 +74,7 @@
                   target="_blank" class="social-link">
                   <i class="fab fa-telegram"></i>
                 </a>
-                <a v-if="product.frontuser.linkedin !== null"
-                  :href="'https://www.linkedin.com/in/' + product.frontuser.linkedin" target="_blank"
-                  class="social-link">
-                  <i class="fab fa-linkedin"></i>
-                </a>
+                
               </div>
             </div>
           </div>
