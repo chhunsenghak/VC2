@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\StockTypeController;
 use App\Http\Controllers\API\FrontUserController as UserController;
 use App\Http\Controllers\API\ChatController as ChatController;
+use App\Http\Controllers\API\NotificationController as NotificationController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,7 +50,7 @@ Route::prefix('/user')->middleware('auth:sanctum')->group(function () {
     Route::post('/update/profile', [FrontuserController::class, 'updateProfileUser']);
     Route::get('/{id}', [UserController::class, 'show']);
     Route::get('/list', [UserController::class, 'index']);
-    Route::post('/create/shop', [UserController::class,'edit']);
+    Route::post('/create/shop', [UserController::class, 'edit']);
 });
 
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
@@ -56,42 +58,6 @@ Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::prefix('/post')->middleware('auth:sanctum')->group(function () {
     Route::get('/list', [PostController::class, 'index']);
     Route::get('/show/{id}', [PostController::class, 'show']);
-});
-
-// PROVINCE ROUTES
-Route::prefix('provinces')->group(function () {
-    Route::get('/list', [ProvinceController::class, 'index']);
-    Route::post('/create', [ProvinceController::class, 'store']);
-    Route::get('/show/{id}', [ProvinceController::class, 'show']);
-    Route::put('/update/{id}', [ProvinceController::class, 'update']);
-    Route::delete('/delete/{id}', [ProvinceController::class, 'destroy']);
-});
-
-// DISTRICT ROUTES
-Route::prefix('districts')->group(function () {
-    Route::get('/list', [DistrictController::class, 'index']);
-    Route::post('/create', [DistrictController::class, 'store']);
-    Route::get('/show/{id}', [DistrictController::class, 'show']);
-    Route::put('/update/{id}', [DistrictController::class, 'update']);
-    Route::delete('/delete/{id}', [DistrictController::class, 'destroy']);
-});
-
-// COMMUNE ROUTES
-Route::prefix('commune')->group(function () {
-    Route::get('/list', [CommuneController::class, 'index']);
-    Route::post('/create', [CommuneController::class, 'store']);
-    Route::get('/show/{id}', [CommuneController::class, 'show']);
-    Route::put('/update/{id}', [CommuneController::class, 'update']);
-    Route::delete('/delete/{id}', [CommuneController::class, 'destroy']);
-});
-
-// VILLAGE ROUTES
-Route::prefix('village')->group(function () {
-    Route::get('/list', [VillageController::class, 'index']);
-    Route::post('/create', [VillageController::class, 'store']);
-    Route::get('/show/{id}', [VillageController::class, 'show']);
-    Route::put('/update/{id}', [VillageController::class, 'update']);
-    Route::delete('/delete/{id}', [VillageController::class, 'destroy']);
 });
 
 // CATEGORY ROUTES
@@ -117,15 +83,6 @@ Route::prefix('products')->group(function () {
     Route::get("/user/list/{id}", [ProductController::class, 'listProduct']);
 });
 
-//ADDRESS ROUTES
-Route::prefix('addresses')->group(function () {
-    Route::get('/list', [AddressController::class, 'index']);
-    Route::post('/create', [AddressController::class, 'store']);
-    Route::get('/show/{id}', [AddressController::class, 'show']);
-    Route::put('/update/{id}', [AddressController::class, 'update']);
-    Route::delete('/delete/{id}', [AddressController::class, 'destroy']);
-});
-
 // STocks ROUTES
 Route::prefix('stocks')->group(function () {
     Route::get('/list', [StockTypeController::class, 'index']);
@@ -143,8 +100,13 @@ Route::prefix("chat")->middleware('auth:sanctum')->group(function () {
     Route::delete("/remove/all/messages/{id}", [ChatController::class, 'removeAllConversations']);
     Route::delete("/remove/user/{id}", [ChatController::class, 'removeChatUser']);
 });
+
+Route::prefix("notifications")->middleware('auth:sanctum')->group(function () {
+    Route::get("/list", [AuthController::class, 'listNotification']);
+    Route::get("/user", [NotificationController::class, 'show']);
+});
+
 //Update Profile Route
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/update-profile', [AuthController::class, 'updateProfile']);
 });
-

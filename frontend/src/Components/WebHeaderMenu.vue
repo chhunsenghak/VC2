@@ -2,10 +2,14 @@
 import { useAuthStore } from '@/stores/auth-store'
 import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
-
+import { notificationStore } from '@/stores/notifications'
 const visible = ref(false)
 const router = useRouter()
 const store = useAuthStore()
+const notification = notificationStore()
+const getNotification = () => {
+  notification.fetchNotifications();
+}
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')
@@ -83,7 +87,7 @@ const dialogVisible = ref(false)
               <p class="card-title fw-bold">ផលិតផលថ្មីៗ</p>
               <p class="card-text">សួរស្ដី​! យើ​​ងបាននាំចូលនូវផលិតផលថ្មីៗដល់លោកអ្នក</p>
             </div>
-          </div>          
+          </div>
         </el-dialog>
         <!-- //==================================================== -->
 
