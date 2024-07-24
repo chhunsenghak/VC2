@@ -2,13 +2,7 @@
   <button type="button" class="btn btn-primary d-none" @click="showToast">Show live toast</button>
   <!-- Toast container -->
   <div class="toast-container position-fixed top-17 end-0 p-3">
-    <div
-      id="liveToast"
-      class="toast bg-primary text-white"
-      role="alert"
-      aria-live="assertive"
-      aria-atomic="true"
-    >
+    <div id="liveToast" class="toast bg-primary text-white" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <strong class="me-auto">Notification</strong>
         <small class="text-muted">Now</small>
@@ -20,13 +14,8 @@
   <div class="container">
     <div v-if="store.products.data != ''" class="row">
       <form-create-product> </form-create-product>
-      <form-update-product
-        v-if="isDialogOpen"
-        :product="selectedProduct"
-        @close="closeDialog"
-        @submmit="submitProduct"
-        class="overlay"
-      >
+      <form-update-product v-if="isDialogOpen" :product="selectedProduct" @close="closeDialog" @submmit="submitProduct"
+        class="overlay">
       </form-update-product>
       <div class="mt-4">
         <table class="table table-bordered">
@@ -35,7 +24,6 @@
               <th>ឈ្មោះ</th>
               <th>តម្លៃ</th>
               <th>ប្រភេទ</th>
-              <th>ថ្ងៃផុសទំនិញ</th>
               <th>រូបភាព</th>
               <th>ពិពណ៍នា</th>
               <th>សកម្មភាព</th>
@@ -46,15 +34,9 @@
               <td>{{ product.name }}</td>
               <td>{{ product.price }} រៀល</td>
               <td>{{ product.category.name }}</td>
-              <td>{{ product.created_at }}</td>
               <td class="p-0">
-                <img
-                  class="w-10"
-                  :src="`http://127.0.0.1:8000/storage/${product.image}`"
-                  alt="image product"
-                  style="margin-left: 12px; margin-top: 12px"
-                  @click="showImageModal(product.image)"
-                />
+                <img class="w-10" :src="`http://127.0.0.1:8000/storage/${product.image}`" alt="image product"
+                  style="margin-left: 12px; margin-top: 12px" @click="showImageModal(product.image)" />
               </td>
               <td>{{ product.description }}</td>
               <td class="d-flex justify-content-end gap-1">
@@ -167,7 +149,8 @@ export default {
 
 <style scoped>
 .toast-container {
-  z-index: 1050; /* Ensure toast appears above other content */
+  z-index: 1050;
+  /* Ensure toast appears above other content */
 }
 
 .modal {
@@ -184,10 +167,14 @@ export default {
 }
 
 .modal-dialog {
-  width: 80vw; /* Set a fixed width for the modal */
-  height: 80vh; /* Set a fixed height for the modal */
-  max-width: 600px; /* Optional: Limit maximum width */
-  max-height: 600px; /* Optional: Limit maximum height */
+  width: 80vw;
+  /* Set a fixed width for the modal */
+  height: 80vh;
+  /* Set a fixed height for the modal */
+  max-width: 600px;
+  /* Optional: Limit maximum width */
+  max-height: 600px;
+  /* Optional: Limit maximum height */
   display: flex;
   justify-content: center;
   align-items: center;

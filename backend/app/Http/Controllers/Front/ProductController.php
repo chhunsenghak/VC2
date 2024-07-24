@@ -30,8 +30,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate request data
-        // return $request;
         $validated = $request->validate([
             'frontuser_id' => 'required|integer',
             'name' => 'required|string',
