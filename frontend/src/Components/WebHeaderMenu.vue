@@ -12,10 +12,17 @@ const dialogVisible = ref(false)
 
 onMounted(() => {
   showNotification();
+  setInterval(() => {
+    showNotification();
+  }, 2000);
 });
 const showNotification = () => {
   notifications.fetchNotifications();
+}
 
+const numberOfNotifications = (data) => {
+  // return notifications.notifications.data.length;
+  
 }
 
 const logout = async () => {
@@ -53,7 +60,7 @@ const getFormattedTime = (timestamp) => {
     return `${formattedHours}:${minutes} ${amPm}`;
   } else if (currentYear === inputYear && currentMonth === inputMonth && currentDay - inputDay === 1) {
     // Yesterday: Show 'Yesterday'
-    return 'Yesterday';
+    return 'ម្សិលមិញ';
   } else {
     // Other days: Show full date and time
     const dayOfWeek = daysOfWeek[inputDate.getDay()];
@@ -62,13 +69,14 @@ const getFormattedTime = (timestamp) => {
     const year = inputDate.getFullYear();
     const hours = inputDate.getHours();
     const minutes = inputDate.getMinutes().toString().padStart(2, '0');
-    const amPm = hours >= 12 ? 'PM' : 'AM';
+    const amPm = hours >= 12 ? 'រសៀល' : 'ព្រឹក';
     const formattedHours = hours % 12 || 12;
     return `${dayOfWeek}, ${month} ${dayOfMonth}, ${year} - ${formattedHours}:${minutes} ${amPm}`;
   }
 }
 </script>
 <template>
+
   <nav
     class="navbar navbar-expand-md navbar-dark fixed-top flex justify-between px-10 py-1 bg-white items-center m-0 shadow-background shadow-sm p-3 mb-5 bg-white">
     <div class="container-fluid">
@@ -103,18 +111,18 @@ const getFormattedTime = (timestamp) => {
       </div>
       <div class="icon col-1 d-flex justify-content-center text-center">
         <!-- ===============-Notification-================ -->
-        <div class="noti col-1 mt-3" @click="dialogVisible = true">
+        <div v-if="store.isAuthenticated" class="noti btn mt-2" @click="dialogVisible = true"
+          style="margin-right:-40px">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-bell-fill"
             viewBox="0 0 16 16">
             <path
               d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
           </svg>
-          <span class="badge rounded-pill badge-notification bg-danger position-absolute top-5">4</span>
+          <span class="badge rounded-pill badge-notification bg-danger position-absolute top-5"></span>
         </div>
         <el-dialog v-model="dialogVisible" title="ព័ត៍មាន​​ ឬសារជូនដំណឹង" width="500" class="mr-35 mt-17 rounded-3"
           :before-close="handleClose">
-
-          <div v-for="notification in notifications.notification.data" :key="notification.id"
+          <div v-for="notification in notifications.notifications.data" :key="notification.id"
             class="card border-2 mb-2 m-2" style="max-width: 28rem">
             <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
               <h5>{{ notification.type }}</h5>

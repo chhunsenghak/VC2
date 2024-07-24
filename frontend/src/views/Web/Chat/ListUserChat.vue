@@ -9,7 +9,7 @@
         <div class="chat_list ">
           <input type="text" class="form-control mb-2 shadow-sm" placeholder="Search">
           <ul class="list-group d-flex flex-column">
-           <li class="active shadow-sm d-flex border border-2  m-3 p-1 border-top-0 border-end-0 border-start-0 gap-4">
+            <li class="active shadow-sm d-flex border border-2  m-3 p-1 border-top-0 border-end-0 border-start-0 gap-4">
               <img src="../../../../src/assets/image/06.jpg" height="70px" width="70px"
                 class="rounded-circle user_img ">
               <div class="contact-details">
@@ -47,7 +47,6 @@
             </li>
           </ul>
         </div>
-            
         <div class="chat_detail d-flex flex-column justify-between" style="width: 50%;">
           <div class="chat-messages p-3">
             <div class="message">
@@ -62,7 +61,7 @@
               <strong>Channich NOEURN:</strong>
               <p>Doing ? </p>
             </div>
-          </div>         
+          </div>
           <div class="chat-input p-3 border-top">
             <div class="input-group">
               <input type="text" class="form-control p-3" placeholder="Type a message...">
@@ -72,9 +71,6 @@
             </div>
           </div>
         </div>
-
-
-
       </div>
       <!-- <div v-for="user in userChat.users.data" :key="user.id"
         class="link-offset-2 link-underline link-underline-opacity-0 text-dark">

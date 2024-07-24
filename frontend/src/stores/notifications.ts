@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import axiosInstance from '@/plugins/axios'
 export const notificationStore = defineStore('notification', {
     state: () => ({
-        notification: [] as Array<{
+        notifications: [] as Array<{
             id: number,
             receiver_id: number,
             title: string,
@@ -19,7 +19,7 @@ export const notificationStore = defineStore('notification', {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`
                     }
                 })
-                this.notification = response.data
+                this.notifications = response.data
             } catch (error) {
                 console.error('Error fetching categorys:', error)
             }

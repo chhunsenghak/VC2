@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sender_id')->nullable(false);
-            $table->integer('receiver_id')->reference('id')
-                ->on('frontuser')
-                ->onDelete('cascade');
-            $table->text('text')->nullable();
-            $table->string('images')->nullable();
+            $table->integer('user_id');
+            $table->integer('reciever_id');
+            $table->string('message')->nullable();
+            $table->string('image')->nullable();
+            $table->boolean('is_read')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

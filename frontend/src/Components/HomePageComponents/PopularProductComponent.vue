@@ -122,8 +122,6 @@ const longitude = ref(0)
 navigator.geolocation.getCurrentPosition(async (position) => {
   latitude.value = position.coords.latitude
   longitude.value = position.coords.longitude
-  console.log('Current latitude:', latitude.value)
-  console.log('Current longitude:', longitude.value)
 })
 
 const formSchema = yup.object({
