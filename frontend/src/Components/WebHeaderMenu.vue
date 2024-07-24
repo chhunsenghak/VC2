@@ -1,11 +1,23 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import { useAuthStore } from '@/stores/auth-store'
 import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
-
+import { notificationStore } from "@/stores/notifications"
 const visible = ref(false)
 const router = useRouter()
 const store = useAuthStore()
+const notifications = notificationStore()
+const dialogVisible = ref(false)
+
+onMounted(() => {
+  showNotification();
+});
+const showNotification = () => {
+  notifications.fetchNotifications();
+
+}
+
 const logout = async () => {
   try {
     const { data } = await axiosInstance.post('/user/logout')
@@ -14,9 +26,47 @@ const logout = async () => {
     router.push('/login')
   } catch (error) { }
 }
-import { ref } from 'vue'
 
-const dialogVisible = ref(false)
+const getFormattedTime = (timestamp) => {
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  const currentDate = new Date();
+  const inputDate = new Date(timestamp);
+
+  // Get components for current date
+  const currentDay = currentDate.getDate();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  // Get components for input date
+  const inputDay = inputDate.getDate();
+  const inputMonth = inputDate.getMonth();
+  const inputYear = inputDate.getFullYear();
+
+  // Compare date parts
+  if (currentYear === inputYear && currentMonth === inputMonth && currentDay === inputDay) {
+    // Today: Show only time
+    const hours = inputDate.getHours();
+    const minutes = inputDate.getMinutes().toString().padStart(2, '0');
+    const amPm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12;
+    return `${formattedHours}:${minutes} ${amPm}`;
+  } else if (currentYear === inputYear && currentMonth === inputMonth && currentDay - inputDay === 1) {
+    // Yesterday: Show 'Yesterday'
+    return 'Yesterday';
+  } else {
+    // Other days: Show full date and time
+    const dayOfWeek = daysOfWeek[inputDate.getDay()];
+    const dayOfMonth = inputDate.getDate();
+    const month = inputDate.toLocaleString('default', { month: 'long' });
+    const year = inputDate.getFullYear();
+    const hours = inputDate.getHours();
+    const minutes = inputDate.getMinutes().toString().padStart(2, '0');
+    const amPm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12;
+    return `${dayOfWeek}, ${month} ${dayOfMonth}, ${year} - ${formattedHours}:${minutes} ${amPm}`;
+  }
+}
 </script>
 <template>
   <nav
@@ -63,75 +113,18 @@ const dialogVisible = ref(false)
         </div>
         <el-dialog v-model="dialogVisible" title="ព័ត៍មាន​​ ឬសារជូនដំណឹង" width="500" class="mr-35 mt-17 rounded-3"
           :before-close="handleClose">
-          <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
+
+          <div v-for="notification in notifications.notification.data" :key="notification.id"
+            class="card border-2 mb-2 m-2" style="max-width: 28rem">
             <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                fill="#F19E39">
-                <path
-                  d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z" />
-              </svg>
-              <h5>ព័ត៍មាន!</h5>
-              <p>10:30 am</p>
+              <h5>{{ notification.type }}</h5>
+              <p>{{ getFormattedTime(notification.created_at) }}</p>
             </div>
             <div class="card-body">
-              <p class="card-title fw-bold">ផលិតផលថ្មីៗ</p>
-              <p class="card-text">សួរស្ដី​! យើ​​ងបាននាំចូលនូវផលិតផលថ្មីៗដល់លោកអ្នក</p>
+              <p class="card-title fw-bold">{{ notification.title }}</p>
+              <p class="card-text">{{ notification.description }}</p>
             </div>
           </div>
-          <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
-            <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                fill="#F19E39">
-                <path
-                  d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z" />
-              </svg>
-              <h5>សារជូនដំណឹង!</h5>
-              <p>4:00 pm</p>
-            </div>
-            <div class="card-body">
-              <p class="card-title fw-bold">ផ្លាស់ប្ដូរ​លេខសម្ងាត់</p>
-              <p class="card-text">ផ្លាស់ប្ដូរលេខសម្ងាត់បានជោគជ័យ</p>
-            </div>
-          </div>
-          <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
-            <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                fill="#F19E39">
-                <path
-                  d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z" />
-              </svg>
-              <h5>សារជូនដំណឹង!</h5>
-              <p>7:30 pm</p>
-            </div>
-            <div class="card-body">
-              <p class="card-title fw-bold">បញ្ចូលផលិតផល</p>
-              <p class="card-text">ការបញ្ចូលផលិតផលរបស់អ្នកបានជោគជ័យ</p>
-            </div>
-          </div>
-          <div class="card border-2 mb-2 m-2" style="max-width: 28rem">
-            <div class="card-header bg-transparent d-flex flex-direction-column justify-content-between text-center">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                fill="#F19E39">
-                <path
-                  d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z" />
-              </svg>
-              <h5>សារជូនដំណឹង!</h5>
-              <p>ម្សិលមិញ</p>
-            </div>
-            <div class="card-body">
-              <p class="card-title fw-bold">ការបង្កើតហាង</p>
-              <p class="card-text">
-                ការបង្កើតហាងរបស់អ្នកទទួលបានជោគជ័ត​ លោកអ្នកអាចចាប់ផ្ដើមលក់និងទិញផលិតផលនៅលើ​ Website
-                ដោយប្រើអាខោនរបស់អ្នក
-              </p>
-            </div>
-          </div>
-          <template #footer>
-            <div class="dialog-footer">
-              <el-button @click="dialogVisible = false">បោះបង់</el-button>
-              <el-button type="primary" @click="dialogVisible = false"> ចែករំលែក </el-button>
-            </div>
-          </template>
         </el-dialog>
         <!-- //==================================================== -->
 
@@ -182,18 +175,5 @@ const dialogVisible = ref(false)
   border-color: #d6dad6f2;
   background-color: rgb(245, 240, 240);
   border-radius: 5px;
-}
-
-.card:hover {
-  background-color: #138f30f2;
-  color: white;
-  border: none;
-  transition: background-color 0.3s ease-in-out;
-  cursor: pointer;
-  transform: scale(1.02);
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  transition: box-shadow 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out;
 }
 </style>
